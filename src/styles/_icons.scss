@@ -1,0 +1,144 @@
+%icon { 
+	font-family: "m4d-icons";
+}
+
+.m4d-icon {
+	&:before{
+		display: inline-block;
+		content: '';
+		
+		@include tablet {
+		
+		}
+	}
+
+	// &.m4d-icon-odometer {
+	// 	&:before{
+	// 		background-image: url(#{$image-path}clock.jpg);	
+	// 	}
+	// }
+	// &.m4d-icon-engine {
+	// 	&:before{
+	// 		background-image: url(#{$image-path}engine.jpg);	
+	// 	}
+	// }
+	// &.m4d-icon-speed {
+	// 	&:before{
+	// 		background-image: url(#{$image-path}speed.jpg);	
+	// 	}
+	// }
+	// &.m4d-icon-fuel {
+	// 	&:before{
+	// 		background-image: url(#{$image-path}petrol.jpg);	
+	// 	}
+	// }
+}
+
+/********************************************
+	ICON SET DOWNLOADED FROM FONT ELLO
+********************************************/
+@font-face {
+  font-family: 'm4d-icons';
+  src: url('/styles/font/m4d-icons.eot?3179539');
+  src: url('/styles/font/m4d-icons.eot?3179539#iefix') format('embedded-opentype'),
+       url('/styles/font/m4d-icons.woff?3179539') format('woff'),
+       url('/styles/font/m4d-icons.ttf?3179539') format('truetype'),
+       url('/styles/font/m4d-icons.svg?3179539#m4d-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'm4d-icons';
+    src: url('font/m4d-icons.svg?3179539#m4d-icons') format('svg');
+  }
+}
+*/
+ 
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "m4d-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+     
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+// .icon-cancel:before { content: '\e801'; } /* '' */
+// .icon-right-open:before { content: '\e802'; } /* '' */
+// .icon-left-open:before { content: '\e803'; } /* '' */
+// .icon-search:before { content: '\e804'; } /* '' */
+// .icon-down-dir:before { content: '\e806'; } /* '' */
+// .icon-up-dir:before { content: '\e808'; } /* '' */
+// .icon-arrow-combo:before { content: '\e809'; } /* '' */
+
+// // features
+// .icon-fuel:before { content: '\e800'; } /* '' */
+// .icon-odometer:before { content: '\e805'; } /* '' */
+// .icon-engine:before { content: '\e807'; } /* '' */
+
+
+
+
+
+
+.icon-cancel:before {	content: "\e801"; 	}
+
+.icon-right-open:before {	content: "\e802"; 	}
+
+.icon-left-open:before {	content: "\e803"; 	}
+
+.icon-search:before {	content: "\e804"; 	}
+
+
+.icon-down-dir:before {	content: "\e806"; 	}
+
+.icon-cog:before {	content: "\e807"; 	}
+
+.icon-up-dir:before {	content: "\e808"; 	}
+
+.icon-arrow-combo:before {	content: "\e809"; 	}
+
+.icon-calendar:before {	content: "\e600"; 	}
+
+
+
+
+.icon-parking:before {	content: "\e601"; 	}
+.icon-body:before {	content: "\e602"; 	}
+.icon-engine3:before {	content: "\e603"; 	}
+.icon-engine4:before {	content: "\e604"; 	}
+.icon-engine:before {	content: "\e606"; 	}
+.icon-gearbox:before {	content: "\e607"; 	}
+.icon-odometer1:before {	content: "\e805"; 	}
+.icon-odometer2:before {	content: "\e608"; 	}
+.icon-odometer:before {	content: "\e609"; 	}
+.icon-tires:before {	content: "\e60a"; 	}
+.icon-wheel:before {	content: "\e60b"; 	}
+.icon-petrol2:before {	content: "\e605"; 	}
+.icon-fuel:before {	content: "\e800"; 	}

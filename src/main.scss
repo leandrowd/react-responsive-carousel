@@ -1,0 +1,41 @@
+// // basic imports 
+@import "styles/variables";
+@import "styles/mixins/gradients";
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/animation";
+@import "styles/mixins/utils";
+
+// // resets, body, etc
+@import "styles/defaults";
+
+// // duhh
+@import "styles/icons";
+
+// // buttons, form inputs, etc...
+@import "styles/elements";
+@import "imageGallery";
+@import "carousel";
+
+
+%demo-box {
+	margin: 50px auto;
+}
+
+.demo-gallery {
+	@extend %demo-box;
+
+	.thumb {
+		width: 200px;
+	}
+}
+
+.demo-slider {
+	@extend %demo-box;
+}
+
+.demo-carousel {
+	@extend %demo-box;
+	.thumb {
+		width: 120px;
+	}
+}

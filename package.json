@@ -1,0 +1,47 @@
+{
+  "name": "react-responsive-carousel",
+  "version": "0.0.1",
+  "description": "React Responsive Carousel",
+  "author": "Leandro Augusto Lemos (leandrowd@gmail.com)",
+  "devDependencies": {
+    "accounting": "^0.4.1",
+    "browserify": "^6.2.0",
+    "connect-modrewrite": "^0.7.9",
+    "glob": "^4.0.6",
+    "gulp": "^3.8.9",
+    "gulp-concat": "^2.3.4",
+    "gulp-connect": "~2.2.0",
+    "gulp-cssmin": "^0.1.6",
+    "gulp-if": "^1.2.4",
+    "gulp-jasmine2-phantomjs": "^0.1.1",
+    "gulp-jest": "^0.3.0",
+    "gulp-livereload": "^2.1.1",
+    "gulp-minify-css": "~0.3.12",
+    "gulp-notify": "^1.4.2",
+    "gulp-sass": "~1.2.4",
+    "gulp-shell": "^0.2.10",
+    "gulp-streamify": "0.0.5",
+    "gulp-uglify": "^0.3.1",
+    "gulp-util": "^3.0.0",
+    "jest-cli": "~0.2.1",
+    "react-addons": "^0.9.0",
+    "react-tools": "^0.12.2",
+    "reactify": "^0.15.2",
+    "vinyl-source-stream": "^0.1.1",
+    "watchify": "^2.1.1",
+    "6to5-jest": "*"
+  },
+  "dependencies": {
+    "react": "~0.12.2",
+    "react-swiper": "~0.1.4"
+  },
+  "jest": {
+    "scriptPreprocessor": "./node_modules/6to5-jest",
+    "unmockedModulePathPatterns": [
+      "node_modules"
+    ]
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}

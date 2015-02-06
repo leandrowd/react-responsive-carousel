@@ -1,0 +1,56 @@
+@include keyframes(fadeIn) {
+  0%   { @include opacity(0); }
+  100% { @include opacity(100); }
+}
+
+@include keyframes(fadeOut) {
+  0%   { @include opacity(100); }
+  100% { @include opacity(0); }
+}
+
+.ReactModalPortal{
+	.ReactModal__Overlay {
+		background: rgba($color-dark, .5);
+		z-index: 2;
+		@include animation('fadeIn .5s 1');
+	}
+
+	.ReactModal__Overlay--before-close {
+		@include animation('fadeOut .5s 1');	
+	}
+
+	.ReactModal__Content {
+		position: absolute;
+		top: 6%;
+		left: 50%;
+		border: 1px solid $color-stroke-primary;
+		border-radius: 10px;
+		background: $color-gray-tertiary;
+		padding: 30px 40px;
+		max-height: 90%;
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+		outline: none;
+
+		header {
+			border-bottom: 1px solid $color-stroke-primary;
+			padding-bottom: 20px;
+			margin-bottom: 15px;
+		}
+
+		@include hideScroll;
+	}
+
+	.m4d-modal-close {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		border: 0;
+		padding: 15px;
+		background: transparent;
+		color: $color-primary;
+		font-size: 16px;
+		font-weight: bold;
+		@include rotateOnHover(0.5s, 180deg);
+	}
+}

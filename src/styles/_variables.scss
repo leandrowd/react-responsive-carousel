@@ -1,0 +1,76 @@
+/********************************************
+	CONTAINER WIDTHS
+********************************************/
+
+// Sidebar widget width to be set by dealers
+$filter-width: 300px;
+
+// Full Page horizontal widget width
+$filter-width-large: 940px;
+
+$results-image: 200px;
+$results-image-wid: 270px;
+$results-image-hei: 198px;
+
+$big-space: 20px;
+$default-space: 10px;
+
+$icon-width: 68px;
+
+$mobile-padded-content-width: 85%;
+
+/********************************************
+	PATHS
+********************************************/
+$image-path: '/images/';
+
+/********************************************
+	BREAKPOINT WIDTHS
+********************************************/
+$tablet-width: 768px;
+$desktop-width: 960px;
+$large-width: 1280px;
+
+/********************************************
+	OTHER WIDTHS
+********************************************/
+$media-attr: min-width;
+
+/********************************************
+	FONTS
+********************************************/
+$default-font-family: 'Open Sans', sans-serif;
+$default-font-size: 14px;
+
+/********************************************
+	COLOURS
+********************************************/
+$color-text-primary: #585555;
+$color-text-secondary: #fff;
+
+$color-primary: #ed6d19;
+$color-secondary: #8a8a8a;
+
+$color-button-primary-start: $color-primary;
+$color-button-primary-end: #ff5a00;
+
+$color-button-secondary-start: $color-secondary;
+$color-button-secondary-end: #696969;
+
+$color-gray-primary: #f5f5f5;
+$color-gray-secondary: #e0e0e0;
+$color-gray-tertiary: #f5f5f5;
+
+$color-dark: #333;
+$color-white: #fff;
+
+$color-stroke-primary: #bebebe;
+$color-stroke-secondary: #aeaeae;
+
+
+
+/********************************************
+	BORDERS
+********************************************/
+$border-radius: 5px;
+$border-thin: 1px solid $color-stroke-primary;

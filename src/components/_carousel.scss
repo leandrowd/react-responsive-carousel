@@ -1,0 +1,114 @@
+.carousel {
+	position: relative;
+	width: 100%;
+
+	img {
+		width: 100%;
+		display: inline-block;
+	}
+
+	.carousel {
+		position: relative;
+	}
+
+	.control-arrow {
+		@extend %arrows;
+		top: 15px;
+		font-size: 18px;
+	}
+
+	.thumbs-wrapper {
+		position: relative;
+		margin: 0 20px;
+		overflow: hidden;
+		display: none;
+
+		@include tablet {
+			display: block;
+		}
+	}
+
+	.thumbs {
+		@include transition(all, 0.15s, ease-in);
+		// activate hardware accelerated animations using translate property
+		@include hardwareAccelerated();
+		position: relative;
+		list-style: none;
+		overflow: hidden;
+
+		white-space: nowrap;
+	}
+
+	.thumb {
+		@include transition(border, 0.15s, ease-in);
+		display: inline-block;
+		width: 65px;
+		margin-right: 6px;
+		white-space: nowrap;
+		overflow: hidden;
+		border: 3px solid #fff;
+
+		&.selected, &:hover {
+			border: 3px solid $color-primary;
+		}
+
+		img {
+			vertical-align: top;
+		}
+	}
+
+	&.carousel-slider {
+		position: relative;
+		margin: 0;
+		overflow: hidden;
+
+		li {
+			@include tablet {
+				cursor: -webkit-zoom-in;
+			}
+		}
+
+		// adjusting the arrows for the slider
+		.control-arrow {
+			@extend %arrows;
+			top: 0;
+			color: #fff;
+			font-size: 26px;
+			height: 100%;
+			padding: 5px;
+			
+		}
+	}
+
+	.slider-wrapper {
+		overflow: hidden;
+	}
+
+	.slider {
+		@include transition(all, 0.35s, ease-in);
+		// activate hardware accelerated animations using translate property
+		@include hardwareAccelerated();
+		position: relative;
+		list-style: none;
+		overflow: hidden;
+
+		white-space: nowrap;
+	}
+
+	.slide {
+		@include transition(border, 0.25s, ease-in);
+		display: inline-block;
+		width: 260px;
+		margin: 0px;
+		white-space: nowrap;
+
+		@include tablet {
+			@include transition(border, 0.15s, ease-in);
+		}
+
+		img {
+			vertical-align: top;
+		}
+	}
+}
+
