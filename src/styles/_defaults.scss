@@ -11,10 +11,72 @@ body {
 	font-family: $default-font-family;
    	font-size: $default-font-size;
    	font-weight: 400;
-
-   	@include breakpoints-for-javascript;
+   	font-size: 16px;
+   	color: #333;
+	font-family: 'Roboto', sans-serif;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
+	font-weight: 400;
+	margin: 20px 0;
+}
+
+h1 {
 	font-weight: 700;
+}
+
+h2 {
+	border-top: 1px solid #999;
+	padding-top: 40px;
+	margin-top: 40px;
+}
+
+h4 {
+	margin-bottom: 10px;
+}
+
+
+
+pre {
+
+}
+
+code {
+	border-radius: 20px;
+	background: #f5f5f5;
+	padding: 20px;
+	text-indent: 0;
+	color: #666;
+	display: block;
+	// width: 90%;
+	margin: auto;
+}
+
+.wrapper {
+	padding: 30px;
+
+	.demo-gallery, .demo-slider, .demo-carousel {
+		margin: 30px -30px;
+	}
+
+	.demo {
+		display: block;
+		margin: 30px 0;
+		padding-bottom: 30px;
+		border-bottom: 1px solid #999;
+
+	}
+}
+
+.list-items, .summary {
+	margin-left: 50px;
+
+	li {
+		line-height: 2;
+		list-style-type: circle;
+
+		ul {
+			margin-left: 30px;			
+		}
+	}
 }

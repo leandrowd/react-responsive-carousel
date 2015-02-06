@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
 var React = require('react');
-// global.React = React;
 var ImageGallery = require('./components/ImageGallery');
 var Carousel = require('./components/Carousel');
 
@@ -58,11 +57,11 @@ var DemoGallery = React.createClass({
 	}
 });
 
-var DemoSlider = React.createClass({
+var DemoSliderControls = React.createClass({
 	render() {
 		return (
 			<div className="demo-slider">
-				<Carousel type="slider" items={ sliderImages } />
+				<Carousel type="slider" items={ sliderImages } showControls={true} showStatus={true} />
 			</div>
 		);
 	}
@@ -79,6 +78,6 @@ var DemoCarousel = React.createClass({
 });
 
 React.render(<DemoGallery />, document.querySelector('.demo-gallery'));
-React.render(<DemoSlider />, document.querySelector('.demo-slider'));
+React.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
 React.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 

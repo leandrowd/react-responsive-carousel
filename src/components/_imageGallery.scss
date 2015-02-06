@@ -1,4 +1,4 @@
-.m4d-image-gallery {
+.image-gallery {
 	overflow: hidden;
 	width: 100%;
 	position: relative;
@@ -8,7 +8,7 @@
 		display: inline-block;
 	}
 
-	.m4d-zoom {
+	.zoom {
 		width: 85%;
 		margin: 0 auto;
 		
@@ -22,45 +22,8 @@
 		}
 	}
 
-	.m4d-carousel ~ .m4d-carousel {
-		display: none;
-
-		@include tablet {
-			margin-top: 5px;
-			display: inline-block;
-		}
-	}
-
-	.gallery-status {
-		width: $mobile-padded-content-width;
-		margin: 10px auto;
-
-		@include tablet {
-			display: none;
-		}
-
-	}
-}
-
-.m4d-image-gallery-image-modal {
-	width: 90%;
-	margin-left: -45%;
-	color: $color-text-primary;
-
-	.m4d-zoom {
-		width: 100%;
-		max-height: 80%;
-		overflow: hidden;
-		text-align: center;
-		
-		img {
-			max-width: 100%;
-			max-height: 85%;
-		}
-	}
-
-	.m4d-carousel {
-		max-width: 100%;
-		margin: auto;
+	.carousel ~ .carousel {
+		margin-top: 25px;
+		display: inline-block;
 	}
 }

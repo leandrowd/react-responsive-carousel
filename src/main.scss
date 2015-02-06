@@ -35,6 +35,8 @@
 
 .demo-carousel {
 	@extend %demo-box;
+	width: 100%;
+	margin: 30px auto!important;
 	.thumb {
 		width: 120px;
 	}

@@ -137,7 +137,7 @@ module.exports = React.createClass({
 		this.lastPosition = (total - this.visibleItems);
 	}, 
 
-	_handleClickItem (index, item) {
+	handleClickItem (index, item) {
 		var handler = this.props.onSelectItem;
 
 		if (typeof handler === 'function') {
@@ -204,6 +204,14 @@ module.exports = React.createClass({
 		}
 	},
 
+	changeItem (e) {
+		var newIndex = e.target.value;
+		this.setState({
+			selectedItem: newIndex,
+			firstItem: newIndex
+		})
+	},
+
 	renderItems () {
 		var isSlider = (this.props.type === "slider");
 
@@ -211,20 +219,40 @@ module.exports = React.createClass({
 			var itemClass = klass.ITEM(isSlider, index, this.state.selectedItem);
 			var imageSchema = {};
 			
-			if (index === 0) {
-				imageSchema.itemProp = "image";
-			}
-			
 			return (
 				<li key={index} ref={"item" + index} className={itemClass}
 					style={{width: this.isSlider && this.itemSize}} 
-					onClick={ this._handleClickItem.bind(this, index, item) }>
-					<img src={item.url} {...imageSchema} />
+					onClick={ this.handleClickItem.bind(this, index, item) }>
+					<img src={item.url} />
 				</li>
 			);
 		});
 					
 	},
+
+	renderControls () {
+		if (!this.props.showControls) {
+			return null
+		}
+
+		return (
+			<ul className="control-dots">
+				{this.props.items.map( (item, index) => {
+					return <li className={classSet({
+						"dot": true,
+						'selected': index === this.state.selectedItem
+					})} onClick={this.changeItem} value={index} />;
+				})}
+			</ul>
+		);
+	},
+
+	renderStatus () {
+		if (!this.props.showStatus) {
+			return null
+		}
+		return <p className="carousel-status">{this.state.selectedItem} of {this.props.items.length}</p>;
+	}, 
 
 	render () {
 		if (this.props.items.length === 0) {
@@ -244,18 +272,24 @@ module.exports = React.createClass({
 			onSwipeLeft: this.slideLeft
 		}
 
+		var transformProp = 'translate3d(' + this.getNextPosition() + 'px, 0, 0)';
+		
 		var sliderProps = {
 			className: klass.SLIDER(isSlider),
 			style: {
+				'WebkitTransform': transformProp,
+				   'MozTransform': transformProp,
+				    'msTransform': transformProp,
+				     'OTransform': transformProp,
+				      'transform': transformProp,
 				// left: this.getNextPosition(),
-				'-webkit-transform': 'translate3d(' + this.getNextPosition() + 'px, 0, 0)',
+				// '-webkit-transform': 'translate3d(' + this.getNextPosition() + 'px, 0, 0)',
 				width: this.itemSize * total
 			}
 		}
 	
 		return (
 			<Swiper {...elementProps}>
-
 				<button className={klass.ARROW_LEFT(!hasPrev)} onClick={this.slideRight} />
 				
 				<div className={klass.WRAPPER(isSlider)} ref="itemsWrapper">
@@ -266,6 +300,8 @@ module.exports = React.createClass({
 
 				<button className={klass.ARROW_RIGHT(!hasNext)} onClick={this.slideLeft} />
 				
+				{ this.renderControls() }
+				{ this.renderStatus() }
 			</Swiper>
 		);
 		

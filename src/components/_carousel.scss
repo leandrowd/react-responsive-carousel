@@ -13,7 +13,8 @@
 
 	.control-arrow {
 		@extend %arrows;
-		top: 15px;
+		top: 50%;
+		margin-top: -13px;
 		font-size: 18px;
 	}
 
@@ -21,11 +22,6 @@
 		position: relative;
 		margin: 0 20px;
 		overflow: hidden;
-		display: none;
-
-		@include tablet {
-			display: block;
-		}
 	}
 
 	.thumbs {
@@ -109,6 +105,41 @@
 		img {
 			vertical-align: top;
 		}
+	}
+
+	.control-dots {
+		position: absolute;
+		bottom: 0;
+		margin: 10px 0;
+		text-align: center;
+		width: 100%;
+
+		.dot {
+			@include transition(opacity, 0.25s, ease-in);
+			@include opacity(.3);
+			box-shadow: 1px 1px 2px rgba(#000, .9);
+			background: #fff;
+			border-radius: 50%;
+			width: 8px;
+			height: 8px;
+			cursor: pointer;
+			display: inline-block;
+			margin: 0 8px;
+
+			&.selected, &:hover {
+				@include opacity(1);
+			}
+		}
+	}
+
+	.carousel-status {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 5px;
+		font-size: 10px;
+		text-shadow: 1px 1px 1px rgba(#000, .9);
+		color: #fff;
 	}
 }
 
