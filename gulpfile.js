@@ -54,7 +54,7 @@ gulp.task('default', ['prepareScripts', 'test', 'styles', 'webserver'], function
       console.log('Scripts watcher trigger: ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 
-  // gulp.watch(configs.paths.source + "/**/*test.js", ['test'])
+  // gulp.watch(configs.paths.source + "/__tests__/*.js", ['test'])
   //   .on('change', function(event) {
   //     console.log('Tests watcher trigger: ' + event.path + ' was ' + event.type + ', running tasks...');
   //   });

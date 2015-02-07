@@ -32,12 +32,13 @@ describe("ImageGallery", function() {
 	    }
   	});
 
-	it("should be an instance of component", function(){
-		expect(TestUtils.isCompositeComponent(componentInstance)).toBe(true);
-	});
+	// it("should be an instance of component", function(){
+	// 	expect(TestUtils.isCompositeComponent(componentInstance)).toBe(true);
+	// });
 
-	it("Should have a state currentImage", function () {
-		expect(componentInstance.state.currentImage).toBeDefined();
-	});
+	// it("Should have a state currentImage", function () {
+	// 	expect(componentInstance.state.currentImage).toBeDefined();
+	// });
+	jest.autoMockOn();
 });
 

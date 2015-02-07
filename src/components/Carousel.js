@@ -1,61 +1,10 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
-var classSet = React.addons.classSet;
-var Swiper = require('react-swiper');
+// var Swiper = require('react-swiper');
+var klass = require('../cssClasses');
+var outerWidth = require('../dimensions').outerWidth;
 
-var outerWidth = (el) => {
-	var width = el.offsetWidth;
-	var style = getComputedStyle(el);
-
-	width += parseInt(style.marginLeft) + parseInt(style.marginRight);
-	return width;
-}
-
-var klass = {
-	CAROUSEL (isSlider) {
-		return classSet({
-			"carousel": true,
-			"carousel-slider": isSlider
-		});
-	}, 
-
-	WRAPPER (isSlider) {
-		return classSet({
-			"thumbs-wrapper": !isSlider,
-			"slider-wrapper": isSlider
-		});
-	},
-
-	SLIDER (isSlider){
-		return classSet({
-			"thumbs": !isSlider,
-			"slider": isSlider
-		});
-	},
-
-	ITEM (isSlider, index, selectedItem) {
-		return classSet({
-			"thumb": !isSlider,
-			"slide": isSlider,
-			"selected": index === selectedItem
-		});
-	},
-
-	ARROW_LEFT (disabled) {
-		return classSet({
-			"control-arrow control-left": true,
-			"control-disabled": disabled
-		});
-	},
-
-	ARROW_RIGHT (disabled) {
-		return classSet({
-			"control-arrow control-right": true,
-			"control-disabled": disabled
-		})
-	}
-}
-
+var Finger = require('ainojs-finger');
 
 module.exports = React.createClass({
 	
@@ -84,7 +33,15 @@ module.exports = React.createClass({
     },
 
 	componentWillUnmount() {
-        window.removeEventListener("resize", this.updateDimensions);
+		window.removeEventListener("resize", this.updateDimensions);
+        
+        // unbinding swipe component
+		if (this.isSlider) {
+			this.finger.off('frame', this.onSwipeMove);
+			this.finger.off('complete', this.onSwipeEnd);
+			this.finger.destroy();
+		}
+
     },
 
 	componentWillReceiveProps (props, state) {
@@ -108,14 +65,25 @@ module.exports = React.createClass({
 
 	updateDimensions () {
 		this.calculateSpace(this.props.items.length);
-		// this.component needs to calculate many sizes so we need to re render
+		
+		// the component should be rerended after calculating space
 		this.forceUpdate();
 	},
 
 	componentDidMount (nextProps) {
 		this.calculateSpace(this.props.items.length);
-		// this.component needs to calculate many sizes so we need to re render
+
+		// the component should be rerended after calculating space
 		this.forceUpdate();	
+
+		// creating swipe component
+		if (this.isSlider) {
+			this.finger = new Finger(this.refs.itemsWrapper.getDOMNode(), {
+				duration: 400
+			});
+			this.finger.on('frame', this.onSwipeMove);
+			this.finger.on('complete', this.onSwipeEnd);
+		}
 	}, 
 
 	// Calculate positions for carousel
@@ -160,32 +128,36 @@ module.exports = React.createClass({
 	}, 
 
 	slideRight (){
-		var next = this.state.firstItem === 0 ? 0 : this.state.firstItem - 1;
-
-		this.setState({
-			firstItem: next
-		});
-
-		// send it's to the parent
-		this.triggerOnChange(next);
+		this.moveTo(this.state.firstItem - 1)
 	},
 
 	slideLeft (){
-		var next = this.state.firstItem + 1;
-		
-		// if we can show 3 elements so the last 
-		// item to be the first is the last - 3
-		if (next >= this.lastPosition) {
-			next = this.lastPosition;
-		} 
-
-		this.setState({
-			firstItem: next
-		});
-
-		// send it's to the parent
-		this.triggerOnChange(next);
+		this.moveTo(this.state.firstItem + 1)
 	},
+
+	onSwipeMove (e) {
+		this.refs.itemList.getDOMNode().style.transform = 'translate3d(' + e.position + 'px, 0, 0)';
+	},
+
+	onSwipeEnd (e) {
+		this.moveTo(e.index);
+	},
+
+	moveTo (position) {
+		// position can't be lower than 0
+		position = position < 0 ? 0 : position;
+
+		// position can't be higher than last postion
+		position = position >= this.lastPosition ? this.lastPosition : position;
+		
+		this.setState({
+			firstItem: position,
+			// if it's not a slider, we don't need to set position here
+			selectedItem: this.isSlider ? position : this.state.selectedItem
+		});
+		this.triggerOnChange(position);
+	},
+
 
 	getTotalWidth () {
 		if (this.isMounted()) {
@@ -234,14 +206,11 @@ module.exports = React.createClass({
 		if (!this.props.showControls) {
 			return null
 		}
-
+		
 		return (
 			<ul className="control-dots">
 				{this.props.items.map( (item, index) => {
-					return <li className={classSet({
-						"dot": true,
-						'selected': index === this.state.selectedItem
-					})} onClick={this.changeItem} value={index} />;
+					return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} value={index} />;
 				})}
 			</ul>
 		);
@@ -266,15 +235,9 @@ module.exports = React.createClass({
 		var hasPrev = showArrows && this.state.firstItem > 0;
 		var hasNext = showArrows && this.state.firstItem < this.lastPosition;
 	
-		var elementProps = {
-			className: klass.CAROUSEL(isSlider),
-			onSwipeRight: this.slideRight,
-			onSwipeLeft: this.slideLeft
-		}
-
 		var transformProp = 'translate3d(' + this.getNextPosition() + 'px, 0, 0)';
 		
-		var sliderProps = {
+		var itemListProps = {
 			className: klass.SLIDER(isSlider),
 			style: {
 				'WebkitTransform': transformProp,
@@ -289,11 +252,11 @@ module.exports = React.createClass({
 		}
 	
 		return (
-			<Swiper {...elementProps}>
+			<div className={klass.CAROUSEL(isSlider)}>
 				<button className={klass.ARROW_LEFT(!hasPrev)} onClick={this.slideRight} />
 				
 				<div className={klass.WRAPPER(isSlider)} ref="itemsWrapper">
-					<ul {...sliderProps} ref="itemList">
+					<ul {...itemListProps} ref="itemList">
 						{ this.renderItems() }
 					</ul>
 				</div>
@@ -302,7 +265,7 @@ module.exports = React.createClass({
 				
 				{ this.renderControls() }
 				{ this.renderStatus() }
-			</Swiper>
+			</div>
 		);
 		
 	}

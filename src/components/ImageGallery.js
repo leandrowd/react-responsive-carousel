@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
 var classSet = React.addons.classSet;
-var Swiper = require('react-swiper');
 var Carousel = require('./Carousel');
 
 module.exports = React.createClass({

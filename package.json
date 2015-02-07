@@ -32,6 +32,7 @@
     "6to5-jest": "*"
   },
   "dependencies": {
+    "ainojs-finger": "^1.1.2",
     "react": "~0.12.2",
     "react-swiper": "~0.1.4"
   },
