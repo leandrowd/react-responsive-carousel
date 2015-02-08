@@ -21,37 +21,78 @@ var dependencies = [
 
 module.exports = function (options) {
 	var isDevelopment = (options.environment === "development");
+	var isNpmModule = (options.environment === "package");
 
-	// Our app bundler
-	var appBundler = browserify({
-		entries: [configs.paths.source + '/main.js'], 
-   		transform: [["reactify", {"es6": true}]], 
-		debug: isDevelopment, 
-		fullPaths: isDevelopment,
-		extension: ['js']
-	});
+	if (!isDevelopment) {
+		var carouselBundler = browserify({
+			entries: [configs.paths.source + '/components/Carousel.js'], 
+	   		transform: [["reactify", {"es6": true}]], 
+			debug: false, 
+			fullPaths: false,
+			extension: ['js']
+		});
 
-	// We set our dependencies as externals on our app bundler when developing		
-	// (isDevelopment ? dependencies : []).forEach(function (dep) {
-	// 	appBundler.external(dep);
-	// });
+		var galleryBundler = browserify({
+			entries: [configs.paths.source + '/components/ImageGallery.js'], 
+	   		transform: [["reactify", {"es6": true}]], 
+			debug: false, 
+			fullPaths: false,
+			extension: ['js']
+		});
 
-	// The rebundle process
-	var rebundle = function () {
-		var start = Date.now();
-		gutil.log('Building APP bundle');
-		appBundler.bundle()
+		carouselBundler.bundle()
 			.on('error', gutil.log)
-			.pipe(source('main.js'))
-			.pipe(gulpif(!isDevelopment, streamify(uglify())))
+			.pipe(source('Carousel.js'))
 			.pipe(gulp.dest(configs.folders[options.environment]))
 			.pipe(notify(function () {
-				gutil.log('APP bundle built in ' + (Date.now() - start) + 'ms');
-			}))
-			.pipe(connect.reload());
-	};
+				gutil.log('Carousel bundle built');
+			}));
 
-	rebundle();
+		galleryBundler.bundle()
+			.on('error', gutil.log)
+			.pipe(source('ImageGalery.js'))
+			.pipe(gulp.dest(configs.folders[options.environment]))
+			.pipe(notify(function () {
+				gutil.log('ImageGallery bundle built');
+			}));
+			
+
+	} else {
+
+
+		// Our app bundler
+		var appBundler = browserify({
+			entries: [configs.paths.source + '/main.js'], 
+	   		transform: [["reactify", {"es6": true}]], 
+			debug: isDevelopment, 
+			fullPaths: isDevelopment,
+			extension: ['js']
+		});
+
+		// We set our dependencies as externals on our app bundler when developing		
+		// (isDevelopment ? dependencies : []).forEach(function (dep) {
+		// 	appBundler.external(dep);
+		// });
+
+		// The rebundle process
+		var rebundle = function () {
+			var start = Date.now();
+			gutil.log('Building APP bundle');
+			appBundler.bundle()
+				.on('error', gutil.log)
+				.pipe(source('main.js'))
+				.pipe(gulpif(!isDevelopment, streamify(uglify())))
+				.pipe(gulp.dest(configs.folders[options.environment]))
+				.pipe(notify(function () {
+					gutil.log('APP bundle built in ' + (Date.now() - start) + 'ms');
+				}))
+				.pipe(connect.reload());
+		};
+
+
+
+		rebundle();
+	}
 
 	return {
 		app: rebundle, 

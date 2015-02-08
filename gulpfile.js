@@ -47,17 +47,24 @@ gulp.task('deploy', ['test'], function () {
   });
 });
 
+gulp.task('package', ['test'], function () {
+  browserifyTask({
+    environment: 'package'
+  });
+  
+  cssTask({
+    environment: 'package'
+  });
+});
+
+
+
 // Development workflow
 gulp.task('default', ['prepareScripts', 'test', 'styles', 'webserver'], function () {
   gulp.watch(configs.paths.source + "/**/*.js", ['scripts', 'test'])
     .on('change', function(event) {
       console.log('Scripts watcher trigger: ' + event.path + ' was ' + event.type + ', running tasks...');
     });
-
-  // gulp.watch(configs.paths.source + "/__tests__/*.js", ['test'])
-  //   .on('change', function(event) {
-  //     console.log('Tests watcher trigger: ' + event.path + ' was ' + event.type + ', running tasks...');
-  //   });
 
   gulp.watch(configs.paths.source + "/**/*.scss", ['styles'])
     .on('change', function(event) {

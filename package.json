@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "React Responsive Carousel",
   "author": "Leandro Augusto Lemos (leandrowd@gmail.com)",
-  "main": "src/index.js",
+  "main": "index.js",
   "devDependencies": {
     "accounting": "^0.4.1",
     "browserify": "^6.2.0",
