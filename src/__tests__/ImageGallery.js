@@ -1,12 +1,14 @@
 /** @jsx React.DOM */
 
 describe("ImageGallery", function() {
+	
+	jest.autoMockOff();
+	
 	var React = require('react/addons');
 	var TestUtils = React.addons.TestUtils;
 	var findByTag = TestUtils.scryRenderedDOMComponentsWithTag;
 	var findByClass = TestUtils.scryRenderedDOMComponentsWithClass;
 
-	jest.autoMockOff();
 	// jest.dontMock('./ImageGallery.react');
 	
 	var ImageGallery = require('../components/ImageGallery');
@@ -33,12 +35,13 @@ describe("ImageGallery", function() {
   	});
 
 	// it("should be an instance of component", function(){
-	// 	expect(TestUtils.isCompositeComponent(componentInstance)).toBe(true);
+	// 	// expect(TestUtils.isCompositeComponent(componentInstance)).toBe(true);
 	// });
 
-	// it("Should have a state currentImage", function () {
-	// 	expect(componentInstance.state.currentImage).toBeDefined();
-	// });
+	it("Should have a state currentImage", function () {
+		// console.log(componentInstance.state);
+		// expect(componentInstance.state.currentImage).toBeDefined();
+	});
 	jest.autoMockOn();
 });
 

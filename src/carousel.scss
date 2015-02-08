@@ -1,0 +1,11 @@
+// // basic imports 
+@import "styles/variables";
+@import "styles/mixins/gradients";
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/animation";
+@import "styles/mixins/utils";
+@import "styles/icons";
+
+// buttons, form inputs, etc...
+@import "styles/elements";
+@import "carousel";

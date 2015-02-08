@@ -3,39 +3,3 @@ button {
 	border: 0;
 	background: none;
 }
-
-%arrows {
-	@include transition(opacity, 0.15s, ease-in);
-	@include opacity(.4);
-	position: absolute;
-	z-index: 2;
-	top: 20px;
-	font-family: "m4d-icons";
-	background: none;
-	border: 0;
-	font-size: 32px;
-	cursor: pointer;
-
-	&:hover {
-		@include opacity(1);
-	}
-
-	&.control-disabled {
-		@include opacity(0);
-		cursor: inherit;
-	}
-
-	&.control-left {
-		left: 0;
-		&:before {
-			content: '\e803';
-		}
-	}
-
-	&.control-right {
-		right: 0;
-		&:before {
-			content: '\e802';
-		}
-	}
-}

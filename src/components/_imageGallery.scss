@@ -1,4 +1,10 @@
 .image-gallery {
+	* {
+		-webkit-box-sizing: border-box;
+	  	-moz-box-sizing: border-box;
+	  	box-sizing: border-box;
+	}
+	
 	overflow: hidden;
 	width: 100%;
 	position: relative;
@@ -25,5 +31,11 @@
 	.carousel ~ .carousel {
 		margin-top: 25px;
 		display: inline-block;
+	}
+
+	.carousel {
+		.thumb {
+			width: 120px;
+		}
 	}
 }

@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
-var classSet = React.addons.classSet;
 var Carousel = require('./Carousel');
 
 module.exports = React.createClass({

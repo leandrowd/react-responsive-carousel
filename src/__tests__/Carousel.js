@@ -6,10 +6,6 @@ describe("Carousel", function() {
 	var findByTag = TestUtils.scryRenderedDOMComponentsWithTag;
 	var findByClass = TestUtils.scryRenderedDOMComponentsWithClass;
 
-	// jest.dontMock('../components/Carousel');
-	// jest.dontMock('../cssClasses');
-	// jest.dontMock('ainojs-finger');
-	// 
 	jest.autoMockOff();
 
 	var Carousel = require('../components/Carousel');
@@ -38,10 +34,6 @@ describe("Carousel", function() {
 	      React.unmountComponentAtNode(componentInstance.getDOMNode().parent);
 	    }
   	});
-
-	// it("should be an instance of component", function(){
-	// 	expect(TestUtils.isCompositeComponent(componentInstance)).toBe(true);
-	// });
 
 	it("Should have the right state at the begin", function () {
 		expect(componentInstance.state.selectedItem).toBe(0);

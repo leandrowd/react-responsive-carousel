@@ -11,36 +11,41 @@ body {
 	font-family: $default-font-family;
    	font-size: $default-font-size;
    	font-weight: 400;
-   	font-size: 16px;
-   	color: #333;
-	font-family: 'Roboto', sans-serif;
+   	color: $color-primary;
 }
 
 h1, h2, h3, h4 {
-	font-weight: 400;
+	font-weight: 700;
 	margin: 20px 0;
 }
 
 h1 {
 	font-weight: 700;
+	font-size: 2.5em;
 }
 
 h2 {
-	border-top: 1px solid #999;
+	border-top: 1px solid $color-secondary;
 	padding-top: 40px;
 	margin-top: 40px;
+	font-size: 2em;
+}
+
+h3 {
+	font-size: 1.4em;
 }
 
 h4 {
+	font-size: 1.1em;
 	margin-bottom: 10px;
 }
 
 code {
 	border-radius: 20px;
-	background: #f5f5f5;
+	background: $color-background;
 	padding: 20px;
 	text-indent: 0;
-	color: #666;
+	color: $color-primary;
 	display: block;
 	// width: 90%;
 	margin: auto;
@@ -57,7 +62,11 @@ code {
 		display: block;
 		margin: 30px 0;
 		padding-bottom: 30px;
-		border-bottom: 1px solid #999;
+		border-bottom: 1px solid $color-primary;
+
+		&:last-child {
+			border-bottom: 0;
+		}
 
 	}
 }

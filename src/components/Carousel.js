@@ -1,9 +1,10 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
-// var Swiper = require('react-swiper');
 var klass = require('../cssClasses');
 var outerWidth = require('../dimensions').outerWidth;
+var has3d = require('../has3d')();
 
+// helper lib to do the swipe work
 var Finger = require('ainojs-finger');
 
 module.exports = React.createClass({
@@ -15,15 +16,19 @@ module.exports = React.createClass({
 	getDefaultProps () {
 		return {
 			selectedItem: 0,
+			// Carousel is the default type
 			type: 'carousel'
 		}
 	}, 
 
 	getInitialState () {
 		return {
-			// index of the image to be shown
+			// index of the image to be shown.
 			selectedItem: this.props.selectedItem,
-			// index of the thumb that will appear first
+
+			// Index of the thumb that will appear first.
+			// If you are using type = slider, this has 
+			// the same value of the selected item.
 			firstItem: 0
 		}
 	}, 
@@ -63,28 +68,32 @@ module.exports = React.createClass({
 		}
 	},
 
+	componentDidMount (nextProps) {
+		// when the component is rendered we need to calculate 
+		// the container size to adjust the responsive behaviour
+		this.updateDimensions();
+
+		// swipe is only applied to slider because the of the current lib
+		// TODO: implement the swipe behaviour for the carousel too.
+		if (this.isSlider) {
+			var finger = new Finger(this.refs.itemsWrapper.getDOMNode());
+			
+			// this was breaking the tests, some weird behaviour of jest
+			if ('on' in finger) {
+				finger.on('frame', this.onSwipeMove);
+				finger.on('complete', this.onSwipeEnd);
+			}
+
+			this.finger = finger;
+		}
+	}, 
+
 	updateDimensions () {
 		this.calculateSpace(this.props.items.length);
 		
 		// the component should be rerended after calculating space
 		this.forceUpdate();
 	},
-
-	componentDidMount (nextProps) {
-		this.calculateSpace(this.props.items.length);
-
-		// the component should be rerended after calculating space
-		this.forceUpdate();	
-
-		// creating swipe component
-		if (this.isSlider) {
-			this.finger = new Finger(this.refs.itemsWrapper.getDOMNode(), {
-				duration: 400
-			});
-			this.finger.on('frame', this.onSwipeMove);
-			this.finger.on('complete', this.onSwipeEnd);
-		}
-	}, 
 
 	// Calculate positions for carousel
 	calculateSpace (total) {
@@ -136,7 +145,21 @@ module.exports = React.createClass({
 	},
 
 	onSwipeMove (e) {
-		this.refs.itemList.getDOMNode().style.transform = 'translate3d(' + e.position + 'px, 0, 0)';
+		var elementStyle = this.refs.itemList.getDOMNode().style;
+
+		// if 3d isn't available we will use left to move
+		if (has3d) {
+			[
+				'WebkitTransform',
+				'MozTransform',
+				'MsTransform',
+				'OTransform',
+				'transform',
+				'msTransform'
+			].forEach((propertie) => elementStyle[propertie] = 'translate3d(' + e.position + 'px, 0, 0)');
+		} else {
+			elementStyle.left = e.position + 'px';
+		}
 	},
 
 	onSwipeEnd (e) {
@@ -234,21 +257,31 @@ module.exports = React.createClass({
 
 		var hasPrev = showArrows && this.state.firstItem > 0;
 		var hasNext = showArrows && this.state.firstItem < this.lastPosition;
-	
-		var transformProp = 'translate3d(' + this.getNextPosition() + 'px, 0, 0)';
+		
+				
+		var itemListStyles = {};
+		// if 3d isn't available we will use left to move
+		if (has3d) {
+			var transformProp = 'translate3d(' + this.getNextPosition() + 'px, 0, 0)';
+			itemListStyles = {
+				'WebkitTransform': transformProp,
+				   'MozTransform': transformProp,
+				    'MsTransform': transformProp,
+				     'OTransform': transformProp,
+				      'transform': transformProp,
+				    'msTransform': transformProp
+			}
+		} else {
+			itemListStyles = {
+				left: this.getNextPosition()
+			}
+		}
+
+		itemListStyles.width = this.itemSize * total;
 		
 		var itemListProps = {
 			className: klass.SLIDER(isSlider),
-			style: {
-				'WebkitTransform': transformProp,
-				   'MozTransform': transformProp,
-				    'msTransform': transformProp,
-				     'OTransform': transformProp,
-				      'transform': transformProp,
-				// left: this.getNextPosition(),
-				// '-webkit-transform': 'translate3d(' + this.getNextPosition() + 'px, 0, 0)',
-				width: this.itemSize * total
-			}
+			style: itemListStyles
 		}
 	
 		return (

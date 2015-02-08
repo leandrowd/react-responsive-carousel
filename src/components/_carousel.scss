@@ -1,4 +1,47 @@
+%arrows {
+	@include transition(opacity, 0.15s, ease-in);
+	@include opacity(.4);
+	position: absolute;
+	z-index: 2;
+	top: 20px;
+	font-family: "m4d-icons";
+	background: none;
+	border: 0;
+	font-size: 32px;
+	cursor: pointer;
+
+	&:hover {
+		@include opacity(1);
+	}
+
+	&.control-disabled {
+		@include opacity(0);
+		cursor: inherit;
+	}
+
+	&.control-left {
+		left: 0;
+		&:before {
+			content: '\e803';
+		}
+	}
+
+	&.control-right {
+		right: 0;
+		&:before {
+			content: '\e802';
+		}
+	}
+}
+
 .carousel {
+
+	* {
+		-webkit-box-sizing: border-box;
+	  	-moz-box-sizing: border-box;
+	  	box-sizing: border-box;
+	}
+
 	position: relative;
 	width: 100%;
 
@@ -27,7 +70,7 @@
 	.thumbs {
 		@include transition(all, 0.15s, ease-in);
 		// activate hardware accelerated animations using translate property
-		@include hardwareAccelerated();
+		@include enhanceAnimations();
 		position: relative;
 		list-style: none;
 		overflow: hidden;
@@ -38,14 +81,16 @@
 	.thumb {
 		@include transition(border, 0.15s, ease-in);
 		display: inline-block;
-		width: 65px;
+		width: 80px;
 		margin-right: 6px;
 		white-space: nowrap;
 		overflow: hidden;
 		border: 3px solid #fff;
+		padding: 2px;
 
 		&.selected, &:hover {
 			border: 3px solid $color-primary;
+			padding: 2px;
 		}
 
 		img {
@@ -83,7 +128,7 @@
 	.slider {
 		@include transition(all, 0.35s, ease-in);
 		// activate hardware accelerated animations using translate property
-		@include hardwareAccelerated();
+		@include enhanceAnimations();
 		position: relative;
 		list-style: none;
 		overflow: hidden;
