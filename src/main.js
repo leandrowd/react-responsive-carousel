@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 var React = require('react');
-var ImageGallery = require('./components/ImageGallery');
-var Carousel = require('./components/Carousel');
+var reactRespCarousel = require('react-responsive-carousel');
+var ImageGallery = reactRespCarousel.ImageGallery;
+var Carousel = reactRespCarousel.Carousel;
 
 var galleryImages = [
 	{url: "http://lorempixel.com/700/250/sports/1"},
