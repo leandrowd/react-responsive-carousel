@@ -29,7 +29,11 @@ module.exports = function (options) {
 	   		transform: [["reactify", {"es6": true}]], 
 			debug: false, 
 			fullPaths: false,
-			extension: ['js']
+			extension: ['js'],
+			noParse: [
+				require.resolve('react'),
+				require.resolve('react/addons')
+			]
 		});
 
 		var galleryBundler = browserify({
@@ -37,7 +41,11 @@ module.exports = function (options) {
 	   		transform: [["reactify", {"es6": true}]], 
 			debug: false, 
 			fullPaths: false,
-			extension: ['js']
+			extension: ['js'],
+			noParse: [
+				require.resolve('react'),
+				require.resolve('react/addons')
+			]
 		});
 
 		carouselBundler.bundle()
