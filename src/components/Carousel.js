@@ -1,8 +1,98 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
-var klass = require('../cssClasses');
-var outerWidth = require('../dimensions').outerWidth;
-var has3d = require('../has3d')();
+var classSet = React.addons.classSet;
+
+var klass = {
+	CAROUSEL (isSlider) {
+		return classSet({
+			"carousel": true,
+			"carousel-slider": isSlider
+		});
+	}, 
+
+	WRAPPER (isSlider) {
+		return classSet({
+			"thumbs-wrapper": !isSlider,
+			"slider-wrapper": isSlider
+		});
+	},
+
+	SLIDER (isSlider){
+		return classSet({
+			"thumbs": !isSlider,
+			"slider": isSlider
+		});
+	},
+
+	ITEM (isSlider, index, selectedItem) {
+		return classSet({
+			"thumb": !isSlider,
+			"slide": isSlider,
+			"selected": index === selectedItem
+		});
+	},
+
+	ARROW_LEFT (disabled) {
+		return classSet({
+			"control-arrow control-left": true,
+			"control-disabled": disabled
+		});
+	},
+
+	ARROW_RIGHT (disabled) {
+		return classSet({
+			"control-arrow control-right": true,
+			"control-disabled": disabled
+		})
+	},
+
+	DOT (selected) {
+		return classSet({
+			"dot": true,
+			'selected': selected
+		})
+	}
+}
+
+var outerWidth = (el) => {
+	var width = el.offsetWidth;
+	var style = getComputedStyle(el);
+
+	width += parseInt(style.marginLeft) + parseInt(style.marginRight);
+	return width;
+}	;
+
+var test3d = () => {
+    if (!window.getComputedStyle) {
+        return false;
+    }
+
+    var el = document.createElement('p'), 
+        has3d,
+        transforms = {
+            'webkitTransform':'-webkit-transform',
+            'OTransform':'-o-transform',
+            'msTransform':'-ms-transform',
+            'MozTransform':'-moz-transform',
+            'transform':'transform'
+        };
+
+    // Add it to the body to get the computed style.
+    document.body.insertBefore(el, null);
+
+    for (var t in transforms) {
+        if (el.style[t] !== undefined) {
+            el.style[t] = "translate3d(1px,1px,1px)";
+            has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
+        }
+    }
+
+    document.body.removeChild(el);
+
+    return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
+}
+
+var has3d = test3d();
 
 // helper lib to do the swipe work
 var Finger = require('ainojs-finger');
