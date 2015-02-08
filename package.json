@@ -5,9 +5,7 @@
   "author": "Leandro Augusto Lemos (leandrowd@gmail.com)",
   "main": "index.js",
   "devDependencies": {
-    "accounting": "^0.4.1",
     "browserify": "^6.2.0",
-    "connect-modrewrite": "^0.7.9",
     "glob": "^4.0.6",
     "gulp": "^3.8.9",
     "gulp-concat": "^2.3.4",
@@ -34,8 +32,7 @@
   },
   "dependencies": {
     "ainojs-finger": "^1.1.2",
-    "react": "~0.12.2",
-    "react-swiper": "~0.1.4"
+    "react": "~0.12.2"
   },
   "jest": {
     "scriptPreprocessor": "./node_modules/6to5-jest",
