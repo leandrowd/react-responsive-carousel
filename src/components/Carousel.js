@@ -1,6 +1,17 @@
 /** @jsx React.DOM */
-var React = require('react/addons');
-var classSet = React.addons.classSet;
+var React = require('react');
+
+function cx(classNames) {
+  if (typeof classNames == 'object') {
+    return Object.keys(classNames).filter(function(className) {
+      return classNames[className];
+    }).join(' ');
+  } else {
+    return Array.prototype.join.call(arguments, ' ');
+  }
+}
+
+var classSet = cx;
 
 var klass = {
 	CAROUSEL (isSlider) {
