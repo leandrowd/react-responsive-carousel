@@ -1,17 +1,23 @@
 {
-  "name": "react-responsive-carousel",
+  "name": "react-responsive-carousel-project",
   "version": "0.0.1",
   "description": "React Responsive Carousel",
   "author": "Leandro Augusto Lemos (leandrowd@gmail.com)",
   "main": "index.js",
   "dependencies": {
+    "react": "~0.12.2",
+    "ainojs-finger": "^1.1.2"
+  },
+  "peerDependencies": {
     "ainojs-finger": "^1.1.2",
     "react": "~0.12.2",
     "react-addons": "^0.9.0",
     "react-tools": "^0.12.2"
   },
   "devDependencies": {
-    "browserify": "^6.2.0",
+    "react-addons": "^0.9.0",
+    "react-tools": "^0.12.2",
+    "browserify": "^8.1.3",
     "glob": "^4.0.6",
     "gulp": "^3.8.9",
     "gulp-concat": "^2.3.4",
@@ -32,7 +38,8 @@
     "reactify": "^0.15.2",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^2.1.1",
-    "6to5-jest": "*"
+    "6to5-jest": "*",
+    "react-responsive-carousel": "git://github.com/leandrowd/react-responsive-carousel.git#0.0.10"
   },
   "jest": {
     "scriptPreprocessor": "./node_modules/6to5-jest",
