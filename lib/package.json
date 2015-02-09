@@ -1,11 +1,23 @@
 {
   "name": "react-responsive-carousel",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "React Responsive Carousel",
   "author": {
     "name": "Leandro Augusto Lemos",
     "url": "leandrowd@gmail.com"
   },
+  "keywords": [
+    "react",
+    "carousel",
+    "gallery",
+    "image-gallery",
+    "slider",
+    "responsive",
+    "swipe",
+    "mobile-friendly",
+    "react-component",
+    "view"
+  ],
   "main": "index.js",
   "license": "MIT",
   "repository": {

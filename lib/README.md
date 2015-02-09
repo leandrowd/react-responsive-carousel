@@ -1,8 +1,6 @@
 # React Responsive Carousel (WIP)
 
-## Demo
-
-http://leandrowd.github.io/react-responsive-carousel/
+Demo: [http://leandrowd.github.io/react-responsive-carousel/](http://leandrowd.github.io/react-responsive-carousel/)
 
 ## Installing
 
@@ -16,7 +14,7 @@ http://leandrowd.github.io/react-responsive-carousel/
 ```javascript
 /** @jsx React.DOM */
 var React = require('react');
-var ImageGallery = require('./components/ImageGallery');
+var ImageGallery = require('react-responsive-carousel').ImageGallery;
 
 var DemoGallery = React.createClass({
 	render() {
@@ -47,7 +45,7 @@ React.render(<DemoGallery />, document.querySelector('.demo-gallery'));
 ```javascript
 /** @jsx React.DOM */
 var React = require('react');
-var Carousel = require('./components/Carousel');
+var Carousel = require('react-responsive-carousel').Carousel;
 
 var DemoSliderControls = React.createClass({
 	render() {
@@ -89,7 +87,7 @@ React.render(<DemoSliderControls />, document.querySelector('.demo-slider-contro
 ```javascript
 /** @jsx React.DOM */
 var React = require('react');
-var Carousel = require('./components/Carousel');
+var Carousel = require('react-responsive-carousel').Carousel;
 
 var DemoCarousel = React.createClass({
 	render() {
