@@ -1,10 +1,10 @@
 /** @jsx React.DOM */
 var React = require('react');
-var ImageGallery = require('./components/ImageGallery');
-var Carousel = require('./components/Carousel');
+// var ImageGallery = require('./components/ImageGallery');
+// var Carousel = require('./components/Carousel');
 
-// var ImageGallery = require('react-responsive-carousel').ImageGallery;
-// var Carousel = require('react-responsive-carousel').Carousel;
+var ImageGallery = require('react-responsive-carousel').ImageGallery;
+var Carousel = require('react-responsive-carousel').Carousel;
 
 
 var galleryImages = [

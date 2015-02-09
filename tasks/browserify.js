@@ -87,7 +87,7 @@ module.exports = function (options) {
 
 		galleryBundler.bundle()
 			.on('error', gutil.log)
-			.pipe(source('ImageGalery.js'))
+			.pipe(source('ImageGallery.js'))
 			.pipe(gulp.dest(configs.folders[options.environment]))
 			.pipe(notify(function () {
 				gutil.log('ImageGallery bundle built');
