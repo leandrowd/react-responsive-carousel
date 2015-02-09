@@ -3,6 +3,10 @@ var React = require('react');
 var ImageGallery = require('./components/ImageGallery');
 var Carousel = require('./components/Carousel');
 
+// var ImageGallery = require('react-responsive-carousel').ImageGallery;
+// var Carousel = require('react-responsive-carousel').Carousel;
+
+
 var galleryImages = [
 	{url: "http://lorempixel.com/700/250/sports/1"},
 	{url: "http://lorempixel.com/700/250/sports/2"},

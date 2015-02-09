@@ -3,6 +3,8 @@ var React = require('react/addons');
 var Carousel = require('./Carousel');
 
 module.exports = React.createClass({
+
+	displayName: 'ImageGallery',
 	
 	propsTypes: {
 		images: React.PropTypes.array.isRequired

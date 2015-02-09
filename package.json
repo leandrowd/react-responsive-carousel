@@ -32,7 +32,8 @@
     "ainojs-finger": "^1.1.2",
     "react": "~0.12.2",
     "react-addons": "^0.9.0",
-    "react-tools": "^0.12.2"
+    "react-tools": "^0.12.2",
+    "react-responsive-carousel": "git://github.com/leandrowd/react-responsive-carousel.git#0.0.4"
   },
   "jest": {
     "scriptPreprocessor": "./node_modules/6to5-jest",

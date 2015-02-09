@@ -98,6 +98,8 @@ var has3d = test3d();
 var Finger = require('ainojs-finger');
 
 module.exports = React.createClass({
+
+	displayName: 'Carousel',
 	
 	propsTypes: {
 		items: React.PropTypes.array.isRequired

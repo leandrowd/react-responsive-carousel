@@ -24,29 +24,58 @@ module.exports = function (options) {
 	var isNpmModule = (options.environment === "package");
 
 	if (!isDevelopment) {
-		var carouselBundler = browserify({
-			entries: [configs.paths.source + '/components/Carousel.js'], 
-	   		transform: [["reactify", {"es6": true}]], 
+		var bPackage = browserify({
+			entries: [
+				configs.paths.source + '/components/Carousel.js',
+				configs.paths.source + '/components/ImageGallery.js'
+			], 
+			transform: [["reactify", {"es6": true}]], 
 			debug: false, 
 			fullPaths: false,
 			extension: ['js'],
 			noParse: [
 				require.resolve('react'),
-				require.resolve('react/addons')
+				require.resolve('react/addons'),
+				require.resolve('ainojs-finger')
+			]
+		});
+
+		var carouselBundler = browserify({
+			entries: [
+				configs.paths.source + '/components/Carousel.js'
+			], 
+	   		transform: [["reactify", {"es6": true}]], 
+			extension: ['js'],
+			standalone: 'Carousel.js',
+			noParse: [
+				require.resolve('react'),
+				require.resolve('react/addons'),
+				require.resolve('ainojs-finger')
 			]
 		});
 
 		var galleryBundler = browserify({
-			entries: [configs.paths.source + '/components/ImageGallery.js'], 
+			entries: [
+				configs.paths.source + '/components/ImageGallery.js'
+			], 
 	   		transform: [["reactify", {"es6": true}]], 
-			debug: false, 
-			fullPaths: false,
 			extension: ['js'],
+			standalone: 'ImageGallery.js',
 			noParse: [
 				require.resolve('react'),
-				require.resolve('react/addons')
+				require.resolve('react/addons'),
+				require.resolve('ainojs-finger')
 			]
 		});
+
+		// bPackage.bundle({standalone: __filename})
+		// 	.on('error', gutil.log)
+		// 	.pipe(source(__filename))
+		// 	.pipe(gulp.dest(configs.folders[options.environment]))
+		// 	.pipe(notify(function () {
+		// 		gutil.log('Carousel bundle built');
+		// 	}));
+
 
 		carouselBundler.bundle()
 			.on('error', gutil.log)
