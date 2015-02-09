@@ -1,7 +1,7 @@
 {
-  "name": "react-responsive-carousel",
-  "version": "0.0.4",
-  "description": "React Responsive Carousel",
+  "name": "react-responsive-carousel-project",
+  "version": "0.0.1",
+  "description": "React Responsive Carousel Project",
   "author": {
     "name": "Leandro Augusto Lemos",
     "url": "leandrowd@gmail.com"
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/leandrowd/react-responsive-carousel/issues"
   },
-  "homepage": "https://github.com/leandrowd/react-responsive-carousel",
+  "homepage": "http://leandrowd.github.io/react-responsive-carousel/",
   "devDependencies": {
     "accounting": "^0.4.1",
     "browserify": "^6.2.0",
