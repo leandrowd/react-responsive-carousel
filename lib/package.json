@@ -1,0 +1,32 @@
+{
+  "name": "react-responsive-carousel",
+  "version": "0.0.4",
+  "description": "React Responsive Carousel",
+  "author": {
+    "name": "Leandro Augusto Lemos",
+    "url": "leandrowd@gmail.com"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leandrowd/react-responsive-carousel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leandrowd/react-responsive-carousel/issues"
+  },
+  "homepage": "https://github.com/leandrowd/react-responsive-carousel",
+  "dependencies": {
+    "react": "~0.12.2",
+    "react-addons": "^0.9.0",
+    "react-tools": "^0.12.2",
+    "ainojs-finger": "^1.1.2"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "react-responsive-carousel@0.0.4",
+  "dist": {
+    "shasum": "f1eeae04be3fa056b733073cec3809d02bd7a936"
+  },
+  "_resolved": "../react-responsive-carousel/lib/react-responsive-carousel-0.0.4.tgz",
+  "_from": "../react-responsive-carousel/lib/react-responsive-carousel-0.0.4.tgz"
+}

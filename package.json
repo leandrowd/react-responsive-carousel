@@ -1,8 +1,21 @@
 {
   "name": "react-responsive-carousel",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "React Responsive Carousel",
-  "author": "Leandro Augusto Lemos (leandrowd@gmail.com)",
+  "author": {
+    "name": "Leandro Augusto Lemos",
+    "url": "leandrowd@gmail.com"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leandrowd/react-responsive-carousel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leandrowd/react-responsive-carousel/issues"
+  },
+  "homepage": "https://github.com/leandrowd/react-responsive-carousel",
   "devDependencies": {
     "accounting": "^0.4.1",
     "browserify": "^6.2.0",
@@ -32,9 +45,10 @@
     "6to5-jest": "*"
   },
   "dependencies": {
-    "ainojs-finger": "^1.1.2",
     "react": "~0.12.2",
-    "react-swiper": "~0.1.4"
+    "react-addons": "^0.9.0",
+    "react-tools": "^0.12.2",
+    "ainojs-finger": "^1.1.2"
   },
   "jest": {
     "scriptPreprocessor": "./node_modules/6to5-jest",
@@ -43,6 +57,7 @@
     ]
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dist": "jsx src/ lib/ --harmony"
   }
 }
