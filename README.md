@@ -20,7 +20,7 @@ To run it on your local environment just:
 - `gulp`
 - Open your favourite browser on `localhost:8000`
 
-To generate the npm package run `npm dist`. It will transpile the jsx to js inside the lib folder.
+To generate the npm package run `gulp package`. It will transpile the jsx to js and copy the css into the lib folder.
 
 
 ## Getting started
@@ -141,7 +141,7 @@ React.render(<DemoGallery />, document.querySelector('.demo-gallery'));
 
 ### How to build your own gallery
 
-So simple, just add one carousel[type=slider]
+So simple, just add one carousel[type=slider] and another carousel sending the same parameters for both:
 
 - Javascript / Jsx:
 

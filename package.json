@@ -17,6 +17,7 @@
   },
   "homepage": "http://leandrowd.github.io/react-responsive-carousel/",
   "devDependencies": {
+    "6to5-jest": "*",
     "accounting": "^0.4.1",
     "browserify": "^6.2.0",
     "connect-modrewrite": "^0.7.9",
@@ -31,6 +32,8 @@
     "gulp-livereload": "^2.1.1",
     "gulp-minify-css": "~0.3.12",
     "gulp-notify": "^1.4.2",
+    "gulp-react": "^2.0.0",
+    "gulp-rename": "^1.2.0",
     "gulp-sass": "~1.2.4",
     "gulp-shell": "^0.2.10",
     "gulp-streamify": "0.0.5",
@@ -38,11 +41,9 @@
     "gulp-util": "^3.0.0",
     "jest-cli": "~0.2.1",
     "react-addons": "^0.9.0",
-    "react-tools": "^0.12.2",
     "reactify": "^0.15.2",
     "vinyl-source-stream": "^0.1.1",
-    "watchify": "^2.1.1",
-    "6to5-jest": "*"
+    "watchify": "^2.1.1"
   },
   "dependencies": {
     "react": "~0.12.2",

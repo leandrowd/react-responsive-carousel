@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-carousel",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "React Responsive Carousel",
   "author": {
     "name": "Leandro Augusto Lemos",
@@ -31,7 +31,6 @@
   "dependencies": {
     "react": "~0.12.2",
     "react-addons": "^0.9.0",
-    "react-tools": "^0.12.2",
     "ainojs-finger": "^1.1.2"
   }
 }

@@ -8,6 +8,7 @@ var notify = require('gulp-notify');
 var streamify = require('gulp-streamify');
 var gutil = require('gulp-util');
 var connect = require('gulp-connect');
+var rename = require("gulp-rename");
 
 var configs = require('./configs');
 
@@ -17,6 +18,13 @@ module.exports = function (options) {
     }
 
     var isDevelopment = (options.environment === "development");
+    var isPackage = (options.environment === "package");
+
+    var destFolder = configs.paths[options.environment];
+
+    if (isPackage) destFolder += '/styles/';
+    
+
     var start = new Date();
     
     gutil.log('Building CSS bundle');
@@ -28,15 +36,13 @@ module.exports = function (options) {
           ],
           errLogToConsole: true
       }))
-      // performing css imports
-      .pipe(minifyCSS({
-        keepSpecialComments: false,
-        processImport: true,
-        keepBreaks: true
-      }))
       // minify only in production
+      .pipe(gulp.dest(destFolder))
       .pipe(gulpif(!isDevelopment, streamify(minifyCSS())))
-      .pipe(gulp.dest(configs.paths[options.environment]))
+      .pipe(gulpif(!isDevelopment, rename({
+        suffix: '.min'
+      })))
+      .pipe(gulpif(!isDevelopment, gulp.dest(destFolder)))
       .pipe(notify(function () {
         gutil.log('CSS bundle built in ' + (Date.now() - start) + 'ms');
       }))
