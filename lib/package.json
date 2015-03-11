@@ -1,10 +1,10 @@
 {
   "name": "react-responsive-carousel",
-  "version": "0.0.11",
+  "version": "0.1.0",
   "description": "React Responsive Carousel",
   "author": {
     "name": "Leandro Augusto Lemos",
-    "url": "leandrowd@gmail.com"
+    "url": "http://leandrowd.github.io/"
   },
   "keywords": [
     "react",
@@ -30,7 +30,6 @@
   "homepage": "http://leandrowd.github.io/react-responsive-carousel/",
   "dependencies": {
     "react": "~0.12.2",
-    "react-addons": "^0.9.0",
-    "ainojs-finger": "^1.1.2"
+    "react-addons": "^0.9.0"
   }
 }
