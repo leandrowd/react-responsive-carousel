@@ -53,7 +53,9 @@ code {
   text-indent: 0;
   color: #333;
   display: block;
-  margin: auto; }
+  margin: auto;
+  overflow: scroll;
+  width: 100%; }
 
 .wrapper {
   padding: 30px; }

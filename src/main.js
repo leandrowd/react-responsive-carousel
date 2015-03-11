@@ -77,7 +77,7 @@ var DemoCarousel = React.createClass({
 	}
 });
 
-// React.render(<DemoGallery />, document.querySelector('.demo-gallery'));
+React.render(<DemoGallery />, document.querySelector('.demo-gallery'));
 React.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
-// React.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
+React.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 

@@ -131,11 +131,11 @@ button {
   background: none; }
 
 .carousel .control-arrow, .carousel.carousel-slider .control-arrow {
-  -webkit-transition: opacity 0.15s ease-in;
-  -moz-transition: opacity 0.15s ease-in;
-  -ms-transition: opacity 0.15s ease-in;
-  -o-transition: opacity 0.15s ease-in;
-  transition: opacity 0.15s ease-in;
+  -webkit-transition: all 0.25s ease-in;
+  -moz-transition: all 0.25s ease-in;
+  -ms-transition: all 0.25s ease-in;
+  -o-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in;
   opacity: 0.4;
   filter: alpha(opacity=40);
   position: absolute;
@@ -193,9 +193,6 @@ button {
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -webkit-transform-style: preserve-3d;
-    -webkit-perspective: 1000;
-    -webkit-backface-visibility: hidden;
     position: relative;
     list-style: none;
     overflow: hidden;
@@ -229,8 +226,11 @@ button {
       top: 0;
       color: #fff;
       font-size: 26px;
-      height: 100%;
+      bottom: 0;
+      margin-top: 0;
       padding: 5px; }
+      .carousel.carousel-slider .control-arrow:hover {
+        background: rgba(0, 0, 0, 0.2); }
   .carousel .slider-wrapper {
     overflow: hidden; }
   .carousel .slider {
@@ -244,9 +244,6 @@ button {
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -webkit-transform-style: preserve-3d;
-    -webkit-perspective: 1000;
-    -webkit-backface-visibility: hidden;
     position: relative;
     list-style: none;
     overflow: hidden;

@@ -23,6 +23,11 @@ To run it on your local environment just:
 To generate the npm package run `gulp package`. It will transpile the jsx to js and copy the css into the lib folder.
 
 
+## Contributing
+
+Please, feel free to contributing. You may file an issue or submit a pull request!
+
+
 ## Getting started
 
 ### Slider with controls
@@ -192,21 +197,3 @@ module.exports = React.createClass({
 });
 ```
 
-
-### Browser Support
-
-Although I have implemented css transformations for all the browsers and fallback to left when 3d isn't supported, I haven't had time to test in browsers other than chrome yet. I reckon than it should just work but minor issues can be found.
-
-### TODO:
-
-- [ ] Implement slides of content
-- [ ] Improve documentation
-- [ ] Improve tests
-- [ ] Improve swipe
-- [ ] Test cross-browser
-- [ ] ...?
-
-
-### Contributing
-
-Feel free to contribute. Just Fork -> Change -> Pull request!

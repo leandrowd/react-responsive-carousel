@@ -16,10 +16,11 @@ module.exports = {
 		});
 	},
 
-	SLIDER (isSlider){
+	SLIDER (isSlider, isSwiping){
 		return classSet({
 			"thumbs": !isSlider,
-			"slider": isSlider
+			"slider": isSlider,
+			"swiping": isSwiping
 		});
 	},
 
