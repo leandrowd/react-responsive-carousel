@@ -17,6 +17,7 @@ module.exports = function (options) {
       options.environment = "development";
     }
 
+
     var isDevelopment = (options.environment === "development");
     var isPackage = (options.environment === "package");
 
@@ -24,16 +25,11 @@ module.exports = function (options) {
 
     if (isPackage) destFolder += '/styles/';
     
-
     var start = new Date();
     
     gutil.log('Building CSS bundle');
     gulp.src([configs.paths.source + '/**/*.scss'])
       .pipe(sass({
-          includePaths: [
-            configs.folders.source + '/components',
-            configs.folders.source + '/styles'
-          ],
           errLogToConsole: true
       }))
       // minify only in production

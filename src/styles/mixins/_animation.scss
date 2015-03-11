@@ -50,22 +50,3 @@
         @content;
     }
 }
-
-@mixin rotateOnHover($transition-time, $transform-rotate) {
-    transition: $transition-time cubic-bezier(.5, 1, .75, 1);
- 
-    &:hover {
-        cursor: pointer;
-        transform: rotate($transform-rotate);
-    }
-}
-// Using this mixin looks like this:
-// 
-// @include keyframes(move-the-object) {
-//   0%   { left: 100px; }
-//   100% { left: 200px; }
-// }
-
-// .object-to-animate {
-//   @include animation('move-the-object .5s 1', 'move-the-object-again .5s 1 .5s');
-// } 

@@ -1,4 +1,4 @@
-// // basic imports 
+// basic imports 
 @import "styles/variables";
 @import "styles/mixins/gradients";
 @import "styles/mixins/breakpoints";
@@ -8,4 +8,4 @@
 
 // buttons, form inputs, etc...
 @import "styles/elements";
-@import "carousel";
+@import "components/carousel";

@@ -251,23 +251,17 @@ button {
     list-style: none;
     overflow: hidden;
     white-space: nowrap; }
+    .carousel .slider.swiping {
+      -webkit-transition: none 0 ease-in;
+      -moz-transition: none 0 ease-in;
+      -ms-transition: none 0 ease-in;
+      -o-transition: none 0 ease-in;
+      transition: none 0 ease-in; }
   .carousel .slide {
-    -webkit-transition: border 0.25s ease-in;
-    -moz-transition: border 0.25s ease-in;
-    -ms-transition: border 0.25s ease-in;
-    -o-transition: border 0.25s ease-in;
-    transition: border 0.25s ease-in;
     display: inline-block;
     width: 260px;
     margin: 0px;
     white-space: nowrap; }
-    @media (min-width: 768px) {
-      .carousel .slide {
-        -webkit-transition: border 0.15s ease-in;
-        -moz-transition: border 0.15s ease-in;
-        -ms-transition: border 0.15s ease-in;
-        -o-transition: border 0.15s ease-in;
-        transition: border 0.15s ease-in; } }
     .carousel .slide img {
       vertical-align: top; }
   .carousel .control-dots {

@@ -35,7 +35,7 @@
 }
 
 .carousel {
-
+	// only applying box sizing inside the plugin so it won't break any style
 	* {
 		-webkit-box-sizing: border-box;
 	  	-moz-box-sizing: border-box;
@@ -134,18 +134,17 @@
 		overflow: hidden;
 
 		white-space: nowrap;
+
+		&.swiping {
+			@include transition(none, 0, ease-in);
+		}
 	}
 
 	.slide {
-		@include transition(border, 0.25s, ease-in);
 		display: inline-block;
 		width: 260px;
 		margin: 0px;
 		white-space: nowrap;
-
-		@include tablet {
-			@include transition(border, 0.15s, ease-in);
-		}
 
 		img {
 			vertical-align: top;

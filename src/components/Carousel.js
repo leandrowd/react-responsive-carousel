@@ -4,11 +4,29 @@ var klass = require('../cssClasses');
 var outerWidth = require('../dimensions').outerWidth;
 var has3d = require('../has3d')();
 
-// helper lib to do the swipe work
-var Finger = require('ainojs-finger');
+var addClass = (el, className) => {
+	if (el.classList)
+	  el.classList.add(className);
+	else
+	  el.className += ' ' + className;
+}
+
+var removeClass = (el, className) => {
+	if (el.classList)
+	  el.classList.remove(className);
+	else
+	  el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+}
+
+// touch / swipe lib
+var Hammer = require('hammerjs');
 
 module.exports = React.createClass({
-	
+
+	currentPosition: 0, 
+	position: null,
+	touchStart: null, 
+
 	propsTypes: {
 		items: React.PropTypes.array.isRequired
 	},
@@ -39,14 +57,6 @@ module.exports = React.createClass({
 
 	componentWillUnmount() {
 		window.removeEventListener("resize", this.updateDimensions);
-        
-        // unbinding swipe component
-		if (this.isSlider) {
-			this.finger.off('frame', this.onSwipeMove);
-			this.finger.off('complete', this.onSwipeEnd);
-			this.finger.destroy();
-		}
-
     },
 
 	componentWillReceiveProps (props, state) {
@@ -73,19 +83,49 @@ module.exports = React.createClass({
 		// the container size to adjust the responsive behaviour
 		this.updateDimensions();
 
-		// swipe is only applied to slider because the of the current lib
-		// TODO: implement the swipe behaviour for the carousel too.
-		if (this.isSlider) {
-			var finger = new Finger(this.refs.itemsWrapper.getDOMNode());
+		var el = this.refs.itemList.getDOMNode();
+
+		var self = this;
+
+		var handleStart = (e) => {
+			console.log(e.touches[0]);
+			self.touchStart = e.touches[0].pageX;
+			addClass(el, 'swiping');
+		}
+		
+		var handleMove = (e) => {
+			var delta = e.touches[0].pageX - self.touchStart;
+			var position = this.currentPosition + delta;
+
+			console.log(this.currentPosition, delta);
+
 			
-			// this was breaking the tests, some weird behaviour of jest
-			if ('on' in finger) {
-				finger.on('frame', this.onSwipeMove);
-				finger.on('complete', this.onSwipeEnd);
+			self.position = delta;
+
+			this.onSwipeMove({
+				position: position
+			})
+		}
+
+		var handleEnd = (e) => {
+			var position = self.position;
+
+			console.log('touchend', position)
+			// left
+			if (position < 0) {
+				this.slideLeft();
+			} else {
+				this.slideRight();
 			}
 
-			this.finger = finger;
+			self.position = null;
+			self.touchStart = null;
+			removeClass(el, 'swiping');
 		}
+
+		el.addEventListener('touchstart', handleStart);
+		el.addEventListener('touchmove', handleMove);
+		el.addEventListener('touchend', handleEnd);
 	}, 
 
 	updateDimensions () {
@@ -178,6 +218,7 @@ module.exports = React.createClass({
 			// if it's not a slider, we don't need to set position here
 			selectedItem: this.isSlider ? position : this.state.selectedItem
 		});
+		
 		this.triggerOnChange(position);
 	},
 
@@ -276,6 +317,8 @@ module.exports = React.createClass({
 				left: this.getNextPosition()
 			}
 		}
+
+		this.currentPosition = this.getNextPosition();
 
 		itemListStyles.width = this.itemSize * total;
 		
