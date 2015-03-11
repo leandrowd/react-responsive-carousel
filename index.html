@@ -10,6 +10,7 @@
 	</head>
 	<body>
 		<a href="https://github.com/leandrowd/react-responsive-carousel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
 		<div class="wrapper">
 			<h1>React Responsive Carousel (WIP)</h1>
 
@@ -23,8 +24,6 @@
 						<li><a href="#carousel">Carousel</a></li>
 					</ul>
 				</li>
-				<li><a href="#broswer-support">Broser Support</a></li>
-				<li><a href="#todo">Todos</a></li>
 				<li><a href="#contribute">Contributing</a></li>
 			</ul>
 			
@@ -35,72 +34,16 @@
 
 			<h2 id="demos">Demos</h2>
 			<section class="demos">
+				
 				<article class="demo">
-					<h3 id="image-gallery">Image Gallery</h3>
-					<div class="demo-gallery"></div>
-					<h4>Javascript / Jsx:</h4>
-					<pre>
-						<code>
-/** @jsx React.DOM */
-var React = require('react');
-var ImageGallery = require('react-responsive-carousel').ImageGallery;
-
-var galleryImages = [
-	{url: "http://lorempixel.com/700/250/sports/1"},
-	{url: "http://lorempixel.com/700/250/sports/2"},
-	{url: "http://lorempixel.com/700/250/sports/3"},
-	{url: "http://lorempixel.com/700/250/sports/4"},
-	{url: "http://lorempixel.com/700/250/sports/5"},
-	{url: "http://lorempixel.com/700/250/sports/6"},
-	{url: "http://lorempixel.com/700/250/sports/7"}
-];
-
-var DemoGallery = React.createClass({
-	render() {
-		return (
-			&lt;div className="demo-image-gallery"&gt;
-				&lt;ImageGallery images={ galleryImages } /&gt;
-			&lt;/div&gt;
-		);
-	}
-});
-
-React.render(&lt;DemoGallery /&gt;, document.querySelector('.demo-gallery'));
-						</code>
-					</pre>
-					
-					<h4>Css:</h4>
-					<pre>
-						<code>
-&lt;link rel="stylesheet" href="imageGallery.css"/&gt;
-&lt;link rel="stylesheet" href="carousel.css"/&gt;
-						</code>
-					</pre>
-
-					<h4>Props:</h4>
-					<ul class="list-items">
-						<li>images</li>
-					</ul>
-				</article>
-				<article class="demo">
-					<h3 id="slider">Slider with controls</h3>
+					<h3 id="slider">Slider</h3>
 					<div class="demo-slider-controls"></div>
 					<h4>Javascript / Jsx:</h4>
 					<pre>
 						<code>
 /** @jsx React.DOM */
 var React = require('react');
-var Carousel = require('react-responsive-carousel').Carousel;
-
-var sliderImages = [
-	{url: "http://lorempixel.com/960/400/nature/1"},
-	{url: "http://lorempixel.com/960/400/nature/2"},
-	{url: "http://lorempixel.com/960/400/nature/3"},
-	{url: "http://lorempixel.com/960/400/nature/4"},
-	{url: "http://lorempixel.com/960/400/nature/5"},
-	{url: "http://lorempixel.com/960/400/nature/6"},
-	{url: "http://lorempixel.com/960/400/nature/7"}
-];
+var Carousel = require('./components/Carousel');
 
 var DemoSliderControls = React.createClass({
 	render() {
@@ -144,6 +87,46 @@ React.render(&lt;DemoSliderControls /&gt;, document.querySelector('.demo-slider-
 						</li>
 					</ul>
 				</article>
+
+				<article class="demo">
+					<h3 id="image-gallery">Image Gallery (Slider and thumbs)</h3>
+					<div class="demo-gallery"></div>
+					<h4>Javascript / Jsx:</h4>
+					<pre>
+						<code>
+/** @jsx React.DOM */
+var React = require('react');
+var ImageGallery = require('./components/ImageGallery');
+
+var DemoGallery = React.createClass({
+	render() {
+		return (
+			&lt;div className="demo-image-gallery"&gt;
+				&lt;ImageGallery images={ galleryImages } /&gt;
+			&lt;/div&gt;
+		);
+	}
+});
+
+React.render(&lt;DemoGallery /&gt;, document.querySelector('.demo-gallery'));
+						</code>
+					</pre>
+					
+					<h4>Css:</h4>
+					<pre>
+						<code>
+&lt;link rel="stylesheet" href="imageGallery.css"/&gt;
+&lt;link rel="stylesheet" href="carousel.css"/&gt;
+						</code>
+					</pre>
+
+					<h4>Props:</h4>
+					<ul class="list-items">
+						<li>images</li>
+					</ul>
+				</article>
+
+
 				<article class="demo">
 					<h3 id="carousel">Carousel</h3>
 					<div class="demo-carousel"></div>
@@ -153,15 +136,7 @@ React.render(&lt;DemoSliderControls /&gt;, document.querySelector('.demo-slider-
 						<code>
 /** @jsx React.DOM */
 var React = require('react');
-var Carousel = require('react-responsive-carousel').Carousel;
-
-var carouselImages = [
-	{url: "http://lorempixel.com/70/70/animals/1"},
-	{url: "http://lorempixel.com/70/70/animals/2"},
-	{url: "http://lorempixel.com/70/70/animals/3"},
-	{url: "http://lorempixel.com/70/70/animals/4"},
-	{url: "http://lorempixel.com/70/70/animals/5"}
-];
+var Carousel = require('./components/Carousel');
 
 var DemoCarousel = React.createClass({
 	render() {
@@ -203,24 +178,14 @@ React.render(&lt;DemoCarousel /&gt;, document.querySelector('.demo-carousel'));
 				</article>
 			</section>
 
-			<h2 id="browser-support">Browser Support</h2>
-			<p>Although I have implemented css transformations for all the browsers and fallback to left when 3d isn't supported, I haven't had time to test in browsers other than chrome yet. I reckon than it should just work but minor issues can be found.</p>
-
-			<h2 id="todo">TODO:</h2>
-			<ul class="list-items">
-				<li>Implement slides of content</li>
-				<li>Improve documentation</li>
-				<li>Improve tests</li>
-				<li>Improve swipe</li>
-				<li>Test cross-browser</li>
-				<li>...?</li>
-			</ul>
-
 			<h2 id="contributing">Contributing</h2>
-			<p>Feel free to contribute. Just Fork -> Change -> Pull request!</p>
+			<p>Please, feel free to contributing. You may file an issue or submit a pull request!</p>
 
 		</div>
 		<script src="es5-shim.min.js"></script>
 		<script src="main.js"></script>
 	</body>
 </html>
+
+
+
