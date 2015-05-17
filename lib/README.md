@@ -1,5 +1,6 @@
 # React Responsive Carousel (WIP)
 
+* Note: This version `0.1.1` was updated for use with React `0.13.3`. For React < `0.13.0` try the version `0.1.0`;
 
 ## Demo
 
