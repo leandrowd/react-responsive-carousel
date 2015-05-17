@@ -1,23 +1,22 @@
-var React = require('react/addons');
-var classSet = React.addons.classSet;
+var classNames = require('classnames');
 
 module.exports = {
 	CAROUSEL (isSlider) {
-		return classSet({
+		return classNames({
 			"carousel": true,
 			"carousel-slider": isSlider
 		});
 	}, 
 
 	WRAPPER (isSlider) {
-		return classSet({
+		return classNames({
 			"thumbs-wrapper": !isSlider,
 			"slider-wrapper": isSlider
 		});
 	},
 
 	SLIDER (isSlider, isSwiping){
-		return classSet({
+		return classNames({
 			"thumbs": !isSlider,
 			"slider": isSlider,
 			"swiping": isSwiping
@@ -25,7 +24,7 @@ module.exports = {
 	},
 
 	ITEM (isSlider, index, selectedItem) {
-		return classSet({
+		return classNames({
 			"thumb": !isSlider,
 			"slide": isSlider,
 			"selected": index === selectedItem
@@ -33,21 +32,21 @@ module.exports = {
 	},
 
 	ARROW_LEFT (disabled) {
-		return classSet({
+		return classNames({
 			"control-arrow control-left": true,
 			"control-disabled": disabled
 		});
 	},
 
 	ARROW_RIGHT (disabled) {
-		return classSet({
+		return classNames({
 			"control-arrow control-right": true,
 			"control-disabled": disabled
 		})
 	},
 
 	DOT (selected) {
-		return classSet({
+		return classNames({
 			"dot": true,
 			'selected': selected
 		})

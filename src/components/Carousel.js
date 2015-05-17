@@ -214,20 +214,11 @@ module.exports = React.createClass({
 
 
 	getTotalWidth () {
-		if (this.isMounted()) {
-			return this.lastElementPosition + outerWidth(this.lastElement.getDOMNode());
-		} else {
-			return 'auto';
-		}
+		return this.itemSize * this.props.items.length || 'auto';
 	},
 
 	getNextPosition () {
-		if (this.isMounted()) {
-			var nextPosition = this.refs['item' + this.state.firstItem].getDOMNode().offsetLeft;
-			return - nextPosition;	
-		} else {
-			return 0;
-		}
+		return - this.itemSize * this.state.firstItem || 0;
 	},
 
 	changeItem (e) {
@@ -274,7 +265,7 @@ module.exports = React.createClass({
 		if (!this.props.showStatus) {
 			return null
 		}
-		return <p className="carousel-status">{this.state.selectedItem} of {this.props.items.length}</p>;
+		return <p className="carousel-status">{this.state.selectedItem + 1} of {this.props.items.length}</p>;
 	}, 
 
 	render () {
