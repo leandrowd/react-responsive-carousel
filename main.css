@@ -86,8 +86,8 @@ code {
 ********************************************/
 @font-face {
   font-family: 'm4d-icons';
-  src: url('/styles/font/m4d-icons.eot?3179539');
-  src: url('/styles/font/m4d-icons.eot?3179539#iefix') format('embedded-opentype'), url('/styles/font/m4d-icons.woff?3179539') format('woff'), url('/styles/font/m4d-icons.ttf?3179539') format('truetype'), url('/styles/font/m4d-icons.svg?3179539#m4d-icons') format('svg');
+  src: url('styles/font/m4d-icons.eot?3179539');
+  src: url('styles/font/m4d-icons.eot?3179539#iefix') format('embedded-opentype'), url('styles/font/m4d-icons.woff?3179539') format('woff'), url('styles/font/m4d-icons.ttf?3179539') format('truetype'), url('styles/font/m4d-icons.svg?3179539#m4d-icons') format('svg');
   font-weight: normal;
   font-style: normal; }
 
