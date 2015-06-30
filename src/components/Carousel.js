@@ -143,6 +143,17 @@ module.exports = React.createClass({
 	onSwipeMove (e) {
 		// getting the current delta
 		var delta = e.touches[0].pageX - this.state.touchStart;
+        var leftBoundry = 0;
+        var lastLeftBoundry = - this.itemSize * (this.props.items.length - 1);
+
+        //if the first image meets the left boundry, prevent user from swiping left
+        if (this.currentPosition === leftBoundry && delta > 0) {
+            delta = 0;
+        }
+        //if the last image meets the left boundry, prevent user from swiping right
+        if (this.currentPosition === lastLeftBoundry && delta < 0) {
+            delta = 0;
+        }
 		// real position
 		var position = this.currentPosition + delta;
 		// adding it to the last position and saving the position
@@ -176,12 +187,18 @@ module.exports = React.createClass({
 			// state to be setted, so the swiping class will be removed and the 
 			// transition to the next slide will be smooth
 			function () {
-				// less than 0 means that it's going left
-				if (this.touchPosition < 0) {
-					this.slideLeft();
-				} else {
-					this.slideRight();
-				}
+                if (this.touchPosition === 0) {
+                    /* prevent users from swipe right on the first image
+                       but it goes to the opposite direction, as the delta is alwsys 0
+                       when swipe right on the first image.
+                       also prevent users from swipe left on the last image from the same reason.
+                    */
+                } else if (this.touchPosition < 0) {
+                    // less than 0 means that it's going left
+                    this.slideLeft();
+                } else if (this.touchPosition > 0) {
+                    this.slideRight();
+                }
 				// discard the position
 				this.touchPosition = null;	
 			}.bind(this)
