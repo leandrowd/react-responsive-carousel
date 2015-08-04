@@ -23,6 +23,7 @@ module.exports = React.createClass({
 		return {
 			// index of the image to be shown.
 			selectedItem: this.props.selectedItem,
+            hasMount: false,
 
 			// Index of the thumb that will appear first.
 			// If you are using type = slider, this has 
@@ -81,7 +82,17 @@ module.exports = React.createClass({
 		el.addEventListener('touchstart', this.onSwipeStart);
 		el.addEventListener('touchmove', this.onSwipeMove);
 		el.addEventListener('touchend', this.onSwipeEnd);
-	}, 
+
+		if (!this.isSlider) {
+			var defaultImgIndex = 0;
+			var defaultImg = this.refs['itemImg' + defaultImgIndex].getDOMNode();
+			defaultImg.addEventListener('load', this.setMountState);
+		}
+	},
+
+    setMountState: function() {
+        this.setState({hasMount: true});
+	},
 
 	updateDimensions () {
 		this.calculateSpace(this.props.items.length);
@@ -250,14 +261,15 @@ module.exports = React.createClass({
 		var isSlider = (this.props.type === "slider");
 
 		return this.props.items.map((item, index) => {
-			var itemClass = klass.ITEM(this.isSlider, index, this.state.selectedItem);
+            var hasMount = this.state.hasMount;
+			var itemClass = klass.ITEM(this.isSlider, index, this.state.selectedItem, hasMount);
 			var imageSchema = {};
 			
 			return (
 				<li key={index} ref={"item" + index} className={itemClass}
 					style={{width: this.isSlider && this.itemSize}} 
 					onClick={ this.handleClickItem.bind(this, index, item) }>
-					<img src={item.url} />
+					<img src={item.url} ref={"itemImg" + index}/>
 				</li>
 			);
 		});
