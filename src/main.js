@@ -1,5 +1,5 @@
-/** @jsx React.DOM */
 var React = require('react');
+window.React = React;
 var ImageGallery = require('./components/ImageGallery');
 var Carousel = require('./components/Carousel');
 
