@@ -27,8 +27,12 @@ module.exports = React.createClass({
 
 		return (
 			<div className="image-gallery">
-				<Carousel type="slider" items={ images } selectedItem={this.state.currentImage} onChange={this.selectItem} onSelectItem={ this.selectItem } />
-				<Carousel items={ images } selectedItem={this.state.currentImage} onSelectItem={ this.selectItem } />
+				<Carousel type="slider" selectedItem={this.state.currentImage} onChange={this.selectItem} onSelectItem={ this.selectItem }>
+					{ this.props.children }
+				</Carousel>
+				<Carousel selectedItem={this.state.currentImage} onSelectItem={ this.selectItem }>
+					{ this.props.children }
+				</Carousel>
 			</div>
 		);
 	}

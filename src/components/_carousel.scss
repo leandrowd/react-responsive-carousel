@@ -73,8 +73,6 @@
 		@include enhanceAnimations();
 		position: relative;
 		list-style: none;
-		overflow: hidden;
-
 		white-space: nowrap;
 	}
 
@@ -128,30 +126,31 @@
 
 	.slider-wrapper {
 		overflow: hidden;
+		margin: auto;
+		width: 100%;
 	}
 
 	.slider {
 		@include transition(all, .35s, ease-in);
 		// activate hardware accelerated animations using translate property
 		@include enhanceAnimations();
+		display: flex;
 		position: relative;
 		list-style: none;
-		overflow: hidden;
-
-		white-space: nowrap;
-
+		
 		&.swiping {
 			@include transition(none, 0, ease-in);
 		}
 	}
 
 	.slide {
-		display: inline-block;
-		width: 260px;
-		margin: 0px;
-		white-space: nowrap;
+		flex-direction: column;
+		flex-flow: column;
+		min-width: 100%;
+		margin: 0;
 
 		img {
+			width: 100%;
 			vertical-align: top;
 		}
 	}

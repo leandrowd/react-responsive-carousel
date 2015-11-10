@@ -195,7 +195,6 @@ button {
     transform: translate3d(0, 0, 0);
     position: relative;
     list-style: none;
-    overflow: hidden;
     white-space: nowrap; }
   .carousel .thumb {
     -webkit-transition: border 0.15s ease-in;
@@ -232,7 +231,9 @@ button {
       .carousel.carousel-slider .control-arrow:hover {
         background: rgba(0, 0, 0, 0.2); }
   .carousel .slider-wrapper {
-    overflow: hidden; }
+    overflow: hidden;
+    margin: auto;
+    width: 100%; }
   .carousel .slider {
     -webkit-transition: all 0.35s ease-in;
     -moz-transition: all 0.35s ease-in;
@@ -244,10 +245,9 @@ button {
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+    display: flex;
     position: relative;
-    list-style: none;
-    overflow: hidden;
-    white-space: nowrap; }
+    list-style: none; }
     .carousel .slider.swiping {
       -webkit-transition: none 0 ease-in;
       -moz-transition: none 0 ease-in;
@@ -255,11 +255,12 @@ button {
       -o-transition: none 0 ease-in;
       transition: none 0 ease-in; }
   .carousel .slide {
-    display: inline-block;
-    width: 260px;
-    margin: 0px;
-    white-space: nowrap; }
+    flex-direction: column;
+    flex-flow: column;
+    min-width: 100%;
+    margin: 0; }
     .carousel .slide img {
+      width: 100%;
       vertical-align: top; }
   .carousel .control-dots {
     position: absolute;

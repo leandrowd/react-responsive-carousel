@@ -16,13 +16,15 @@ describe("ImageGallery", function() {
 
 	beforeEach(function () {
 		componentInstance = TestUtils.renderIntoDocument(
-	  		<ImageGallery images={[
-					{url: "http://placehold.it/150x150"},
-					{url: "http://placehold.it/149x149"},
-					{url: "http://placehold.it/148x148"},
-					{url: "http://placehold.it/147x147"},
-					{url: "http://placehold.it/146x146"}
-			]}/>
+	  		<ImageGallery>
+	  			<img src="assets/1.jpeg" />
+				<img src="assets/2.jpeg" />
+				<img src="assets/3.jpeg" />
+				<img src="assets/4.jpeg" />
+				<img src="assets/5.jpeg" />
+				<img src="assets/6.jpeg" />
+				<img src="assets/7.jpeg" />
+	  		</ImageGallery>
 	  	);
 	});
 

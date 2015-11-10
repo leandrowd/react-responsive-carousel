@@ -6,7 +6,7 @@ var has3d = require('../has3d')();
 module.exports = React.createClass({
 	
 	propsTypes: {
-		items: React.PropTypes.array.isRequired
+		children: React.PropTypes.element.isRequired
 	},
 
 	getDefaultProps () {
@@ -76,12 +76,6 @@ module.exports = React.createClass({
 		// the container size to adjust the responsive behaviour
 		this.updateDimensions();
 
-		// adding swipe events
-		var el = this.refs.itemList.getDOMNode();
-		el.addEventListener('touchstart', this.onSwipeStart);
-		el.addEventListener('touchmove', this.onSwipeMove);
-		el.addEventListener('touchend', this.onSwipeEnd);
-
 		if (!this.isSlider) {
 			var defaultImgIndex = 0;
 			var defaultImg = this.refs['itemImg' + defaultImgIndex].getDOMNode();
@@ -94,22 +88,19 @@ module.exports = React.createClass({
 	},
 
 	updateDimensions () {
-		this.calculateSpace(this.props.items.length);
+		this.calculateSpace(this.props.children.length);
 		// the component should be rerended after calculating space
 		this.forceUpdate();
 	},
 
 	// Calculate positions for carousel
 	calculateSpace (total) {
-		total = total || this.props.items.length;
+		total = total || this.props.children.length;
 		this.isSlider = this.props.type === "slider";
 		
 		this.wrapperSize = this.refs.itemsWrapper.getDOMNode().clientWidth;
 		this.itemSize = this.isSlider ? this.wrapperSize : outerWidth(this.refs.item0.getDOMNode());
 		this.visibleItems = Math.floor(this.wrapperSize / this.itemSize);	
-		
-		this.lastElement = this.refs['item' + (total - 1)];
-		this.lastElementPosition = this.itemSize * total;
 		
 		// exposing variables to other methods on this component
 		this.showArrows = this.visibleItems < total;
@@ -154,36 +145,50 @@ module.exports = React.createClass({
 		// getting the current delta
 		var delta = e.touches[0].pageX - this.state.touchStart;
         var leftBoundry = 0;
-        var lastLeftBoundry = - this.itemSize * (this.props.items.length - 1);
+
+        var currentPosition;
+        var lastLeftBoundry;
+
+        if (this.isSlider) {
+			currentPosition = - this.state.firstItem * 100;	
+			lastLeftBoundry = - (this.props.children.length - 1) * 100;
+		} else {
+			currentPosition = - this.state.firstItem * this.itemSize;	
+			lastLeftBoundry = - this.visibleItems * this.itemSize;
+		}
 
         //if the first image meets the left boundry, prevent user from swiping left
-        if (this.currentPosition === leftBoundry && delta > 0) {
+        if (currentPosition === leftBoundry && delta > 0) {
             delta = 0;
         }
+        
         //if the last image meets the left boundry, prevent user from swiping right
-        if (this.currentPosition === lastLeftBoundry && delta < 0) {
+        if (currentPosition === lastLeftBoundry && delta < 0) {
             delta = 0;
         }
-		// real position
-		var position = this.currentPosition + delta;
+
+        var position;
+
+        if (this.isSlider) {
+    		position = currentPosition + (100 / (this.wrapperSize / delta)) + '%';
+        } else {
+        	position = currentPosition + delta + 'px';
+        }
+
 		// adding it to the last position and saving the position
 		this.touchPosition = delta;
 
 		var elementStyle = this.refs.itemList.getDOMNode().style;
 
 		// if 3d isn't available we will use left to move
-		if (has3d) {
-			[
-				'WebkitTransform',
-				'MozTransform',
-				'MsTransform',
-				'OTransform',
-				'transform',
-				'msTransform'
-			].forEach((prop) => elementStyle[prop] = 'translate3d(' + position + 'px, 0, 0)');
-		} else {
-			elementStyle.left = position + 'px';
-		}
+		[
+			'WebkitTransform',
+			'MozTransform',
+			'MsTransform',
+			'OTransform',
+			'transform',
+			'msTransform'
+		].forEach((prop) => elementStyle[prop] = 'translate3d(' + position + ', 0, 0)');
 	},
 
 	onSwipeEnd (e) {
@@ -197,17 +202,25 @@ module.exports = React.createClass({
 			// state to be setted, so the swiping class will be removed and the 
 			// transition to the next slide will be smooth
 			function () {
+				// number of positions to advance;
+				var positions;
+
                 if (this.touchPosition === 0) {
                     /* prevent users from swipe right on the first image
                        but it goes to the opposite direction, as the delta is alwsys 0
                        when swipe right on the first image.
                        also prevent users from swipe left on the last image from the same reason.
                     */
-                } else if (this.touchPosition < 0) {
+                } else {
+                	// if it's a slider, positions is 1
+					positions = !this.isSlider ? Math.abs(Math.round(this.touchPosition / this.itemSize)) : 1;                	
+                } 
+
+                if (this.touchPosition < 0) {
                     // less than 0 means that it's going left
-                    this.slideLeft();
+                    this.slideLeft(positions);
                 } else if (this.touchPosition > 0) {
-                    this.slideRight();
+                    this.slideRight(positions);
                 }
 				// discard the position
 				this.touchPosition = null;	
@@ -215,18 +228,17 @@ module.exports = React.createClass({
 		);	
 	},
 
-	slideRight (){
-		this.moveTo(this.state.firstItem - 1)
+	slideRight (positions){
+		this.moveTo(this.state.firstItem - (typeof positions === 'Number' ? positions : 1));
 	},
 
-	slideLeft (){
-		this.moveTo(this.state.firstItem + 1)
+	slideLeft (positions){
+		this.moveTo(this.state.firstItem + (typeof positions === 'Number' ? positions : 1));
 	},
 
 	moveTo (position) {
 		// position can't be lower than 0
 		position = position < 0 ? 0 : position;
-
 		// position can't be higher than last postion
 		position = position >= this.lastPosition ? this.lastPosition : position;
 		
@@ -241,7 +253,7 @@ module.exports = React.createClass({
 
 
 	getTotalWidth () {
-		return this.itemSize * this.props.items.length || 'auto';
+		return this.itemSize * this.props.children.length || 'auto';
 	},
 
 	getNextPosition () {
@@ -250,6 +262,7 @@ module.exports = React.createClass({
 
 	changeItem (e) {
 		var newIndex = e.target.value;
+		
 		this.setState({
 			selectedItem: newIndex,
 			firstItem: newIndex
@@ -259,16 +272,14 @@ module.exports = React.createClass({
 	renderItems () {
 		var isSlider = (this.props.type === "slider");
 
-		return this.props.items.map((item, index) => {
+		return this.props.children.map((item, index) => {
             var hasMount = this.state.hasMount;
 			var itemClass = klass.ITEM(this.isSlider, index, this.state.selectedItem, hasMount);
-			var imageSchema = {};
 			
 			return (
 				<li key={index} ref={"item" + index} className={itemClass}
-					style={{width: this.isSlider && this.itemSize}} 
 					onClick={ this.handleClickItem.bind(this, index, item) }>
-					<img src={item.url} ref={"itemImg" + index}/>
+					<img src={item.props.src} ref={"itemImg" + index}/>
 				</li>
 			);
 		});
@@ -282,7 +293,7 @@ module.exports = React.createClass({
 		
 		return (
 			<ul className="control-dots">
-				{this.props.items.map( (item, index) => {
+				{this.props.children.map( (item, index) => {
 					return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} value={index} key={index} />;
 				})}
 			</ul>
@@ -293,11 +304,11 @@ module.exports = React.createClass({
 		if (!this.props.showStatus) {
 			return null
 		}
-		return <p className="carousel-status">{this.state.selectedItem + 1} of {this.props.items.length}</p>;
+		return <p className="carousel-status">{this.state.selectedItem + 1} of {this.props.children.length}</p>;
 	}, 
 
 	render () {
-		if (this.props.items.length === 0) {
+		if (this.props.children.length === 0) {
 			return null;
 		}
 
@@ -307,28 +318,24 @@ module.exports = React.createClass({
 		var hasNext = this.showArrows && this.state.firstItem < this.lastPosition;
 		// obj to hold the transformations and styles
 		var itemListStyles = {};
-		
-		// hold the last position in the component context to calculate the delta on swiping
-		this.currentPosition = this.getNextPosition();
 
-		if (has3d) {
-			// if 3d is available, let's take advantage of the performance of transform
-			var transformProp = 'translate3d(' + this.currentPosition + 'px, 0, 0)';
-			itemListStyles = {
-				'WebkitTransform': transformProp,
-				   'MozTransform': transformProp,
-				    'MsTransform': transformProp,
-				     'OTransform': transformProp,
-				      'transform': transformProp,
-				    'msTransform': transformProp,
-				    	  'width': this.lastElementPosition
-			}
+		var currentPosition;
+
+		if (this.isSlider) {
+			currentPosition = - this.state.firstItem * 100 + '%';	
 		} else {
-			// if 3d isn't available we will use left to move
-			itemListStyles = {
-				left: this.currentPosition,
-				width: this.lastElementPosition
-			}
+			currentPosition = - this.state.firstItem * this.itemSize + 'px';	
+		}
+
+		// if 3d is available, let's take advantage of the performance of transform
+		var transformProp = 'translate3d(' + currentPosition + ', 0, 0)';
+		itemListStyles = {
+			'WebkitTransform': transformProp,
+			   'MozTransform': transformProp,
+			    'MsTransform': transformProp,
+			     'OTransform': transformProp,
+			      'transform': transformProp,
+			    'msTransform': transformProp
 		}
 		
 		return (
@@ -336,7 +343,12 @@ module.exports = React.createClass({
 				<button className={klass.ARROW_LEFT(!hasPrev)} onClick={this.slideRight} />
 				
 				<div className={klass.WRAPPER(this.isSlider)} ref="itemsWrapper">
-					<ul className={klass.SLIDER(this.isSlider, this.state.swiping)} style={itemListStyles} ref="itemList">
+					<ul className={klass.SLIDER(this.isSlider, this.state.swiping)} 
+						onTouchMove={this.onSwipeMove}
+						onTouchStart={this.onSwipeStart}
+						onTouchEnd={this.onSwipeEnd}
+						style={itemListStyles} 
+						ref="itemList">
 						{ this.renderItems() }
 					</ul>
 				</div>

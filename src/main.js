@@ -4,13 +4,13 @@ var ImageGallery = require('./components/ImageGallery');
 var Carousel = require('./components/Carousel');
 
 var galleryImages = [
-	{url: "http://lorempixel.com/700/250/sports/1"},
-	{url: "http://lorempixel.com/700/250/sports/2"},
-	{url: "http://lorempixel.com/700/250/sports/3"},
-	{url: "http://lorempixel.com/700/250/sports/4"},
-	{url: "http://lorempixel.com/700/250/sports/5"},
-	{url: "http://lorempixel.com/700/250/sports/6"},
-	{url: "http://lorempixel.com/700/250/sports/7"}
+	{url: "assets/1.jpeg"},
+	{url: "assets/2.jpeg"},
+	{url: "assets/3.jpeg"},
+	{url: "assets/4.jpeg"},
+	{url: "assets/5.jpeg"},
+	{url: "assets/6.jpeg"},
+	{url: "assets/7.jpeg"}
 ];
 
 var sliderImages = [
@@ -51,7 +51,15 @@ var DemoGallery = React.createClass({
 	render() {
 		return (
 			<div className="demo-image-gallery">
-				<ImageGallery images={ galleryImages } />
+				<ImageGallery>
+					<img src="assets/1.jpeg" />
+					<img src="assets/2.jpeg" />
+					<img src="assets/3.jpeg" />
+					<img src="assets/4.jpeg" />
+					<img src="assets/5.jpeg" />
+					<img src="assets/6.jpeg" />
+					<img src="assets/7.jpeg" />
+				</ImageGallery>
 			</div>
 		);
 	}
@@ -61,7 +69,15 @@ var DemoSliderControls = React.createClass({
 	render() {
 		return (
 			<div className="demo-slider">
-				<Carousel type="slider" items={ sliderImages } showControls={true} showStatus={true} />
+				<Carousel type="slider" showControls={true} showStatus={true}>
+					<img src="assets/1.jpeg" />
+					<img src="assets/2.jpeg" />
+					<img src="assets/3.jpeg" />
+					<img src="assets/4.jpeg" />
+					<img src="assets/5.jpeg" />
+					<img src="assets/6.jpeg" />
+					<img src="assets/7.jpeg" />
+				</Carousel>
 			</div>
 		);
 	}
@@ -71,7 +87,15 @@ var DemoCarousel = React.createClass({
 	render() {
 		return (
 			<div className="demo-carousel">
-				<Carousel items={ carouselImages } />
+				<Carousel>
+					<img src="assets/1.jpeg" />
+					<img src="assets/2.jpeg" />
+					<img src="assets/3.jpeg" />
+					<img src="assets/4.jpeg" />
+					<img src="assets/5.jpeg" />
+					<img src="assets/6.jpeg" />
+					<img src="assets/7.jpeg" />
+				</Carousel>
 			</div>
 		);
 	}

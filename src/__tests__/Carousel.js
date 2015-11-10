@@ -12,19 +12,17 @@ describe("Carousel", function() {
 	
 	var component, componentInstance;
 
-	var images = [
-		{url: "http://placehold.it/150x150"},
-		{url: "http://placehold.it/149x149"},
-		{url: "http://placehold.it/148x148"},
-		{url: "http://placehold.it/147x147"},
-		{url: "http://placehold.it/146x146"},
-		{url: "http://placehold.it/147x147"},
-		{url: "http://placehold.it/146x146"}
-	];
-
 	beforeEach(function () {
 		componentInstance = TestUtils.renderIntoDocument(
-	  		<Carousel items={ images }/>
+	  		<Carousel>
+	  			<img src="assets/1.jpeg" />
+				<img src="assets/2.jpeg" />
+				<img src="assets/3.jpeg" />
+				<img src="assets/4.jpeg" />
+				<img src="assets/5.jpeg" />
+				<img src="assets/6.jpeg" />
+				<img src="assets/7.jpeg" />
+	  		</Carousel>
 	  	);
 	});
 
@@ -100,8 +98,6 @@ describe("Carousel", function() {
 
 			TestUtils.Simulate.click(findByTag(componentInstance, 'li')[1].getDOMNode());
 			expect(mockedFunction).toBeCalled();
-			expect(mockedFunction).lastCalledWith(1, {url: "http://placehold.it/149x149"});		
-
 		})
 	})
 
