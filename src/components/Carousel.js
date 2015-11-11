@@ -1,4 +1,4 @@
-var React = require('react/addons');
+var React = require('react');
 var klass = require('../cssClasses');
 var outerWidth = require('../dimensions').outerWidth;
 var has3d = require('../has3d')();
@@ -6,11 +6,18 @@ var has3d = require('../has3d')();
 module.exports = React.createClass({
 	
 	propsTypes: {
-		children: React.PropTypes.element.isRequired
+		children: React.PropTypes.element.isRequired,
+		showStatus: React.PropTypes.bool,
+		showControls: React.PropTypes.bool,
+		selectedItem: React.PropTypes.number,
+		firstItem: React.PropTypes.number,
+		type: React.PropTypes.oneOf(['carousel', 'slider'])
 	},
 
 	getDefaultProps () {
 		return {
+			showStatus: false,
+			showControls: false,
 			selectedItem: 0,
 			// Carousel is the default type. It stands for a group of thumbs.
 			// It also accepts 'slider', which will show a full width item 
@@ -27,13 +34,11 @@ module.exports = React.createClass({
 			// Index of the thumb that will appear first.
 			// If you are using type = slider, this has 
 			// the same value of the selected item.
-			firstItem: 0
+			firstItem: this.props.selectedItem
 		}
 	}, 
 
 	statics: {
-		// current position is needed to calculate the right delta
-		currentPosition: 0,
 		// touchPosition is a temporary var to decide what to do on touchEnd
 		touchPosition: null
 	},
@@ -54,19 +59,9 @@ module.exports = React.createClass({
 
 	componentWillReceiveProps (props, state) {
 		if (props.selectedItem !== this.state.selectedItem) {
-			var firstItem = props.selectedItem;
-			
-			if (props.selectedItem >= this.lastPosition) {
-				firstItem =  this.lastPosition;
-			} 
-
-			if (!this.showArrows) {
-				firstItem = 0;
-			}
-
 			this.setState({
 				selectedItem: props.selectedItem,
-				firstItem: firstItem
+				firstItem: this.getFirstItem(props.selectedItem)
 			});
 		}
 	},
@@ -78,7 +73,7 @@ module.exports = React.createClass({
 
 		if (!this.isSlider) {
 			var defaultImgIndex = 0;
-			var defaultImg = this.refs['itemImg' + defaultImgIndex].getDOMNode();
+			var defaultImg = this.refs['itemImg' + defaultImgIndex];
 			defaultImg.addEventListener('load', this.setMountState);
 		}
 	},
@@ -98,8 +93,8 @@ module.exports = React.createClass({
 		total = total || this.props.children.length;
 		this.isSlider = this.props.type === "slider";
 		
-		this.wrapperSize = this.refs.itemsWrapper.getDOMNode().clientWidth;
-		this.itemSize = this.isSlider ? this.wrapperSize : outerWidth(this.refs.item0.getDOMNode());
+		this.wrapperSize = this.refs.itemsWrapper.clientWidth;
+		this.itemSize = this.isSlider ? this.wrapperSize : outerWidth(this.refs.item0);
 		this.visibleItems = Math.floor(this.wrapperSize / this.itemSize);	
 		
 		// exposing variables to other methods on this component
@@ -108,6 +103,20 @@ module.exports = React.createClass({
 		// Index of the last visible element that can be the first of the carousel
 		this.lastPosition = (total - this.visibleItems);
 	}, 
+
+	getFirstItem (selectedItem) {
+		var firstItem = selectedItem;
+		
+		if (selectedItem >= this.lastPosition) {
+			firstItem =  this.lastPosition;
+		}
+
+		if (!this.showArrows) {
+			firstItem = 0;
+		}
+
+		return firstItem;
+	},
 
 	handleClickItem (index, item) {
 		var handler = this.props.onSelectItem;
@@ -118,7 +127,8 @@ module.exports = React.createClass({
 
 		if (index !== this.state.selectedItem) {
 			this.setState({
-				selectedItem: index
+				selectedItem: index,
+				firstItem: this.getFirstItem(index)
 			});
 		}
 	}, 
@@ -178,7 +188,7 @@ module.exports = React.createClass({
 		// adding it to the last position and saving the position
 		this.touchPosition = delta;
 
-		var elementStyle = this.refs.itemList.getDOMNode().style;
+		var elementStyle = this.refs.itemList.style;
 
 		// if 3d isn't available we will use left to move
 		[
@@ -243,7 +253,7 @@ module.exports = React.createClass({
 		position = position >= this.lastPosition ? this.lastPosition : position;
 		
 		this.setState({
-			firstItem: position,
+			firstItem: this.getFirstItem(position),
 			// if it's not a slider, we don't need to set position here
 			selectedItem: this.isSlider ? position : this.state.selectedItem
 		});
@@ -251,21 +261,12 @@ module.exports = React.createClass({
 		this.triggerOnChange(position);
 	},
 
-
-	getTotalWidth () {
-		return this.itemSize * this.props.children.length || 'auto';
-	},
-
-	getNextPosition () {
-		return - this.itemSize * this.state.firstItem || 0;
-	},
-
 	changeItem (e) {
 		var newIndex = e.target.value;
-		
+
 		this.setState({
 			selectedItem: newIndex,
-			firstItem: newIndex
+			firstItem: this.getFirstItem(newIndex)
 		})
 	},
 

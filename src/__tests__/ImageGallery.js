@@ -2,8 +2,10 @@
 
 describe("ImageGallery", function() {
 	
-	var React = require('react/addons');
-	var TestUtils = React.addons.TestUtils;
+	var React = require('react');
+	var TestUtils = require('react-addons-test-utils');
+	var ReactDOM = require('react-dom');
+
 	var findByTag = TestUtils.scryRenderedDOMComponentsWithTag;
 	var findByClass = TestUtils.scryRenderedDOMComponentsWithClass;
 
@@ -31,12 +33,12 @@ describe("ImageGallery", function() {
 	afterEach(function() {
 		if (componentInstance && componentInstance.isMounted()) {
 	      // Only components with a parent will be unmounted
-	      React.unmountComponentAtNode(componentInstance.getDOMNode());
+	      ReactDOM.unmountComponentAtNode(document);
 	    }
   	});
 
-	it("Should have a state currentImage", function () {
-		expect(componentInstance.state.currentImage).toBeDefined();
+	it("Should have a state selectedItem", function () {
+		expect(componentInstance.state.selectedItem).toBeDefined();
 	});
 });
 
