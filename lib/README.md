@@ -1,19 +1,164 @@
 # React Responsive Carousel (React 0.14)
 
+## Demos and docs:
+[http://leandrowd.github.io/react-responsive-carousel/](http://leandrowd.github.io/react-responsive-carousel/)
+
 * Note: If you need support for IE8 or older versions of React, install version 0.1.6
 
-## Demo
-
-http://leandrowd.github.io/react-responsive-carousel/
-
-
 ## Installing as a package
-
 `npm install react-responsive-carousel --save`
 
+## Getting started
+- Possible properties: 
+	- (Array) items
+	- (Boolean) showControls
+	- (Boolean) showStatus
+	- (Function) onChange
+		- Triggered when the carousel move
+	- (Function) onSelectItem
+		- Triggered when an item is selected
+
+- Usage: 
+
+### Slider with controls
+
+```javascript
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Carousel = require('react-responsive-carousel').Carousel;
+
+var DemoSliderControls = function(){
+	return (
+		<Carousel type="slider" showControls={true} showStatus={true}>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+		</Carousel>
+	);
+};
+
+ReactDOM.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
+
+// Don't forget to include the css in your page 
+// <link rel="stylesheet" href="carousel.css"/>
+```
+
+
+
+### Carousel
+
+```javascript
+var React = require('react');
+var ReactDOM = require('react-dom');
+var ImageGallery = require('react-responsive-carousel').ImageGallery;
+
+var DemoGallery = function() {
+	return (
+		<ImageGallery showControls={true} showStatus={true}>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+		</ImageGallery>
+	);
+};
+
+ReactDOM.render(<DemoGallery />, document.querySelector('.demo-gallery'));
+
+// Don't forget to include the css in your page
+// <link rel="stylesheet" href="imageGallery.css"/>
+// <link rel="stylesheet" href="carousel.css"/>
+```
+
+- Props: 
+	- (Array) items
+	- (Boolean) showControls
+	- (Boolean) showStatus
+	- (Function) onChange
+		- Triggered when the carousel move
+	- (Function) onSelectItem
+		- Triggered when an item is selected
+
+
+### Image Gallery
+
+```javascript
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Carousel = require('react-responsive-carousel').Carousel;
+
+var DemoCarousel = function() {
+	return (
+		<Carousel>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+		</Carousel>
+	);
+};
+
+ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
+
+// Don't forget to include the css in your page
+// <link rel="stylesheet" href="carousel.css"/>
+```
+
+### How to build your own gallery
+
+So simple, just add one carousel[type=slider] and another carousel sending the same parameters for both:
+
+- Javascript / Jsx:
+
+```javascript
+var React = require('react');
+var Carousel = require('./Carousel');
+
+module.exports = React.createClass({
+	
+	getDefaultProps () {
+		return {
+			selectedItem: 0
+		}
+	},
+
+	getInitialState () {
+		return {
+			selectedItem: this.props.selectedItem
+		}
+	},
+
+	selectItem (selectedItem) {
+		this.setState({
+			selectedItem: selectedItem
+		});
+	},
+
+	render () {
+		return (
+			<div className="image-gallery">
+				<Carousel type="slider" selectedItem={this.state.selectedItem} showControls={this.props.showControls} showStatus={this.props.showStatus} onChange={this.selectItem} onSelectItem={ this.selectItem }>
+					{ this.props.children }
+				</Carousel>
+				<Carousel selectedItem={this.state.selectedItem} onSelectItem={ this.selectItem }>
+					{ this.props.children }
+				</Carousel>
+			</div>
+		);
+	}
+});
+```
 
 ## Running locally
-
 To run it on your local environment just: 
 
 - `git clone git@github.com:leandrowd/react-responsive-carousel.git`
@@ -23,178 +168,5 @@ To run it on your local environment just:
 
 To generate the npm package run `gulp package`. It will transpile the jsx to js and copy the css into the lib folder.
 
-
 ## Contributing
-
 Please, feel free to contributing. You may file an issue or submit a pull request!
-
-
-## Getting started
-
-### Slider with controls
-
-- Javascript / Jsx:
-
-```javascript
-/** @jsx React.DOM */
-var React = require('react');
-var Carousel = require('./components/Carousel');
-
-var DemoSliderControls = React.createClass({
-	render() {
-		return (
-			<div className="demo-slider">
-				<Carousel 
-					type="slider" 
-					items={ sliderImages } 
-					showControls={true} 
-					showStatus={true} />
-			</div>
-		);
-	}
-});
-
-React.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
-```
-
-- Css:
-
-```css
-<link rel="stylesheet" href="carousel.css"/>
-```
-
-- Props: 
-	- (Array) items
-	- (Boolean) showControls
-	- (Boolean) showStatus
-	- (Function) onChange
-		- Triggered when the carousel move
-	- (Function) onSelectItem
-		- Triggered when an item is selected
-
-
-### Carousel
-
-- Javascript / Jsx:
-
-```javascript
-/** @jsx React.DOM */
-var React = require('react');
-var Carousel = require('./components/Carousel');
-
-var DemoCarousel = React.createClass({
-	render() {
-		return (
-			<div className="demo-carousel">
-				<Carousel items={ carouselImages } />
-			</div>
-		);
-	}
-});
-
-React.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
-```
-
-
-- Css:
-
-```css
-<link rel="stylesheet" href="carousel.css"/>
-```
-
-- Props: 
-	- (Array) items
-	- (Boolean) showControls
-	- (Boolean) showStatus
-	- (Function) onChange
-		- Triggered when the carousel move
-	- (Function) onSelectItem
-		- Triggered when an item is selected
-
-
-
-### Image Gallery
-
-- Javascript / Jsx:
-```javascript
-/** @jsx React.DOM */
-var React = require('react');
-var ImageGallery = require('./components/ImageGallery');
-
-var DemoGallery = React.createClass({
-	render() {
-		return (
-			<div className="demo-image-gallery">
-				<ImageGallery images={ galleryImages } />
-			</div>
-		);
-	}
-});
-
-React.render(<DemoGallery />, document.querySelector('.demo-gallery'));
-```
-
-- Css:
-```css
-<link rel="stylesheet" href="imageGallery.css"/>
-<link rel="stylesheet" href="carousel.css"/>
-```
-
-- Props:
-	- images
-
-
-
-### How to build your own gallery
-
-So simple, just add one carousel[type=slider] and another carousel sending the same parameters for both:
-
-- Javascript / Jsx:
-
-```javascript
-/** @jsx React.DOM */
-var React = require('react/addons');
-var Carousel = require('./Carousel');
-
-module.exports = React.createClass({
-	
-	propsTypes: {
-		images: React.PropTypes.array.isRequired
-	},
-
-	getInitialState () {
-		return {
-			currentImage: 0
-		}
-	},
-
-	selectItem (selectedItem) {
-		this.setState({
-			currentImage: selectedItem
-		});
-	},
-
-	render () {
-		var { images } = this.props;
-		var { current } = this.state;
-		var mainImage = (images && images[current] && images[current].url);
-
-		return (
-			<div className="image-gallery">
-				<Carousel 
-					type="slider" 
-					items={ images } 
-					selectedItem={this.state.currentImage} 
-					onChange={this.selectItem} 
-					onSelectItem={ this.selectItem } />
-
-				<Carousel 
-					items={ images } 
-					selectedItem={this.state.currentImage} 
-					onSelectItem={ this.selectItem } />
-			</div>
-		);
-	}
-});
-```
-
