@@ -1,8 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ImageGallery = require('./components/ImageGallery');
-var Carousel = require('./components/Carousel');
+var ImageGallery = require('react-responsive-carousel').ImageGallery;
+var Carousel = require('react-responsive-carousel').Carousel;
 
+// Begin DemoSliderControls
 var DemoSliderControls = function() {
 	return (
 		<Carousel type="slider" showControls={true} showStatus={true}>
@@ -17,6 +18,10 @@ var DemoSliderControls = function() {
 	);
 };
 
+ReactDOM.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
+// End DemoSliderControls
+
+// Begin DemoGallery
 var DemoGallery = function() {
 	return (
 		<ImageGallery showControls={true} showStatus={true}>
@@ -52,6 +57,10 @@ var DemoGallery = function() {
 	);
 };
 
+ReactDOM.render(<DemoGallery />, document.querySelector('.demo-gallery'));
+// End DemoGallery
+
+// Begin DemoCarousel
 var DemoCarousel = function() {
 	return (
 		<Carousel>
@@ -87,7 +96,5 @@ var DemoCarousel = function() {
 	);
 };
 
-ReactDOM.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
-ReactDOM.render(<DemoGallery />, document.querySelector('.demo-gallery'));
 ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
-
+// End DemoCarousel

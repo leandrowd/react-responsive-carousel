@@ -34,7 +34,7 @@ Please, feel free to contributing. You may file an issue or submit a pull reques
 ```javascript
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Carousel = require('react-responsive-carousel/Carousel');
+var Carousel = require('react-responsive-carousel').Carousel;
 
 var DemoSliderControls = function(){
 	return (
@@ -71,7 +71,7 @@ ReactDOM.render(<DemoSliderControls />, document.querySelector('.demo-slider-con
 ```javascript
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ImageGallery = require('react-responsive-carousel/ImageGallery');
+var ImageGallery = require('react-responsive-carousel').ImageGallery;
 
 var DemoGallery = function() {
 	return (
@@ -109,7 +109,7 @@ ReactDOM.render(<DemoGallery />, document.querySelector('.demo-gallery'));
 ```javascript
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Carousel = require('react-responsive-carousel/Carousel');
+var Carousel = require('react-responsive-carousel').Carousel;
 
 var DemoCarousel = function() {
 	return (

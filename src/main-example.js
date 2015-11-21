@@ -23,7 +23,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var ImageGallery = require('./components/ImageGallery');
 
-
 var DemoGallery = function() {
 	return (
 		<ImageGallery showControls={true} showStatus={true}>

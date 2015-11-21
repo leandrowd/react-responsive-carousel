@@ -1,6 +1,6 @@
-# React Responsive Carousel (WIP)
+# React Responsive Carousel (React 0.14)
 
-* Note: This version `0.1.1` was updated for use with React `0.13.3`. For React < `0.13.0` try the version `0.1.0`;
+* Note: If you need support for IE8 or older versions of React, install version 0.1.6
 
 ## Demo
 

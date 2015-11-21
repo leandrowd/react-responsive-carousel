@@ -19,7 +19,8 @@
   "devDependencies": {
     "6to5-jest": "*",
     "accounting": "^0.4.1",
-    "browserify": "^6.2.0",
+    "browserify": "^12.0.1",
+    "classnames": "^2.1.1",
     "connect-modrewrite": "^0.7.9",
     "glob": "^4.0.6",
     "gulp": "^3.8.9",
@@ -47,9 +48,6 @@
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^2.1.1"
   },
-  "dependencies": {
-    "classnames": "^2.1.1"
-  },
   "jest": {
     "scriptPreprocessor": "./node_modules/6to5-jest",
     "unmockedModulePathPatterns": [
@@ -57,7 +55,6 @@
     ]
   },
   "scripts": {
-    "test": "jest",
-    "dist": "jsx src/ lib/ --harmony"
+    "test": "jest"
   }
 }
