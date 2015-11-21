@@ -2,8 +2,7 @@
 
 
 ## Demo
-
-http://leandrowd.github.io/react-responsive-carousel/
+`http://leandrowd.github.io/react-responsive-carousel/`
 
 
 ## Installing as a package
@@ -32,34 +31,29 @@ Please, feel free to contributing. You may file an issue or submit a pull reques
 
 ### Slider with controls
 
-- Javascript / Jsx:
-
 ```javascript
-/** @jsx React.DOM */
 var React = require('react');
-var Carousel = require('./components/Carousel');
+var ReactDOM = require('react-dom');
+var Carousel = require('react-responsive-carousel/Carousel');
 
-var DemoSliderControls = React.createClass({
-	render() {
-		return (
-			<div className="demo-slider">
-				<Carousel 
-					type="slider" 
-					items={ sliderImages } 
-					showControls={true} 
-					showStatus={true} />
-			</div>
-		);
-	}
-});
+var DemoSliderControls = function(){
+	return (
+		<Carousel type="slider" showControls={true} showStatus={true}>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+		</Carousel>
+	);
+};
 
-React.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
-```
+ReactDOM.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
 
-- Css:
-
-```css
-<link rel="stylesheet" href="carousel.css"/>
+// Don't forget to include the css in your page 
+// <link rel="stylesheet" href="carousel.css"/>
 ```
 
 - Props: 
@@ -74,31 +68,29 @@ React.render(<DemoSliderControls />, document.querySelector('.demo-slider-contro
 
 ### Carousel
 
-- Javascript / Jsx:
-
 ```javascript
-/** @jsx React.DOM */
 var React = require('react');
-var Carousel = require('./components/Carousel');
+var ReactDOM = require('react-dom');
+var ImageGallery = require('react-responsive-carousel/ImageGallery');
 
-var DemoCarousel = React.createClass({
-	render() {
-		return (
-			<div className="demo-carousel">
-				<Carousel items={ carouselImages } />
-			</div>
-		);
-	}
-});
+var DemoGallery = function() {
+	return (
+		<ImageGallery showControls={true} showStatus={true}>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+		</ImageGallery>
+	);
+};
 
-React.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
-```
+ReactDOM.render(<DemoGallery />, document.querySelector('.demo-gallery'));
 
-
-- Css:
-
-```css
-<link rel="stylesheet" href="carousel.css"/>
+// Don't forget to include the css in your page
+// <link rel="stylesheet" href="imageGallery.css"/>
+// <link rel="stylesheet" href="carousel.css"/>
 ```
 
 - Props: 
@@ -114,35 +106,30 @@ React.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 
 ### Image Gallery
 
-- Javascript / Jsx:
 ```javascript
-/** @jsx React.DOM */
 var React = require('react');
-var ImageGallery = require('./components/ImageGallery');
+var ReactDOM = require('react-dom');
+var Carousel = require('react-responsive-carousel/Carousel');
 
-var DemoGallery = React.createClass({
-	render() {
-		return (
-			<div className="demo-image-gallery">
-				<ImageGallery images={ galleryImages } />
-			</div>
-		);
-	}
-});
+var DemoCarousel = function() {
+	return (
+		<Carousel>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+		</Carousel>
+	);
+};
 
-React.render(<DemoGallery />, document.querySelector('.demo-gallery'));
+ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
+
+// Don't forget to include the css in your page
+// <link rel="stylesheet" href="carousel.css"/>
 ```
-
-- Css:
-```css
-<link rel="stylesheet" href="imageGallery.css"/>
-<link rel="stylesheet" href="carousel.css"/>
-```
-
-- Props:
-	- images
-
-
 
 ### How to build your own gallery
 
@@ -151,46 +138,38 @@ So simple, just add one carousel[type=slider] and another carousel sending the s
 - Javascript / Jsx:
 
 ```javascript
-/** @jsx React.DOM */
-var React = require('react/addons');
+var React = require('react');
 var Carousel = require('./Carousel');
 
 module.exports = React.createClass({
 	
-	propsTypes: {
-		images: React.PropTypes.array.isRequired
+	getDefaultProps () {
+		return {
+			selectedItem: 0
+		}
 	},
 
 	getInitialState () {
 		return {
-			currentImage: 0
+			selectedItem: this.props.selectedItem
 		}
 	},
 
 	selectItem (selectedItem) {
 		this.setState({
-			currentImage: selectedItem
+			selectedItem: selectedItem
 		});
 	},
 
 	render () {
-		var { images } = this.props;
-		var { current } = this.state;
-		var mainImage = (images && images[current] && images[current].url);
-
 		return (
 			<div className="image-gallery">
-				<Carousel 
-					type="slider" 
-					items={ images } 
-					selectedItem={this.state.currentImage} 
-					onChange={this.selectItem} 
-					onSelectItem={ this.selectItem } />
-
-				<Carousel 
-					items={ images } 
-					selectedItem={this.state.currentImage} 
-					onSelectItem={ this.selectItem } />
+				<Carousel type="slider" selectedItem={this.state.selectedItem} showControls={this.props.showControls} showStatus={this.props.showStatus} onChange={this.selectItem} onSelectItem={ this.selectItem }>
+					{ this.props.children }
+				</Carousel>
+				<Carousel selectedItem={this.state.selectedItem} onSelectItem={ this.selectItem }>
+					{ this.props.children }
+				</Carousel>
 			</div>
 		);
 	}

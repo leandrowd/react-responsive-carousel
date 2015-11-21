@@ -11,27 +11,6 @@
 		
 		}
 	}
-
-	// &.m4d-icon-odometer {
-	// 	&:before{
-	// 		background-image: url(#{$image-path}clock.jpg);	
-	// 	}
-	// }
-	// &.m4d-icon-engine {
-	// 	&:before{
-	// 		background-image: url(#{$image-path}engine.jpg);	
-	// 	}
-	// }
-	// &.m4d-icon-speed {
-	// 	&:before{
-	// 		background-image: url(#{$image-path}speed.jpg);	
-	// 	}
-	// }
-	// &.m4d-icon-fuel {
-	// 	&:before{
-	// 		background-image: url(#{$image-path}petrol.jpg);	
-	// 	}
-	// }
 }
 
 /********************************************
@@ -89,56 +68,5 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-// .icon-cancel:before { content: '\e801'; } /* '' */
-// .icon-right-open:before { content: '\e802'; } /* '' */
-// .icon-left-open:before { content: '\e803'; } /* '' */
-// .icon-search:before { content: '\e804'; } /* '' */
-// .icon-down-dir:before { content: '\e806'; } /* '' */
-// .icon-up-dir:before { content: '\e808'; } /* '' */
-// .icon-arrow-combo:before { content: '\e809'; } /* '' */
-
-// // features
-// .icon-fuel:before { content: '\e800'; } /* '' */
-// .icon-odometer:before { content: '\e805'; } /* '' */
-// .icon-engine:before { content: '\e807'; } /* '' */
-
-
-
-
-
-
-.icon-cancel:before {	content: "\e801"; 	}
-
 .icon-right-open:before {	content: "\e802"; 	}
-
 .icon-left-open:before {	content: "\e803"; 	}
-
-.icon-search:before {	content: "\e804"; 	}
-
-
-.icon-down-dir:before {	content: "\e806"; 	}
-
-.icon-cog:before {	content: "\e807"; 	}
-
-.icon-up-dir:before {	content: "\e808"; 	}
-
-.icon-arrow-combo:before {	content: "\e809"; 	}
-
-.icon-calendar:before {	content: "\e600"; 	}
-
-
-
-
-.icon-parking:before {	content: "\e601"; 	}
-.icon-body:before {	content: "\e602"; 	}
-.icon-engine3:before {	content: "\e603"; 	}
-.icon-engine4:before {	content: "\e604"; 	}
-.icon-engine:before {	content: "\e606"; 	}
-.icon-gearbox:before {	content: "\e607"; 	}
-.icon-odometer1:before {	content: "\e805"; 	}
-.icon-odometer2:before {	content: "\e608"; 	}
-.icon-odometer:before {	content: "\e609"; 	}
-.icon-tires:before {	content: "\e60a"; 	}
-.icon-wheel:before {	content: "\e60b"; 	}
-.icon-petrol2:before {	content: "\e605"; 	}
-.icon-fuel:before {	content: "\e800"; 	}

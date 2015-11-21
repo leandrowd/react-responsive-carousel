@@ -20,6 +20,8 @@
 						<li><a href="#image-gallery">Image Gallery</a></li>
 						<li><a href="#slider">Slider with controls</a></li>
 						<li><a href="#carousel">Carousel</a></li>
+						<li><a href="#props">Properties</a></li>
+
 					</ul>
 				</li>
 				<li><a href="#contribute">Contributing</a></li>
@@ -32,153 +34,48 @@
 
 			<h2 id="demos">Demos</h2>
 			<section class="demos">
-				
 				<article class="demo">
 					<h3 id="slider">Slider</h3>
 					<div class="demo-slider-controls"></div>
-					<h4>Javascript / Jsx:</h4>
-					<pre>
-						<code>
-/** @jsx React.DOM */
-var React = require('react');
-var Carousel = require('./components/Carousel');
-
-var DemoSliderControls = React.createClass({
-	render() {
-		return (
-			&lt;div className="demo-slider"&gt;
-				&lt;Carousel 
-					type="slider" 
-					items={ sliderImages } 
-					showControls={true} 
-					showStatus={true} /&gt;
-			&lt;/div&gt;
-		);
-	}
-});
-
-React.render(&lt;DemoSliderControls /&gt;, document.querySelector('.demo-slider-controls'));
-						</code>
-					</pre>
-
-					<h4>Css:</h4>
-					<pre>
-						<code>
-&lt;link rel="stylesheet" href="carousel.css"/&gt;
-						</code>
-					</pre>
-
-					<h4>Props:</h4>
-					<ul class="list-items">
-						<li>(Array) items</li>
-						<li>(Boolean) showControls</li>
-						<li>(Boolean) showStatus</li>
-						<li>(Function) onChange
-							<ul>
-								<li>Triggered when the carousel move</li>
-							</ul>
-						</li>
-						<li>(Function) onSelectItem
-							<ul>
-								<li>Triggered when an item is selected</li>
-							</ul>
-						</li>
-					</ul>
+					<h5>Code:</h5>
+					<script src="https://gist.github.com/leandrowd/cf3df7f4552d9ac383d1.js"></script>
 				</article>
 
 				<article class="demo">
 					<h3 id="image-gallery">Image Gallery (Slider and thumbs)</h3>
 					<div class="demo-gallery"></div>
-					<h4>Javascript / Jsx:</h4>
-					<pre>
-						<code>
-/** @jsx React.DOM */
-var React = require('react');
-var ImageGallery = require('./components/ImageGallery');
-
-var DemoGallery = React.createClass({
-	render() {
-		return (
-			&lt;div className="demo-image-gallery"&gt;
-				&lt;ImageGallery images={ galleryImages } /&gt;
-			&lt;/div&gt;
-		);
-	}
-});
-
-React.render(&lt;DemoGallery /&gt;, document.querySelector('.demo-gallery'));
-						</code>
-					</pre>
-					
-					<h4>Css:</h4>
-					<pre>
-						<code>
-&lt;link rel="stylesheet" href="imageGallery.css"/&gt;
-&lt;link rel="stylesheet" href="carousel.css"/&gt;
-						</code>
-					</pre>
-
-					<h4>Props:</h4>
-					<ul class="list-items">
-						<li>images</li>
-					</ul>
+					<h5>Code:</h5>
+					<script src="https://gist.github.com/leandrowd/a08810d90db522d8c078.js"></script>					
 				</article>
-
 
 				<article class="demo">
 					<h3 id="carousel">Carousel</h3>
 					<div class="demo-carousel"></div>
-					
-					<h4>Javascript / Jsx:</h4>
-					<pre>
-						<code>
-/** @jsx React.DOM */
-var React = require('react');
-var Carousel = require('./components/Carousel');
-
-var DemoCarousel = React.createClass({
-	render() {
-		return (
-			&lt;div className="demo-carousel"&gt;
-				&lt;Carousel items={ carouselImages } /&gt;
-			&lt;/div&gt;
-		);
-	}
-});
-
-React.render(&lt;DemoCarousel /&gt;, document.querySelector('.demo-carousel'));
-						</code>
-					</pre>
-					
-					<h4>Css:</h4>
-					<pre>
-						<code>
-&lt;link rel="stylesheet" href="carousel.css"/&gt;
-						</code>
-					</pre>
-
-					<h4>Props:</h4>
-					<ul class="list-items">
-						<li>(Array) items</li>
-						<li>(Boolean) showControls</li>
-						<li>(Boolean) showStatus</li>
-						<li>(Function) onChange
-							<ul>
-								<li>Triggered when the carousel move</li>
-							</ul>
-						</li>
-						<li>(Function) onSelectItem
-							<ul>
-								<li>Triggered when an item is selected</li>
-							</ul>
-						</li>
-					</ul>
+					<h5>Code:</h5>
+					<script src="https://gist.github.com/leandrowd/b73b4b86dfe4828c102f.js"></script>
 				</article>
+			</section>
+
+			<h2 id="props">Properties</h2>
+			<section class="props">
+				<ul class="list-items">
+					<li>(Boolean) showControls</li>
+					<li>(Boolean) showStatus</li>
+					<li>(Function) onChange
+						<ul>
+							<li>Triggered when the carousel move</li>
+						</ul>
+					</li>
+					<li>(Function) onSelectItem
+						<ul>
+							<li>Triggered when an item is selected</li>
+						</ul>
+					</li>
+				</ul>
 			</section>
 
 			<h2 id="contributing">Contributing</h2>
 			<p>Please, feel free to contributing. You may file an issue or submit a pull request!</p>
-
 		</div>
 		<script src="es5-shim.min.js"></script>
 		<script src="main.js"></script>

@@ -1,83 +1,91 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-// window.React = React;
 var ImageGallery = require('./components/ImageGallery');
 var Carousel = require('./components/Carousel');
 
-var DemoSliderControls = React.createClass({
-	render() {
-		return (
-			<div className="demo-slider">
-				<Carousel type="slider" showControls={true} showStatus={true}>
-					<img src="assets/1.jpeg" />
-					<img src="assets/2.jpeg" />
-					<img src="assets/3.jpeg" />
-					<img src="assets/4.jpeg" />
-					<img src="assets/5.jpeg" />
-					<img src="assets/6.jpeg" />
-					<img src="assets/7.jpeg" />
-				</Carousel>
-			</div>
-		);
-	}
-});
+var DemoSliderControls = function() {
+	return (
+		<Carousel type="slider" showControls={true} showStatus={true}>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+		</Carousel>
+	);
+};
 
-var DemoGallery = React.createClass({
-	render() {
-		return (
-			<div className="demo-image-gallery">
-				<ImageGallery showControls={true} showStatus={true}>
-					<img src="assets/1.jpeg" />
-					<img src="assets/2.jpeg" />
-					<img src="assets/3.jpeg" />
-					<img src="assets/4.jpeg" />
-					<img src="assets/5.jpeg" />
-					<img src="assets/6.jpeg" />
-					<img src="assets/7.jpeg" />
-					<img src="assets/1.jpeg" />
-					<img src="assets/2.jpeg" />
-					<img src="assets/3.jpeg" />
-					<img src="assets/4.jpeg" />
-					<img src="assets/5.jpeg" />
-					<img src="assets/6.jpeg" />
-					<img src="assets/7.jpeg" />
-					<img src="assets/1.jpeg" />
-					<img src="assets/2.jpeg" />
-					<img src="assets/3.jpeg" />
-					<img src="assets/4.jpeg" />
-					<img src="assets/5.jpeg" />
-					<img src="assets/6.jpeg" />
-					<img src="assets/7.jpeg" />
-					<img src="assets/1.jpeg" />
-					<img src="assets/2.jpeg" />
-					<img src="assets/3.jpeg" />
-					<img src="assets/4.jpeg" />
-					<img src="assets/5.jpeg" />
-					<img src="assets/6.jpeg" />
-					<img src="assets/7.jpeg" />
-				</ImageGallery>
-			</div>
-		);
-	}
-});
+var DemoGallery = function() {
+	return (
+		<ImageGallery showControls={true} showStatus={true}>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+		</ImageGallery>
+	);
+};
 
-var DemoCarousel = React.createClass({
-	render() {
-		return (
-			<div className="demo-carousel">
-				<Carousel>
-					<img src="assets/1.jpeg" />
-					<img src="assets/2.jpeg" />
-					<img src="assets/3.jpeg" />
-					<img src="assets/4.jpeg" />
-					<img src="assets/5.jpeg" />
-					<img src="assets/6.jpeg" />
-					<img src="assets/7.jpeg" />
-				</Carousel>
-			</div>
-		);
-	}
-});
+var DemoCarousel = function() {
+	return (
+		<Carousel>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+		</Carousel>
+	);
+};
 
 ReactDOM.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
 ReactDOM.render(<DemoGallery />, document.querySelector('.demo-gallery'));

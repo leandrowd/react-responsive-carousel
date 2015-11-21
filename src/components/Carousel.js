@@ -198,7 +198,9 @@ module.exports = React.createClass({
 			'OTransform',
 			'transform',
 			'msTransform'
-		].forEach((prop) => elementStyle[prop] = 'translate3d(' + position + ', 0, 0)');
+		].forEach((prop) => {
+			elementStyle[prop] = has3d ? 'translate3d(' + position + ', 0, 0)' : 'translate(' + position + ', 0)';
+		});
 	},
 
 	onSwipeEnd (e) {
@@ -329,7 +331,7 @@ module.exports = React.createClass({
 		}
 
 		// if 3d is available, let's take advantage of the performance of transform
-		var transformProp = 'translate3d(' + currentPosition + ', 0, 0)';
+		var transformProp = has3d ? 'translate3d(' + currentPosition + ', 0, 0)' : 'translate(' + currentPosition + ', 0)';
 		itemListStyles = {
 			'WebkitTransform': transformProp,
 			   'MozTransform': transformProp,

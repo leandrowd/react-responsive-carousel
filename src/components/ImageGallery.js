@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react');
 var Carousel = require('./Carousel');
 
@@ -43,4 +42,3 @@ module.exports = React.createClass({
 		);
 	}
 });
-
