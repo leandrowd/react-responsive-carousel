@@ -1,71 +1,59 @@
 # React Responsive Carousel (WIP)
 
-## Installing
+
+## Demo
+`http://leandrowd.github.io/react-responsive-carousel/`
+
+
+## Installing as a package
 
 `npm install react-responsive-carousel --save`
 
+
+## Running locally
+
+To run it on your local environment just: 
+
+- `git clone git@github.com:leandrowd/react-responsive-carousel.git`
+- `npm install`
+- `gulp`
+- Open your favourite browser on `localhost:8000`
+
+To generate the npm package run `gulp package`. It will transpile the jsx to js and copy the css into the lib folder.
+
+
+## Contributing
+
+Please, feel free to contributing. You may file an issue or submit a pull request!
+
+
 ## Getting started
-
-### Image Gallery
-
-- Javascript / Jsx:
-```javascript
-/** @jsx React.DOM */
-var React = require('react');
-var ImageGallery = require('./components/ImageGallery');
-
-var DemoGallery = React.createClass({
-	render() {
-		return (
-			<div className="demo-image-gallery">
-				<ImageGallery images={ galleryImages } />
-			</div>
-		);
-	}
-});
-
-React.render(<DemoGallery />, document.querySelector('.demo-gallery'));
-```
-
-- Css:
-```css
-<link rel="stylesheet" href="imageGallery.css"/>
-<link rel="stylesheet" href="carousel.css"/>
-```
-
-- Props:
-	- images
 
 ### Slider with controls
 
-- Javascript / Jsx:
-
 ```javascript
-/** @jsx React.DOM */
 var React = require('react');
-var Carousel = require('./components/Carousel');
+var ReactDOM = require('react-dom');
+var Carousel = require('react-responsive-carousel').Carousel;
 
-var DemoSliderControls = React.createClass({
-	render() {
-		return (
-			<div className="demo-slider">
-				<Carousel 
-					type="slider" 
-					items={ sliderImages } 
-					showControls={true} 
-					showStatus={true} />
-			</div>
-		);
-	}
-});
+var DemoSliderControls = function(){
+	return (
+		<Carousel type="slider" showControls={true} showStatus={true}>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+		</Carousel>
+	);
+};
 
-React.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
-```
+ReactDOM.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
 
-- Css:
-
-```css
-<link rel="stylesheet" href="carousel.css"/>
+// Don't forget to include the css in your page 
+// <link rel="stylesheet" href="carousel.css"/>
 ```
 
 - Props: 
@@ -80,31 +68,29 @@ React.render(<DemoSliderControls />, document.querySelector('.demo-slider-contro
 
 ### Carousel
 
-- Javascript / Jsx:
-
 ```javascript
-/** @jsx React.DOM */
 var React = require('react');
-var Carousel = require('./components/Carousel');
+var ReactDOM = require('react-dom');
+var ImageGallery = require('react-responsive-carousel').ImageGallery;
 
-var DemoCarousel = React.createClass({
-	render() {
-		return (
-			<div className="demo-carousel">
-				<Carousel items={ carouselImages } />
-			</div>
-		);
-	}
-});
+var DemoGallery = function() {
+	return (
+		<ImageGallery showControls={true} showStatus={true}>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+		</ImageGallery>
+	);
+};
 
-React.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
-```
+ReactDOM.render(<DemoGallery />, document.querySelector('.demo-gallery'));
 
-
-- Css:
-
-```css
-<link rel="stylesheet" href="carousel.css"/>
+// Don't forget to include the css in your page
+// <link rel="stylesheet" href="imageGallery.css"/>
+// <link rel="stylesheet" href="carousel.css"/>
 ```
 
 - Props: 
@@ -116,20 +102,77 @@ React.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 	- (Function) onSelectItem
 		- Triggered when an item is selected
 
-### Browser Support
-
-Although I have implemented css transformations for all the browsers and fallback to left when 3d isn't supported, I haven't had time to test in browsers other than chrome yet. I reckon than it should just work but minor issues can be found.
-
-### TODO:
-
-- [ ] Implement slides of content
-- [ ] Improve documentation
-- [ ] Improve tests
-- [ ] Improve swipe
-- [ ] Test cross-browser
-- [ ] ...?
 
 
-### Contributing
+### Image Gallery
 
-Feel free to contribute. Just Fork -> Change -> Pull request!
+```javascript
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Carousel = require('react-responsive-carousel').Carousel;
+
+var DemoCarousel = function() {
+	return (
+		<Carousel>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+		</Carousel>
+	);
+};
+
+ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
+
+// Don't forget to include the css in your page
+// <link rel="stylesheet" href="carousel.css"/>
+```
+
+### How to build your own gallery
+
+So simple, just add one carousel[type=slider] and another carousel sending the same parameters for both:
+
+- Javascript / Jsx:
+
+```javascript
+var React = require('react');
+var Carousel = require('./Carousel');
+
+module.exports = React.createClass({
+	
+	getDefaultProps () {
+		return {
+			selectedItem: 0
+		}
+	},
+
+	getInitialState () {
+		return {
+			selectedItem: this.props.selectedItem
+		}
+	},
+
+	selectItem (selectedItem) {
+		this.setState({
+			selectedItem: selectedItem
+		});
+	},
+
+	render () {
+		return (
+			<div className="image-gallery">
+				<Carousel type="slider" selectedItem={this.state.selectedItem} showControls={this.props.showControls} showStatus={this.props.showStatus} onChange={this.selectItem} onSelectItem={ this.selectItem }>
+					{ this.props.children }
+				</Carousel>
+				<Carousel selectedItem={this.state.selectedItem} onSelectItem={ this.selectItem }>
+					{ this.props.children }
+				</Carousel>
+			</div>
+		);
+	}
+});
+```
+

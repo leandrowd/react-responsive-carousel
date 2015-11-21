@@ -1,84 +1,100 @@
-/** @jsx React.DOM */
 var React = require('react');
-var ReactCarousel = require('react-responsive-carousel');
-var ImageGallery = ReactCarousel.ImageGallery;
-var Carousel = ReactCarousel.Carousel;
+var ReactDOM = require('react-dom');
+var ImageGallery = require('react-responsive-carousel').ImageGallery;
+var Carousel = require('react-responsive-carousel').Carousel;
 
-var galleryImages = [
-	{url: "http://lorempixel.com/700/250/sports/1"},
-	{url: "http://lorempixel.com/700/250/sports/2"},
-	{url: "http://lorempixel.com/700/250/sports/3"},
-	{url: "http://lorempixel.com/700/250/sports/4"},
-	{url: "http://lorempixel.com/700/250/sports/5"},
-	{url: "http://lorempixel.com/700/250/sports/6"},
-	{url: "http://lorempixel.com/700/250/sports/7"}
-];
+// Begin DemoSliderControls
+var DemoSliderControls = function() {
+	return (
+		<Carousel type="slider" showControls={true} showStatus={true}>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+		</Carousel>
+	);
+};
 
-var sliderImages = [
-	{url: "http://lorempixel.com/960/400/nature/1"},
-	{url: "http://lorempixel.com/960/400/nature/2"},
-	{url: "http://lorempixel.com/960/400/nature/3"},
-	{url: "http://lorempixel.com/960/400/nature/4"},
-	{url: "http://lorempixel.com/960/400/nature/5"},
-	{url: "http://lorempixel.com/960/400/nature/6"},
-	{url: "http://lorempixel.com/960/400/nature/7"}
-];
+ReactDOM.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
+// End DemoSliderControls
 
-var carouselImages = [
-	{url: "http://lorempixel.com/70/70/animals/1"},
-	{url: "http://lorempixel.com/70/70/animals/2"},
-	{url: "http://lorempixel.com/70/70/animals/3"},
-	{url: "http://lorempixel.com/70/70/animals/4"},
-	{url: "http://lorempixel.com/70/70/animals/5"},
-	{url: "http://lorempixel.com/70/70/animals/6"},
-	{url: "http://lorempixel.com/70/70/animals/7"},
-	{url: "http://lorempixel.com/70/70/animals/8"},
-	{url: "http://lorempixel.com/70/70/animals/9"},
-	{url: "http://lorempixel.com/70/70/animals/10"},
-	{url: "http://lorempixel.com/70/70/animals/11"},
-	{url: "http://lorempixel.com/70/70/animals/12"},
-	{url: "http://lorempixel.com/70/70/animals/13"},
-	{url: "http://lorempixel.com/70/70/animals/14"},
-	{url: "http://lorempixel.com/70/70/animals/15"},
-	{url: "http://lorempixel.com/70/70/animals/16"},
-	{url: "http://lorempixel.com/70/70/animals/17"},
-	{url: "http://lorempixel.com/70/70/animals/18"},
-	{url: "http://lorempixel.com/70/70/animals/19"},
-	{url: "http://lorempixel.com/70/70/animals/20"}
+// Begin DemoGallery
+var DemoGallery = function() {
+	return (
+		<ImageGallery showControls={true} showStatus={true}>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+		</ImageGallery>
+	);
+};
 
-];
+ReactDOM.render(<DemoGallery />, document.querySelector('.demo-gallery'));
+// End DemoGallery
 
-var DemoGallery = React.createClass({
-	render() {
-		return (
-			<div className="demo-image-gallery">
-				<ImageGallery images={ galleryImages } />
-			</div>
-		);
-	}
-});
+// Begin DemoCarousel
+var DemoCarousel = function() {
+	return (
+		<Carousel>
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+			<img src="assets/1.jpeg" />
+			<img src="assets/2.jpeg" />
+			<img src="assets/3.jpeg" />
+			<img src="assets/4.jpeg" />
+			<img src="assets/5.jpeg" />
+			<img src="assets/6.jpeg" />
+			<img src="assets/7.jpeg" />
+		</Carousel>
+	);
+};
 
-var DemoSliderControls = React.createClass({
-	render() {
-		return (
-			<div className="demo-slider">
-				<Carousel type="slider" items={ sliderImages } showControls={true} showStatus={true} />
-			</div>
-		);
-	}
-});
-
-var DemoCarousel = React.createClass({
-	render() {
-		return (
-			<div className="demo-carousel">
-				<Carousel items={ carouselImages } />
-			</div>
-		);
-	}
-});
-
-React.render(<DemoGallery />, document.querySelector('.demo-gallery'));
-React.render(<DemoSliderControls />, document.querySelector('.demo-slider-controls'));
-React.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
-
+ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
+// End DemoCarousel
