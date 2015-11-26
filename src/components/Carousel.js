@@ -259,8 +259,6 @@ module.exports = React.createClass({
 			// if it's not a slider, we don't need to set position here
 			selectedItem: this.isSlider ? position : this.state.selectedItem
 		});
-		
-		
 	},
 
 	changeItem (e) {
@@ -274,7 +272,7 @@ module.exports = React.createClass({
 
 	selectItem (state) {
 		this.setState(state);
-		this.triggerOnChange(position);
+		this.triggerOnChange(state.selectedItem);
 	},
 
 	renderItems () {

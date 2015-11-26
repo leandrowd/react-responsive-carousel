@@ -39,6 +39,49 @@ describe("Carousel", function() {
 	    }
   	});
 
+  	describe("Basics", function () {
+  		describe("changeItem", function () {
+  			beforeEach(function () {
+				componentInstance.selectItem = jest.genMockFunction();
+				componentInstance.getFirstItem = jest.genMockFunction().mockReturnValue(2);
+				componentInstance.changeItem({
+					target: {
+						value: 1
+					}
+				});
+			});
+
+  			it("Should call selectItem sending selectedItem as 1 and firstItem as 2", function () {
+  				expect(componentInstance.selectItem.mock.calls[0][0]).toEqual({
+					selectedItem: 1,
+					firstItem: 2
+				});
+  			});
+  		});
+
+  		describe("selectItem", function () {
+  			beforeEach(function () {
+				componentInstance.setState = jest.genMockFunction();
+				componentInstance.triggerOnChange = jest.genMockFunction();
+				componentInstance.selectItem({
+					selectedItem: 1,
+					ramdomNumber: 2
+				});
+			});
+
+  			it("Should call setState sending the argument received", function () {
+  				expect(componentInstance.setState.mock.calls[0][0]).toEqual({
+					selectedItem: 1,
+					ramdomNumber: 2
+				});
+  			});
+
+  			it("Should call triggerOnChange sending only selectedItem", function () {
+				expect(componentInstance.triggerOnChange.mock.calls[0][0]).toBe(1);
+  			});
+  		});
+  	});
+
 	it("Should have the right state at the begin", function () {
 		expect(componentInstance.state.selectedItem).toBe(0);
 		expect(componentInstance.state.firstItem).toBe(0);
