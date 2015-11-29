@@ -101,21 +101,15 @@ module.exports = React.createClass({
 		this.showArrows = this.visibleItems < total;
 		
 		// Index of the last visible element that can be the first of the carousel
-		this.lastPosition = (total - this.visibleItems);
+		this.lastPosition = total - this.visibleItems;
 	}, 
 
 	getFirstItem (selectedItem) {
-		var firstItem = selectedItem;
-		
-		if (selectedItem >= this.lastPosition) {
-			firstItem =  this.lastPosition;
-		}
-
 		if (!this.showArrows) {
-			firstItem = 0;
+			return 0;
 		}
 
-		return firstItem;
+		return selectedItem >= this.lastPosition ? this.lastPosition : selectedItem;
 	},
 
 	handleClickItem (index, item) {
