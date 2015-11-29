@@ -175,25 +175,20 @@ button {
     margin: auto;
     width: 100%; }
   .carousel .slider {
-    -webkit-transition: all 0.35s ease-in;
-    -moz-transition: all 0.35s ease-in;
-    -ms-transition: all 0.35s ease-in;
-    -o-transition: all 0.35s ease-in;
-    transition: all 0.35s ease-in;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
     display: flex;
     position: relative;
     list-style: none; }
-    .carousel .slider.swiping {
-      -webkit-transition: none 0 ease-in;
-      -moz-transition: none 0 ease-in;
-      -ms-transition: none 0 ease-in;
-      -o-transition: none 0 ease-in;
-      transition: none 0 ease-in; }
+    .carousel .slider.animated {
+      -webkit-transition: all 0.35s ease-in;
+      -moz-transition: all 0.35s ease-in;
+      -ms-transition: all 0.35s ease-in;
+      -o-transition: all 0.35s ease-in;
+      transition: all 0.35s ease-in;
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      -ms-transform: translate3d(0, 0, 0);
+      -o-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0); }
   .carousel .slide {
     flex-direction: column;
     flex-flow: column;

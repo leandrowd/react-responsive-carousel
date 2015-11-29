@@ -131,15 +131,14 @@
 	}
 
 	.slider {
-		@include transition(all, .35s, ease-in);
-		// activate hardware accelerated animations using translate property
-		@include enhanceAnimations();
 		display: flex;
 		position: relative;
 		list-style: none;
-		
-		&.swiping {
-			@include transition(none, 0, ease-in);
+
+		&.animated {
+			@include transition(all, .35s, ease-in);
+			// activate hardware accelerated animations using translate property
+			@include enhanceAnimations();
 		}
 	}
 

@@ -19,7 +19,7 @@ module.exports = {
 		return classNames({
 			"thumbs": !isSlider,
 			"slider": isSlider,
-			"swiping": isSwiping
+			"animated": !isSwiping
 		});
 	},
 
