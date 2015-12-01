@@ -1,7 +1,11 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var klass = require('../cssClasses');
-var outerWidth = require('../dimensions').outerWidth;
 var has3d = require('../has3d')();
+var Thumbs = require('./Thumbs');
+var Swipe = require('./Swipe');
+
+// TODO: Remove states
 
 module.exports = React.createClass({
     
@@ -26,11 +30,6 @@ module.exports = React.createClass({
         }
     }, 
 
-    statics: {
-        // touchPosition is a temporary var to decide what to do on touchEnd
-        touchPosition: null
-    },
-
     componentWillReceiveProps (props, state) {
         if (props.selectedItem !== this.state.selectedItem) {
             this.setState({
@@ -53,54 +52,46 @@ module.exports = React.createClass({
         }
     }, 
 
-    triggerOnChange (item) {
+    triggerOnChange (index, item) {
         var handler = this.props.onChange;
 
         if (typeof handler === 'function') {
-            handler(item);
+            handler(index, item);
         }   
     }, 
 
-    // touch start
-    onSwipeStart (e) {
+    onSwipeStart() {
         this.setState({
-            wrapperSize: this.refs.itemsWrapper.clientWidth,
-            // saving the initial touch 
-            touchStart: e.touches[0].pageX,
-            // setting the swiping state
             swiping: true
-        })
+        });
     },
 
-    onSwipeMove (e) {
-        // getting the current delta
-        var delta = e.touches[0].pageX - this.state.touchStart;
+    onSwipeEnd() {
+        this.setState({
+            swiping: false
+        });
+    },
+
+    onSwipeMove(deltaX) {
         var leftBoundry = 0;
+        var list = ReactDOM.findDOMNode(this.refs.itemList);
+        var wrapperSize = list.clientWidth;
 
-        var currentPosition;
-        var lastLeftBoundry;
+        var currentPosition = - this.state.selectedItem * 100; 
+        var lastLeftBoundry = - (this.props.children.length - 1) * 100;
 
-        currentPosition = - this.state.selectedItem * 100; 
-        lastLeftBoundry = - (this.props.children.length - 1) * 100;
-
-        //if the first image meets the left boundry, prevent user from swiping left
-        if (currentPosition === leftBoundry && delta > 0) {
-            delta = 0;
+        // prevent user from swiping left out of boundaries
+        if (currentPosition === leftBoundry && deltaX > 0) {
+            deltaX = 0;
         }
         
-        //if the last image meets the left boundry, prevent user from swiping right
-        if (currentPosition === lastLeftBoundry && delta < 0) {
-            delta = 0;
+        // prevent user from swiping right out of boundaries
+        if (currentPosition === lastLeftBoundry && deltaX < 0) {
+            deltaX = 0;
         }
 
-        var position = currentPosition + (100 / (this.state.wrapperSize / delta)) + '%';
-
-        // adding it to the last position and saving the position
-        this.touchPosition = delta;
-
-        var elementStyle = this.refs.itemList.style;
-
-        // if 3d isn't available we will use left to move
+        var position = currentPosition + (100 / (wrapperSize / deltaX)) + '%';
+        
         [
             'WebkitTransform',
             'MozTransform',
@@ -109,45 +100,8 @@ module.exports = React.createClass({
             'transform',
             'msTransform'
         ].forEach((prop) => {
-            elementStyle[prop] = has3d ? 'translate3d(' + position + ', 0, 0)' : 'translate(' + position + ', 0)';
+            list.style[prop] = has3d ? 'translate3d(' + position + ', 0, 0)' : 'translate(' + position + ', 0)';
         });
-    },
-
-    onSwipeEnd (e) {
-        this.setState({
-            // reset touchStart position
-            touchStart: null,
-            // finish the swiping state
-            swiping: false
-        }, 
-            // this function is the callback of setState because we need to wait for the
-            // state to be setted, so the swiping class will be removed and the 
-            // transition to the next slide will be smooth
-            function () {
-                // number of positions to advance;
-                var positions;
-
-                if (this.touchPosition === 0) {
-                    /* prevent users from swipe right on the first image
-                       but it goes to the opposite direction, as the delta is alwsys 0
-                       when swipe right on the first image.
-                       also prevent users from swipe left on the last image from the same reason.
-                    */
-                } else {
-                    // if it's a slider, positions is 1
-                    positions = 1;                  
-                } 
-
-                if (this.touchPosition < 0) {
-                    // less than 0 means that it's going left
-                    this.slideLeft(positions);
-                } else if (this.touchPosition > 0) {
-                    this.slideRight(positions);
-                }
-                // discard the position
-                this.touchPosition = null;  
-            }.bind(this)
-        );  
     },
 
     slideRight (positions){
@@ -175,12 +129,18 @@ module.exports = React.createClass({
 
         this.selectItem({
             selectedItem: newIndex
-        })
+        });
     },
 
     selectItem (state) {
         this.setState(state);
-        this.triggerOnChange(state.selectedItem);
+        this.triggerOnChange(state.selectedItem, this.props.children[state.selectedItem]);
+    },
+
+    onThumbClick(index) {
+        this.selectItem({
+            selectedItem: index
+        });
     },
 
     renderItems () {
@@ -195,7 +155,6 @@ module.exports = React.createClass({
                 </li>
             );
         });
-                    
     },
 
     renderControls () {
@@ -220,6 +179,14 @@ module.exports = React.createClass({
         return <p className="carousel-status">{this.state.selectedItem + 1} of {this.props.children.length}</p>;
     }, 
 
+    renderThumbs () {
+        if (!this.props.showThumbs) {
+            return null
+        }
+
+        return <Thumbs children={this.props.children} onSelectItem={this.onThumbClick} selectedItem={this.state.selectedItem} />;
+    }, 
+
     render () {
         var itemsLength = this.props.children.length;
 
@@ -240,6 +207,7 @@ module.exports = React.createClass({
         
         // if 3d is available, let's take advantage of the performance of transform
         var transformProp = has3d ? 'translate3d(' + currentPosition + ', 0, 0)' : 'translate(' + currentPosition + ', 0)';
+        
         itemListStyles = {
             'WebkitTransform': transformProp,
                'MozTransform': transformProp,
@@ -247,28 +215,30 @@ module.exports = React.createClass({
                  'OTransform': transformProp,
                   'transform': transformProp,
                 'msTransform': transformProp
-        }
-        
+        };
+
         return (
             <div className={klass.CAROUSEL(true)}>
                 <button className={klass.ARROW_LEFT(!hasPrev)} onClick={this.slideRight} />
-                
                 <div className={klass.WRAPPER(true)} ref="itemsWrapper">
-                    <ul className={klass.SLIDER(true, this.state.swiping)} 
-                        onTouchMove={this.onSwipeMove}
-                        onTouchStart={this.onSwipeStart}
-                        onTouchEnd={this.onSwipeEnd}
+                    <Swipe tagName="ul" 
+                        selectedItem={this.state.selectedItem} 
+                        className={klass.SLIDER(true, this.state.swiping)}
+                        onSwipeLeft={this.slideLeft}
+                        onSwipeRight={this.slideRight}
+                        onSwipeMove={this.onSwipeMove}
+                        onSwipeStart={this.onSwipeStart}
+                        onSwipeEnd={this.onSwipeEnd}
                         style={itemListStyles} 
                         ref="itemList">
                         { this.renderItems() }
-                    </ul>
+                    </Swipe>
                 </div>
-
                 <button className={klass.ARROW_RIGHT(!hasNext)} onClick={this.slideLeft} />
                 
                 { this.renderControls() }
                 { this.renderStatus() }
-            </div>
+            </div>                
         );
         
     }

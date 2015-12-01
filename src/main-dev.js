@@ -4,10 +4,19 @@ var ImageGallery = require('./components/ImageGallery');
 var Carousel = require('./components/Carousel');
 var Slider = require('./components/Slider');
 
+function onChange() {
+    console.log('onChange', arguments);
+}
+
+function onSelectItem() {
+    console.log('onSelectItem', arguments);
+}
+
 // Begin DemoSliderControls
 var DemoSlider = function() {
+
     return (
-        <Slider showControls={true} showStatus={true}>
+        <Slider showControls={true} showStatus={true} showThumbs={true} onChange={onChange} onSelectItem={onSelectItem}>
             <img src="assets/1.jpeg" />
             <img src="assets/2.jpeg" />
             <img src="assets/3.jpeg" />

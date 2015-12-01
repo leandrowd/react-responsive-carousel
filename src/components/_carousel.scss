@@ -62,8 +62,7 @@
 	}
 
 	.thumbs-wrapper {
-		position: relative;
-		margin: 0 20px;
+		margin: 20px;
 		overflow: hidden;
 	}
 
@@ -136,7 +135,7 @@
 		list-style: none;
 
 		&.animated {
-			@include transition(all, .35s, ease-in);
+			@include transition(all, .35s, ease-in-out);
 			// activate hardware accelerated animations using translate property
 			@include enhanceAnimations();
 		}

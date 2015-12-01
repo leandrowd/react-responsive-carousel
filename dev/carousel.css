@@ -119,8 +119,7 @@ button {
     margin-top: -13px;
     font-size: 18px; }
   .carousel .thumbs-wrapper {
-    position: relative;
-    margin: 0 20px;
+    margin: 20px;
     overflow: hidden; }
   .carousel .thumbs {
     -webkit-transition: all 0.15s ease-in;
@@ -179,11 +178,11 @@ button {
     position: relative;
     list-style: none; }
     .carousel .slider.animated {
-      -webkit-transition: all 0.35s ease-in;
-      -moz-transition: all 0.35s ease-in;
-      -ms-transition: all 0.35s ease-in;
-      -o-transition: all 0.35s ease-in;
-      transition: all 0.35s ease-in;
+      -webkit-transition: all 0.35s ease-in-out;
+      -moz-transition: all 0.35s ease-in-out;
+      -ms-transition: all 0.35s ease-in-out;
+      -o-transition: all 0.35s ease-in-out;
+      transition: all 0.35s ease-in-out;
       -webkit-transform: translate3d(0, 0, 0);
       -moz-transform: translate3d(0, 0, 0);
       -ms-transform: translate3d(0, 0, 0);
