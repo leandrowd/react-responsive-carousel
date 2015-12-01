@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var klass = require('../cssClasses');
 var has3d = require('../has3d')();
-var Thumbs = require('./Thumbs');
+var Thumbs = require('./Thumbs-2');
 var Swipe = require('./Swipe');
 
 // TODO: Remove states
@@ -144,14 +144,14 @@ module.exports = React.createClass({
     },
 
     renderItems () {
-        return this.props.children.map((item, index) => {
+        return React.Children.map(this.props.children, (item, index) => {
             var hasMount = this.state.hasMount;
             var itemClass = klass.ITEM(true, index, this.state.selectedItem, hasMount);
             
             return (
-                <li key={index} ref={"item" + index} className={itemClass}
+                <li key={index} ref={"item" + index} key={"itemKey" + index} className={itemClass}
                     onClick={ this.handleClickItem.bind(this, index, item) }>
-                    <img src={item.props.src} ref={"itemImg" + index}/>
+                    {item}
                 </li>
             );
         });
@@ -164,7 +164,7 @@ module.exports = React.createClass({
         
         return (
             <ul className="control-dots">
-                {this.props.children.map( (item, index) => {
+                {React.Children.map(this.props.children, (item, index) => {
                     return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} value={index} key={index} />;
                 })}
             </ul>
@@ -184,7 +184,11 @@ module.exports = React.createClass({
             return null
         }
 
-        return <Thumbs children={this.props.children} onSelectItem={this.onThumbClick} selectedItem={this.state.selectedItem} />;
+        return (
+            <Thumbs onSelectItem={this.onThumbClick} selectedItem={this.state.selectedItem}>
+                {this.props.children}
+            </Thumbs>
+        );
     }, 
 
     render () {
@@ -218,27 +222,30 @@ module.exports = React.createClass({
         };
 
         return (
-            <div className={klass.CAROUSEL(true)}>
-                <button className={klass.ARROW_LEFT(!hasPrev)} onClick={this.slideRight} />
-                <div className={klass.WRAPPER(true)} ref="itemsWrapper">
-                    <Swipe tagName="ul" 
-                        selectedItem={this.state.selectedItem} 
-                        className={klass.SLIDER(true, this.state.swiping)}
-                        onSwipeLeft={this.slideLeft}
-                        onSwipeRight={this.slideRight}
-                        onSwipeMove={this.onSwipeMove}
-                        onSwipeStart={this.onSwipeStart}
-                        onSwipeEnd={this.onSwipeEnd}
-                        style={itemListStyles} 
-                        ref="itemList">
-                        { this.renderItems() }
-                    </Swipe>
-                </div>
-                <button className={klass.ARROW_RIGHT(!hasNext)} onClick={this.slideLeft} />
-                
-                { this.renderControls() }
-                { this.renderStatus() }
-            </div>                
+            <div>
+                <div className={klass.CAROUSEL(true)}>
+                    <button className={klass.ARROW_LEFT(!hasPrev)} onClick={this.slideRight} />
+                    <div className={klass.WRAPPER(true)} ref="itemsWrapper">
+                        <Swipe tagName="ul" 
+                            selectedItem={this.state.selectedItem} 
+                            className={klass.SLIDER(true, this.state.swiping)}
+                            onSwipeLeft={this.slideLeft}
+                            onSwipeRight={this.slideRight}
+                            onSwipeMove={this.onSwipeMove}
+                            onSwipeStart={this.onSwipeStart}
+                            onSwipeEnd={this.onSwipeEnd}
+                            style={itemListStyles} 
+                            ref="itemList">
+                            { this.renderItems() }
+                        </Swipe>
+                    </div>
+                    <button className={klass.ARROW_RIGHT(!hasNext)} onClick={this.slideLeft} />
+                    
+                    { this.renderControls() }
+                    { this.renderStatus() }
+                </div> 
+                { this.renderThumbs() }
+            </div>               
         );
         
     }

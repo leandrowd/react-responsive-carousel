@@ -17,6 +17,7 @@
 	&.control-disabled {
 		@include opacity(0);
 		cursor: inherit;
+		display: none;
 	}
 
 	&.control-left {
@@ -146,19 +147,57 @@
 		flex-flow: column;
 		min-width: 100%;
 		margin: 0;
+		padding-bottom: 32px;
 
 		img {
 			width: 100%;
 			vertical-align: top;
 		}
+
+		p {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			background: #000;
+			color: #fff;
+			padding: 10px;
+			font-size: 12px;
+			text-align: center;
+			@include transition(all, .35s, ease-in-out);
+		}
+		
+		@include desktop {
+			padding-bottom: 0;
+
+			p {
+				bottom: 40px;
+				margin-left: 10%;
+				width: 80%;
+				background: rgba(0, 0, 0, 0.3);
+				color: rgba(255, 255, 255, 0.6);
+				border-radius: 5px;
+				padding: 10px;
+			}
+
+			&:hover {
+				p {
+					background: rgba(0, 0, 0, 0.5);
+					color: rgba(255, 255, 255, 0.9);
+				}
+			}
+		}
 	}
 
 	.control-dots {
 		position: absolute;
-		bottom: 0;
+		bottom: 32px;
 		margin: 10px 0;
 		text-align: center;
 		width: 100%;
+
+		@include desktop {
+			bottom: 0;
+		}
 
 		.dot {
 			@include transition(opacity, .25s, ease-in);

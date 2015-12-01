@@ -13,10 +13,43 @@ function onSelectItem() {
 }
 
 // Begin DemoSliderControls
-var DemoSlider = function() {
-
+var DemoSliderWithItems = function() {
     return (
-        <Slider showControls={true} showStatus={true} showThumbs={true} onChange={onChange} onSelectItem={onSelectItem}>
+        <Slider showControls="true" showStatus="true" showThumbs="true" onChange={onChange} onSelectItem={onSelectItem}>
+            <div>
+                <img src="assets/1.jpeg" />
+                <p>Legend 1</p>
+            </div>
+            <div>
+                <img src="assets/2.jpeg" />
+                <p>Legend 2</p>
+            </div>
+            <div>
+                <img src="assets/3.jpeg" />
+                <p>Legend 3</p>
+            </div>
+            <div>
+                <img src="assets/4.jpeg" />
+                <p>Legend 4</p>
+            </div>
+            <div>
+                <img src="assets/5.jpeg" />
+                <p>Legend 5</p>
+            </div>
+            <div>
+                <img src="assets/6.jpeg" />
+                <p>Legend 6</p>
+            </div>
+        </Slider>
+    );
+};
+
+ReactDOM.render(<DemoSliderWithItems />, document.querySelector('.demo-slider-controls'));
+
+// Begin DemoSliderControls
+var DemoSlider = function() {
+    return (
+        <Slider showControls="true" showStatus="true" showThumbs="true" onChange={onChange} onSelectItem={onSelectItem}>
             <img src="assets/1.jpeg" />
             <img src="assets/2.jpeg" />
             <img src="assets/3.jpeg" />
@@ -28,7 +61,8 @@ var DemoSlider = function() {
     );
 };
 
-ReactDOM.render(<DemoSlider />, document.querySelector('.demo-slider-controls'));
+ReactDOM.render(<DemoSlider />, document.querySelector('.demo-gallery'));
+
 
 // // Begin DemoSliderControls
 // var DemoSliderControls = function() {

@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var klass = require('../cssClasses');
-var outerWidth = require('../dimensions').outerWidth;
 var has3d = require('../has3d')();
 var Swipe = require('./Swipe');
 
@@ -11,91 +10,31 @@ module.exports = React.createClass({
     
     propsTypes: {
         children: React.PropTypes.element.isRequired,
+        showStatus: React.PropTypes.bool,
+        showControls: React.PropTypes.bool,
+        showThumbs: React.PropTypes.bool,
         selectedItem: React.PropTypes.number
     },
 
     getDefaultProps () {
         return {
-            selectedItem: 0
+            selectedItem: 0,
         }
     }, 
 
     getInitialState () {
         return {
             // index of the image to be shown.
-            selectedItem: this.props.selectedItem,
-            hasMount: false,
-
-            // Index of the thumb that will appear first.
-            // If you are using type = slider, this has 
-            // the same value of the selected item.
-            firstItem: this.props.selectedItem
+            selectedItem: this.props.selectedItem
         }
     }, 
-
-    componentWillMount() {
-        // as the widths are calculated, we need to resize 
-        // the carousel when the window is resized
-        window.addEventListener("resize", this.updateDimensions);
-        // issue #2 - image loading smaller
-        window.addEventListener("DOMContentLoaded", this.updateDimensions);
-    },
-
-    componentWillUnmount() {
-        // removing listeners
-        window.removeEventListener("resize", this.updateDimensions);
-        window.removeEventListener("DOMContentLoaded", this.updateDimensions);
-    },
 
     componentWillReceiveProps (props, state) {
-        if (props.selectedItem !== this.state.firstItem) {
+        if (props.selectedItem !== this.state.selectedItem) {
             this.setState({
-                selectedItem: props.selectedItem,
-                firstItem: this.getFirstItem(props.selectedItem)
+                selectedItem: props.selectedItem
             });
         }
-    },
-
-    componentDidMount (nextProps) {
-        // when the component is rendered we need to calculate 
-        // the container size to adjust the responsive behaviour
-        this.updateDimensions();
-
-        var defaultImg = ReactDOM.findDOMNode(this.refs.item0).getElementsByTagName('img')[0];
-        defaultImg.addEventListener('load', this.setMountState);
-    },
-
-    setMountState: function() {
-        this.setState({hasMount: true});
-    },
-
-    updateDimensions () {
-        this.calculateSpace(this.props.children.length);
-        // the component should be rerended after calculating space
-        this.forceUpdate();
-    },
-
-    // Calculate positions for carousel
-    calculateSpace (total) {
-        total = total || this.props.children.length;
-        
-        this.wrapperSize = this.refs.itemsWrapper.clientWidth;
-        this.itemSize = outerWidth(this.refs.item0);
-        this.visibleItems = Math.floor(this.wrapperSize / this.itemSize);   
-        
-        // exposing variables to other methods on this component
-        this.showArrows = this.visibleItems < total;
-        
-        // Index of the last visible element that can be the first of the carousel
-        this.lastPosition = total - this.visibleItems;
-    }, 
-
-    getFirstItem (selectedItem) {
-        if (!this.showArrows) {
-            return 0;
-        }
-
-        return selectedItem >= this.lastPosition ? this.lastPosition : selectedItem;
     },
 
     handleClickItem (index, item) {
@@ -104,13 +43,19 @@ module.exports = React.createClass({
         if (typeof handler === 'function') {
             handler(index, item);
         }   
-    },
 
-    triggerOnChange (item) {
+        if (index !== this.state.selectedItem) {
+            this.setState({
+                selectedItem: index,
+            });
+        }
+    }, 
+
+    triggerOnChange (index, item) {
         var handler = this.props.onChange;
 
         if (typeof handler === 'function') {
-            handler(item);
+            handler(index, item);
         }   
     }, 
 
@@ -128,13 +73,11 @@ module.exports = React.createClass({
 
     onSwipeMove(deltaX) {
         var leftBoundry = 0;
-        var list = this.refs.itemList;
+        var list = ReactDOM.findDOMNode(this.refs.itemList);
         var wrapperSize = list.clientWidth;
-        var visibleItems = Math.floor(wrapperSize / this.itemSize);   
 
-        var currentPosition = - this.props.firstItem * this.itemSize;   
-        var lastLeftBoundry = - this.visibleItems * this.itemSize;
-
+        var currentPosition = - this.state.selectedItem * 100; 
+        var lastLeftBoundry = - (this.props.children.length - 1) * 100;
 
         // prevent user from swiping left out of boundaries
         if (currentPosition === leftBoundry && deltaX > 0) {
@@ -147,10 +90,7 @@ module.exports = React.createClass({
         }
 
         var position = currentPosition + (100 / (wrapperSize / deltaX)) + '%';
-
-        console.log(this.refs, list);
-
-        // if 3d isn't available we will use left to move
+        
         [
             'WebkitTransform',
             'MozTransform',
@@ -164,30 +104,38 @@ module.exports = React.createClass({
     },
 
     slideRight (positions){
-        this.moveTo(this.state.firstItem - (typeof positions === 'Number' ? positions : 1));
+        this.moveTo(this.state.selectedItem - (typeof positions === 'Number' ? positions : 1));
     },
 
     slideLeft (positions){
-        this.moveTo(this.state.firstItem + (typeof positions === 'Number' ? positions : 1));
+        this.moveTo(this.state.selectedItem + (typeof positions === 'Number' ? positions : 1));
     },
 
     moveTo (position) {
         // position can't be lower than 0
         position = position < 0 ? 0 : position;
         // position can't be higher than last postion
-        position = position >= this.lastPosition ? this.lastPosition : position;
+        position = position >= this.props.children.length ? this.props.children.length : position;
         
         this.selectItem({
-            firstItem: this.getFirstItem(position),
             // if it's not a slider, we don't need to set position here
-            selectedItem: this.state.selectedItem
+            selectedItem: position
+        });
+    },
+
+    changeItem (e) {
+        var newIndex = e.target.value;
+
+        this.selectItem({
+            selectedItem: newIndex
         });
     },
 
     selectItem (state) {
         this.setState(state);
-        this.triggerOnChange(state.selectedItem);
+        this.triggerOnChange(state.selectedItem, this.props.children[state.selectedItem]);
     },
+
 
     renderItems () {
         return React.Children.map(this.props.children, (item, index) => {
@@ -211,7 +159,6 @@ module.exports = React.createClass({
                 </li>
             );
         });
-                    
     },
 
     render () {
@@ -238,7 +185,7 @@ module.exports = React.createClass({
                   'transform': transformProp,
                 'msTransform': transformProp
         }
-        
+
         return (
             <div className={klass.CAROUSEL(false)}>
                 <div className={klass.WRAPPER(false)} ref="itemsWrapper">
@@ -257,7 +204,7 @@ module.exports = React.createClass({
                     </Swipe>
                     <button className={klass.ARROW_RIGHT(!hasNext)} onClick={this.slideLeft} />
                 </div>
-            </div>
+            </div>             
         );
         
     }

@@ -92,7 +92,8 @@ button {
   .carousel .control-disabled.control-arrow {
     opacity: 0;
     filter: alpha(opacity=0);
-    cursor: inherit; }
+    cursor: inherit;
+    display: none; }
   .carousel .control-left.control-arrow {
     left: 0; }
     .carousel .control-left.control-arrow:before {
@@ -192,16 +193,48 @@ button {
     flex-direction: column;
     flex-flow: column;
     min-width: 100%;
-    margin: 0; }
+    margin: 0;
+    padding-bottom: 32px; }
     .carousel .slide img {
       width: 100%;
       vertical-align: top; }
+    .carousel .slide p {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: #000;
+      color: #fff;
+      padding: 10px;
+      font-size: 12px;
+      text-align: center;
+      -webkit-transition: all 0.35s ease-in-out;
+      -moz-transition: all 0.35s ease-in-out;
+      -ms-transition: all 0.35s ease-in-out;
+      -o-transition: all 0.35s ease-in-out;
+      transition: all 0.35s ease-in-out; }
+    @media (min-width: 960px) {
+      .carousel .slide {
+        padding-bottom: 0; }
+        .carousel .slide p {
+          bottom: 40px;
+          margin-left: 10%;
+          width: 80%;
+          background: rgba(0, 0, 0, 0.3);
+          color: rgba(255, 255, 255, 0.6);
+          border-radius: 5px;
+          padding: 10px; }
+        .carousel .slide:hover p {
+          background: rgba(0, 0, 0, 0.5);
+          color: rgba(255, 255, 255, 0.9); } }
   .carousel .control-dots {
     position: absolute;
-    bottom: 0;
+    bottom: 32px;
     margin: 10px 0;
     text-align: center;
     width: 100%; }
+    @media (min-width: 960px) {
+      .carousel .control-dots {
+        bottom: 0; } }
     .carousel .control-dots .dot {
       -webkit-transition: opacity 0.25s ease-in;
       -moz-transition: opacity 0.25s ease-in;
