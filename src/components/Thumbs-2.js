@@ -37,6 +37,20 @@ module.exports = React.createClass({
         }
     },
 
+    componentWillMount() {
+        // as the widths are calculated, we need to resize 
+        // the carousel when the window is resized
+        window.addEventListener("resize", this.updateStatics);
+        // issue #2 - image loading smaller
+        window.addEventListener("DOMContentLoaded", this.updateStatics);
+    },
+
+    componentWillUnmount() {
+        // removing listeners
+        window.removeEventListener("resize", this.updateStatics);
+        window.removeEventListener("DOMContentLoaded", this.updateStatics);
+    },
+
     componentDidMount (nextProps) {
         // when the component is rendered we need to calculate 
         // the container size to adjust the responsive behaviour
@@ -159,7 +173,7 @@ module.exports = React.createClass({
 
     renderItems () {
         return React.Children.map(this.props.children, (item, index) => {
-            var itemClass = klass.ITEM(false, index, this.state.selectedItem, this.state.hasMount);
+            var itemClass = klass.ITEM(false, index === this.state.selectedItem && this.state.hasMount);
             
             var img = item;
 

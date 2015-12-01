@@ -176,6 +176,7 @@ button {
     width: 100%; }
   .carousel .slider {
     display: flex;
+    display: -webkit-flex;
     position: relative;
     list-style: none; }
     .carousel .slider.animated {
@@ -183,12 +184,7 @@ button {
       -moz-transition: all 0.35s ease-in-out;
       -ms-transition: all 0.35s ease-in-out;
       -o-transition: all 0.35s ease-in-out;
-      transition: all 0.35s ease-in-out;
-      -webkit-transform: translate3d(0, 0, 0);
-      -moz-transform: translate3d(0, 0, 0);
-      -ms-transform: translate3d(0, 0, 0);
-      -o-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0); }
+      transition: all 0.35s ease-in-out; }
   .carousel .slide {
     flex-direction: column;
     flex-flow: column;
@@ -199,6 +195,11 @@ button {
       width: 100%;
       vertical-align: top; }
     .carousel .slide p {
+      -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
       position: absolute;
       bottom: 0;
       width: 100%;
@@ -206,12 +207,7 @@ button {
       color: #fff;
       padding: 10px;
       font-size: 12px;
-      text-align: center;
-      -webkit-transition: all 0.35s ease-in-out;
-      -moz-transition: all 0.35s ease-in-out;
-      -ms-transition: all 0.35s ease-in-out;
-      -o-transition: all 0.35s ease-in-out;
-      transition: all 0.35s ease-in-out; }
+      text-align: center; }
     @media (min-width: 960px) {
       .carousel .slide {
         padding-bottom: 0; }
@@ -222,7 +218,10 @@ button {
           background: rgba(0, 0, 0, 0.3);
           color: rgba(255, 255, 255, 0.6);
           border-radius: 5px;
-          padding: 10px; }
+          padding: 10px;
+          opacity: 0; }
+        .carousel .slide.selected p {
+          opacity: 1; }
         .carousel .slide:hover p {
           background: rgba(0, 0, 0, 0.5);
           color: rgba(255, 255, 255, 0.9); } }

@@ -146,7 +146,7 @@ module.exports = React.createClass({
     renderItems () {
         return React.Children.map(this.props.children, (item, index) => {
             var hasMount = this.state.hasMount;
-            var itemClass = klass.ITEM(true, index, this.state.selectedItem, hasMount);
+            var itemClass = klass.ITEM(true, index === this.state.selectedItem);
             
             return (
                 <li key={index} ref={"item" + index} key={"itemKey" + index} className={itemClass}

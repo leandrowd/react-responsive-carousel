@@ -132,13 +132,14 @@
 
 	.slider {
 		display: flex;
+		display: -webkit-flex; //safari needs vendor prefix
 		position: relative;
 		list-style: none;
 
 		&.animated {
 			@include transition(all, .35s, ease-in-out);
 			// activate hardware accelerated animations using translate property
-			@include enhanceAnimations();
+			// @include enhanceAnimations();
 		}
 	}
 
@@ -155,6 +156,7 @@
 		}
 
 		p {
+			@include transition(all, .5s, ease-in-out);
 			position: absolute;
 			bottom: 0;
 			width: 100%;
@@ -163,7 +165,6 @@
 			padding: 10px;
 			font-size: 12px;
 			text-align: center;
-			@include transition(all, .35s, ease-in-out);
 		}
 		
 		@include desktop {
@@ -177,6 +178,13 @@
 				color: rgba(255, 255, 255, 0.6);
 				border-radius: 5px;
 				padding: 10px;
+				opacity: 0;
+			}
+
+			&.selected {
+				p {
+					opacity: 1;
+				}
 			}
 
 			&:hover {
