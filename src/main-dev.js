@@ -15,39 +15,39 @@ function onSelectItem() {
 // Begin DemoSliderControls
 var DemoSliderWithItems = function() {
     return (
-        <Slider showControls="true" showStatus="true" showThumbs="true" onChange={onChange} onSelectItem={onSelectItem}>
+        <Slider axis="vertical" showControls="true" showStatus="true" showThumbs="true" onChange={onChange} onSelectItem={onSelectItem}>
             <div>
                 <img src="assets/1.jpeg" />
-                <p>Legend 1</p>
+                <p className="legend">Legend 1</p>
             </div>
             <div>
                 <img src="assets/2.jpeg" />
-                <p>Legend 2</p>
+                <p className="legend">Legend 2</p>
             </div>
             <div>
                 <img src="assets/3.jpeg" />
-                <p>Legend 3</p>
+                <p className="legend">Legend 3</p>
             </div>
             <div>
                 <img src="assets/4.jpeg" />
-                <p>Legend 4</p>
+                <p className="legend">Legend 4</p>
             </div>
             <div>
                 <img src="assets/5.jpeg" />
-                <p>Legend 5</p>
+                <p className="legend">Legend 5</p>
             </div>
             <div>
                 <img src="assets/6.jpeg" />
-                <p>Legend 6</p>
+                <p className="legend">Legend 6</p>
             </div>
         </Slider>
     );
 };
+ReactDOM.render(<DemoSliderWithItems />, document.querySelector('.demo-gallery'));
 
-ReactDOM.render(<DemoSliderWithItems />, document.querySelector('.demo-slider-controls'));
 
 // Begin DemoSliderControls
-var DemoSlider = function() {
+var DemoSlider2 = function() {
     return (
         <Slider showControls="true" showStatus="true" showThumbs="true" onChange={onChange} onSelectItem={onSelectItem}>
             <img src="assets/1.jpeg" />
@@ -61,7 +61,22 @@ var DemoSlider = function() {
     );
 };
 
-ReactDOM.render(<DemoSlider />, document.querySelector('.demo-gallery'));
+var Gallery = function () {
+    return (
+        <Slider showControls="true" showStatus="true" onChange={onChange} onSelectItem={onSelectItem} className="parent">
+            <div className="page-carousel">
+                <DemoSliderWithItems />
+            </div>
+            <div className="page-carousel">
+                <DemoSlider2 />
+            </div>
+        </Slider>
+    );
+}
+
+// ReactDOM.render(<Gallery />, document.querySelector('.demo-slider-controls'));
+
+// ReactDOM.render(<DemoSlider />, document.querySelector('.demo-gallery'));
 
 
 // // Begin DemoSliderControls

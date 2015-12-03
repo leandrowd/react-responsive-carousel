@@ -20,14 +20,14 @@
 		display: none;
 	}
 
-	&.control-left {
+	&.control-prev {
 		left: 0;
 		&:before {
 			content: '\e803';
 		}
 	}
 
-	&.control-right {
+	&.control-next {
 		right: 0;
 		&:before {
 			content: '\e802';
@@ -128,14 +128,36 @@
 		overflow: hidden;
 		margin: auto;
 		width: 100%;
+
+		&.axis-horizontal {
+			.slider {
+				display: flex;
+				display: -webkit-flex; //safari needs vendor prefix
+			}
+			
+			.slide {
+				flex-direction: column;
+				flex-flow: column;
+			}
+		}
+	
+		&.axis-vertical {
+			.slider {
+				display: inline-block;	
+			}
+			
+			.slide {
+				position: relative;
+				display: block;
+				margin: 0;
+			}	
+		}
 	}
 
 	.slider {
-		display: flex;
-		display: -webkit-flex; //safari needs vendor prefix
 		position: relative;
 		list-style: none;
-
+		
 		&.animated {
 			@include transition(all, .35s, ease-in-out);
 			// activate hardware accelerated animations using translate property
@@ -144,8 +166,6 @@
 	}
 
 	.slide {
-		flex-direction: column;
-		flex-flow: column;
 		min-width: 100%;
 		margin: 0;
 		padding-bottom: 32px;
@@ -155,7 +175,7 @@
 			vertical-align: top;
 		}
 
-		p {
+		.legend {
 			@include transition(all, .5s, ease-in-out);
 			position: absolute;
 			bottom: 0;
@@ -170,7 +190,7 @@
 		@include desktop {
 			padding-bottom: 0;
 
-			p {
+			.legend {
 				bottom: 40px;
 				margin-left: 10%;
 				width: 80%;
@@ -182,13 +202,13 @@
 			}
 
 			&.selected {
-				p {
+				.legend {
 					opacity: 1;
 				}
 			}
 
 			&:hover {
-				p {
+				.legend {
 					background: rgba(0, 0, 0, 0.5);
 					color: rgba(255, 255, 255, 0.9);
 				}

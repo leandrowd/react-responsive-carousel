@@ -8,10 +8,12 @@ module.exports = {
 		});
 	}, 
 
-	WRAPPER (isSlider) {
+	WRAPPER (isSlider, axis) {
 		return classNames({
 			"thumbs-wrapper": !isSlider,
-			"slider-wrapper": isSlider
+			"slider-wrapper": isSlider,
+			"axis-horizontal": axis === "horizontal",
+			"axis-vertical": axis !== "horizontal"
 		});
 	},
 
@@ -31,16 +33,16 @@ module.exports = {
 		});
 	},
 
-	ARROW_LEFT (disabled) {
+	ARROW_PREV (disabled) {
 		return classNames({
-			"control-arrow control-left": true,
+			"control-arrow control-prev": true,
 			"control-disabled": disabled
 		});
 	},
 
-	ARROW_RIGHT (disabled) {
+	ARROW_NEXT (disabled) {
 		return classNames({
-			"control-arrow control-right": true,
+			"control-arrow control-next": true,
 			"control-disabled": disabled
 		})
 	},

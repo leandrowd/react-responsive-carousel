@@ -224,7 +224,7 @@ module.exports = React.createClass({
         return (
             <div className={klass.CAROUSEL(false)}>
                 <div className={klass.WRAPPER(false)} ref="itemsWrapper">
-                    <button className={klass.ARROW_LEFT(!hasPrev)} onClick={this.slideRight} />
+                    <button className={klass.ARROW_PREV(!hasPrev)} onClick={this.slideRight} />
                     <Swipe tagName="ul" 
                         selectedItem={this.state.selectedItem} 
                         className={klass.SLIDER(false, this.state.swiping)}
@@ -237,7 +237,7 @@ module.exports = React.createClass({
                         ref="itemList">
                         { this.renderItems() }
                     </Swipe>
-                    <button className={klass.ARROW_RIGHT(!hasNext)} onClick={this.slideLeft} />
+                    <button className={klass.ARROW_NEXT(!hasNext)} onClick={this.slideLeft} />
                 </div>
             </div>             
         );

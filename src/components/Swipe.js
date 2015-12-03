@@ -6,6 +6,8 @@ var has3d = require('../has3d')();
 module.exports = React.createClass({
     propTypes: {
         tagName: React.PropTypes.string.isRequired,
+        onSwipeUp: React.PropTypes.func.isRequired,
+        onSwipeDown: React.PropTypes.func.isRequired,
         onSwipeLeft: React.PropTypes.func.isRequired,
         onSwipeRight: React.PropTypes.func.isRequired,
         onSwipeStart: React.PropTypes.func.isRequired,
@@ -16,6 +18,8 @@ module.exports = React.createClass({
     getDefaultProps() {
         return {
             tagName: 'div',
+            onSwipeUp() {},
+            onSwipeDown() {},
             onSwipeLeft() {},
             onSwipeRight() {},
             onSwipeStart() {},
@@ -25,33 +29,46 @@ module.exports = React.createClass({
     },
 
     _handleSwipeStart (e) {
-        this.touchStart = e.touches[0].pageX;
-        this.swiping = true;
+        e.preventDefault();
 
+        var { pageX, pageY } = e.touches[0];
+        this.touchStart = { pageX, pageY }; 
+        
         this.props.onSwipeStart();
     },
 
     _handleSwipeMove (e) {
-        var deltaX = e.touches[0].pageX - this.touchStart;
-        
-        this.props.onSwipeMove(deltaX);
+        e.preventDefault();
+        var deltaX = e.touches[0].pageX - this.touchStart.pageX;
+        var deltaY = e.touches[0].pageY - this.touchStart.pageY;
 
-        this.touchPosition = deltaX;
+        this.swiping = true;
+        
+        this.props.onSwipeMove({x: deltaX, y: deltaY});
+
+        this.touchPosition = { deltaX, deltaY };
     },
 
     _handleSwipeEnd (e) {
-        this.touchStart = null;
-        this.swiping = false;
+        if (this.swiping) {
+            e.preventDefault();
 
-        if (this.touchPosition < 0) {
-            this.props.onSwipeLeft(1);
+            if (this.touchPosition.deltaX < 0) {
+                this.props.onSwipeLeft(1);
+            } else if (this.touchPosition.deltaX > 0) {
+                this.props.onSwipeRight(1);
+            }
 
-        } else if (this.touchPosition > 0) {
-            this.props.onSwipeRight(1);
+            if (this.touchPosition.deltaY < 0) {
+                this.props.onSwipeDown(1);
+            } else if (this.touchPosition.deltaY > 0) {
+                this.props.onSwipeUp(1);
+            } 
         }
 
         this.props.onSwipeEnd();
-         
+        this.touchStart = null;
+        this.swiping = false;
         this.touchPosition = null; 
     },
 
