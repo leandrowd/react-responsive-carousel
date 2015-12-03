@@ -29,8 +29,6 @@ module.exports = React.createClass({
     },
 
     _handleSwipeStart (e) {
-        e.preventDefault();
-
         var { pageX, pageY } = e.touches[0];
         this.touchStart = { pageX, pageY }; 
         
@@ -51,8 +49,6 @@ module.exports = React.createClass({
 
     _handleSwipeEnd (e) {
         if (this.swiping) {
-            e.preventDefault();
-
             if (this.touchPosition.deltaX < 0) {
                 this.props.onSwipeLeft(1);
             } else if (this.touchPosition.deltaX > 0) {

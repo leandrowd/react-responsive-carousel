@@ -15,7 +15,7 @@ function onSelectItem() {
 // Begin DemoSliderControls
 var DemoSliderWithItems = function() {
     return (
-        <Slider axis="vertical" showControls="true" showStatus="true" showThumbs="true" onChange={onChange} onSelectItem={onSelectItem}>
+        <Slider axis="vertical" showArrows={false} onChange={onChange} onSelectItem={onSelectItem}>
             <div>
                 <img src="assets/1.jpeg" />
                 <p className="legend">Legend 1</p>

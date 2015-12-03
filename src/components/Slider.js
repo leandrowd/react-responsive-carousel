@@ -24,8 +24,9 @@ module.exports = React.createClass({
     
     propsTypes: {
         children: React.PropTypes.element.isRequired,
+        showArrows: React.PropTypes.bool,
         showStatus: React.PropTypes.bool,
-        showControls: React.PropTypes.bool,
+        showIndicators: React.PropTypes.bool,
         showThumbs: React.PropTypes.bool,
         selectedItem: React.PropTypes.number,
         axis: React.PropTypes.string
@@ -33,6 +34,10 @@ module.exports = React.createClass({
 
     getDefaultProps () {
         return {
+            showIndicators: true,
+            showArrows: true,
+            showStatus:true,
+            showThumbs:true,
             selectedItem: 0,
             axis: 'horizontal'
         }
@@ -215,7 +220,7 @@ module.exports = React.createClass({
     },
 
     renderControls () {
-        if (!this.props.showControls) {
+        if (!this.props.showIndicators) {
             return null
         }
         
@@ -255,7 +260,7 @@ module.exports = React.createClass({
             return null;
         }
 
-        var canShowArrows = itemsLength > 1;
+        var canShowArrows = this.props.showArrows && itemsLength > 1;
 
         // show left arrow? 
         var hasPrev = canShowArrows && this.state.selectedItem > 0;
