@@ -2,7 +2,7 @@
 
 
 ## Demo
-`http://leandrowd.github.io/react-responsive-carousel/`
+<http://leandrowd.github.io/react-responsive-carousel/>
 
 
 ## Installing as a package
