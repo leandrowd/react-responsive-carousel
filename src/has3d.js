@@ -14,6 +14,12 @@ module.exports = function has3d() {
         };
 
     // Add it to the body to get the computed style.
+    var body;
+    if(!document.body)
+    {
+        body = document.createElement('body');
+        document.children[0].appendChild(body);
+    }
     document.body.insertBefore(el, null);
 
     for (var t in transforms) {
@@ -24,6 +30,11 @@ module.exports = function has3d() {
     }
 
     document.body.removeChild(el);
+
+    if(body)
+    {
+        document.children[0].removeChild(body);
+    }
 
     return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
 }
