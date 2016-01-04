@@ -1,7 +1,7 @@
 {
   "name": "react-responsive-carousel-project",
-  "version": "0.0.2",
-  "description": "React Responsive Carousel Project-Modified",
+  "version": "0.0.1",
+  "description": "React Responsive Carousel Project",
   "author": {
     "name": "Leandro Augusto Lemos",
     "url": "leandrowd@gmail.com"
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cvhooper22/react-responsive-carousel.git"
+    "url": "https://github.com/leandrowd/react-responsive-carousel.git"
   },
   "bugs": {
     "url": "https://github.com/leandrowd/react-responsive-carousel/issues"
