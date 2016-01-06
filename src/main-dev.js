@@ -13,36 +13,38 @@ function onSelectItem() {
 }
 
 // Begin DemoSliderControls
-var DemoSliderWithItems = function() {
-    return (
-        <Slider axis="vertical" showArrows={false} onChange={onChange} onSelectItem={onSelectItem}>
-            <div>
-                <img src="assets/1.jpeg" />
-                <p className="legend">Legend 1</p>
-            </div>
-            <div>
-                <img src="assets/2.jpeg" />
-                <p className="legend">Legend 2</p>
-            </div>
-            <div>
-                <img src="assets/3.jpeg" />
-                <p className="legend">Legend 3</p>
-            </div>
-            <div>
-                <img src="assets/4.jpeg" />
-                <p className="legend">Legend 4</p>
-            </div>
-            <div>
-                <img src="assets/5.jpeg" />
-                <p className="legend">Legend 5</p>
-            </div>
-            <div>
-                <img src="assets/6.jpeg" />
-                <p className="legend">Legend 6</p>
-            </div>
-        </Slider>
-    );
-};
+var DemoSliderWithItems = React.createClass({
+    render() {
+        return (
+            <Slider showArrows={false} onChange={onChange} onSelectItem={onSelectItem}>
+                <div>
+                    <img src="assets/1.jpeg" />
+                    <p className="legend">Legend 1</p>
+                </div>
+                <div>
+                    <img src="assets/2.jpeg" />
+                    <p className="legend">Legend 2</p>
+                </div>
+                <div>
+                    <img src="assets/3.jpeg" />
+                    <p className="legend">Legend 3</p>
+                </div>
+                <div>
+                    <img src="assets/4.jpeg" />
+                    <p className="legend">Legend 4</p>
+                </div>
+                <div>
+                    <img src="assets/5.jpeg" />
+                    <p className="legend">Legend 5</p>
+                </div>
+                <div>
+                    <img src="assets/6.jpeg" />
+                    <p className="legend">Legend 6</p>
+                </div>
+            </Slider>
+        );
+    }
+});
 ReactDOM.render(<DemoSliderWithItems />, document.querySelector('.demo-gallery'));
 
 

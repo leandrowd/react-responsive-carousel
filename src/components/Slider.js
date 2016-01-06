@@ -1,27 +1,12 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var klass = require('../cssClasses');
-var has3d = require('../has3d')();
 var Thumbs = require('./Thumbs-2');
 var Swipe = require('./Swipe');
-
-// TODO: Remove states
-
-function translateStyles(position, axis) {
-    var positionCss;
-    var transitionProp = has3d ? 'translate3d' : 'translate';
-
-    if (axis === 'horizontal') {
-        positionCss = '(' + position + ', 0, 0)';
-    } else {
-        positionCss = '(0, ' + position + ', 0)';
-    }
-
-    return transitionProp + positionCss;
-}
+var CSSTranslate = require('../CSSTranslate');
 
 module.exports = React.createClass({
-    
+    displayName: 'Slider',
     propsTypes: {
         children: React.PropTypes.element.isRequired,
         showArrows: React.PropTypes.bool,
@@ -53,7 +38,7 @@ module.exports = React.createClass({
 
     componentWillReceiveProps (props, state) {
         if (props.selectedItem !== this.state.selectedItem) {
-            this.updateStatics();
+            this.updateSizes();
             this.setState({
                 selectedItem: props.selectedItem
             });
@@ -63,37 +48,37 @@ module.exports = React.createClass({
     componentWillMount() {
         // as the widths are calculated, we need to resize 
         // the carousel when the window is resized
-        window.addEventListener("resize", this.updateStatics);
+        window.addEventListener("resize", this.updateSizes);
         // issue #2 - image loading smaller
-        window.addEventListener("DOMContentLoaded", this.updateStatics);
+        window.addEventListener("DOMContentLoaded", this.updateSizes);
     },
 
     componentWillUnmount() {
         // removing listeners
-        window.removeEventListener("resize", this.updateStatics);
-        window.removeEventListener("DOMContentLoaded", this.updateStatics);
+        window.removeEventListener("resize", this.updateSizes);
+        window.removeEventListener("DOMContentLoaded", this.updateSizes);
     },
 
     componentDidMount (nextProps) {
         // when the component is rendered we need to calculate 
         // the container size to adjust the responsive behaviour
-        this.updateStatics();
+        this.updateSizes();
 
         this.isHorizontal = this.props.axis === 'horizontal';
-
-        var defaultImg = ReactDOM.findDOMNode(this.refs.item0).getElementsByTagName('img')[0];
+        
+        var defaultImg = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img')[0];
         defaultImg.addEventListener('load', this.setMountState);
     },
 
-    updateStatics () {
-        var firstItem = ReactDOM.findDOMNode(this.refs.item0);
+    updateSizes () {
+        var firstItem = ReactDOM.findDOMNode(this.item0);
         this.itemSize = this.isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
         this.wrapperSize = this.isHorizontal ? this.itemSize * this.props.children.length : this.itemSize;
     },
 
     setMountState () {
         this.setState({hasMount: true});
-        this.updateStatics();
+        this.updateSizes();
         this.forceUpdate();
     },
 
@@ -132,7 +117,7 @@ module.exports = React.createClass({
     },
 
     onSwipeMove(delta) {
-        var list = ReactDOM.findDOMNode(this.refs.itemList);
+        var list = ReactDOM.findDOMNode(this.itemList);
         var isHorizontal = this.props.axis === 'horizontal';
         
         var initialBoundry = 0;
@@ -162,7 +147,7 @@ module.exports = React.createClass({
             'transform',
             'msTransform'
         ].forEach((prop) => {
-            list.style[prop] = translateStyles(position, this.props.axis);
+            list.style[prop] = CSSTranslate(position, this.props.axis);
         });
     },
 
@@ -178,7 +163,7 @@ module.exports = React.createClass({
         // position can't be lower than 0
         position = position < 0 ? 0 : position;
         // position can't be higher than last postion
-        position = position >= this.props.children.length ? this.props.children.length : position;
+        position = position >= this.props.children.length - 1 ? this.props.children.length - 1 : position;
         
         this.selectItem({
             // if it's not a slider, we don't need to set position here
@@ -211,7 +196,7 @@ module.exports = React.createClass({
             var itemClass = klass.ITEM(true, index === this.state.selectedItem);
             
             return (
-                <li key={index} ref={"item" + index} key={"itemKey" + index} className={itemClass}
+                <li ref={node => this["item" + index] = node} key={"itemKey" + index} className={itemClass}
                     onClick={ this.handleClickItem.bind(this, index, item) }>
                     { item }
                 </li>
@@ -272,7 +257,7 @@ module.exports = React.createClass({
         var currentPosition = - this.state.selectedItem * 100 + '%';   
         
         // if 3d is available, let's take advantage of the performance of transform
-        var transformProp = translateStyles(currentPosition, this.props.axis);
+        var transformProp = CSSTranslate(currentPosition, this.props.axis);
         
         itemListStyles = {
             'WebkitTransform': transformProp,
@@ -280,8 +265,7 @@ module.exports = React.createClass({
                 'MsTransform': transformProp,
                  'OTransform': transformProp,
                   'transform': transformProp,
-                'msTransform': transformProp,
-                     'height': this.itemSize
+                'msTransform': transformProp
         };
 
         var swiperProps = {
@@ -291,7 +275,7 @@ module.exports = React.createClass({
             onSwipeStart: this.onSwipeStart,
             onSwipeEnd: this.onSwipeEnd,
             style: itemListStyles,
-            ref: "itemList"
+            ref: node => this.itemList = node
         };
 
         if (this.isHorizontal) {
@@ -304,13 +288,15 @@ module.exports = React.createClass({
                 onSwipeUp: this.decrement,
                 onSwipeDown: this.increment
             });
+
+            itemListStyles.height = this.itemSize;
         }
 
         return (
             <div className={this.props.className}>
                 <div className={klass.CAROUSEL(true)}>
                     <button className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
-                    <div className={klass.WRAPPER(true, this.props.axis)} style={{height: this.itemSize}} ref="itemsWrapper">
+                    <div className={klass.WRAPPER(true, this.props.axis)} ref={node => this.itemsWrapper = node}>
                         <Swipe tagName="ul" {...swiperProps}>
                             { this.renderItems() }
                         </Swipe>

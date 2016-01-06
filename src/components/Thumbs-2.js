@@ -56,14 +56,14 @@ module.exports = React.createClass({
         // the container size to adjust the responsive behaviour
         this.updateStatics();
 
-        var defaultImg = ReactDOM.findDOMNode(this.refs.item0).getElementsByTagName('img')[0];
+        var defaultImg = ReactDOM.findDOMNode(this.thumb0).getElementsByTagName('img')[0];
         defaultImg.addEventListener('load', this.setMountState);
     },
 
     updateStatics () {
         var total = this.props.children.length;
-        this.wrapperSize = this.refs.itemsWrapper.clientWidth;
-        this.itemSize = outerWidth(this.refs.item0);
+        this.wrapperSize = this.itemsWrapper.clientWidth;
+        this.itemSize = outerWidth(this.thumb0);
         this.visibleItems = Math.floor(this.wrapperSize / this.itemSize);   
         this.lastPosition = total - this.visibleItems;
         this.showArrows = this.visibleItems < total;
@@ -95,7 +95,7 @@ module.exports = React.createClass({
 
     onSwipeMove(deltaX) {
         var leftBoundry = 0;
-        var list = ReactDOM.findDOMNode(this.refs.itemList);
+        var list = ReactDOM.findDOMNode(this.itemList);
         var wrapperSize = list.clientWidth;
         var visibleItems = Math.floor(wrapperSize / this.itemSize);   
 
@@ -186,7 +186,7 @@ module.exports = React.createClass({
             }
             
             return (
-                <li key={index} ref={"item" + index} className={itemClass}
+                <li key={index} ref={node => this["thumb" + index] = node} className={itemClass}
                     onClick={ this.handleClickItem.bind(this, index, item) }>
                     { img }
                 </li>
@@ -223,7 +223,7 @@ module.exports = React.createClass({
 
         return (
             <div className={klass.CAROUSEL(false)}>
-                <div className={klass.WRAPPER(false)} ref="itemsWrapper">
+                <div className={klass.WRAPPER(false)} ref={node => this.itemsWrapper = node}>
                     <button className={klass.ARROW_PREV(!hasPrev)} onClick={this.slideRight} />
                     <Swipe tagName="ul" 
                         selectedItem={this.state.selectedItem} 
@@ -234,7 +234,7 @@ module.exports = React.createClass({
                         onSwipeStart={this.onSwipeStart}
                         onSwipeEnd={this.onSwipeEnd}
                         style={itemListStyles} 
-                        ref="itemList">
+                        ref={node => this.itemList = node}>
                         { this.renderItems() }
                     </Swipe>
                     <button className={klass.ARROW_NEXT(!hasNext)} onClick={this.slideLeft} />

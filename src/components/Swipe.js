@@ -4,6 +4,7 @@ var React = require('react');
 var has3d = require('../has3d')();
 
 module.exports = React.createClass({
+    displayName: 'Swipe',
     propTypes: {
         tagName: React.PropTypes.string.isRequired,
         onSwipeUp: React.PropTypes.func.isRequired,
@@ -74,8 +75,7 @@ module.exports = React.createClass({
                 onTouchMove={this._handleSwipeMove} 
                 onTouchStart={this._handleSwipeStart} 
                 onTouchEnd={this._handleSwipeEnd}
-                className={this.props.className}
-                style={this.props.style}>
+                {...this.props}>
 
                 {this.props.children}
 
