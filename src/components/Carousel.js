@@ -1,365 +1,319 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var klass = require('../cssClasses');
-var outerWidth = require('../dimensions').outerWidth;
-var has3d = require('../has3d')();
+var merge = require('../object-assign');
+var CSSTranslate = require('../CSSTranslate');
+var Swipe = require('react-easy-swipe');
+var Thumbs = require('./Thumbs');
+
+// react-swipe was compiled using babel
+Swipe = Swipe.default;
 
 module.exports = React.createClass({
-	
-	propsTypes: {
-		children: React.PropTypes.element.isRequired,
-		showStatus: React.PropTypes.bool,
-		showControls: React.PropTypes.bool,
-		selectedItem: React.PropTypes.number,
-		firstItem: React.PropTypes.number,
-		type: React.PropTypes.oneOf(['carousel', 'slider'])
-	},
-
-	getDefaultProps () {
-		return {
-			showStatus: false,
-			showControls: false,
-			selectedItem: 0,
-			// Carousel is the default type. It stands for a group of thumbs.
-			// It also accepts 'slider', which will show a full width item 
-			type: 'carousel'
-		}
-	}, 
-
-	getInitialState () {
-		return {
-			// index of the image to be shown.
-			selectedItem: this.props.selectedItem,
-            hasMount: false,
-
-			// Index of the thumb that will appear first.
-			// If you are using type = slider, this has 
-			// the same value of the selected item.
-			firstItem: this.props.selectedItem
-		}
-	}, 
-
-	statics: {
-		// touchPosition is a temporary var to decide what to do on touchEnd
-		touchPosition: null
-	},
-
-	componentWillMount() {
-		// as the widths are calculated, we need to resize 
-		// the carousel when the window is resized
-		window.addEventListener("resize", this.updateDimensions);
-		// issue #2 - image loading smaller
-		window.addEventListener("DOMContentLoaded", this.updateDimensions);
+    displayName: 'Slider',
+    propsTypes: {
+        children: React.PropTypes.element.isRequired,
+        showArrows: React.PropTypes.bool,
+        showStatus: React.PropTypes.bool,
+        showIndicators: React.PropTypes.bool,
+        showThumbs: React.PropTypes.bool,
+        selectedItem: React.PropTypes.number,
+        axis: React.PropTypes.string
     },
 
-	componentWillUnmount() {
-		// removing listeners
-		window.removeEventListener("resize", this.updateDimensions);
-		window.removeEventListener("DOMContentLoaded", this.updateDimensions);
+    getDefaultProps () {
+        return {
+            showIndicators: true,
+            showArrows: true,
+            showStatus:true,
+            showThumbs:true,
+            selectedItem: 0,
+            axis: 'horizontal'
+        }
+    }, 
+
+    getInitialState () {
+        return {
+            // index of the image to be shown.
+            selectedItem: this.props.selectedItem,
+            hasMount: false
+        }
+    }, 
+
+    componentWillReceiveProps (props, state) {
+        if (props.selectedItem !== this.state.selectedItem) {
+            this.updateSizes();
+            this.setState({
+                selectedItem: props.selectedItem
+            });
+        }
     },
 
-	componentWillReceiveProps (props, state) {
-		if (props.selectedItem !== this.state.selectedItem) {
-			this.setState({
-				selectedItem: props.selectedItem,
-				firstItem: this.getFirstItem(props.selectedItem)
-			});
-		}
-	},
+    componentWillMount() {
+        // as the widths are calculated, we need to resize 
+        // the carousel when the window is resized
+        window.addEventListener("resize", this.updateSizes);
+        // issue #2 - image loading smaller
+        window.addEventListener("DOMContentLoaded", this.updateSizes);
+    },
 
-	componentDidMount (nextProps) {
-		// when the component is rendered we need to calculate 
-		// the container size to adjust the responsive behaviour
-		this.updateDimensions();
+    componentWillUnmount() {
+        // removing listeners
+        window.removeEventListener("resize", this.updateSizes);
+        window.removeEventListener("DOMContentLoaded", this.updateSizes);
+    },
 
-		if (!this.isSlider) {
-			var defaultImgIndex = 0;
-			var defaultImg = this.refs['itemImg' + defaultImgIndex];
-			defaultImg.addEventListener('load', this.setMountState);
-		}
-	},
+    componentDidMount (nextProps) {
+        // when the component is rendered we need to calculate 
+        // the container size to adjust the responsive behaviour
+        this.updateSizes();
 
-    setMountState: function() {
+        this.isHorizontal = this.props.axis === 'horizontal';
+        
+        var defaultImg = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img')[0];
+        defaultImg.addEventListener('load', this.setMountState);
+    },
+
+    updateSizes () {
+        var firstItem = ReactDOM.findDOMNode(this.item0);
+        this.itemSize = this.isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
+        this.wrapperSize = this.isHorizontal ? this.itemSize * this.props.children.length : this.itemSize;
+    },
+
+    setMountState () {
         this.setState({hasMount: true});
-	},
+        this.updateSizes();
+        this.forceUpdate();
+    },
 
-	updateDimensions () {
-		this.calculateSpace(this.props.children.length);
-		// the component should be rerended after calculating space
-		this.forceUpdate();
-	},
+    handleClickItem (index, item) {
+        var handler = this.props.onSelectItem;
 
-	// Calculate positions for carousel
-	calculateSpace (total) {
-		total = total || this.props.children.length;
-		this.isSlider = this.props.type === "slider";
-		
-		this.wrapperSize = this.refs.itemsWrapper.clientWidth;
-		this.itemSize = this.isSlider ? this.wrapperSize : outerWidth(this.refs.item0);
-		this.visibleItems = Math.floor(this.wrapperSize / this.itemSize);	
-		
-		// exposing variables to other methods on this component
-		this.showArrows = this.visibleItems < total;
-		
-		// Index of the last visible element that can be the first of the carousel
-		this.lastPosition = total - this.visibleItems;
-	}, 
+        if (typeof handler === 'function') {
+            handler(index, item);
+        }   
 
-	getFirstItem (selectedItem) {
-		if (!this.showArrows) {
-			return 0;
-		}
+        if (index !== this.state.selectedItem) {
+            this.setState({
+                selectedItem: index,
+            });
+        }
+    }, 
 
-		return selectedItem >= this.lastPosition ? this.lastPosition : selectedItem;
-	},
+    triggerOnChange (index, item) {
+        var handler = this.props.onChange;
 
-	handleClickItem (index, item) {
-		var handler = this.props.onSelectItem;
+        if (typeof handler === 'function') {
+            handler(index, item);
+        }   
+    }, 
 
-		if (typeof handler === 'function') {
-			handler(index, item);
-		}	
+    onSwipeStart() {
+        this.setState({
+            swiping: true
+        });
+    },
 
-		if (index !== this.state.selectedItem) {
-			this.setState({
-				selectedItem: index,
-				firstItem: this.getFirstItem(index)
-			});
-		}
-	}, 
+    onSwipeEnd() {
+        this.setState({
+            swiping: false
+        });
+    },
 
-	triggerOnChange (item) {
-		var handler = this.props.onChange;
+    onSwipeMove(delta) {
+        var list = ReactDOM.findDOMNode(this.itemList);
+        var isHorizontal = this.props.axis === 'horizontal';
+        
+        var initialBoundry = 0;
 
-		if (typeof handler === 'function') {
-			handler(item);
-		}	
-	}, 
+        var currentPosition = - this.state.selectedItem * 100; 
+        var finalBoundry = - (this.props.children.length - 1) * 100;
 
-	// touch start
-	onSwipeStart (e) {
-		this.setState({
-			// saving the initial touch 
-			touchStart: e.touches[0].pageX,
-			// setting the swiping state
-			swiping: true
-		})
-	},
+        var axisDelta = isHorizontal ? delta.x : delta.y;
 
-	onSwipeMove (e) {
-		// getting the current delta
-		var delta = e.touches[0].pageX - this.state.touchStart;
-        var leftBoundry = 0;
-
-        var currentPosition;
-        var lastLeftBoundry;
-
-        if (this.isSlider) {
-			currentPosition = - this.state.firstItem * 100;	
-			lastLeftBoundry = - (this.props.children.length - 1) * 100;
-		} else {
-			currentPosition = - this.state.firstItem * this.itemSize;	
-			lastLeftBoundry = - this.visibleItems * this.itemSize;
-		}
-
-        //if the first image meets the left boundry, prevent user from swiping left
-        if (currentPosition === leftBoundry && delta > 0) {
-            delta = 0;
+        // prevent user from swiping left out of boundaries
+        if (currentPosition === initialBoundry && axisDelta > 0) {
+            axisDelta = 0;
         }
         
-        //if the last image meets the left boundry, prevent user from swiping right
-        if (currentPosition === lastLeftBoundry && delta < 0) {
-            delta = 0;
+        // prevent user from swiping right out of boundaries
+        if (currentPosition === finalBoundry && axisDelta < 0) {
+            axisDelta = 0;
         }
 
-        var position;
+        var position = currentPosition + (100 / (this.wrapperSize / axisDelta)) + '%';
+        
+        [
+            'WebkitTransform',
+            'MozTransform',
+            'MsTransform',
+            'OTransform',
+            'transform',
+            'msTransform'
+        ].forEach((prop) => {
+            list.style[prop] = CSSTranslate(position, this.props.axis);
+        });
+    },
 
-        if (this.isSlider) {
-    		position = currentPosition + (100 / (this.wrapperSize / delta)) + '%';
-        } else {
-        	position = currentPosition + delta + 'px';
-        }
+    decrement (positions){
+        this.moveTo(this.state.selectedItem - (typeof positions === 'Number' ? positions : 1));
+    },
 
-		// adding it to the last position and saving the position
-		this.touchPosition = delta;
+    increment (positions){
+        this.moveTo(this.state.selectedItem + (typeof positions === 'Number' ? positions : 1));
+    },
 
-		var elementStyle = this.refs.itemList.style;
+    moveTo (position) {
+        // position can't be lower than 0
+        position = position < 0 ? 0 : position;
+        // position can't be higher than last postion
+        position = position >= this.props.children.length - 1 ? this.props.children.length - 1 : position;
+        
+        this.selectItem({
+            // if it's not a slider, we don't need to set position here
+            selectedItem: position
+        });
+    },
 
-		// if 3d isn't available we will use left to move
-		[
-			'WebkitTransform',
-			'MozTransform',
-			'MsTransform',
-			'OTransform',
-			'transform',
-			'msTransform'
-		].forEach((prop) => {
-			elementStyle[prop] = has3d ? 'translate3d(' + position + ', 0, 0)' : 'translate(' + position + ', 0)';
-		});
-	},
+    changeItem (e) {
+        var newIndex = e.target.value;
 
-	onSwipeEnd (e) {
-		this.setState({
-			// reset touchStart position
-			touchStart: null,
-			// finish the swiping state
-			swiping: false
-		}, 
-			// this function is the callback of setState because we need to wait for the
-			// state to be setted, so the swiping class will be removed and the 
-			// transition to the next slide will be smooth
-			function () {
-				// number of positions to advance;
-				var positions;
+        this.selectItem({
+            selectedItem: newIndex
+        });
+    },
 
-                if (this.touchPosition === 0) {
-                    /* prevent users from swipe right on the first image
-                       but it goes to the opposite direction, as the delta is alwsys 0
-                       when swipe right on the first image.
-                       also prevent users from swipe left on the last image from the same reason.
-                    */
-                } else {
-                	// if it's a slider, positions is 1
-					positions = !this.isSlider ? Math.abs(Math.round(this.touchPosition / this.itemSize)) : 1;                	
-                } 
+    selectItem (state) {
+        this.setState(state);
+        this.triggerOnChange(state.selectedItem, this.props.children[state.selectedItem]);
+    },
 
-                if (this.touchPosition < 0) {
-                    // less than 0 means that it's going left
-                    this.slideLeft(positions);
-                } else if (this.touchPosition > 0) {
-                    this.slideRight(positions);
-                }
-				// discard the position
-				this.touchPosition = null;	
-			}.bind(this)
-		);	
-	},
+    onThumbClick(index) {
+        this.selectItem({
+            selectedItem: index
+        });
+    },
 
-	slideRight (positions){
-		this.moveTo(this.state.firstItem - (typeof positions === 'Number' ? positions : 1));
-	},
-
-	slideLeft (positions){
-		this.moveTo(this.state.firstItem + (typeof positions === 'Number' ? positions : 1));
-	},
-
-	moveTo (position) {
-		// position can't be lower than 0
-		position = position < 0 ? 0 : position;
-		// position can't be higher than last postion
-		position = position >= this.lastPosition ? this.lastPosition : position;
-		
-		this.selectItem({
-			firstItem: this.getFirstItem(position),
-			// if it's not a slider, we don't need to set position here
-			selectedItem: this.isSlider ? position : this.state.selectedItem
-		});
-	},
-
-	changeItem (e) {
-		var newIndex = e.target.value;
-
-		this.selectItem({
-			selectedItem: newIndex,
-			firstItem: this.getFirstItem(newIndex)
-		})
-	},
-
-	selectItem (state) {
-		this.setState(state);
-		this.triggerOnChange(state.selectedItem);
-	},
-
-	renderItems () {
-		var isSlider = (this.props.type === "slider");
-
-		return this.props.children.map((item, index) => {
+    renderItems () {
+        return React.Children.map(this.props.children, (item, index) => {
             var hasMount = this.state.hasMount;
-			var itemClass = klass.ITEM(this.isSlider, index, this.state.selectedItem, hasMount);
-			
-			return (
-				<li key={index} ref={"item" + index} className={itemClass}
-					onClick={ this.handleClickItem.bind(this, index, item) }>
-					<img src={item.props.src} ref={"itemImg" + index}/>
-				</li>
-			);
-		});
-					
-	},
+            var itemClass = klass.ITEM(true, index === this.state.selectedItem);
+            
+            return (
+                <li ref={node => this["item" + index] = node} key={"itemKey" + index} className={itemClass}
+                    onClick={ this.handleClickItem.bind(this, index, item) }>
+                    { item }
+                </li>
+            );
+        });
+    },
 
-	renderControls () {
-		if (!this.props.showControls) {
-			return null
-		}
-		
-		return (
-			<ul className="control-dots">
-				{this.props.children.map( (item, index) => {
-					return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} value={index} key={index} />;
-				})}
-			</ul>
-		);
-	},
+    renderControls () {
+        if (!this.props.showIndicators) {
+            return null
+        }
+        
+        return (
+            <ul className="control-dots">
+                {React.Children.map(this.props.children, (item, index) => {
+                    return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} value={index} key={index} />;
+                })}
+            </ul>
+        );
+    },
 
-	renderStatus () {
-		if (!this.props.showStatus) {
-			return null
-		}
-		return <p className="carousel-status">{this.state.selectedItem + 1} of {this.props.children.length}</p>;
-	}, 
+    renderStatus () {
+        if (!this.props.showStatus) {
+            return null
+        }
 
-	render () {
-		if (this.props.children.length === 0) {
-			return null;
-		}
+        return <p className="carousel-status">{this.state.selectedItem + 1} of {this.props.children.length}</p>;
+    }, 
 
-		// show left arrow? 
-		var hasPrev = this.showArrows && this.state.firstItem > 0;
-		// show right arrow
-		var hasNext = this.showArrows && this.state.firstItem < this.lastPosition;
-		// obj to hold the transformations and styles
-		var itemListStyles = {};
+    renderThumbs () {
+        if (!this.props.showThumbs) {
+            return null
+        }
 
-		var currentPosition;
+        return (
+            <Thumbs onSelectItem={this.onThumbClick} selectedItem={this.state.selectedItem}>
+                {this.props.children}
+            </Thumbs>
+        );
+    }, 
 
-		if (this.isSlider) {
-			currentPosition = - this.state.firstItem * 100 + '%';	
-		} else {
-			currentPosition = - this.state.firstItem * this.itemSize + 'px';	
-		}
+    render () {
+        var itemsLength = this.props.children.length;
 
-		// if 3d is available, let's take advantage of the performance of transform
-		var transformProp = has3d ? 'translate3d(' + currentPosition + ', 0, 0)' : 'translate(' + currentPosition + ', 0)';
-		itemListStyles = {
-			'WebkitTransform': transformProp,
-			   'MozTransform': transformProp,
-			    'MsTransform': transformProp,
-			     'OTransform': transformProp,
-			      'transform': transformProp,
-			    'msTransform': transformProp
-		}
-		
-		return (
-			<div className={klass.CAROUSEL(this.isSlider)}>
-				<button className={klass.ARROW_LEFT(!hasPrev)} onClick={this.slideRight} />
-				
-				<div className={klass.WRAPPER(this.isSlider)} ref="itemsWrapper">
-					<ul className={klass.SLIDER(this.isSlider, this.state.swiping)} 
-						onTouchMove={this.onSwipeMove}
-						onTouchStart={this.onSwipeStart}
-						onTouchEnd={this.onSwipeEnd}
-						style={itemListStyles} 
-						ref="itemList">
-						{ this.renderItems() }
-					</ul>
-				</div>
+        if (itemsLength === 0) {
+            return null;
+        }
 
-				<button className={klass.ARROW_RIGHT(!hasNext)} onClick={this.slideLeft} />
-				
-				{ this.renderControls() }
-				{ this.renderStatus() }
-			</div>
-		);
-		
-	}
+        var canShowArrows = this.props.showArrows && itemsLength > 1;
+
+        // show left arrow? 
+        var hasPrev = canShowArrows && this.state.selectedItem > 0;
+        // show right arrow
+        var hasNext = canShowArrows && this.state.selectedItem < itemsLength - 1;
+        // obj to hold the transformations and styles
+        var itemListStyles = {};
+
+        var currentPosition = - this.state.selectedItem * 100 + '%';   
+        
+        // if 3d is available, let's take advantage of the performance of transform
+        var transformProp = CSSTranslate(currentPosition, this.props.axis);
+        
+        itemListStyles = {
+            'WebkitTransform': transformProp,
+               'MozTransform': transformProp,
+                'MsTransform': transformProp,
+                 'OTransform': transformProp,
+                  'transform': transformProp,
+                'msTransform': transformProp
+        };
+
+        var swiperProps = {
+            selectedItem: this.state.selectedItem,
+            className: klass.SLIDER(true, this.state.swiping),
+            onSwipeMove: this.onSwipeMove,
+            onSwipeStart: this.onSwipeStart,
+            onSwipeEnd: this.onSwipeEnd,
+            style: itemListStyles,
+            ref: node => this.itemList = node
+        };
+
+        if (this.isHorizontal) {
+            merge(swiperProps, {
+                onSwipeLeft: this.increment,
+                onSwipeRight: this.decrement
+            });
+        } else {
+            merge(swiperProps, {
+                onSwipeUp: this.decrement,
+                onSwipeDown: this.increment
+            });
+
+            itemListStyles.height = this.itemSize;
+        }
+
+        return (
+            <div className={this.props.className}>
+                <div className={klass.CAROUSEL(true)}>
+                    <button className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
+                    <div className={klass.WRAPPER(true, this.props.axis)} ref={node => this.itemsWrapper = node}>
+                        <Swipe tagName="ul" {...swiperProps}>
+                            { this.renderItems() }
+                        </Swipe>
+                    </div>
+                    <button className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} />
+                    
+                    { this.renderControls() }
+                    { this.renderStatus() }
+                </div> 
+                { this.renderThumbs() }
+            </div>               
+        );
+        
+    }
 });
 
