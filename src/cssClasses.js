@@ -8,10 +8,12 @@ module.exports = {
 		});
 	}, 
 
-	WRAPPER (isSlider) {
+	WRAPPER (isSlider, axis) {
 		return classNames({
 			"thumbs-wrapper": !isSlider,
-			"slider-wrapper": isSlider
+			"slider-wrapper": isSlider,
+			"axis-horizontal": axis === "horizontal",
+			"axis-vertical": axis !== "horizontal"
 		});
 	},
 
@@ -19,28 +21,28 @@ module.exports = {
 		return classNames({
 			"thumbs": !isSlider,
 			"slider": isSlider,
-			"swiping": isSwiping
+			"animated": !isSwiping
 		});
 	},
 
-	ITEM (isSlider, index, selectedItem, hasMount) {
+	ITEM (isSlider, selected) {
 		return classNames({
 			"thumb": !isSlider,
 			"slide": isSlider,
-            "selected": index === selectedItem && hasMount
+            "selected": selected
 		});
 	},
 
-	ARROW_LEFT (disabled) {
+	ARROW_PREV (disabled) {
 		return classNames({
-			"control-arrow control-left": true,
+			"control-arrow control-prev": true,
 			"control-disabled": disabled
 		});
 	},
 
-	ARROW_RIGHT (disabled) {
+	ARROW_NEXT (disabled) {
 		return classNames({
-			"control-arrow control-right": true,
+			"control-arrow control-next": true,
 			"control-disabled": disabled
 		})
 	},

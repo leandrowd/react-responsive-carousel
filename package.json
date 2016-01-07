@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-carousel-project",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React Responsive Carousel Project",
   "author": {
     "name": "Leandro Augusto Lemos",
@@ -8,6 +8,13 @@
   },
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node --harmony ./node_modules/gulp/bin/gulp",
+    "build": "node --harmony ./node_modules/gulp/bin/gulp package",
+    "test": "jest",
+    "prerelease": "npm run build",
+    "release": "(git pull origin master && npm version patch && git push origin master && git checkout release && git merge master && git push origin release && git checkout master && npm publish)"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/leandrowd/react-responsive-carousel.git"
@@ -41,10 +48,12 @@
     "gulp-uglify": "^0.3.1",
     "gulp-util": "^3.0.0",
     "jest-cli": "^0.7.1",
-    "react": "^0.14.2",
+    "react": "^0.14.5",
     "react-addons-test-utils": "^0.14.2",
     "react-dom": "^0.14.2",
+    "react-easy-swipe": "0.0.2",
     "reactify": "^0.15.2",
+    "swipe-js-iso": "^2.0.1",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^2.1.1"
   },
@@ -53,8 +62,5 @@
     "unmockedModulePathPatterns": [
       "node_modules"
     ]
-  },
-  "scripts": {
-    "test": "jest"
   }
 }
