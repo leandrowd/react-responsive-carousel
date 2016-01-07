@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-carousel",
-  "version": "3.0.2",
+  "version": "3.0.4",
   "description": "React Responsive Carousel",
   "author": {
     "name": "Leandro Augusto Lemos",
@@ -29,6 +29,7 @@
   },
   "homepage": "http://leandrowd.github.io/react-responsive-carousel/",
   "dependencies": {
-    "classnames": "^2.1.1"
+    "classnames": "^2.1.1",
+    "react-easy-swipe": "0.0.2"
   }
 }
