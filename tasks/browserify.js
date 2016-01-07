@@ -25,7 +25,7 @@ module.exports = function (options) {
 	// Our app bundler
 	var appBundler = browserify({
 		// using dev components
-		entries: [configs.paths.source + '/main-dev.js'], 
+		entries: [configs.paths.source + '/main.js'], 
 		// using npm components
 		// entries: [configs.paths.source + '/main.js'], 
    		transform: [["reactify", {"es6": true}]], 
