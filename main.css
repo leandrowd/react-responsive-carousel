@@ -1,11 +1,11 @@
 /********************************************
-  BREAKPOINT WIDTHS
+	BREAKPOINT WIDTHS
 ********************************************/
 /********************************************
-  FONTS
+	FONTS
 ********************************************/
 /********************************************
-  COLOURS
+	COLOURS
 ********************************************/
 /*  Vertical gradient
 ========================================================================== */
@@ -82,7 +82,7 @@ code {
   content: ''; }
 
 /********************************************
-  ICON SET DOWNLOADED FROM FONT ELLO
+	ICON SET DOWNLOADED FROM FONT ELLO
 ********************************************/
 @font-face {
   font-family: 'm4d-icons';
@@ -150,6 +150,15 @@ button {
 
 .example {
   margin: 20px 0; }
+
+.parent {
+  background: #333; }
+
+.page-carousel {
+  padding: 40px;
+  border: 1px solid #fff;
+  width: 80%;
+  margin: 40px auto; }
 
 h5 {
   margin-bottom: 10px; }
