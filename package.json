@@ -11,6 +11,7 @@
   "scripts": {
     "start": "node --harmony ./node_modules/gulp/bin/gulp",
     "build": "node --harmony ./node_modules/gulp/bin/gulp package",
+    "pre-deploy": "node --harmony ./node_modules/gulp/bin/gulp deploy",
     "test": "jest",
     "prerelease": "npm run build",
     "release": "(git pull origin master && npm version patch && git push origin master && git checkout release && git merge master && git push origin release && git checkout master && npm publish)"
