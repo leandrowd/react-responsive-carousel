@@ -18,6 +18,9 @@ module.exports = React.createClass({
         showIndicators: React.PropTypes.bool,
         showThumbs: React.PropTypes.bool,
         selectedItem: React.PropTypes.number,
+        onClickItem: React.PropTypes.func,
+        onClickThumb: React.PropTypes.func,
+        onChange: React.PropTypes.func,
         axis: React.PropTypes.string
     },
 
@@ -87,7 +90,7 @@ module.exports = React.createClass({
     },
 
     handleClickItem (index, item) {
-        var handler = this.props.onSelectItem;
+        var handler = this.props.onClickItem;
 
         if (typeof handler === 'function') {
             handler(index, item);
@@ -100,13 +103,25 @@ module.exports = React.createClass({
         }
     }, 
 
-    triggerOnChange (index, item) {
+    handleOnChange (index, item) {
         var handler = this.props.onChange;
 
         if (typeof handler === 'function') {
             handler(index, item);
         }   
     }, 
+
+    handleClickThumb(index, item) {
+        var handler = this.props.onClickThumb;
+
+        if (typeof handler === 'function') {
+            handler(index, item);
+        }
+
+        this.selectItem({
+            selectedItem: index
+        });
+    },
 
     onSwipeStart() {
         this.setState({
@@ -182,16 +197,10 @@ module.exports = React.createClass({
             selectedItem: newIndex
         });
     },
-
+    
     selectItem (state) {
         this.setState(state);
-        this.triggerOnChange(state.selectedItem, this.props.children[state.selectedItem]);
-    },
-
-    onThumbClick(index) {
-        this.selectItem({
-            selectedItem: index
-        });
+        this.handleOnChange(state.selectedItem, this.props.children[state.selectedItem]);
     },
 
     renderItems () {
@@ -236,7 +245,7 @@ module.exports = React.createClass({
         }
 
         return (
-            <Thumbs onSelectItem={this.onThumbClick} selectedItem={this.state.selectedItem}>
+            <Thumbs onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem}>
                 {this.props.children}
             </Thumbs>
         );
