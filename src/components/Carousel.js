@@ -282,6 +282,8 @@ module.exports = React.createClass({
             ref: node => this.itemList = node
         };
 
+        var containerStyles = {};
+
         if (this.isHorizontal) {
             merge(swiperProps, {
                 onSwipeLeft: this.increment,
@@ -293,14 +295,15 @@ module.exports = React.createClass({
                 onSwipeDown: this.increment
             });
 
-            itemListStyles.height = this.itemSize;
+            swiperProps.style.height = this.itemSize;
+            containerStyles.height = this.itemSize;
         }
 
         return (
             <div className={this.props.className}>
                 <div className={klass.CAROUSEL(true)}>
                     <button className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
-                    <div className={klass.WRAPPER(true, this.props.axis)} ref={node => this.itemsWrapper = node}>
+                    <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={node => this.itemsWrapper = node}>
                         <Swipe tagName="ul" {...swiperProps}>
                             { this.renderItems() }
                         </Swipe>
