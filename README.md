@@ -23,6 +23,11 @@ To run it on your local environment just:
 - `gulp`
 - Open your favourite browser on `localhost:8000`
 
+## Generating the package for npm
+- `npm run build`
+- `cd lib`
+- `npm version patch && npm publish`
+
 To generate the npm package run `gulp package`. It will transpile the jsx to js and copy the css into the lib folder.
 
 
