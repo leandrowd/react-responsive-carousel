@@ -131,25 +131,33 @@
 
 		&.axis-horizontal {
 			.slider {
+				-ms-box-orient: horizontal;
+				display: -webkit-box;
+				display: -moz-box;
+				display: -ms-flexbox;
+				display: -moz-flex;
+				display: -webkit-flex;
 				display: flex;
-				display: -webkit-flex; //safari needs vendor prefix
-			}
-			
-			.slide {
-				flex-direction: column;
-				flex-flow: column;
+
+				.slide {
+					flex-direction: column;
+					flex-flow: column;
+				}
 			}
 		}
 	
 		&.axis-vertical {
-			.slider {
-				display: inline-block;	
-			}
+			-ms-box-orient: horizontal;
+			display: -webkit-box;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: -moz-flex;
+			display: -webkit-flex;
+			display: flex;
 			
-			.slide {
-				position: relative;
-				display: block;
-				margin: 0;
+			.slider {
+				-webkit-flex-direction: column; 
+				flex-direction: column;
 			}	
 		}
 	}
@@ -157,6 +165,7 @@
 	.slider {
 		position: relative;
 		list-style: none;
+		width: 100%;
 		
 		&.animated {
 			@include transition(all, .35s, ease-in-out);

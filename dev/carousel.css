@@ -175,20 +175,31 @@ button {
     margin: auto;
     width: 100%; }
     .carousel .slider-wrapper.axis-horizontal .slider {
-      display: flex;
-      display: -webkit-flex; }
-    .carousel .slider-wrapper.axis-horizontal .slide {
-      flex-direction: column;
-      flex-flow: column; }
-    .carousel .slider-wrapper.axis-vertical .slider {
-      display: inline-block; }
-    .carousel .slider-wrapper.axis-vertical .slide {
-      position: relative;
-      display: block;
-      margin: 0; }
+      -ms-box-orient: horizontal;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -moz-flex;
+      display: -webkit-flex;
+      display: flex; }
+      .carousel .slider-wrapper.axis-horizontal .slider .slide {
+        flex-direction: column;
+        flex-flow: column; }
+    .carousel .slider-wrapper.axis-vertical {
+      -ms-box-orient: horizontal;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -moz-flex;
+      display: -webkit-flex;
+      display: flex; }
+      .carousel .slider-wrapper.axis-vertical .slider {
+        -webkit-flex-direction: column;
+        flex-direction: column; }
   .carousel .slider {
     position: relative;
-    list-style: none; }
+    list-style: none;
+    width: 100%; }
     .carousel .slider.animated {
       -webkit-transition: all 0.35s ease-in-out;
       -moz-transition: all 0.35s ease-in-out;
