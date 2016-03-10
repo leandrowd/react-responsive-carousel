@@ -15,6 +15,7 @@ module.exports = React.createClass({
         children: React.PropTypes.node.isRequired,
         showArrows: React.PropTypes.bool,
         showStatus: React.PropTypes.bool,
+        autoAdvanceTime: React.PropTypes.number,
         showIndicators: React.PropTypes.bool,
         showThumbs: React.PropTypes.bool,
         selectedItem: React.PropTypes.number,
@@ -29,6 +30,7 @@ module.exports = React.createClass({
             showIndicators: true,
             showArrows: true,
             showStatus:true,
+            autoAdvanceTime: null,
             showThumbs:true,
             selectedItem: 0,
             axis: 'horizontal'
@@ -75,6 +77,28 @@ module.exports = React.createClass({
         
         var defaultImg = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img')[0];
         defaultImg.addEventListener('load', this.setMountState);
+
+        //auto-advance
+        if(this.props.autoAdvanceTime) {
+            this._idleStart =  new Date();
+            this._idleTimer = setInterval(this.handleAutoAdvance, 250);
+        }
+    },
+
+    componentWillUnmount() {
+        clearInterval(this._idleTimer);
+    },
+
+    handleAutoAdvance() {
+        if((new Date() - this._idleStart) > this.props.autoAdvanceTime) {
+            //autoAdvance wraps
+            var newPosition = this.state.selectedItem + 1;
+            this.moveTo(newPosition >= this.props.children.length ?  0 : newPosition);
+        }
+    },
+
+    resetIdleTime(){
+      this._idleStart = new Date();
     },
 
     updateSizes () {
@@ -188,6 +212,7 @@ module.exports = React.createClass({
             // if it's not a slider, we don't need to set position here
             selectedItem: position
         });
+        this.resetIdleTime();
     },
 
     changeItem (e) {
@@ -223,7 +248,7 @@ module.exports = React.createClass({
         }
         
         return (
-            <ul className="control-dots">
+            <ul className="control-dots" onClick={this.props.autoAdvanceTime ? this.resetIdleTime : null }>
                 {React.Children.map(this.props.children, (item, index) => {
                     return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} value={index} key={index} />;
                 })}
@@ -245,9 +270,11 @@ module.exports = React.createClass({
         }
 
         return (
-            <Thumbs onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem}>
-                {this.props.children}
-            </Thumbs>
+            <div onClick={this.props.autoAdvanceTime ? this.resetIdleTime : null }>
+              <Thumbs onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem}>
+                  {this.props.children}
+              </Thumbs>
+            </div>
         );
     }, 
 

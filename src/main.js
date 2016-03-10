@@ -18,7 +18,7 @@ function onClickThumb() {
 var DemoCarousel = React.createClass({
     render() {
         return (
-            <Carousel showArrows={true} onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb}>
+            <Carousel showArrows={true} onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb} autoAdvanceTime={2000}>
                 <div>
                     <img src="assets/1.jpeg" />
                     <p className="legend">Legend 1</p>
