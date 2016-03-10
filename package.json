@@ -8,6 +8,7 @@
   },
   "main": "index.js",
   "license": "MIT",
+  "engines" : { "npm" : "~0.10.38" },
   "scripts": {
     "start": "node --harmony ./node_modules/gulp/bin/gulp",
     "build": "node --harmony ./node_modules/gulp/bin/gulp package",
