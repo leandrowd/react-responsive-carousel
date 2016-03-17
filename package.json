@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-carousel-project",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React Responsive Carousel Project",
   "author": {
     "name": "Leandro Augusto Lemos",
@@ -8,7 +8,9 @@
   },
   "main": "index.js",
   "license": "MIT",
-  "engines" : { "npm" : "~0.10.38" },
+  "engines": {
+    "npm": "~0.10.38"
+  },
   "scripts": {
     "start": "node --harmony ./node_modules/gulp/bin/gulp",
     "build": "node --harmony ./node_modules/gulp/bin/gulp package",
