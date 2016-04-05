@@ -74,7 +74,7 @@ module.exports = React.createClass({
         this.isHorizontal = this.props.axis === 'horizontal';
         
         var defaultImg = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img')[0];
-        defaultImg.addEventListener('load', this.setMountState);
+        defaultImg && defaultImg.addEventListener('load', this.setMountState);
     },
 
     updateSizes () {
