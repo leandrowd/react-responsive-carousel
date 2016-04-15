@@ -16,6 +16,7 @@ module.exports = React.createClass({
         showArrows: React.PropTypes.bool,
         showStatus: React.PropTypes.bool,
         showIndicators: React.PropTypes.bool,
+        infiniteLoop: React.PropTypes.bool,
         showThumbs: React.PropTypes.bool,
         selectedItem: React.PropTypes.number,
         onClickItem: React.PropTypes.func,
@@ -29,11 +30,12 @@ module.exports = React.createClass({
             showIndicators: true,
             showArrows: true,
             showStatus:true,
+            infiniteLoop: false,
             showThumbs:true,
             selectedItem: 0,
             axis: 'horizontal'
         }
-    }, 
+    },
 
     getInitialState () {
         return {
@@ -179,11 +181,16 @@ module.exports = React.createClass({
     },
 
     moveTo (position) {
-        // position can't be lower than 0
-        position = position < 0 ? 0 : position;
-        // position can't be higher than last postion
-        position = position >= this.props.children.length - 1 ? this.props.children.length - 1 : position;
-        
+        var lastPosition = this.props.children.length  - 1;
+
+        if (position < 0 ) {
+          position = this.props.infiniteLoop ?  lastPosition : 0;
+        }
+
+        if (position > lastPosition ) {
+          position = this.props.infiniteLoop ? 0 : lastPosition;
+        }
+
         this.selectItem({
             // if it's not a slider, we don't need to set position here
             selectedItem: position
@@ -261,9 +268,9 @@ module.exports = React.createClass({
         var canShowArrows = this.props.showArrows && itemsLength > 1;
 
         // show left arrow? 
-        var hasPrev = canShowArrows && this.state.selectedItem > 0;
+        var hasPrev = canShowArrows && this.state.selectedItem > 0 || this.props.infiniteLoop;
         // show right arrow
-        var hasNext = canShowArrows && this.state.selectedItem < itemsLength - 1;
+        var hasNext = canShowArrows && this.state.selectedItem < itemsLength - 1 || this.props.infiniteLoop;
         // obj to hold the transformations and styles
         var itemListStyles = {};
 
