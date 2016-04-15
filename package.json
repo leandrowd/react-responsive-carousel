@@ -9,7 +9,7 @@
   "main": "index.js",
   "license": "MIT",
   "engines": {
-    "npm": "~0.10.38"
+    "node":"~0.10.36"
   },
   "scripts": {
     "start": "node --harmony ./node_modules/gulp/bin/gulp",
