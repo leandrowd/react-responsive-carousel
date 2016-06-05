@@ -33,7 +33,7 @@ module.exports = React.createClass({
             selectedItem: 0,
             axis: 'horizontal'
         }
-    }, 
+    },
 
     getInitialState () {
         return {
@@ -41,7 +41,7 @@ module.exports = React.createClass({
             selectedItem: this.props.selectedItem,
             hasMount: false
         }
-    }, 
+    },
 
     componentWillReceiveProps (props, state) {
         if (props.selectedItem !== this.state.selectedItem) {
@@ -53,7 +53,7 @@ module.exports = React.createClass({
     },
 
     componentWillMount() {
-        // as the widths are calculated, we need to resize 
+        // as the widths are calculated, we need to resize
         // the carousel when the window is resized
         window.addEventListener("resize", this.updateSizes);
         // issue #2 - image loading smaller
@@ -67,12 +67,12 @@ module.exports = React.createClass({
     },
 
     componentDidMount (nextProps) {
-        // when the component is rendered we need to calculate 
+        // when the component is rendered we need to calculate
         // the container size to adjust the responsive behaviour
         this.updateSizes();
 
         this.isHorizontal = this.props.axis === 'horizontal';
-        
+
         var defaultImg = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img')[0];
         defaultImg && defaultImg.addEventListener('load', this.setMountState);
     },
@@ -94,22 +94,22 @@ module.exports = React.createClass({
 
         if (typeof handler === 'function') {
             handler(index, item);
-        }   
+        }
 
         if (index !== this.state.selectedItem) {
             this.setState({
                 selectedItem: index,
             });
         }
-    }, 
+    },
 
     handleOnChange (index, item) {
         var handler = this.props.onChange;
 
         if (typeof handler === 'function') {
             handler(index, item);
-        }   
-    }, 
+        }
+    },
 
     handleClickThumb(index, item) {
         var handler = this.props.onClickThumb;
@@ -138,10 +138,10 @@ module.exports = React.createClass({
     onSwipeMove(delta) {
         var list = ReactDOM.findDOMNode(this.itemList);
         var isHorizontal = this.props.axis === 'horizontal';
-        
+
         var initialBoundry = 0;
 
-        var currentPosition = - this.state.selectedItem * 100; 
+        var currentPosition = - this.state.selectedItem * 100;
         var finalBoundry = - (this.props.children.length - 1) * 100;
 
         var axisDelta = isHorizontal ? delta.x : delta.y;
@@ -150,14 +150,14 @@ module.exports = React.createClass({
         if (currentPosition === initialBoundry && axisDelta > 0) {
             axisDelta = 0;
         }
-        
+
         // prevent user from swiping right out of boundaries
         if (currentPosition === finalBoundry && axisDelta < 0) {
             axisDelta = 0;
         }
 
         var position = currentPosition + (100 / (this.wrapperSize / axisDelta)) + '%';
-        
+
         [
             'WebkitTransform',
             'MozTransform',
@@ -183,7 +183,7 @@ module.exports = React.createClass({
         position = position < 0 ? 0 : position;
         // position can't be higher than last postion
         position = position >= this.props.children.length - 1 ? this.props.children.length - 1 : position;
-        
+
         this.selectItem({
             // if it's not a slider, we don't need to set position here
             selectedItem: position
@@ -197,7 +197,7 @@ module.exports = React.createClass({
             selectedItem: newIndex
         });
     },
-    
+
     selectItem (state) {
         this.setState(state);
         this.handleOnChange(state.selectedItem, this.props.children[state.selectedItem]);
@@ -207,7 +207,7 @@ module.exports = React.createClass({
         return React.Children.map(this.props.children, (item, index) => {
             var hasMount = this.state.hasMount;
             var itemClass = klass.ITEM(true, index === this.state.selectedItem);
-            
+
             return (
                 <li ref={node => this["item" + index] = node} key={"itemKey" + index} className={itemClass}
                     onClick={ this.handleClickItem.bind(this, index, item) }>
@@ -221,7 +221,7 @@ module.exports = React.createClass({
         if (!this.props.showIndicators) {
             return null
         }
-        
+
         return (
             <ul className="control-dots">
                 {React.Children.map(this.props.children, (item, index) => {
@@ -237,7 +237,7 @@ module.exports = React.createClass({
         }
 
         return <p className="carousel-status">{this.state.selectedItem + 1} of {this.props.children.length}</p>;
-    }, 
+    },
 
     renderThumbs () {
         if (!this.props.showThumbs) {
@@ -249,7 +249,7 @@ module.exports = React.createClass({
                 {this.props.children}
             </Thumbs>
         );
-    }, 
+    },
 
     render () {
         var itemsLength = this.props.children.length;
@@ -260,18 +260,18 @@ module.exports = React.createClass({
 
         var canShowArrows = this.props.showArrows && itemsLength > 1;
 
-        // show left arrow? 
+        // show left arrow?
         var hasPrev = canShowArrows && this.state.selectedItem > 0;
         // show right arrow
         var hasNext = canShowArrows && this.state.selectedItem < itemsLength - 1;
         // obj to hold the transformations and styles
         var itemListStyles = {};
 
-        var currentPosition = - this.state.selectedItem * 100 + '%';   
-        
+        var currentPosition = - this.state.selectedItem * 100 + '%';
+
         // if 3d is available, let's take advantage of the performance of transform
         var transformProp = CSSTranslate(currentPosition, this.props.axis);
-        
+
         itemListStyles = {
             'WebkitTransform': transformProp,
                'MozTransform': transformProp,
@@ -311,21 +311,20 @@ module.exports = React.createClass({
         return (
             <div className={this.props.className}>
                 <div className={klass.CAROUSEL(true)}>
-                    <button className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
+                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={node => this.itemsWrapper = node}>
                         <Swipe tagName="ul" {...swiperProps}>
                             { this.renderItems() }
                         </Swipe>
                     </div>
-                    <button className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} />
-                    
+                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} />
+
                     { this.renderControls() }
                     { this.renderStatus() }
-                </div> 
+                </div>
                 { this.renderThumbs() }
-            </div>               
+            </div>
         );
-        
+
     }
 });
-
