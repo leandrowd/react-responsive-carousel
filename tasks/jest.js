@@ -1,15 +1,18 @@
 var gulp = require('gulp');
-var jest = require('gulp-jest');
+var jest = require('jest-cli');
 var gutil = require('gulp-util');
 var configs = require('./configs');
 
+var jestConfig = {
+  rootDir: configs.paths.source,
+  "scriptPreprocessor": "../node_modules/6to5-jest",
+  "unmockedModulePathPatterns": [
+      "./node_modules/"
+  ]
+};
+
 module.exports = function() {
-    gulp.src(configs.paths.source)
-        .pipe(jest({
-            "scriptPreprocessor": "../node_modules/6to5-jest",
-            "unmockedModulePathPatterns": [
-                "./node_modules/"
-            ]
-        }))
-        .on('error', gutil.log);
+    jest.runCLI({ config: jestConfig }), configs.paths.source, function() {
+      done().on('error', gutil.log);
+    };
 };

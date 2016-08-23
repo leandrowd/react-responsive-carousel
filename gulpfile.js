@@ -35,18 +35,18 @@ gulp.task('deploy', ['test'], function () {
     environment: 'production'
   })
   .vendor();
-  
+
   cssTask({
     environment: 'production'
   });
 });
 
 gulp.task('package', ['test'], function () {
-  // pack js files to npm 
+  // pack js files to npm
   jsxTask({
     environment: 'package'
   });
-  
+
   cssTask({
     environment: 'package'
   });
