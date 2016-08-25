@@ -56,7 +56,7 @@
     "react-easy-swipe": "0.0.4",
     "reactify": "^0.15.2",
     "swipe-js-iso": "^2.0.1",
-    "vinyl-source-stream": "^0.1.1",
+    "vinyl-source-stream": "^1.1.0",
     "watchify": "^2.1.1"
   },
   "jest": {
