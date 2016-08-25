@@ -31,7 +31,7 @@
     "6to5-jest": "*",
     "accounting": "^0.4.1",
     "browserify": "^12.0.1",
-    "classnames": "^2.1.1",
+    "classnames": "^2.2.5",
     "connect-modrewrite": "^0.7.9",
     "glob": "^4.0.6",
     "gulp": "^3.8.9",
@@ -65,5 +65,8 @@
     "unmockedModulePathPatterns": [
       "node_modules"
     ]
+  },
+  "dependencies": {
+    "classnames": "^2.2.5"
   }
 }
