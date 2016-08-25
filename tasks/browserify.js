@@ -1,12 +1,11 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream'); // Used to stream bundle for further handling
-var reactify = require('reactify'); 
+var reactify = require('reactify');
 var uglify = require('gulp-uglify');
 var gulpif = require('gulp-if');
 var notify = require('gulp-notify');
 var gutil = require('gulp-util');
-var glob = require('glob');
 var path = require('path');
 var streamify = require('gulp-streamify');
 var connect = require('gulp-connect');
