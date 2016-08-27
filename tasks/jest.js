@@ -1,4 +1,3 @@
-var gulp = require('gulp');
 var jest = require('jest-cli');
 var gutil = require('gulp-util');
 var configs = require('./configs');

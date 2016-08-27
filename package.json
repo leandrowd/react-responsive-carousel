@@ -24,8 +24,6 @@
     "node": "~0.10.36"
   },
   "scripts": {
-    "w": "webpack",
-    "s": "webpack-dev-server ./src/main.js --hot --inline",
     "start": "node --harmony ./node_modules/gulp/bin/gulp",
     "prebuild": "npm test",
     "build": "babel ./src -d lib --ignore '__tests__' && gulp styles:package",
@@ -53,6 +51,7 @@
     "gulp-clean-css": "^2.0.12",
     "gulp-concat": "^2.3.4",
     "gulp-connect": "~2.2.0",
+    "gulp-copy": "0.0.2",
     "gulp-cssmin": "^0.1.6",
     "gulp-if": "^1.2.4",
     "gulp-livereload": "^2.1.1",

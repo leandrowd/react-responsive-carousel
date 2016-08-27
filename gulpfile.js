@@ -8,6 +8,7 @@ var browserifyTask = require('./tasks/browserify');
 var cssTask = require('./tasks/css');
 var jestTask = require('./tasks/jest');
 var connectTask = require('./tasks/connect');
+var copyTask = require('./tasks/copy');
 
 gulp.task('webserver', function () {
   connectTask();
@@ -20,7 +21,7 @@ gulp.task('test', function () {
 gulp.task('scripts', function() {
   browserifyTask({
     environment: 'development'
-  });
+  }).vendor();
 })
 
 gulp.task('styles', function(){
@@ -32,6 +33,12 @@ gulp.task('styles', function(){
 gulp.task('styles:package', function(){
   cssTask({
     environment: 'package'
+  });
+})
+
+gulp.task('copy', function(){
+  copyTask({
+    environment: 'development'
   });
 })
 
@@ -47,7 +54,7 @@ gulp.task('deploy', ['test'], function () {
 });
 
 // Development workflow
-gulp.task('default', ['scripts', 'test', 'styles', 'webserver'], function () {
+gulp.task('default', ['scripts', 'test', 'styles', 'copy', 'webserver'], function () {
   gulp.watch(configs.paths.source + "/**/*.js", ['scripts', 'test'])
     .on('change', function(event) {
       console.log('Scripts watcher trigger: ' + event.path + ' was ' + event.type + ', running tasks...');
