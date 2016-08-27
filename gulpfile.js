@@ -7,53 +7,63 @@ var shell = require('gulp-shell');
 var browserifyTask = require('./tasks/browserify');
 var cssTask = require('./tasks/css');
 var jestTask = require('./tasks/jest');
-var jsxTask = require('./tasks/jsx');
 var connectTask = require('./tasks/connect');
+var copyTask = require('./tasks/copy');
+var ghPagesTask = require('./tasks/gh-pages');
 
-gulp.task('webserver', function () {
+gulp.task('webserver', function() {
   connectTask();
 });
 
-gulp.task('test', function () {
+gulp.task('test', function() {
   jestTask();
 });
 
 gulp.task('scripts', function() {
   browserifyTask({
     environment: 'development'
-  });
+  }).vendor();
 })
 
-gulp.task('styles', function(){
+gulp.task('styles', function() {
   cssTask({
     environment: 'development'
   });
 })
 
-gulp.task('deploy', ['test'], function () {
+gulp.task('styles:package', function() {
+  cssTask({
+    environment: 'package'
+  });
+})
+
+gulp.task('copy', function() {
+  copyTask({
+    environment: 'development'
+  });
+})
+
+gulp.task('deploy', ['test'], function() {
   browserifyTask({
     environment: 'production'
   })
-  .vendor();
+    .vendor();
 
   cssTask({
     environment: 'production'
   });
-});
 
-gulp.task('package', ['test'], function () {
-  // pack js files to npm
-  jsxTask({
-    environment: 'package'
-  });
-
-  cssTask({
-    environment: 'package'
+  copyTask({
+    environment: 'production'
   });
 });
+
+gulp.task('publish', function(done) {
+  ghPagesTask(done);
+})
 
 // Development workflow
-gulp.task('default', ['scripts', 'test', 'styles', 'webserver'], function () {
+gulp.task('default', ['scripts', 'test', 'styles', 'copy', 'webserver'], function() {
   gulp.watch(configs.paths.source + "/**/*.js", ['scripts', 'test'])
     .on('change', function(event) {
       console.log('Scripts watcher trigger: ' + event.path + ' was ' + event.type + ', running tasks...');

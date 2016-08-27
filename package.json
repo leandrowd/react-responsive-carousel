@@ -1,23 +1,36 @@
 {
-  "name": "react-responsive-carousel-project",
-  "version": "1.0.3",
-  "description": "React Responsive Carousel Project",
+  "name": "react-responsive-carousel",
+  "version": "3.0.12",
+  "description": "React Responsive Carousel",
   "author": {
     "name": "Leandro Augusto Lemos",
-    "url": "leandrowd@gmail.com"
+    "url": "http://leandrowd.github.io/"
   },
-  "main": "index.js",
+  "main": "./lib/index.js",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "carousel",
+    "gallery",
+    "image-gallery",
+    "slider",
+    "responsive",
+    "swipe",
+    "mobile-friendly",
+    "react-component",
+    "view"
+  ],
   "engines": {
-    "node": "~0.10.36"
+    "node": ">=4"
   },
   "scripts": {
     "start": "node --harmony ./node_modules/gulp/bin/gulp",
-    "build": "node --harmony ./node_modules/gulp/bin/gulp package",
-    "pre-deploy": "node --harmony ./node_modules/gulp/bin/gulp deploy",
     "test": "jest",
-    "prerelease": "npm run build",
-    "release": "(git pull origin master && npm version patch && git push origin master && git checkout release && git merge master && git push origin release && git checkout master && npm publish)"
+    "prebuild": "npm test",
+    "build": "babel ./src -d lib --ignore '__tests__' && gulp styles:package",
+    "prepublishing-to-npm": "git pull && npm run build && git commit -am 'Prepare for publishing'",
+    "publish-to-npm": "(git pull origin master && npm version patch && git push origin master && git checkout release && git merge master && git push origin release && git checkout master && npm publish && git push --tags)",
+    "publish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp publish"
   },
   "repository": {
     "type": "git",
@@ -28,44 +41,43 @@
   },
   "homepage": "http://leandrowd.github.io/react-responsive-carousel/",
   "devDependencies": {
-    "6to5-jest": "*",
-    "accounting": "^0.4.1",
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-jest": "^14.1.0",
+    "babel-preset-react": "^6.11.1",
     "browserify": "^12.0.1",
-    "classnames": "^2.2.5",
     "connect-modrewrite": "^0.9.0",
+    "gh-pages": "^0.11.0",
     "gulp": "^3.8.9",
+    "gulp-clean-css": "^2.0.12",
     "gulp-concat": "^2.3.4",
     "gulp-connect": "~2.2.0",
+    "gulp-copy": "0.0.2",
     "gulp-cssmin": "^0.1.6",
     "gulp-if": "^1.2.4",
-    "gulp-jasmine2-phantomjs": "^0.1.1",
     "gulp-livereload": "^2.1.1",
-    "gulp-minify-css": "~0.3.12",
     "gulp-notify": "^1.4.2",
-    "gulp-react": "^2.0.0",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^2.2.0",
     "gulp-shell": "^0.2.10",
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^0.3.1",
     "gulp-util": "^3.0.0",
-    "jest-cli": "^14.0.0",
+    "jest-cli": "^14.1.0",
     "react": "^0.14.5",
     "react-addons-test-utils": "^0.14.2",
     "react-dom": "^0.14.2",
-    "react-easy-swipe": "0.0.4",
     "reactify": "^0.15.2",
-    "swipe-js-iso": "^2.0.1",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^2.1.1"
   },
   "jest": {
-    "scriptPreprocessor": "./node_modules/6to5-jest",
     "unmockedModulePathPatterns": [
       "node_modules"
     ]
   },
   "dependencies": {
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "react-easy-swipe": "0.0.4"
   }
 }

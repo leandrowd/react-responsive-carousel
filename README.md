@@ -1,39 +1,15 @@
-# React Responsive Carousel (WIP)
+# React Responsive Carousel
 
-## Demo
+[![npm version](https://badge.fury.io/js/react-responsive-carousel.svg)](https://badge.fury.io/js/react-responsive-carousel)
+[![Build Status](https://travis-ci.org/leandrowd/react-responsive-carousel.svg?branch=master)](https://travis-ci.org/leandrowd/react-responsive-carousel)
+
+#### Demo
 <http://leandrowd.github.io/react-responsive-carousel/>
 
-
-## Installing as a package
-
+#### Installing as a package
 `npm install react-responsive-carousel --save`
 
-
-## Contributing
-
-Please, feel free to contributing. You may file an issue or submit a pull request!
-
-
-## Development
-
-To run it on your local environment just: 
-
-- `git clone git@github.com:leandrowd/react-responsive-carousel.git`
-- `npm install`
-- `gulp`
-- Open your favourite browser on `localhost:8000`
-
-## Generating the package for npm
-- `npm run build`
-- `cd lib`
-- `npm version patch && npm publish`
-
-To generate the npm package run `gulp package`. It will transpile the jsx to js and copy the css into the lib folder.
-
-
-## Getting started
-
-### Slider with controls
+#### Usage
 
 ```javascript
 var React = require('react');
@@ -62,18 +38,38 @@ var DemoCarousel = React.createClass({
 });
 ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 
-// Don't forget to include the css in your page 
+// Don't forget to include the css in your page
 // <link rel="stylesheet" href="carousel.css"/>
 ```
 
-## Properties
+| Attributes | Type | Default | Description |
+| ---------- | :--: | :-----: | ----------- |
+| showArrows | `boolean` | `true` | show prev and next arrows |
+| showStatus | `boolean` | `true` | show index of the current item. i.e: (1/8) |
+| showIndicators | `boolean` | `true` | show little dots at the bottom with links for changing the item |
+| showThumbs | `boolean` | `true` | show thumbnails of the images |
+| selectedItem | `number` | `0` | selects an item though props / defines the initial selected item |
+| axis       | `string`  | `horizontal` | changes orientation - accepts `horizontal` and `vertical` |
+| onChange   | `function` | - | Fired when changing positions |
+| onClickItem   | `function` | - | Fired when an item is clicked |
+| onClickThumb   | `function` | - | Fired when a thumb it clicked |
 
-- (Boolean) showArrows (default: true, options: true, false)
-- (Boolean) showStatus (default: true, options: true, false)
-- (Boolean) showIndicators (default: true, options: true, false)
-- (Boolean) showThumbs (default: true, options: true, false)
-- (Number) selectedItem (default: 0, options: any number between the first and the last index)
-- (String) axis (default: "horizontal" | options: "horizontal", "vertical")
-- (Function) onChange (Triggered when the carousel move)
-- (Function) onClickItem (Triggered when an item is clicked)
-- (Function) onClickThumb (Triggered when a thumb is clicked)
+
+
+#### Contributing
+Please, feel free to contribute. You may file an issue or submit a pull request!
+
+##### Setting up development environment
+- `git clone git@github.com:leandrowd/react-responsive-carousel.git`
+- `npm install`
+- `npm start`
+- Open your favourite browser on `localhost:8000` - livereload will be enabled
+
+##### Running tests
+- `npm test`
+
+##### Publishing to npm
+- `npm run publish-to-npm`
+
+##### Pubishing to gh-pages
+- `npm run publish-to-gh-pages`

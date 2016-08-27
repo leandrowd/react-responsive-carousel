@@ -3,7 +3,7 @@ var path = require('path');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var gulpif = require('gulp-if');
-var minifyCSS = require('gulp-minify-css');
+var minifyCSS = require('gulp-clean-css');
 var notify = require('gulp-notify');
 var streamify = require('gulp-streamify');
 var gutil = require('gulp-util');
@@ -17,16 +17,15 @@ module.exports = function (options) {
       options.environment = "development";
     }
 
-
     var isDevelopment = (options.environment === "development");
     var isPackage = (options.environment === "package");
 
     var destFolder = configs.paths[options.environment];
 
     if (isPackage) destFolder += '/styles/';
-    
+
     var start = new Date();
-    
+
     gutil.log('Building CSS bundle');
     gulp.src([configs.paths.source + '/**/*.scss'])
       .pipe(sass({
