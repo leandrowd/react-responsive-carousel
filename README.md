@@ -1,5 +1,9 @@
 # React Responsive Carousel (WIP)
 
+[![npm version](https://badge.fury.io/js/react-responsive-carousel.svg)](https://badge.fury.io/js/react-responsive-carousel)
+[![Build Status](https://travis-ci.org/leandrowd/react-responsive-carousel.svg?branch=master)](https://travis-ci.org/leandrowd/react-responsive-carousel)
+
+
 ## Demo
 <http://leandrowd.github.io/react-responsive-carousel/>
 
@@ -16,7 +20,7 @@ Please, feel free to contributing. You may file an issue or submit a pull reques
 
 ## Development
 
-To run it on your local environment just: 
+To run it on your local environment just:
 
 - `git clone git@github.com:leandrowd/react-responsive-carousel.git`
 - `npm install`
@@ -62,7 +66,7 @@ var DemoCarousel = React.createClass({
 });
 ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 
-// Don't forget to include the css in your page 
+// Don't forget to include the css in your page
 // <link rel="stylesheet" href="carousel.css"/>
 ```
 
