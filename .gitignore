@@ -3,3 +3,5 @@ node_modules
 npm-debug.log
 .bash_profile
 dev
+dist
+lib/main.js
