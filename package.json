@@ -31,7 +31,7 @@
     "prepare-for-publishing-to-npm": "git pull && npm run build && git commit -am 'Prepare for publishing'",
     "publish-to-npm": "git pull && npm run build && git commit -am 'Prepare for publishing'",
     "publish-to-npm": "(git pull origin master && npm version patch && git push origin master && git checkout release && git merge master && git push origin release && git checkout master && npm publish && git push --tags)",
-    "publish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp publish",
+    "publish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp publish"
   },
   "repository": {
     "type": "git",

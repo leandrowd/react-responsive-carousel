@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Carousel = require('./components/Carousel');
+var pkg = require('../package.json');
 
 function onChange() {
     console.log('onChange', arguments);
@@ -13,6 +14,8 @@ function onClickItem() {
 function onClickThumb() {
     console.log('onClickThumb', arguments);
 }
+
+document.getElementById('version').innerHTML = pkg.version;
 
 // Begin DemoSliderControls
 var DemoCarousel = React.createClass({
