@@ -31,9 +31,8 @@
     "6to5-jest": "*",
     "accounting": "^0.4.1",
     "browserify": "^12.0.1",
-    "classnames": "^2.1.1",
-    "connect-modrewrite": "^0.7.9",
-    "glob": "^4.0.6",
+    "classnames": "^2.2.5",
+    "connect-modrewrite": "^0.9.0",
     "gulp": "^3.8.9",
     "gulp-concat": "^2.3.4",
     "gulp-connect": "~2.2.0",
@@ -57,7 +56,7 @@
     "react-easy-swipe": "0.0.4",
     "reactify": "^0.15.2",
     "swipe-js-iso": "^2.0.1",
-    "vinyl-source-stream": "^0.1.1",
+    "vinyl-source-stream": "^1.1.0",
     "watchify": "^2.1.1"
   },
   "jest": {
@@ -65,5 +64,8 @@
     "unmockedModulePathPatterns": [
       "node_modules"
     ]
+  },
+  "dependencies": {
+    "classnames": "^2.2.5"
   }
 }
