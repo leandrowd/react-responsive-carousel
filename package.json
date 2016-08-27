@@ -21,14 +21,14 @@
     "view"
   ],
   "engines": {
-    "node": "~0.10.36"
+    "node": ">=4"
   },
   "scripts": {
     "start": "node --harmony ./node_modules/gulp/bin/gulp",
     "test": "jest",
     "prebuild": "npm test",
     "build": "babel ./src -d lib --ignore '__tests__' && gulp styles:package",
-    "prepare-publishing-to-npm": "git pull && npm run build && git commit -am 'Prepare for publishing'",
+    "prepublishing-to-npm": "git pull && npm run build && git commit -am 'Prepare for publishing'",
     "publish-to-npm": "(git pull origin master && npm version patch && git push origin master && git checkout release && git merge master && git push origin release && git checkout master && npm publish && git push --tags)",
     "publish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp publish"
   },
