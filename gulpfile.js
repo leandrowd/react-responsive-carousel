@@ -7,7 +7,6 @@ var shell = require('gulp-shell');
 var browserifyTask = require('./tasks/browserify');
 var cssTask = require('./tasks/css');
 var jestTask = require('./tasks/jest');
-var jsxTask = require('./tasks/jsx');
 var connectTask = require('./tasks/connect');
 
 gulp.task('webserver', function () {
@@ -30,6 +29,12 @@ gulp.task('styles', function(){
   });
 })
 
+gulp.task('styles:package', function(){
+  cssTask({
+    environment: 'package'
+  });
+})
+
 gulp.task('deploy', ['test'], function () {
   browserifyTask({
     environment: 'production'
@@ -38,17 +43,6 @@ gulp.task('deploy', ['test'], function () {
 
   cssTask({
     environment: 'production'
-  });
-});
-
-gulp.task('package', ['test'], function () {
-  // pack js files to npm
-  jsxTask({
-    environment: 'package'
-  });
-
-  cssTask({
-    environment: 'package'
   });
 });
 
