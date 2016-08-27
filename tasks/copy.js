@@ -4,10 +4,18 @@ var configs = require('./configs');
 
 module.exports = function(options) {
     var destFolder = configs.paths[options.environment];
-    return gulp.src([
+    var files = [
         configs.paths.source + '/assets/**',
         configs.paths.source + '/styles/font/**',
         configs.paths.source + '/index.html'
-    ])
-    .pipe(gulpCopy(destFolder, {prefix: true}));
+    ];
+
+    if (options.environment === 'production') {
+        files.push('CNAME');
+    }
+
+    return gulp.src(files)
+        .pipe(gulpCopy(destFolder, {
+            prefix: true
+        }));
 };
