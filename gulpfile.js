@@ -20,46 +20,51 @@ gulp.task('test', function() {
 });
 
 gulp.task('scripts', function() {
-  browserifyTask({
+  return browserifyTask({
     environment: 'development'
   }).vendor();
 })
 
+gulp.task('scripts:production', function() {
+  return browserifyTask({
+    environment: 'production'
+  }).vendor();
+})
+
 gulp.task('styles', function() {
-  cssTask({
+  return cssTask({
     environment: 'development'
   });
 })
 
+gulp.task('styles:production', function() {
+  return cssTask({
+    environment: 'production'
+  });
+})
+
 gulp.task('styles:package', function() {
-  cssTask({
+  return cssTask({
     environment: 'package'
   });
 })
 
 gulp.task('copy', function() {
-  copyTask({
+  return copyTask({
     environment: 'development'
   });
 })
 
-gulp.task('deploy', ['test'], function() {
-  browserifyTask({
-    environment: 'production'
-  })
-    .vendor();
-
-  cssTask({
+gulp.task('copy:production', function() {
+  return copyTask({
     environment: 'production'
   });
+})
 
-  copyTask({
-    environment: 'production'
-  });
-});
+gulp.task('prepublish', ['test', 'scripts:production', 'styles:production', 'copy:production'])
 
 gulp.task('publish', function(done) {
-  ghPagesTask(done);
+  return ghPagesTask(done);
 })
 
 // Development workflow
