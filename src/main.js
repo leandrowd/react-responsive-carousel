@@ -15,8 +15,6 @@ function onClickThumb() {
     console.log('onClickThumb', arguments);
 }
 
-document.getElementById('version').innerHTML = pkg.version;
-
 // Begin DemoSliderControls
 var DemoCarousel = React.createClass({
     render() {
