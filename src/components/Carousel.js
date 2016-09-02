@@ -175,7 +175,7 @@ module.exports = React.createClass({
             'msTransform'
         ].forEach((prop) => {
             list.style[prop] = CSSTranslate(position, this.props.axis);
-        }.bind(this));
+        }).bind(this);
     },
 
     decrement (positions){
