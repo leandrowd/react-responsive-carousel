@@ -24,7 +24,7 @@ module.exports = React.createClass({
         axis: React.PropTypes.string
     },
 
-    getDefaultProps () {
+    getDefaultProps() {
         return {
             showIndicators: true,
             showArrows: true,
@@ -35,7 +35,7 @@ module.exports = React.createClass({
         }
     },
 
-    getInitialState () {
+    getInitialState() {
         return {
             // index of the image to be shown.
             selectedItem: this.props.selectedItem,
@@ -43,11 +43,12 @@ module.exports = React.createClass({
         }
     },
 
-    componentWillReceiveProps (props, state) {
+    componentWillReceiveProps (props) {
         if (props.selectedItem !== this.state.selectedItem) {
-            this.updateSizes();
             this.setState({
                 selectedItem: props.selectedItem
+            }, () => {
+                this.updateSizes();
             });
         }
     },
@@ -77,13 +78,20 @@ module.exports = React.createClass({
         defaultImg && defaultImg.addEventListener('load', this.setMountState);
     },
 
-    updateSizes () {
+    updateSizes() {
+        var itemWrapper = ReactDOM.findDOMNode(this.itemsWrapper);
+        var selectedItem = ReactDOM.findDOMNode(this['item' + this.state.selectedItem]);
+        var selectedImage = selectedItem.getElementsByTagName('img')[0];
+
+        var variance = selectedImage.clientHeight - itemWrapper.clientHeight;
+        itemWrapper.setAttribute("style", `margin-bottom: ${variance}px`);
+
         var firstItem = ReactDOM.findDOMNode(this.item0);
         this.itemSize = this.isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
         this.wrapperSize = this.isHorizontal ? this.itemSize * this.props.children.length : this.itemSize;
     },
 
-    setMountState () {
+    setMountState() {
         this.setState({hasMount: true});
         this.updateSizes();
         this.forceUpdate();
@@ -111,7 +119,7 @@ module.exports = React.createClass({
         }
     },
 
-    handleClickThumb(index, item) {
+    handleClickThumb (index, item) {
         var handler = this.props.onClickThumb;
 
         if (typeof handler === 'function') {
@@ -135,7 +143,7 @@ module.exports = React.createClass({
         });
     },
 
-    onSwipeMove(delta) {
+    onSwipeMove (delta) {
         var list = ReactDOM.findDOMNode(this.itemList);
         var isHorizontal = this.props.axis === 'horizontal';
 
@@ -167,7 +175,7 @@ module.exports = React.createClass({
             'msTransform'
         ].forEach((prop) => {
             list.style[prop] = CSSTranslate(position, this.props.axis);
-        });
+        }).bind(this);
     },
 
     decrement (positions){
@@ -199,11 +207,13 @@ module.exports = React.createClass({
     },
 
     selectItem (state) {
-        this.setState(state);
+        this.setState(state, () => {
+            this.updateSizes();
+        });
         this.handleOnChange(state.selectedItem, this.props.children[state.selectedItem]);
     },
 
-    renderItems () {
+    renderItems() {
         return React.Children.map(this.props.children, (item, index) => {
             var hasMount = this.state.hasMount;
             var itemClass = klass.ITEM(true, index === this.state.selectedItem);
@@ -217,7 +227,7 @@ module.exports = React.createClass({
         });
     },
 
-    renderControls () {
+    renderControls() {
         if (!this.props.showIndicators) {
             return null
         }
@@ -231,7 +241,7 @@ module.exports = React.createClass({
         );
     },
 
-    renderStatus () {
+    renderStatus() {
         if (!this.props.showStatus) {
             return null
         }
@@ -239,7 +249,7 @@ module.exports = React.createClass({
         return <p className="carousel-status">{this.state.selectedItem + 1} of {this.props.children.length}</p>;
     },
 
-    renderThumbs () {
+    renderThumbs() {
         if (!this.props.showThumbs) {
             return null
         }
@@ -251,7 +261,7 @@ module.exports = React.createClass({
         );
     },
 
-    render () {
+    render() {
         var itemsLength = this.props.children.length;
 
         if (itemsLength === 0) {

@@ -1,3 +1,5 @@
+Fork of https://github.com/leandrowd/react-responsive-carousel with the added feature of adjusting the height of the carousel based on the image that is currently selected.
+
 # React Responsive Carousel
 
 [![npm version](https://badge.fury.io/js/react-responsive-carousel.svg)](https://badge.fury.io/js/react-responsive-carousel)
