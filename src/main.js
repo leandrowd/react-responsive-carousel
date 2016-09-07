@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Carousel = require('./components/Carousel');
-var pkg = require('../package.json');
 
 function onChange() {
     console.log('onChange', arguments);
