@@ -55,6 +55,12 @@ gulp.task('copy', function() {
   });
 })
 
+gulp.task('copy:package', function() {
+  return copyTask({
+    environment: 'package'
+  });
+})
+
 gulp.task('copy:production', function() {
   return copyTask({
     environment: 'production'
