@@ -43,7 +43,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 ```
 
 | Attributes | Type | Default | Description |
-| ---------- | :--: | :-----: | ----------- |
+| :--------- | :--: | :-----: | ----------- |
 | showArrows | `boolean` | `true` | show prev and next arrows |
 | showStatus | `boolean` | `true` | show index of the current item. i.e: (1/8) |
 | showIndicators | `boolean` | `true` | show little dots at the bottom with links for changing the item |
@@ -53,7 +53,6 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | onChange   | `function` | - | Fired when changing positions |
 | onClickItem   | `function` | - | Fired when an item is clicked |
 | onClickThumb   | `function` | - | Fired when a thumb it clicked |
-
 
 
 #### Contributing
@@ -73,3 +72,7 @@ Please, feel free to contribute. You may file an issue or submit a pull request!
 
 ##### Pubishing to gh-pages
 - `npm run publish-to-gh-pages`
+
+### Examples
+#### webpack + es6 setup
+<https://github.com/leandrowd/demo-react-responsive-carousel-es6>
