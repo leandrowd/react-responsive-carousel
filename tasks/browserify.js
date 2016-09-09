@@ -1,8 +1,8 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream'); // Used to stream bundle for further handling
-var reactify = require('reactify');
 var uglify = require('gulp-uglify');
+var babelify = require('babelify');
 var gulpif = require('gulp-if');
 var notify = require('gulp-notify');
 var gutil = require('gulp-util');
@@ -24,16 +24,15 @@ module.exports = function (options) {
 	// Our app bundler
 	var appBundler = browserify({
 		// using dev components
-		entries: [configs.paths.source + '/main.js'], 
+		entries: [configs.paths.source + '/main.js'],
 		// using npm components
-		// entries: [configs.paths.source + '/main.js'], 
-   		transform: [["reactify", {"es6": true}]], 
-		debug: isDevelopment, 
+   	transform: [["babelify", {presets: ["latest", "react"]}]],
+		debug: isDevelopment,
 		fullPaths: isDevelopment,
 		extension: ['js']
 	});
 
-	// We set our dependencies as externals on our app bundler when developing		
+	// We set our dependencies as externals on our app bundler when developing
 	// (isDevelopment ? dependencies : []).forEach(function (dep) {
 	// 	appBundler.external(dep);
 	// });
@@ -56,7 +55,7 @@ module.exports = function (options) {
 	rebundle();
 
 	return {
-		app: rebundle, 
+		app: rebundle,
 
 		vendor: function () {
 			var vendorsBundler = browserify({
