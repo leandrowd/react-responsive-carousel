@@ -23,8 +23,6 @@ module.exports = React.createClass({
         onChange: React.PropTypes.func,
         axis: React.PropTypes.string,
         width: React.PropTypes.string,
-        height: React.PropTypes.string,
-        fullScreen: React.PropTypes.bool,
         useKeyboardArrows: React.PropTypes.bool,
     },
 
@@ -35,7 +33,8 @@ module.exports = React.createClass({
             showStatus:true,
             showThumbs:true,
             selectedItem: 0,
-            axis: 'horizontal'
+            axis: 'horizontal',
+            useKeyboardArrows: false
         }
     },
 
