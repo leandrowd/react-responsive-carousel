@@ -6,9 +6,6 @@ var CSSTranslate = require('../CSSTranslate');
 var Swipe = require('react-easy-swipe');
 var Thumbs = require('./Thumbs');
 
-require('../carousel.scss');
-
-
 // react-swipe was compiled using babel
 Swipe = Swipe.default;
 
@@ -24,7 +21,10 @@ module.exports = React.createClass({
         onClickItem: React.PropTypes.func,
         onClickThumb: React.PropTypes.func,
         onChange: React.PropTypes.func,
-        axis: React.PropTypes.string
+        axis: React.PropTypes.string,
+        width: React.PropTypes.string,
+        height: React.PropTypes.string,
+        fullScreen: React.PropTypes.bool,
     },
 
     getDefaultProps () {
@@ -70,26 +70,31 @@ module.exports = React.createClass({
     },
 
     componentDidMount (nextProps) {
-        // when the component is rendered we need to calculate
-        // the container size to adjust the responsive behaviour
-        this.updateSizes();
+        var images = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img');
+        var initialImage = images && images[this.props.selectedItem];
 
-        this.isHorizontal = this.props.axis === 'horizontal';
-
-        var defaultImg = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img')[0];
-        defaultImg && defaultImg.addEventListener('load', this.setMountState);
+        if (initialImage) {
+        	// if it's a carousel of images, we set the mount state after the first image is loaded
+			initialImage.addEventListener('load', this.setMountState);
+        } else {
+        	this.setMountState();
+        }
     },
 
     updateSizes () {
-        var firstItem = ReactDOM.findDOMNode(this.item0);
-        this.itemSize = this.isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
-        this.wrapperSize = this.isHorizontal ? this.itemSize * this.props.children.length : this.itemSize;
+    	var isHorizontal = this.props.axis === 'horizontal';
+    	var firstItem = ReactDOM.findDOMNode(this.item0);
+        var itemSize = isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
+
+        this.setState({
+        	itemSize: itemSize,
+        	wrapperSize: isHorizontal ? itemSize * this.props.children.length : itemSize
+        });
     },
 
     setMountState () {
         this.setState({hasMount: true});
         this.updateSizes();
-        this.forceUpdate();
     },
 
     handleClickItem (index, item) {
@@ -159,7 +164,7 @@ module.exports = React.createClass({
             axisDelta = 0;
         }
 
-        var position = currentPosition + (100 / (this.wrapperSize / axisDelta)) + '%';
+        var position = currentPosition + (100 / (this.state.wrapperSize / axisDelta)) + '%';
 
         [
             'WebkitTransform',
@@ -261,6 +266,8 @@ module.exports = React.createClass({
             return null;
         }
 
+        var isHorizontal = this.props.axis === 'horizontal';
+
         var canShowArrows = this.props.showArrows && itemsLength > 1;
 
         // show left arrow?
@@ -296,7 +303,7 @@ module.exports = React.createClass({
 
         var containerStyles = {};
 
-        if (this.isHorizontal) {
+        if (isHorizontal) {
             merge(swiperProps, {
                 onSwipeLeft: this.increment,
                 onSwipeRight: this.decrement
@@ -307,13 +314,13 @@ module.exports = React.createClass({
                 onSwipeDown: this.increment
             });
 
-            swiperProps.style.height = this.itemSize;
-            containerStyles.height = this.itemSize;
+            swiperProps.style.height = this.state.itemSize;
+            containerStyles.height = this.state.itemSize;
         }
 
         return (
             <div className={this.props.className}>
-                <div className={klass.CAROUSEL(true)}>
+                <div className={klass.CAROUSEL(true)} style={{width: this.props.width || '100%'}}>
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={node => this.itemsWrapper = node}>
                         <Swipe tagName="ul" {...swiperProps}>
