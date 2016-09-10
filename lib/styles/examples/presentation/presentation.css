@@ -1,0 +1,71 @@
+@charset "UTF-8";
+.presentation-mode .my-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  padding: 75px;
+  line-height: 1.5;
+  font-size: 1.5em;
+  color: #f5f5f5; }
+  .presentation-mode .my-slide h1, .presentation-mode .my-slide h2, .presentation-mode .my-slide h3, .presentation-mode .my-slide h4, .presentation-mode .my-slide h5, .presentation-mode .my-slide h6, .presentation-mode .my-slide p, .presentation-mode .my-slide ul, .presentation-mode .my-slide ol {
+    border: 0;
+    margin: 10px auto;
+    padding: 0;
+    display: inline-block;
+    width: 100%; }
+  .presentation-mode .my-slide.complex {
+    text-align: left;
+    flex-direction: column;
+    justify-content: flex-start; }
+    .presentation-mode .my-slide.complex h1, .presentation-mode .my-slide.complex h2, .presentation-mode .my-slide.complex h3, .presentation-mode .my-slide.complex h4, .presentation-mode .my-slide.complex h5, .presentation-mode .my-slide.complex h6, .presentation-mode .my-slide.complex p, .presentation-mode .my-slide.complex ul, .presentation-mode .my-slide.complex ol {
+      margin-bottom: 30px; }
+  .presentation-mode .my-slide ul, .presentation-mode .my-slide ol {
+    margin: 10px;
+    padding-left: 75px; }
+  .presentation-mode .my-slide ol li {
+    list-style: decimal !important; }
+  .presentation-mode .my-slide ul li {
+    list-style: disc; }
+  .presentation-mode .my-slide p {
+    font-size: 1.2em; }
+  .presentation-mode .my-slide strong, .presentation-mode .my-slide em {
+    color: #ccc; }
+  .presentation-mode .my-slide a {
+    color: #D6D600;
+    border-bottom: 3px dotted #D6D600;
+    text-decoration: none; }
+  .presentation-mode .my-slide iframe, .presentation-mode .my-slide img {
+    width: 100vw;
+    height: 100vh;
+    margin: -75px; }
+  .presentation-mode .my-slide ul, .presentation-mode .my-slide ol, .presentation-mode .my-slide li {
+    text-align: left; }
+  .presentation-mode .my-slide blockquote {
+    position: relative;
+    color: #f5f5f5;
+    text-align: left;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    padding-left: 50px;
+    quotes: "“" "”" "‘" "’"; }
+  .presentation-mode .my-slide blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    position: absolute;
+    left: 10px;
+    top: 30px;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em; }
+  .presentation-mode .my-slide blockquote p {
+    display: inline; }
+  .presentation-mode .my-slide.primary {
+    background-color: #000099; }
+  .presentation-mode .my-slide.secondary {
+    background-color: #4D0099; }
+  .presentation-mode .my-slide.content {
+    background-color: #004D99; }
