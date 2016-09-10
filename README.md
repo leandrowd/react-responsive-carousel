@@ -53,6 +53,8 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | onChange   | `function` | - | Fired when changing positions |
 | onClickItem   | `function` | - | Fired when an item is clicked |
 | onClickThumb   | `function` | - | Fired when a thumb it clicked |
+| width   | `string` | - | Allows to set a fixed width |
+| useKeyboardArrows   | `boolean` | false | Adds support to next and prev through keyboard arrows |
 
 
 #### Contributing

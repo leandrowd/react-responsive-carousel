@@ -4,7 +4,6 @@
 	position: absolute;
 	z-index: 2;
 	top: 20px;
-	font-family: "m4d-icons";
 	background: none;
 	border: 0;
 	font-size: 32px;
@@ -12,6 +11,16 @@
 
 	&:hover {
 		@include opacity(1);
+	}
+
+	&.control-arrow {
+		&:before {
+			margin: 0 5px;
+			display: inline-block;
+			border-top: 8px solid transparent;
+			border-bottom: 8px solid transparent;
+			content: '';
+		}
 	}
 
 	&.control-disabled {
@@ -23,14 +32,14 @@
 	&.control-prev {
 		left: 0;
 		&:before {
-			content: '\e803';
+			border-right: 8px solid #fff;
 		}
 	}
 
 	&.control-next {
 		right: 0;
 		&:before {
-			content: '\e802';
+			border-left: 8px solid #fff;
 		}
 	}
 }
@@ -101,12 +110,6 @@
 		margin: 0;
 		overflow: hidden;
 
-		li {
-			@include tablet {
-				cursor: -webkit-zoom-in;
-			}
-		}
-
 		// adjusting the arrows for the slider
 		.control-arrow {
 			@extend %arrows;
@@ -120,7 +123,7 @@
 			&:hover {
 				background: rgba(#000, .2);
 			}
-			
+
 		}
 	}
 
@@ -145,7 +148,7 @@
 				}
 			}
 		}
-	
+
 		&.axis-vertical {
 			-ms-box-orient: horizontal;
 			display: -webkit-box;
@@ -154,11 +157,11 @@
 			display: -moz-flex;
 			display: -webkit-flex;
 			display: flex;
-			
+
 			.slider {
-				-webkit-flex-direction: column; 
+				-webkit-flex-direction: column;
 				flex-direction: column;
-			}	
+			}
 		}
 	}
 
@@ -166,7 +169,7 @@
 		position: relative;
 		list-style: none;
 		width: 100%;
-		
+
 		&.animated {
 			@include transition(all, .35s, ease-in-out);
 			// activate hardware accelerated animations using translate property
@@ -174,60 +177,49 @@
 		}
 	}
 
+
 	.slide {
 		min-width: 100%;
 		margin: 0;
-		padding-bottom: 32px;
+		position: relative;
+		text-align: center;
+		background: #000;
+		// padding-bottom: 32px;
 
 		img {
 			width: 100%;
 			vertical-align: top;
+			border: 0;
+		}
+
+		iframe {
+			display: inline-block;
+			width: calc(100% - 80px);
+			margin: 0 40px 40px;
+			border: 0;
 		}
 
 		.legend {
 			@include transition(all, .5s, ease-in-out);
 			position: absolute;
-			bottom: 0;
-			width: 100%;
+			bottom: 40px;
+			left: 50%;
+			margin-left: -45%;
+			width: 90%;
+			border-radius: 10px;
 			background: #000;
 			color: #fff;
 			padding: 10px;
 			font-size: 12px;
 			text-align: center;
-		}
-		
-		@include desktop {
-			padding-bottom: 0;
-
-			.legend {
-				bottom: 40px;
-				margin-left: 10%;
-				width: 80%;
-				background: rgba(0, 0, 0, 0.3);
-				color: rgba(255, 255, 255, 0.6);
-				border-radius: 5px;
-				padding: 10px;
-				opacity: 0;
-			}
-
-			&.selected {
-				.legend {
-					opacity: 1;
-				}
-			}
-
-			&:hover {
-				.legend {
-					background: rgba(0, 0, 0, 0.5);
-					color: rgba(255, 255, 255, 0.9);
-				}
-			}
+			opacity: 0.25;
+			@include transition(opacity, .35s, ease-in-out);
 		}
 	}
 
 	.control-dots {
 		position: absolute;
-		bottom: 32px;
+		bottom: 0;
 		margin: 10px 0;
 		text-align: center;
 		width: 100%;
@@ -262,6 +254,12 @@
 		font-size: 10px;
 		text-shadow: 1px 1px 1px rgba(#000, .9);
 		color: #fff;
+	}
+
+	&:hover {
+		.slide .legend {
+		 	opacity: 1;
+		}
 	}
 }
 

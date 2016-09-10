@@ -21,7 +21,9 @@ module.exports = React.createClass({
         onClickItem: React.PropTypes.func,
         onClickThumb: React.PropTypes.func,
         onChange: React.PropTypes.func,
-        axis: React.PropTypes.string
+        axis: React.PropTypes.string,
+        width: React.PropTypes.string,
+        useKeyboardArrows: React.PropTypes.bool,
     },
 
     getDefaultProps () {
@@ -31,7 +33,8 @@ module.exports = React.createClass({
             showStatus:true,
             showThumbs:true,
             selectedItem: 0,
-            axis: 'horizontal'
+            axis: 'horizontal',
+            useKeyboardArrows: false
         }
     },
 
@@ -52,41 +55,74 @@ module.exports = React.createClass({
         }
     },
 
-    componentWillMount() {
+    componentWillUnmount() {
+        this.unbindEvents();
+    },
+
+    componentDidMount (nextProps) {
+        this.bindEvents();
+
+        var images = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img');
+        var initialImage = images && images[this.props.selectedItem];
+
+        if (initialImage) {
+            // if it's a carousel of images, we set the mount state after the first image is loaded
+            initialImage.addEventListener('load', this.setMountState);
+        } else {
+            this.setMountState();
+        }
+    },
+
+    bindEvents () {
         // as the widths are calculated, we need to resize
         // the carousel when the window is resized
         window.addEventListener("resize", this.updateSizes);
         // issue #2 - image loading smaller
         window.addEventListener("DOMContentLoaded", this.updateSizes);
+
+        if (this.props.useKeyboardArrows) {
+            document.addEventListener("keydown", this.navigateWithKeyboard);
+        }
     },
 
-    componentWillUnmount() {
+    unbindEvents () {
         // removing listeners
         window.removeEventListener("resize", this.updateSizes);
         window.removeEventListener("DOMContentLoaded", this.updateSizes);
+
+        if (this.props.useKeyboardArrows) {
+            document.removeEventListener("keydown", this.navigateWithKeyboard);
+        }
     },
 
-    componentDidMount (nextProps) {
-        // when the component is rendered we need to calculate
-        // the container size to adjust the responsive behaviour
-        this.updateSizes();
+    navigateWithKeyboard (e) {
+        var nextKeys = ['ArrowDown', 'ArrowRight'];
+        var prevKeys = ['ArrowUp', 'ArrowLeft'];
+        var allowedKeys = nextKeys.concat(prevKeys);
 
-        this.isHorizontal = this.props.axis === 'horizontal';
-
-        var defaultImg = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img')[0];
-        defaultImg && defaultImg.addEventListener('load', this.setMountState);
+        if (allowedKeys.indexOf(e.key) > -1) {
+            if (nextKeys.indexOf(e.key) > -1) {
+                this.increment();
+            } else if (prevKeys.indexOf(e.key) > -1) {
+                this.decrement();
+            }
+        }
     },
 
     updateSizes () {
+        var isHorizontal = this.props.axis === 'horizontal';
         var firstItem = ReactDOM.findDOMNode(this.item0);
-        this.itemSize = this.isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
-        this.wrapperSize = this.isHorizontal ? this.itemSize * this.props.children.length : this.itemSize;
+        var itemSize = isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
+
+        this.setState({
+            itemSize: itemSize,
+            wrapperSize: isHorizontal ? itemSize * this.props.children.length : itemSize
+        });
     },
 
     setMountState () {
         this.setState({hasMount: true});
         this.updateSizes();
-        this.forceUpdate();
     },
 
     handleClickItem (index, item) {
@@ -156,7 +192,7 @@ module.exports = React.createClass({
             axisDelta = 0;
         }
 
-        var position = currentPosition + (100 / (this.wrapperSize / axisDelta)) + '%';
+        var position = currentPosition + (100 / (this.state.wrapperSize / axisDelta)) + '%';
 
         [
             'WebkitTransform',
@@ -258,6 +294,8 @@ module.exports = React.createClass({
             return null;
         }
 
+        var isHorizontal = this.props.axis === 'horizontal';
+
         var canShowArrows = this.props.showArrows && itemsLength > 1;
 
         // show left arrow?
@@ -293,7 +331,7 @@ module.exports = React.createClass({
 
         var containerStyles = {};
 
-        if (this.isHorizontal) {
+        if (isHorizontal) {
             merge(swiperProps, {
                 onSwipeLeft: this.increment,
                 onSwipeRight: this.decrement
@@ -304,13 +342,13 @@ module.exports = React.createClass({
                 onSwipeDown: this.increment
             });
 
-            swiperProps.style.height = this.itemSize;
-            containerStyles.height = this.itemSize;
+            swiperProps.style.height = this.state.itemSize;
+            containerStyles.height = this.state.itemSize;
         }
 
         return (
             <div className={this.props.className}>
-                <div className={klass.CAROUSEL(true)}>
+                <div className={klass.CAROUSEL(true)} style={{width: this.props.width || '100%'}}>
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={node => this.itemsWrapper = node}>
                         <Swipe tagName="ul" {...swiperProps}>

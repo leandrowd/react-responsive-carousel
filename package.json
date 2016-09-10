@@ -31,7 +31,8 @@
     "prepublish-to-npm": "git pull && npm run build && git add . && git commit -m 'Prepare for publishing'",
     "publish-to-npm": "(git pull origin master && npm version patch && git push origin master && npm publish && git push --tags)",
     "prepublish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp prepublish",
-    "publish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp publish"
+    "publish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp publish",
+    "storybook": "start-storybook -p 9001 -s ./src -c .storybook"
   },
   "repository": {
     "type": "git",
@@ -42,13 +43,16 @@
   },
   "homepage": "http://leandrowd.github.io/react-responsive-carousel/",
   "devDependencies": {
+    "@kadira/storybook": "^2.12.1",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-jest": "^14.1.0",
+    "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "browserify": "^12.0.1",
     "connect-modrewrite": "^0.9.0",
+    "css-loader": "^0.25.0",
     "gh-pages": "^0.11.0",
     "gulp": "^3.8.9",
     "gulp-clean-css": "^2.0.12",
@@ -68,6 +72,8 @@
     "react-addons-test-utils": "^0.14.2",
     "react-dom": "^0.14.2",
     "reactify": "^0.15.2",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^2.1.1"
   },

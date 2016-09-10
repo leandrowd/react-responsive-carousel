@@ -3,7 +3,7 @@ module.exports = function has3d() {
         return false;
     }
 
-    var el = document.createElement('p'), 
+    var el = document.createElement('p'),
         has3d,
         transforms = {
             'webkitTransform':'-webkit-transform',
