@@ -25,6 +25,7 @@ module.exports = React.createClass({
         width: React.PropTypes.string,
         height: React.PropTypes.string,
         fullScreen: React.PropTypes.bool,
+        useKeyboardArrows: React.PropTypes.bool,
     },
 
     getDefaultProps () {
@@ -55,22 +56,14 @@ module.exports = React.createClass({
         }
     },
 
-    componentWillMount() {
-        // as the widths are calculated, we need to resize
-        // the carousel when the window is resized
-        window.addEventListener("resize", this.updateSizes);
-        // issue #2 - image loading smaller
-        window.addEventListener("DOMContentLoaded", this.updateSizes);
-    },
-
     componentWillUnmount() {
-        // removing listeners
-        window.removeEventListener("resize", this.updateSizes);
-        window.removeEventListener("DOMContentLoaded", this.updateSizes);
+        this.unbindEvents();
     },
 
     componentDidMount (nextProps) {
-        var images = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img');
+    	this.bindEvents();
+
+    	var images = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img');
         var initialImage = images && images[this.props.selectedItem];
 
         if (initialImage) {
@@ -79,6 +72,42 @@ module.exports = React.createClass({
         } else {
         	this.setMountState();
         }
+    },
+
+    bindEvents () {
+    	// as the widths are calculated, we need to resize
+        // the carousel when the window is resized
+        window.addEventListener("resize", this.updateSizes);
+        // issue #2 - image loading smaller
+        window.addEventListener("DOMContentLoaded", this.updateSizes);
+
+        if (this.props.useKeyboardArrows) {
+        	document.addEventListener("keydown", this.navigateWithKeyboard);
+        }
+    },
+
+    unbindEvents () {
+    	// removing listeners
+        window.removeEventListener("resize", this.updateSizes);
+        window.removeEventListener("DOMContentLoaded", this.updateSizes);
+
+        if (this.props.useKeyboardArrows) {
+        	document.removeEventListener("keydown", this.navigateWithKeyboard);
+        }
+    },
+
+    navigateWithKeyboard (e) {
+    	var nextKeys = ['ArrowDown', 'ArrowRight'];
+    	var prevKeys = ['ArrowUp', 'ArrowLeft'];
+    	var allowedKeys = nextKeys.concat(prevKeys);
+
+    	if (allowedKeys.indexOf(e.key) > -1) {
+    		if (nextKeys.indexOf(e.key) > -1) {
+    			this.increment();
+    		} else if (prevKeys.indexOf(e.key) > -1) {
+    			this.decrement();
+    		}
+    	}
     },
 
     updateSizes () {
