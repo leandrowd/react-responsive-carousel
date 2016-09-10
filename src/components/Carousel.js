@@ -60,63 +60,63 @@ module.exports = React.createClass({
     },
 
     componentDidMount (nextProps) {
-    	this.bindEvents();
+        this.bindEvents();
 
-    	var images = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img');
+        var images = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img');
         var initialImage = images && images[this.props.selectedItem];
 
         if (initialImage) {
-        	// if it's a carousel of images, we set the mount state after the first image is loaded
-			initialImage.addEventListener('load', this.setMountState);
+            // if it's a carousel of images, we set the mount state after the first image is loaded
+            initialImage.addEventListener('load', this.setMountState);
         } else {
-        	this.setMountState();
+            this.setMountState();
         }
     },
 
     bindEvents () {
-    	// as the widths are calculated, we need to resize
+        // as the widths are calculated, we need to resize
         // the carousel when the window is resized
         window.addEventListener("resize", this.updateSizes);
         // issue #2 - image loading smaller
         window.addEventListener("DOMContentLoaded", this.updateSizes);
 
         if (this.props.useKeyboardArrows) {
-        	document.addEventListener("keydown", this.navigateWithKeyboard);
+            document.addEventListener("keydown", this.navigateWithKeyboard);
         }
     },
 
     unbindEvents () {
-    	// removing listeners
+        // removing listeners
         window.removeEventListener("resize", this.updateSizes);
         window.removeEventListener("DOMContentLoaded", this.updateSizes);
 
         if (this.props.useKeyboardArrows) {
-        	document.removeEventListener("keydown", this.navigateWithKeyboard);
+            document.removeEventListener("keydown", this.navigateWithKeyboard);
         }
     },
 
     navigateWithKeyboard (e) {
-    	var nextKeys = ['ArrowDown', 'ArrowRight'];
-    	var prevKeys = ['ArrowUp', 'ArrowLeft'];
-    	var allowedKeys = nextKeys.concat(prevKeys);
+        var nextKeys = ['ArrowDown', 'ArrowRight'];
+        var prevKeys = ['ArrowUp', 'ArrowLeft'];
+        var allowedKeys = nextKeys.concat(prevKeys);
 
-    	if (allowedKeys.indexOf(e.key) > -1) {
-    		if (nextKeys.indexOf(e.key) > -1) {
-    			this.increment();
-    		} else if (prevKeys.indexOf(e.key) > -1) {
-    			this.decrement();
-    		}
-    	}
+        if (allowedKeys.indexOf(e.key) > -1) {
+            if (nextKeys.indexOf(e.key) > -1) {
+                this.increment();
+            } else if (prevKeys.indexOf(e.key) > -1) {
+                this.decrement();
+            }
+        }
     },
 
     updateSizes () {
-    	var isHorizontal = this.props.axis === 'horizontal';
-    	var firstItem = ReactDOM.findDOMNode(this.item0);
+        var isHorizontal = this.props.axis === 'horizontal';
+        var firstItem = ReactDOM.findDOMNode(this.item0);
         var itemSize = isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
 
         this.setState({
-        	itemSize: itemSize,
-        	wrapperSize: isHorizontal ? itemSize * this.props.children.length : itemSize
+            itemSize: itemSize,
+            wrapperSize: isHorizontal ? itemSize * this.props.children.length : itemSize
         });
     },
 

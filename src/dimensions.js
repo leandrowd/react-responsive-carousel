@@ -5,5 +5,5 @@ module.exports = {
 
 		width += parseInt(style.marginLeft) + parseInt(style.marginRight);
 		return width;
-	}	
-} 
+	}
+}
