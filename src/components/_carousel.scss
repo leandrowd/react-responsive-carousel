@@ -4,7 +4,6 @@
 	position: absolute;
 	z-index: 2;
 	top: 20px;
-	font-family: "m4d-icons";
 	background: none;
 	border: 0;
 	font-size: 32px;
@@ -12,6 +11,16 @@
 
 	&:hover {
 		@include opacity(1);
+	}
+
+	&.control-arrow {
+		&:before {
+			margin: 0 5px;
+			display: inline-block;
+			border-top: 10px solid transparent;
+			border-bottom: 10px solid transparent;
+			content: '';
+		}
 	}
 
 	&.control-disabled {
@@ -23,14 +32,14 @@
 	&.control-prev {
 		left: 0;
 		&:before {
-			content: '\e803';
+			border-right: 10px solid #fff;
 		}
 	}
 
 	&.control-next {
 		right: 0;
 		&:before {
-			content: '\e802';
+			border-left: 10px solid #fff;
 		}
 	}
 }
@@ -120,7 +129,7 @@
 			&:hover {
 				background: rgba(#000, .2);
 			}
-			
+
 		}
 	}
 
@@ -145,7 +154,7 @@
 				}
 			}
 		}
-	
+
 		&.axis-vertical {
 			-ms-box-orient: horizontal;
 			display: -webkit-box;
@@ -154,11 +163,11 @@
 			display: -moz-flex;
 			display: -webkit-flex;
 			display: flex;
-			
+
 			.slider {
-				-webkit-flex-direction: column; 
+				-webkit-flex-direction: column;
 				flex-direction: column;
-			}	
+			}
 		}
 	}
 
@@ -166,7 +175,7 @@
 		position: relative;
 		list-style: none;
 		width: 100%;
-		
+
 		&.animated {
 			@include transition(all, .35s, ease-in-out);
 			// activate hardware accelerated animations using translate property
@@ -195,7 +204,7 @@
 			font-size: 12px;
 			text-align: center;
 		}
-		
+
 		@include desktop {
 			padding-bottom: 0;
 

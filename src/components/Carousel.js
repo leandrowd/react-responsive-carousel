@@ -6,6 +6,9 @@ var CSSTranslate = require('../CSSTranslate');
 var Swipe = require('react-easy-swipe');
 var Thumbs = require('./Thumbs');
 
+require('../carousel.scss');
+
+
 // react-swipe was compiled using babel
 Swipe = Swipe.default;
 
