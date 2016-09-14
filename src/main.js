@@ -49,6 +49,33 @@ var DemoCarousel = React.createClass({
 });
 ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 
+var DemoCarouselVideos = React.createClass({
+    render() {
+        return (
+            <Carousel showThumbs={false} width="750">
+                <div>
+                    <iframe width="750" height="300" src="https://www.youtube.com/embed/n0F6hSpxaFc" />
+                </div>
+
+                <div>
+                    <iframe width="750" height="300" src="https://www.youtube.com/embed/C-y70ZOSzE0" />
+                </div>
+
+                <div>
+                    <iframe width="750" height="300" src="https://www.youtube.com/embed/IyTv_SR2uUo" />
+                </div>
+
+                <div>
+                    <iframe width="750" height="300" src="https://www.youtube.com/embed/3zrfGHQd4Bo" />
+                </div>
+            </Carousel>
+        );
+    }
+});
+
+ReactDOM.render(<DemoCarouselVideos />, document.querySelector('.demo-carousel-videos'));
+
+
 // Begin DemoSliderControls
 var DemoCarouselVertical = React.createClass({
     render() {
