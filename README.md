@@ -6,6 +6,9 @@
 #### Demo
 <http://leandrowd.github.io/react-responsive-carousel/>
 
+Check it out these [cool demos](http://react-responsive-carousel.js.org/storybook/) created using [storybook](https://getstorybook.io/). The source code for each example is available [here](https://github.com/leandrowd/react-responsive-carousel/blob/master/stories/index.js)
+
+
 #### Installing as a package
 `npm install react-responsive-carousel --save`
 

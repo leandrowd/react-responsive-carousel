@@ -30,9 +30,10 @@
     "build": "babel ./src -d lib --ignore '__tests__' && gulp styles:package copy:package",
     "prepublish-to-npm": "git pull && npm run build && git add . && git commit -m 'Prepare for publishing'",
     "publish-to-npm": "(git pull origin master && npm version patch && git push origin master && npm publish && git push --tags)",
-    "prepublish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp prepublish",
+    "prepublish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp prepublish && npm run build-storybook",
     "publish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp publish",
-    "storybook": "start-storybook -p 9001 -s ./src -c .storybook"
+    "storybook": "start-storybook -p 9001 -s ./src -c .storybook",
+    "build-storybook": "build-storybook -s ./src -o ./dist/storybook"
   },
   "repository": {
     "type": "git",

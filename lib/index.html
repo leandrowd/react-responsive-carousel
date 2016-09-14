@@ -16,14 +16,16 @@
 
 			<a href="https://travis-ci.org/leandrowd/react-responsive-carousel"><img src="https://travis-ci.org/leandrowd/react-responsive-carousel.svg?branch=master"></a>
 
-			<h2>Summary</h2>
+            <h2>Summary</h2>
 			<ul class="summary">
 				<li><a href="#install">Installing</a></li>
-				<li><a href="#demos">Demos</a>
+                <li><a href="#demos">Demos</a>
 					<ul>
 						<li><a href="#carousel">Carousel</a></li>
+                        <li><a href="#carousel-videos">Carousel with videos</a></li>
 						<li><a href="#carousel-vertical">Carousel vertical</a></li>
 						<li><a href="#clean-carousel">Clean carousel</a></li>
+                        <li><a href="#storybook">More demos with storybook</a></li>
 					</ul>
 				</li>
 				<li><a href="#props">Properties</a></li>
@@ -44,6 +46,13 @@
 					<script src="https://gist.github.com/leandrowd/b8a9385b0b4b03054dc5.js"></script>
 				</article>
 
+                <article class="demo">
+                    <h3 id="carousel-videos">Carousel with Videos</h3>
+                    <div class="example demo-carousel-videos" style="margin: auto;width: 750px;"></div>
+                    <h5>Code:</h5>
+                    <script src="https://gist.github.com/leandrowd/a3871b733b1b1a712b5f1ab3ccce592d.js"></script>
+                </article>
+
 				<article class="demo">
 					<h3 id="carousel-vertical">Carousel Vertical</h3>
 					<div class="example demo-carousel-vertical"></div>
@@ -58,7 +67,11 @@
 					<script src="https://gist.github.com/leandrowd/fcf3dcba5c12386c7d91.js"></script>
 				</article>
 
-
+                <article class="demo">
+                    <h3 id="storybook">Storybook</h3>
+                    <p>Check it out more demos available on our <a href="/storybook">storybook</a></p>
+                    <p>The source code for each example is available <a href="https://github.com/leandrowd/react-responsive-carousel/blob/master/stories/index.js">here</a>
+                </article>
 			</section>
 
 			<h2 id="props">Properties</h2>
@@ -69,6 +82,8 @@
 					<li>(Boolean) showIndicators (default: true, options: true, false)</li>
 					<li>(Boolean) showThumbs (default: true, options: true, false)</li>
 					<li>(Number) selectedItem (default: 0, options: any number between the first and the last index)</li>
+                    <li>(String) width (default: none, options: the size if it should be fixed)</li>
+                    <li>(Boolean) useKeyboardArrows (default: false, options: true, false)</li>
 					<li>(String) axis (default: "horizontal" | options: "horizontal", "vertical")</li>
 			        <li>(Function) onChange
 						<ul>
@@ -87,7 +102,6 @@
 					</li>
 				</ul>
 			</section>
-
 			<h2 id="contributing">Contributing</h2>
 			<p>Please, feel free to contributing. You may file an issue or submit a pull request!</p>
 		</div>

@@ -9,7 +9,7 @@ import '../src/examples/presentation/presentation.scss';
 
 const createCarouselItemImage = (index, options = {}) => (
     <div key={index}>
-        <img src={`assets/${index}.jpeg`} />
+        <img src={`/assets/${index}.jpeg`} />
         <p className="legend">Legend {index}</p>
     </div>
 );
@@ -108,7 +108,7 @@ storiesOf('Carousel', module)
 						<p>...and the carousel can be used to present something!</p>
 				</div>
 				<div key="content-3" className="my-slide content">
-						<img src="assets/meme.png" />
+						<img src="/assets/meme.png" />
 				</div>
 				<div key="content-4" className="my-slide content">
 						<p>See the <a href="./examples/presentation/presentation.scss">source code</a>...</p>
