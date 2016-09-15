@@ -2,20 +2,20 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="main.css"/>
 		<link rel="stylesheet" href="carousel.css"/>
 		<link href='http://fonts.googleapis.com/css?family=Roboto:100,700,400' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-        <!-- Google Analytics -->
-        <script>
-            window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-            ga('create', 'UA-62004510-2', 'auto');
-            ga('send', 'pageview');
-        </script>
-        <script async src='https://www.google-analytics.com/analytics.js'></script>
-        <!-- End Google Analytics -->
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-62004510-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
 
 		<a href="https://github.com/leandrowd/react-responsive-carousel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 		<div class="wrapper">
@@ -25,16 +25,16 @@
 
 			<a href="https://travis-ci.org/leandrowd/react-responsive-carousel"><img src="https://travis-ci.org/leandrowd/react-responsive-carousel.svg?branch=master"></a>
 
-            <h2>Storybook</h2>
-            <p>Check it out these <a href="/storybook">cool demos</a> created using <a href="https://getstorybook.io/">storybook</a>. The source code for each example is available <a href="https://github.com/leandrowd/react-responsive-carousel/blob/master/stories/index.js">here</a>.
+      <h2>Storybook</h2>
+      <p>Check it out these <a href="/storybook">cool demos</a> created using <a href="https://getstorybook.io/">storybook</a>. The source code for each example is available <a href="https://github.com/leandrowd/react-responsive-carousel/blob/master/stories/index.js">here</a>.
 
-            <h2>Summary</h2>
+      <h2>Summary</h2>
 			<ul class="summary">
 				<li><a href="#install">Installing</a></li>
-                <li><a href="#demos">Demos</a>
+        <li><a href="#demos">Demos</a>
 					<ul>
 						<li><a href="#carousel">Carousel</a></li>
-                        <li><a href="#carousel-videos">Carousel with videos</a></li>
+            <li><a href="#carousel-videos">Carousel with videos</a></li>
 						<li><a href="#carousel-vertical">Carousel vertical</a></li>
 						<li><a href="#clean-carousel">Clean carousel</a></li>
 					</ul>
@@ -57,12 +57,12 @@
 					<script src="https://gist.github.com/leandrowd/b8a9385b0b4b03054dc5.js"></script>
 				</article>
 
-                <article class="demo">
-                    <h3 id="carousel-videos">Carousel with Videos</h3>
-                    <div class="example demo-carousel-videos" style="margin: auto;width: 750px;"></div>
-                    <h5>Code:</h5>
-                    <script src="https://gist.github.com/leandrowd/a3871b733b1b1a712b5f1ab3ccce592d.js"></script>
-                </article>
+        <article class="demo">
+          <h3 id="carousel-videos">Carousel with Videos</h3>
+          <div class="example demo-carousel-videos" style="margin: auto;width: 750px;"></div>
+          <h5>Code:</h5>
+          <script src="https://gist.github.com/leandrowd/a3871b733b1b1a712b5f1ab3ccce592d.js"></script>
+        </article>
 
 				<article class="demo">
 					<h3 id="carousel-vertical">Carousel Vertical</h3>
@@ -86,11 +86,12 @@
 					<li>(Boolean) showStatus (default: true, options: true, false)</li>
 					<li>(Boolean) showIndicators (default: true, options: true, false)</li>
 					<li>(Boolean) showThumbs (default: true, options: true, false)</li>
+					<li>(Boolean) infiniteLoop (default: false, options: true, false)</li>
 					<li>(Number) selectedItem (default: 0, options: any number between the first and the last index)</li>
-                    <li>(String) width (default: none, options: the size if it should be fixed)</li>
-                    <li>(Boolean) useKeyboardArrows (default: false, options: true, false)</li>
+          <li>(String) width (default: none, options: the size if it should be fixed)</li>
+          <li>(Boolean) useKeyboardArrows (default: false, options: true, false)</li>
 					<li>(String) axis (default: "horizontal" | options: "horizontal", "vertical")</li>
-			        <li>(Function) onChange
+	        <li>(Function) onChange
 						<ul>
 							<li>Triggered when the carousel move</li>
 						</ul>
