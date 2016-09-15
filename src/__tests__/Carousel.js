@@ -9,21 +9,21 @@ describe("Slider", function() {
 	jest.autoMockOff();
 
 	var Carousel = require('../components/Carousel');
-	
+
 	var component, componentInstance;
 
 	function renderComponent (props) {
 		componentInstance = TestUtils.renderIntoDocument(
-	  		<Carousel {...props} showArrows={true}>
-	  			<img src="assets/1.jpeg" />
+  		<Carousel {...props} showArrows={true}>
+  			<img src="assets/1.jpeg" />
 				<img src="assets/2.jpeg" />
 				<img src="assets/3.jpeg" />
 				<img src="assets/4.jpeg" />
 				<img src="assets/5.jpeg" />
 				<img src="assets/6.jpeg" />
 				<img src="assets/7.jpeg" />
-	  		</Carousel>
-	  	);
+  		</Carousel>
+  	);
 	}
 
 	beforeEach(function () {
@@ -32,14 +32,14 @@ describe("Slider", function() {
 
 	afterEach(function() {
 		if (componentInstance && componentInstance.isMounted()) {
-	      // Only components with a parent will be unmounted
-	      ReactDOM.unmountComponentAtNode(document);
-	    }
-  	});
+      // Only components with a parent will be unmounted
+      ReactDOM.unmountComponentAtNode(document);
+    }
+	});
 
-  	describe("Basics", function () {
-  		describe("changeItem", function () {
-  			beforeEach(function () {
+	describe("Basics", function () {
+		describe("changeItem", function () {
+			beforeEach(function () {
 				componentInstance.selectItem = jest.genMockFunction();
 				componentInstance.getFirstItem = jest.genMockFunction().mockReturnValue(2);
 				componentInstance.changeItem({
@@ -49,15 +49,15 @@ describe("Slider", function() {
 				});
 			});
 
-  			it("Should call selectItem sending selectedItem as 1", function () {
-  				expect(componentInstance.selectItem.mock.calls[0][0]).toEqual({
+			it("Should call selectItem sending selectedItem as 1", function () {
+				expect(componentInstance.selectItem.mock.calls[0][0]).toEqual({
 					selectedItem: 1
 				});
-  			});
-  		});
+			});
+		});
 
-  		describe("selectItem", function () {
-  			beforeEach(function () {
+		describe("selectItem", function () {
+			beforeEach(function () {
 				componentInstance.setState = jest.genMockFunction();
 				componentInstance.handleOnChange = jest.genMockFunction();
 				componentInstance.selectItem({
@@ -66,19 +66,19 @@ describe("Slider", function() {
 				});
 			});
 
-  			it("Should call setState sending the argument received", function () {
-  				expect(componentInstance.setState.mock.calls[0][0]).toEqual({
+			it("Should call setState sending the argument received", function () {
+				expect(componentInstance.setState.mock.calls[0][0]).toEqual({
 					selectedItem: 1,
 					ramdomNumber: 2
 				});
-  			});
+			});
 
-  			it("Should call handleOnChange sending only selectedItem", function () {
-  				console.log(componentInstance.handleOnChange.mock.calls[0][0]);
+			it("Should call handleOnChange sending only selectedItem", function () {
+				console.log(componentInstance.handleOnChange.mock.calls[0][0]);
 				expect(componentInstance.handleOnChange.mock.calls[0][0]).toBe(1);
-  			});
-  		});
-  	});
+			});
+		});
+	});
 
 	it("Should have the right state at the begin", function () {
 		expect(componentInstance.state.selectedItem).toBe(0);
@@ -113,7 +113,7 @@ describe("Slider", function() {
 	describe("Selecting", function () {
 		it("Should set the index as selectedItem when clicked", function () {
 			expect(componentInstance.state.selectedItem).toBe(0);
-			
+
 			TestUtils.Simulate.click(componentInstance['item1']);
 			expect(componentInstance.state.selectedItem).toBe(1);
 
@@ -123,7 +123,7 @@ describe("Slider", function() {
 
 		it("Should call a given onSelectItem function when an item is clicked", function () {
 			var mockedFunction = jest.genMockFunction();
-			
+
 			renderComponent({onClickItem: mockedFunction});
 
 			TestUtils.Simulate.click(componentInstance['item1']);
@@ -139,22 +139,37 @@ describe("Slider", function() {
 		it("Should disable the left arrow if we are showing the first item", function () {
 			TestUtils.Simulate.click(componentInstance['item0']);
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(1);
-		});	
+		});
 
 		it("Should enable the left arrow if we are showing other than the first item", function () {
 			TestUtils.Simulate.click(componentInstance['item1']);
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
-		});	
+		});
 
 		it("Should disable the right arrow if we reach the lastPosition", function () {
 			TestUtils.Simulate.click(componentInstance['item1']);
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
-			
+
 			TestUtils.Simulate.click(componentInstance['item6']);
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(1);
-		});		
-	})	
+		});
+
+		// describe("Infinite Loop", function () {
+		// 	beforeEach(function () {
+		// 		componentInstance.infiniteLoop = true;
+		// 	});
+		//
+		// 	it("Should enable the prev arrow if we are showing the first item", function () {
+		// 		TestUtils.Simulate.click(componentInstance['item0']);
+		// 		expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
+		// 	});
+		//
+		// 	it("Should enable the right arrow if we reach the lastPosition", function () {
+		// 		TestUtils.Simulate.click(componentInstance['item6']);
+		// 		expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
+		// 	});
+		// });
+	})
 
 	jest.autoMockOn();
 });
-
