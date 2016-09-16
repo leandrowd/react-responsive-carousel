@@ -55,10 +55,6 @@ module.exports = React.createClass({
         }
     },
 
-    componentWillUnmount() {
-        this.unbindEvents();
-    },
-
     componentDidMount (nextProps) {
         this.bindEvents();
 
@@ -71,6 +67,10 @@ module.exports = React.createClass({
         } else {
             this.setMountState();
         }
+    },
+
+    componentWillUnmount() {
+        this.unbindEvents();
     },
 
     bindEvents () {
