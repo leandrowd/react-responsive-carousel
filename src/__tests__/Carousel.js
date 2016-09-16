@@ -154,21 +154,23 @@ describe("Slider", function() {
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(1);
 		});
 
-		// describe("Infinite Loop", function () {
-		// 	beforeEach(function () {
-		// 		componentInstance.infiniteLoop = true;
-		// 	});
-		//
-		// 	it("Should enable the prev arrow if we are showing the first item", function () {
-		// 		TestUtils.Simulate.click(componentInstance['item0']);
-		// 		expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
-		// 	});
-		//
-		// 	it("Should enable the right arrow if we reach the lastPosition", function () {
-		// 		TestUtils.Simulate.click(componentInstance['item6']);
-		// 		expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
-		// 	});
-		// });
+		describe("Infinite Loop", function () {
+			beforeEach(function () {
+				renderComponent({
+                    infiniteLoop: true
+                })
+			});
+
+			it("Should enable the prev arrow if we are showing the first item", function () {
+				TestUtils.Simulate.click(componentInstance['item0']);
+				expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
+			});
+
+			it("Should enable the right arrow if we reach the lastPosition", function () {
+				TestUtils.Simulate.click(componentInstance['item6']);
+				expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
+			});
+		});
 	})
 
 	jest.autoMockOn();
