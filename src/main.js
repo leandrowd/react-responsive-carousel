@@ -18,7 +18,7 @@ function onClickThumb() {
 var DemoCarousel = React.createClass({
     render() {
         return (
-            <Carousel showArrows={true} onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb}>
+            <Carousel showArrows={true} infiniteLoop={true} onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb}>
                 <div>
                     <img src="assets/1.jpeg" />
                     <p className="legend">Legend 1</p>
@@ -145,4 +145,3 @@ var DemoCleanCarousel = React.createClass({
     }
 });
 ReactDOM.render(<DemoCleanCarousel />, document.querySelector('.demo-clean-carousel'));
-

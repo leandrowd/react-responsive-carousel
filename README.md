@@ -51,6 +51,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | showStatus | `boolean` | `true` | show index of the current item. i.e: (1/8) |
 | showIndicators | `boolean` | `true` | show little dots at the bottom with links for changing the item |
 | showThumbs | `boolean` | `true` | show thumbnails of the images |
+| infiniteLoop | `boolean` | `false` | infinite loop sliding  |
 | selectedItem | `number` | `0` | selects an item though props / defines the initial selected item |
 | axis       | `string`  | `horizontal` | changes orientation - accepts `horizontal` and `vertical` |
 | onChange   | `function` | - | Fired when changing positions |
