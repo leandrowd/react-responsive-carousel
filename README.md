@@ -3,16 +3,16 @@
 [![npm version](https://badge.fury.io/js/react-responsive-carousel.svg)](https://badge.fury.io/js/react-responsive-carousel)
 [![Build Status](https://travis-ci.org/leandrowd/react-responsive-carousel.svg?branch=master)](https://travis-ci.org/leandrowd/react-responsive-carousel)
 
-#### Demo
+### Demo
 <http://leandrowd.github.io/react-responsive-carousel/>
 
 Check it out these [cool demos](http://react-responsive-carousel.js.org/storybook/) created using [storybook](https://getstorybook.io/). The source code for each example is available [here](https://github.com/leandrowd/react-responsive-carousel/blob/master/stories/index.js)
 
 
-#### Installing as a package
+### Installing as a package
 `npm install react-responsive-carousel --save`
 
-#### Usage
+### Usage
 
 ```javascript
 var React = require('react');
@@ -60,24 +60,45 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | useKeyboardArrows   | `boolean` | false | Adds support to next and prev through keyboard arrows |
 
 
-#### Contributing
-Please, feel free to contribute. You may file an issue or submit a pull request!
+=======================
 
-##### Setting up development environment
+### Contributing
+Feel free to submit a PR or raise issues. When submitting a PR, please:
+- add the required tests and an example of usage to `stories/index.js`
+- don't submit changes to the `/lib` folder as it will be generated again after the merge.
+- ensure you have the editorConfig plugin or the same code style settings as defined in `.editorConfig` to avoid excess of spaces in diffs
+
+=======================
+
+### Setting up development environment
 - `git clone git@github.com:leandrowd/react-responsive-carousel.git`
 - `npm install`
 - `npm start`
-- Open your favourite browser on `localhost:8000` - livereload will be enabled
+- Open your favourite browser on `localhost:8000` - livereload will be enabled and tests will run on each change
 
-##### Running tests
+> The fastest dev environment is on node 6. If you have `nvm` installed, just run `nvm use 6`. Tests in travis will run on node 4 and 6
+
+#### Running only tests
 - `npm test`
 
-##### Publishing to npm
+#### Running storybook
+- `npm run storybook`
+
+=======================
+
+### Only after merged back to master
+
+#### Publish to npm
 - `npm run publish-to-npm`
 
-##### Pubishing to gh-pages
+#### Pubish to gh-pages
 - `npm run publish-to-gh-pages`
+
+=======================
 
 ### Examples
 #### webpack + es6 setup
 <https://github.com/leandrowd/demo-react-responsive-carousel-es6>
+
+#### Storybook
+<http://react-responsive-carousel.js.org/storybook/>
