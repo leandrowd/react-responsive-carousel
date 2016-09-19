@@ -62,8 +62,13 @@ storiesOf('Carousel', module)
         { baseChildren.props.children }
     </Carousel>
   ))
-  .add('fixed height', () => (
-    <Carousel height="700">
+  .add('auto play', () => (
+    <Carousel autoPlay={true} infiniteLoop={true}>
+        { baseChildren.props.children }
+    </Carousel>
+  ))
+  .add('auto play stopping on hover', () => (
+    <Carousel autoPlay={true} stopOnHover={true} infiniteLoop={true}>
         { baseChildren.props.children }
     </Carousel>
   ))
