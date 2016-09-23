@@ -341,12 +341,14 @@ module.exports = React.createClass({
         if (isHorizontal) {
             merge(swiperProps, {
                 onSwipeLeft: this.increment,
-                onSwipeRight: this.decrement
+                onSwipeRight: this.decrement,
+                direction: Swipe.horizontal
             });
         } else {
             merge(swiperProps, {
                 onSwipeUp: this.decrement,
-                onSwipeDown: this.increment
+                onSwipeDown: this.increment,
+                direction: Swipe.vertical
             });
 
             swiperProps.style.height = this.state.itemSize;
