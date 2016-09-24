@@ -42,7 +42,7 @@ module.exports = React.createClass({
             useKeyboardArrows: false,
             autoPlay: false,
             stopOnHover: true,
-            interval: 5000
+            interval: 3000
         }
     },
 

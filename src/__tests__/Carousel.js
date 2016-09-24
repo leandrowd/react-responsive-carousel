@@ -10,7 +10,7 @@ describe("Slider", function() {
 
 	var Carousel = require('../components/Carousel');
 
-	var component, componentInstance;
+	var component, componentInstance, totalChildren, lastItemIndex;
 
 	function renderComponent (props) {
 		componentInstance = TestUtils.renderIntoDocument(
@@ -24,6 +24,9 @@ describe("Slider", function() {
 				<img src="assets/7.jpeg" />
 	  		</Carousel>
 	  	);
+
+        totalChildren = componentInstance.props.children.length;
+        lastItemIndex = totalChildren - 1;
 	}
 
 	beforeEach(function () {
@@ -338,25 +341,106 @@ describe("Slider", function() {
 			TestUtils.Simulate.click(componentInstance['item6']);
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(1);
 		});
+	});
 
-        describe("Infinite Loop", function () {
-            beforeEach(function () {
-                renderComponent({
-                    infiniteLoop: true
-                })
+    describe("Infinite Loop", function () {
+        beforeEach(function () {
+            renderComponent({
+                infiniteLoop: true
+            })
+        });
+
+        it("Should enable the prev arrow if we are showing the first item", function () {
+            TestUtils.Simulate.click(componentInstance['item0']);
+            expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
+        });
+
+        it("Should enable the right arrow if we reach the lastPosition", function () {
+            TestUtils.Simulate.click(componentInstance['item6']);
+            expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
+        });
+
+        it('Should move to the first one if increment was called in the last', () => {
+            componentInstance.setState({
+                selectedItem: lastItemIndex
             });
 
-            it("Should enable the prev arrow if we are showing the first item", function () {
-                TestUtils.Simulate.click(componentInstance['item0']);
-                expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
-            });
+            expect(componentInstance.state.selectedItem).toBe(lastItemIndex);
 
-            it("Should enable the right arrow if we reach the lastPosition", function () {
-                TestUtils.Simulate.click(componentInstance['item6']);
-                expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
+            componentInstance.increment();
+
+            expect(componentInstance.state.selectedItem).toBe(0);
+        });
+
+        it('Should move to the last one if decrement was called in the first', () => {
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            componentInstance.decrement();
+
+            expect(componentInstance.state.selectedItem).toBe(lastItemIndex);
+        });
+    });
+
+    describe('Auto Play', () => {
+        beforeEach(function () {
+            jest.useFakeTimers();
+            window.addEventListener = jest.genMockFunction();
+
+            renderComponent({
+                autoPlay: true
             });
         });
-	});
+
+        afterEach(() => {
+            jest.useRealTimers();
+        });
+
+        it('Should change items automatically', () => {
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(2);
+        });
+
+        it('Should not move automatically if hovering', () => {
+            componentInstance.stopOnHover();
+
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            componentInstance.autoPlay();
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+        });
+    });
+
+    describe('For Mobile', () => {
+        describe('onSwipeMove', () => {
+            it('Should return true to stop scrolling if there was movement in the same direction as the carousel axis', () => {
+                expect(componentInstance.onSwipeMove({
+                    x: 10,
+                    y: 0
+                })).toBe(true);
+            });
+
+            it('Should return false to allow scrolling if there was no movement in the same direction as the carousel axis', () => {
+                expect(componentInstance.onSwipeMove({
+                    x: 0,
+                    y: 10
+                })).toBe(false);
+            });
+        });
+    });
 
 	jest.autoMockOn();
 });
