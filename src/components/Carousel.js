@@ -230,18 +230,19 @@ module.exports = React.createClass({
         var finalBoundry = - (this.props.children.length - 1) * 100;
 
         var axisDelta = isHorizontal ? delta.x : delta.y;
+        var handledDelta = axisDelta;
 
         // prevent user from swiping left out of boundaries
         if (currentPosition === initialBoundry && axisDelta > 0) {
-            axisDelta = 0;
+            handledDelta = 0;
         }
 
         // prevent user from swiping right out of boundaries
         if (currentPosition === finalBoundry && axisDelta < 0) {
-            axisDelta = 0;
+            handledDelta = 0;
         }
 
-        var position = currentPosition + (100 / (this.state.wrapperSize / axisDelta)) + '%';
+        var position = currentPosition + (100 / (this.state.wrapperSize / handledDelta)) + '%';
 
         [
             'WebkitTransform',
@@ -253,6 +254,9 @@ module.exports = React.createClass({
         ].forEach((prop) => {
             list.style[prop] = CSSTranslate(position, this.props.axis);
         });
+
+        // should prevent default?
+        return axisDelta !== 0;
     },
 
     decrement (positions){
