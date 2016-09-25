@@ -22,9 +22,10 @@ module.exports = React.createClass({
         onClickItem: React.PropTypes.func,
         onClickThumb: React.PropTypes.func,
         onChange: React.PropTypes.func,
-        axis: React.PropTypes.string,
+        axis: React.PropTypes.oneOf(['horizontal', 'vertical']),
         width: React.PropTypes.string,
         useKeyboardArrows: React.PropTypes.bool,
+        swipeScrollTolerance: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string])
     },
 
     getDefaultProps () {
@@ -36,7 +37,8 @@ module.exports = React.createClass({
             infiniteLoop: false,
             selectedItem: 0,
             axis: 'horizontal',
-            useKeyboardArrows: false
+            useKeyboardArrows: false,
+            swipeScrollTolerance: 5
         }
     },
 
@@ -208,8 +210,8 @@ module.exports = React.createClass({
             list.style[prop] = CSSTranslate(position, this.props.axis);
         });
 
-        // should prevent default?
-        return axisDelta !== 0;
+        // allows scroll if the swipe was within the tolerance
+        return Math.abs(axisDelta) > this.props.swipeScrollTolerance;
     },
 
     decrement (positions){
