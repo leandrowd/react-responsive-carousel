@@ -46,7 +46,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 ```
 
 | Attributes | Type | Default | Description |
-| :--------- | :--: | :-----: | ----------- |
+| :--------- | :--: | :-----: | :----------- |
 | showArrows | `boolean` | `true` | show prev and next arrows |
 | showStatus | `boolean` | `true` | show index of the current item. i.e: (1/8) |
 | showIndicators | `boolean` | `true` | show little dots at the bottom with links for changing the item |
@@ -62,6 +62,8 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | autoPlay   | `boolean` | false | Auto play |
 | stopOnHover   | `boolean` | true | Stop auto play while mouse is over the carousel |
 | interval   | `number` | `5000` | Interval of auto play |
+| useKeyboardArrows   | `boolean` | `false` | Adds support to next and prev through keyboard arrows |
+| swipeScrollTolerance  | `number` | `5` | Allows scroll when the swipe movement occurs in a different direction than the carousel axis and within the tolerance - Increase for loose - Decrease for strict | 
 
 
 =======================
