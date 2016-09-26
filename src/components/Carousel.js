@@ -25,6 +25,9 @@ module.exports = React.createClass({
         axis: React.PropTypes.oneOf(['horizontal', 'vertical']),
         width: React.PropTypes.string,
         useKeyboardArrows: React.PropTypes.bool,
+        autoPlay: React.PropTypes.bool,
+        stopOnHover: React.PropTypes.bool,
+        interval: React.PropTypes.number,
         swipeScrollTolerance: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string])
     },
 
@@ -38,6 +41,9 @@ module.exports = React.createClass({
             selectedItem: 0,
             axis: 'horizontal',
             useKeyboardArrows: false,
+            autoPlay: false,
+            stopOnHover: true,
+            interval: 3000,
             swipeScrollTolerance: 5
         }
     },
@@ -50,7 +56,7 @@ module.exports = React.createClass({
         }
     },
 
-    componentWillReceiveProps (props, state) {
+    componentWillReceiveProps (props) {
         if (props.selectedItem !== this.state.selectedItem) {
             this.updateSizes();
             this.setState({
@@ -61,6 +67,7 @@ module.exports = React.createClass({
 
     componentDidMount (nextProps) {
         this.bindEvents();
+        this.setupAutoPlay();
 
         var images = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img');
         var initialImage = images && images[this.props.selectedItem];
@@ -75,6 +82,46 @@ module.exports = React.createClass({
 
     componentWillUnmount() {
         this.unbindEvents();
+        this.destroyAutoPlay();
+    },
+
+    setupAutoPlay () {
+        if (this.props.autoPlay) {
+            this.autoPlay();
+
+            if (this.props.stopOnHover) {
+                var carouselWrapper = ReactDOM.findDOMNode(this.carouselWrapper);
+                carouselWrapper.addEventListener('mouseenter', this.stopOnHover);
+                carouselWrapper.addEventListener('mouseleave', this.autoPlay);
+            }
+        }
+    },
+
+    destroyAutoPlay () {
+        if (this.props.autoPlay) {
+            this.clearAutoPlay();
+
+            if (this.props.stopOnHover) {
+                var carouselWrapper = ReactDOM.findDOMNode(this.carouselWrapper);
+                carouselWrapper.removeEventListener('mousemove', this.stopOnHover);
+                carouselWrapper.removeEventListener('mouseleave', this.autoPlay);
+            }
+        }
+    },
+
+    autoPlay () {
+        this.timer = setTimeout(() => {
+            this.increment();
+            this.autoPlay();
+        }, this.props.interval);
+    },
+
+    clearAutoPlay () {
+        clearTimeout(this.timer);
+    },
+
+    stopOnHover () {
+        this.clearAutoPlay();
     },
 
     bindEvents () {
@@ -360,7 +407,7 @@ module.exports = React.createClass({
         }
 
         return (
-            <div className={this.props.className}>
+            <div className={this.props.className} ref={node => this.carouselWrapper = node}>
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width || '100%'}}>
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={node => this.itemsWrapper = node}>

@@ -1,18 +1,18 @@
-var React = require('react');
-var TestUtils = require('react-addons-test-utils');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
+import ReactDOM from 'react-dom';
 
 describe("Slider", function() {
-	var findByTag = TestUtils.scryRenderedDOMComponentsWithTag;
-	var findByClass = TestUtils.scryRenderedDOMComponentsWithClass;
+	const findByTag = TestUtils.scryRenderedDOMComponentsWithTag;
+	const findByClass = TestUtils.scryRenderedDOMComponentsWithClass;
 
 	jest.autoMockOff();
 
-	var Carousel = require('../components/Carousel');
+	const Carousel = require('../components/Carousel');
 
-	var component, componentInstance;
+	let component, componentInstance, totalChildren, lastItemIndex;
 
-	function renderComponent (props) {
+	const renderComponent = props => {
 		componentInstance = TestUtils.renderIntoDocument(
 	  		<Carousel {...props}>
 	  			<img src="assets/1.jpeg" />
@@ -24,9 +24,12 @@ describe("Slider", function() {
 				<img src="assets/7.jpeg" />
 	  		</Carousel>
 	  	);
+
+        totalChildren = componentInstance.props.children.length;
+        lastItemIndex = totalChildren - 1;
 	}
 
-	beforeEach(function () {
+	beforeEach(() => {
 		renderComponent({});
 	});
 
@@ -37,39 +40,43 @@ describe("Slider", function() {
 	    }
   	});
 
-  	describe("Basics", function () {
+  	describe("Basics", () => {
         describe("DisplayName", () => {
-            it('Should be Slider', function () {
+            it('should be Slider', () => {
                 expect(Carousel.displayName).toBe('Slider');
             });
         });
 
         describe("Default Props", () => {
-            var props = {
+            const props = {
                 showIndicators: true,
                 showArrows: true,
                 showStatus:true,
                 showThumbs:true,
+                infiniteLoop: false,
                 selectedItem: 0,
                 axis: 'horizontal',
-                useKeyboardArrows: false
+                useKeyboardArrows: false,
+                autoPlay: false,
+                stopOnHover: true,
+                interval: 3000
             };
 
             Object.keys(props).forEach(prop => {
-                it(`Should have ${props} as ${props[prop]}`, function () {
+                it(`should have ${prop} as ${props[prop]}`, () => {
                     expect(componentInstance.props[prop]).toBe(props[prop]);
                 });
             });
         });
 
         describe("Initial State", () => {
-            var props = {
+            const props = {
                 selectedItem: 0,
                 hasMount: false
             };
 
             Object.keys(props).forEach(prop => {
-                it(`Should have ${props} as ${props[prop]}`, function () {
+                it(`should have ${prop} as ${props[prop]}`, () => {
                     expect(componentInstance.state.selectedItem).toBe(0);
                     expect(componentInstance.state.hasMount).toBe(false);
                 });
@@ -83,7 +90,7 @@ describe("Slider", function() {
             componentInstance.componentDidMount();
 
         });
-        it("Should bind the events", () => {
+        it("should bind the events", () => {
             expect(componentInstance.bindEvents.mock.calls.length).toBe(1);
         });
     });
@@ -94,7 +101,7 @@ describe("Slider", function() {
             componentInstance.componentWillUnmount();
 
         });
-        it("Should unbind the events", () => {
+        it("should unbind the events", () => {
             expect(componentInstance.unbindEvents.mock.calls.length).toBe(1);
         });
     });
@@ -107,15 +114,15 @@ describe("Slider", function() {
                 componentInstance.bindEvents();
             });
 
-            it("Should bind resize to updateSizes", () => {
+            it("should bind resize to updateSizes", () => {
                 expect(window.addEventListener.mock.calls[0]).toEqual(['resize', componentInstance.updateSizes]);
             });
 
-            it("Should bind DOMContentLoaded to updateSizes", () => {
+            it("should bind DOMContentLoaded to updateSizes", () => {
                 expect(window.addEventListener.mock.calls[1]).toEqual(['DOMContentLoaded', componentInstance.updateSizes]);
             });
 
-            it("Should not bind keydown to navigateWithKeyboard", () => {
+            it("should not bind keydown to navigateWithKeyboard", () => {
                 expect(document.addEventListener.mock.calls.length).toBe(0);
             });
         });
@@ -131,15 +138,15 @@ describe("Slider", function() {
                 componentInstance.bindEvents();
             });
 
-            it("Should bind resize to updateSizes", () => {
+            it("should bind resize to updateSizes", () => {
                 expect(window.addEventListener.mock.calls[0]).toEqual(['resize', componentInstance.updateSizes]);
             });
 
-            it("Should bind DOMContentLoaded to updateSizes", () => {
+            it("should bind DOMContentLoaded to updateSizes", () => {
                 expect(window.addEventListener.mock.calls[1]).toEqual(['DOMContentLoaded', componentInstance.updateSizes]);
             });
 
-            it("Should bind keydown to navigateWithKeyboard", () => {
+            it("should bind keydown to navigateWithKeyboard", () => {
                 expect(document.addEventListener.mock.calls[0]).toEqual(['keydown', componentInstance.navigateWithKeyboard]);
             });
         })
@@ -153,15 +160,15 @@ describe("Slider", function() {
                 componentInstance.unbindEvents();
             });
 
-            it("Should unbind resize to updateSizes", () => {
+            it("should unbind resize to updateSizes", () => {
                 expect(window.removeEventListener.mock.calls[0]).toEqual(['resize', componentInstance.updateSizes]);
             });
 
-            it("Should unbind DOMContentLoaded to updateSizes", () => {
+            it("should unbind DOMContentLoaded to updateSizes", () => {
                 expect(window.removeEventListener.mock.calls[1]).toEqual(['DOMContentLoaded', componentInstance.updateSizes]);
             });
 
-            it("Should not unbind keydown to navigateWithKeyboard", () => {
+            it("should not unbind keydown to navigateWithKeyboard", () => {
                 expect(document.removeEventListener.mock.calls.length).toBe(0);
             });
         });
@@ -177,15 +184,15 @@ describe("Slider", function() {
                 componentInstance.unbindEvents();
             });
 
-            it("Should unbind resize to updateSizes", () => {
+            it("should unbind resize to updateSizes", () => {
                 expect(window.removeEventListener.mock.calls[0]).toEqual(['resize', componentInstance.updateSizes]);
             });
 
-            it("Should unbind DOMContentLoaded to updateSizes", () => {
+            it("should unbind DOMContentLoaded to updateSizes", () => {
                 expect(window.removeEventListener.mock.calls[1]).toEqual(['DOMContentLoaded', componentInstance.updateSizes]);
             });
 
-            it("Should unbind keydown to navigateWithKeyboard", () => {
+            it("should unbind keydown to navigateWithKeyboard", () => {
                 expect(document.removeEventListener.mock.calls[0]).toEqual(['keydown', componentInstance.navigateWithKeyboard]);
             });
         })
@@ -230,8 +237,8 @@ describe("Slider", function() {
         });
     });
 
-    describe("changeItem", function () {
-        beforeEach(function () {
+    describe("changeItem", () => {
+        beforeEach(() => {
             componentInstance.selectItem = jest.genMockFunction();
             componentInstance.getFirstItem = jest.genMockFunction().mockReturnValue(2);
             componentInstance.changeItem({
@@ -241,15 +248,15 @@ describe("Slider", function() {
             });
         });
 
-        it("Should call selectItem sending selectedItem as 1", function () {
+        it("should call selectItem sending selectedItem as 1", () => {
             expect(componentInstance.selectItem.mock.calls[0][0]).toEqual({
                 selectedItem: 1
             });
         });
     });
 
-    describe("selectItem", function () {
-        beforeEach(function () {
+    describe("selectItem", () => {
+        beforeEach(() => {
             componentInstance.setState = jest.genMockFunction();
             componentInstance.handleOnChange = jest.genMockFunction();
             componentInstance.selectItem({
@@ -258,35 +265,35 @@ describe("Slider", function() {
             });
         });
 
-        it("Should call setState sending the argument received", function () {
+        it("should call setState sending the argument received", () => {
             expect(componentInstance.setState.mock.calls[0][0]).toEqual({
                 selectedItem: 1,
                 ramdomNumber: 2
             });
         });
 
-        it("Should call handleOnChange sending only selectedItem", function () {
+        it("should call handleOnChange sending only selectedItem", () => {
             expect(componentInstance.handleOnChange.mock.calls[0][0]).toBe(1);
         });
     });
 
-	it("Should add a thumb-wrapper container", function () {
+	it("should add a thumb-wrapper container", () => {
 		expect(findByClass(componentInstance, 'thumbs-wrapper').length).toBe(1);
 	});
 
-	describe("Moving", function () {
-		beforeEach(function () {
+	describe("Moving", () => {
+		beforeEach(() => {
 			componentInstance.showArrows = true;
 			componentInstance.lastPosition = 3;
 			componentInstance.visibleItems = 3;
 		});
 
-		it("Should set the selectedItem from the props", function () {
+		it("should set the selectedItem from the props", () => {
 			renderComponent({selectedItem: 3});
 			expect(componentInstance.state.selectedItem).toBe(3);
 		});
 
-		it("Should update the position of the Carousel if selectedItem is changed", function () {
+		it("should update the position of the Carousel if selectedItem is changed", () => {
 			TestUtils.Simulate.click(componentInstance['item2']);
 			expect(componentInstance.state.selectedItem).toBe(2);
 
@@ -295,8 +302,8 @@ describe("Slider", function() {
 		});
 	})
 
-	describe("Selecting", function () {
-		it("Should set the index as selectedItem when clicked", function () {
+	describe("Selecting", () => {
+		it("should set the index as selectedItem when clicked", () => {
 			expect(componentInstance.state.selectedItem).toBe(0);
 
 			TestUtils.Simulate.click(componentInstance['item1']);
@@ -306,7 +313,7 @@ describe("Slider", function() {
 			expect(componentInstance.state.selectedItem).toBe(3);
 		});
 
-		it("Should call a given onSelectItem function when an item is clicked", function () {
+		it("should call a given onSelectItem function when an item is clicked", () => {
 			var mockedFunction = jest.genMockFunction();
 
 			renderComponent({onClickItem: mockedFunction});
@@ -316,47 +323,128 @@ describe("Slider", function() {
 		});
 	})
 
-	describe("Navigating", function () {
-		beforeEach(function () {
+	describe("Navigating", () => {
+		beforeEach(() => {
 			componentInstance.showArrows = true;
 		});
 
-		it("Should disable the left arrow if we are showing the first item", function () {
+		it("should disable the left arrow if we are showing the first item", () => {
 			TestUtils.Simulate.click(componentInstance['item0']);
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(1);
 		});
 
-		it("Should enable the left arrow if we are showing other than the first item", function () {
+		it("should enable the left arrow if we are showing other than the first item", () => {
 			TestUtils.Simulate.click(componentInstance['item1']);
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
 		});
 
-		it("Should disable the right arrow if we reach the lastPosition", function () {
+		it("should disable the right arrow if we reach the lastPosition", () => {
 			TestUtils.Simulate.click(componentInstance['item1']);
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
 
 			TestUtils.Simulate.click(componentInstance['item6']);
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(1);
 		});
+	});
 
-        describe("Infinite Loop", function () {
-            beforeEach(function () {
-                renderComponent({
-                    infiniteLoop: true
-                })
+    describe("Infinite Loop", () => {
+        beforeEach(() => {
+            renderComponent({
+                infiniteLoop: true
+            })
+        });
+
+        it("should enable the prev arrow if we are showing the first item", () => {
+            TestUtils.Simulate.click(componentInstance['item0']);
+            expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
+        });
+
+        it("should enable the right arrow if we reach the lastPosition", () => {
+            TestUtils.Simulate.click(componentInstance['item6']);
+            expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
+        });
+
+        it('should move to the first one if increment was called in the last', () => {
+            componentInstance.setState({
+                selectedItem: lastItemIndex
             });
 
-            it("Should enable the prev arrow if we are showing the first item", function () {
-                TestUtils.Simulate.click(componentInstance['item0']);
-                expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
-            });
+            expect(componentInstance.state.selectedItem).toBe(lastItemIndex);
 
-            it("Should enable the right arrow if we reach the lastPosition", function () {
-                TestUtils.Simulate.click(componentInstance['item6']);
-                expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
+            componentInstance.increment();
+
+            expect(componentInstance.state.selectedItem).toBe(0);
+        });
+
+        it('should move to the last one if decrement was called in the first', () => {
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            componentInstance.decrement();
+
+            expect(componentInstance.state.selectedItem).toBe(lastItemIndex);
+        });
+    });
+
+    describe('Auto Play', () => {
+        beforeEach(() => {
+            jest.useFakeTimers();
+            window.addEventListener = jest.genMockFunction();
+
+            renderComponent({
+                autoPlay: true
             });
         });
-	});
+
+        afterEach(() => {
+            jest.useRealTimers();
+        });
+
+        it('should change items automatically', () => {
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(2);
+        });
+
+        it('should not move automatically if hovering', () => {
+            componentInstance.stopOnHover();
+
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            componentInstance.autoPlay();
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+        });
+    });
+
+    describe('For Mobile', () => {
+        describe('onSwipeMove', () => {
+            it('should return true to stop scrolling if there was movement in the same direction as the carousel axis', () => {
+                expect(componentInstance.onSwipeMove({
+                    x: 10,
+                    y: 0
+                })).toBe(true);
+            });
+
+            it('should return false to allow scrolling if there was no movement in the same direction as the carousel axis', () => {
+                expect(componentInstance.onSwipeMove({
+                    x: 0,
+                    y: 10
+                })).toBe(false);
+            });
+        });
+    });
 
 	jest.autoMockOn();
 });
