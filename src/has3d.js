@@ -1,5 +1,5 @@
 module.exports = function has3d() {
-    if (typeof window === 'undefined' || !window.getComputedStyle || !document.body) {
+    if (!window.getComputedStyle || !document.body) {
         return false;
     }
 

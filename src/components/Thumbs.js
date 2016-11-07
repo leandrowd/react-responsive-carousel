@@ -181,7 +181,7 @@ module.exports = React.createClass({
             var img = item;
 
             if (item.type !== "img") {
-                img = item.props.children;
+                img = item.props.children.filter((children) => children.type === "img")[0];
             }
 
             if (img.length) {
