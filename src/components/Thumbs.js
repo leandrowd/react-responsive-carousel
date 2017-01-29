@@ -181,11 +181,12 @@ module.exports = React.createClass({
             var img = item;
 
             if (item.type !== "img") {
-                img = item.props.children.filter((children) => children.type === "img")[0];
+                img = React.Children.toArray(item.props.children).filter((children) => children.type === "img")[0];
             }
 
             if (img.length) {
-                console.log(img, img.length, "No images found! Can't build the thumb list");
+                console.warn(img, img.length, "No images found! Can't build the thumb list. If you don't need thumbs, set showThumbs={false} in the Carousel");
+                return null;
             }
 
             return (
