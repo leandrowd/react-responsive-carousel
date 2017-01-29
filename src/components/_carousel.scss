@@ -131,6 +131,7 @@
 		overflow: hidden;
 		margin: auto;
 		width: 100%;
+        @include transition(height, .15s, ease-in);
 
 		&.axis-horizontal {
 			.slider {

@@ -28,7 +28,8 @@ module.exports = React.createClass({
         autoPlay: React.PropTypes.bool,
         stopOnHover: React.PropTypes.bool,
         interval: React.PropTypes.number,
-        swipeScrollTolerance: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string])
+        swipeScrollTolerance: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+        dynamicHeight: React.PropTypes.bool
     },
 
     getDefaultProps () {
@@ -44,7 +45,8 @@ module.exports = React.createClass({
             autoPlay: false,
             stopOnHover: true,
             interval: 3000,
-            swipeScrollTolerance: 5
+            swipeScrollTolerance: 5,
+            dynamicHeight: false
         }
     },
 
@@ -347,6 +349,27 @@ module.exports = React.createClass({
         );
     },
 
+    getVariableImageHeight (position) {
+        if (this.state.hasMount && this[`item${position}`].getElementsByTagName('img').length > 0) {
+            const image = this[`item${position}`].getElementsByTagName('img')[0];
+
+            if (!image.complete) {
+                // if the image is still loading, the size won't be available so we trigger a new render after it's done
+                const onImageLoad = () => {
+                    this.forceUpdate();
+                    image.removeEventListener('load', onImageLoad);
+                }
+
+                image.addEventListener('load', onImageLoad);
+            }
+
+            const height = this[`item${position}`].getElementsByTagName('img')[0].clientHeight;
+            return height > 0 ? height : null;
+        }
+
+        return null;
+    },
+
     render () {
         var itemsLength = this.props.children.length;
 
@@ -396,6 +419,13 @@ module.exports = React.createClass({
                 onSwipeLeft: this.increment,
                 onSwipeRight: this.decrement
             });
+
+            if (this.props.dynamicHeight) {
+                const itemHeight = this.getVariableImageHeight(this.state.selectedItem);
+                swiperProps.style.height = itemHeight || 'auto';
+                containerStyles.height = itemHeight || 'auto';
+            }
+
         } else {
             merge(swiperProps, {
                 onSwipeUp: this.decrement,
