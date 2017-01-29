@@ -62,6 +62,16 @@ storiesOf('Carousel', module)
         { baseChildren.props.children }
     </Carousel>
   ))
+  .add('dynamic height images', () => (
+    <Carousel showArrows={false} dynamicHeight={true}>
+        <div><img src="http://placehold.it/350x150" /></div>
+        <div><img src="http://placehold.it/255x150" /></div>
+        <div><img src="http://placehold.it/295x150" /></div>
+        <div><img src="http://placehold.it/310x150" /></div>
+        <div><img src="http://placehold.it/575x250" /></div>
+        <div><img src="http://placehold.it/450x150" /></div>
+    </Carousel>
+  ))
   .add('auto play', () => (
     <Carousel autoPlay={true} infiniteLoop={true}>
         { baseChildren.props.children }
