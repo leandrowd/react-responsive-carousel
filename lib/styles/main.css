@@ -77,11 +77,6 @@ code {
     .list-items li ul, .summary li ul {
       margin-left: 30px; }
 
-button {
-  outline: 0;
-  border: 0;
-  background: none; }
-
 .demo-gallery, .demo-slider, .demo-carousel {
   margin: 50px auto; }
 

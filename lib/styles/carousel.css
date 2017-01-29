@@ -11,11 +11,6 @@
 ========================================================================== */
 /*  Horizontal Gradient
 ========================================================================== */
-button {
-  outline: 0;
-  border: 0;
-  background: none; }
-
 .carousel .control-arrow, .carousel.carousel-slider .control-arrow {
   -webkit-transition: all 0.25s ease-in;
   -moz-transition: all 0.25s ease-in;
@@ -58,9 +53,15 @@ button {
   position: relative;
   width: 100%; }
   .carousel * {
+    margin: 0;
+    padding: 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
+  .carousel button {
+    outline: 0;
+    border: 0;
+    background: none; }
   .carousel img {
     width: 100%;
     display: inline-block; }
@@ -121,7 +122,12 @@ button {
   .carousel .slider-wrapper {
     overflow: hidden;
     margin: auto;
-    width: 100%; }
+    width: 100%;
+    -webkit-transition: height 0.15s ease-in;
+    -moz-transition: height 0.15s ease-in;
+    -ms-transition: height 0.15s ease-in;
+    -o-transition: height 0.15s ease-in;
+    transition: height 0.15s ease-in; }
     .carousel .slider-wrapper.axis-horizontal .slider {
       -ms-box-orient: horizontal;
       display: -webkit-box;
