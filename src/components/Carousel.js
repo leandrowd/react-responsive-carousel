@@ -56,18 +56,29 @@ module.exports = React.createClass({
         }
     },
 
-    componentWillReceiveProps (props) {
-        if (props.selectedItem !== this.state.selectedItem) {
+    componentWillReceiveProps (nextProps) {
+        if (nextProps.selectedItem !== this.state.selectedItem) {
             this.updateSizes();
             this.setState({
-                selectedItem: props.selectedItem
+                selectedItem: nextProps.selectedItem
             });
+        }
+
+        if (nextProps.autoPlay !== this.props.autoPlay) {
+            if (nextProps.autoPlay) {
+                this.setupAutoPlay();
+            } else {
+                this.destroyAutoPlay();
+            }
         }
     },
 
-    componentDidMount (nextProps) {
+    componentDidMount () {
         this.bindEvents();
-        this.setupAutoPlay();
+
+        if (this.props.autoPlay) {
+            this.setupAutoPlay();
+        }
 
         var images = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img');
         var initialImage = images && images[this.props.selectedItem];
@@ -86,26 +97,22 @@ module.exports = React.createClass({
     },
 
     setupAutoPlay () {
-        if (this.props.autoPlay) {
-            this.autoPlay();
+        this.autoPlay();
 
-            if (this.props.stopOnHover) {
-                var carouselWrapper = ReactDOM.findDOMNode(this.carouselWrapper);
-                carouselWrapper.addEventListener('mouseenter', this.stopOnHover);
-                carouselWrapper.addEventListener('mouseleave', this.autoPlay);
-            }
+        if (this.props.stopOnHover) {
+            var carouselWrapper = ReactDOM.findDOMNode(this.carouselWrapper);
+            carouselWrapper.addEventListener('mouseenter', this.stopOnHover);
+            carouselWrapper.addEventListener('mouseleave', this.autoPlay);
         }
     },
 
     destroyAutoPlay () {
-        if (this.props.autoPlay) {
-            this.clearAutoPlay();
+        this.clearAutoPlay();
 
-            if (this.props.stopOnHover) {
-                var carouselWrapper = ReactDOM.findDOMNode(this.carouselWrapper);
-                carouselWrapper.removeEventListener('mousemove', this.stopOnHover);
-                carouselWrapper.removeEventListener('mouseleave', this.autoPlay);
-            }
+        if (this.props.stopOnHover) {
+            var carouselWrapper = ReactDOM.findDOMNode(this.carouselWrapper);
+            carouselWrapper.removeEventListener('mousemove', this.stopOnHover);
+            carouselWrapper.removeEventListener('mouseleave', this.autoPlay);
         }
     },
 
