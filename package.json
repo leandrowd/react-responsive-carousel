@@ -85,6 +85,6 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "react-easy-swipe": "0.0.5"
+    "react-easy-swipe": "0.0.8"
   }
 }

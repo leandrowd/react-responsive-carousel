@@ -29,7 +29,8 @@ module.exports = React.createClass({
         stopOnHover: React.PropTypes.bool,
         interval: React.PropTypes.number,
         swipeScrollTolerance: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-        dynamicHeight: React.PropTypes.bool
+        dynamicHeight: React.PropTypes.bool,
+        emulateTouch: React.PropTypes.bool
     },
 
     getDefaultProps () {
@@ -46,7 +47,8 @@ module.exports = React.createClass({
             stopOnHover: true,
             interval: 3000,
             swipeScrollTolerance: 5,
-            dynamicHeight: false
+            dynamicHeight: false,
+            emulateTouch: false
         }
     },
 
@@ -186,6 +188,14 @@ module.exports = React.createClass({
     },
 
     handleClickItem (index, item) {
+        if (this.state.cancelClick) {
+            this.selectItem({
+                cancelClick: false
+            });
+
+            return;
+        }
+
         var handler = this.props.onClickItem;
 
         if (typeof handler === 'function') {
@@ -227,7 +237,8 @@ module.exports = React.createClass({
 
     onSwipeEnd() {
         this.setState({
-            swiping: false
+            swiping: false,
+            cancelClick: true
         });
     },
 
@@ -253,7 +264,7 @@ module.exports = React.createClass({
             handledDelta = 0;
         }
 
-        var position = currentPosition + (100 / (this.state.wrapperSize / handledDelta)) + '%';
+        var position = currentPosition + (100 / (this.state.itemSize / handledDelta)) + '%';
 
         [
             'WebkitTransform',
@@ -448,7 +459,7 @@ module.exports = React.createClass({
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width || '100%'}}>
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={node => this.itemsWrapper = node}>
-                        <Swipe tagName="ul" {...swiperProps}>
+                        <Swipe tagName="ul" {...swiperProps} allowMouseEvents={this.props.emulateTouch}>
                             { this.renderItems() }
                         </Swipe>
                     </div>

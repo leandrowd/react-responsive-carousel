@@ -32,6 +32,11 @@ storiesOf('Carousel', module)
         { baseChildren.props.children }
     </Carousel>
   ))
+  .add('emulate touch', () => (
+    <Carousel emulateTouch>
+        { baseChildren.props.children }
+    </Carousel>
+  ))
   .add('no arrows', () => (
     <Carousel showArrows={false}>
         { baseChildren.props.children }
