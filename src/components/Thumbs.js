@@ -40,14 +40,6 @@ module.exports = React.createClass({
         }
     },
 
-    componentWillMount() {
-        // as the widths are calculated, we need to resize
-        // the carousel when the window is resized
-        window.addEventListener("resize", this.updateStatics);
-        // issue #2 - image loading smaller
-        window.addEventListener("DOMContentLoaded", this.updateStatics);
-    },
-
     componentWillUnmount() {
         // removing listeners
         window.removeEventListener("resize", this.updateStatics);
@@ -55,12 +47,18 @@ module.exports = React.createClass({
     },
 
     componentDidMount (nextProps) {
-        // when the component is rendered we need to calculate
-        // the container size to adjust the responsive behaviour
-        this.updateStatics();
+        // as the widths are calculated, we need to resize
+        // the carousel when the window is resized
+        window.addEventListener("resize", this.updateStatics);
+        // issue #2 - image loading smaller
+        window.addEventListener("DOMContentLoaded", this.updateStatics);
 
         var defaultImg = ReactDOM.findDOMNode(this.thumb0).getElementsByTagName('img')[0];
         defaultImg.addEventListener('load', this.setMountState);
+
+        // when the component is rendered we need to calculate
+        // the container size to adjust the responsive behaviour
+        this.updateStatics();
     },
 
     updateStatics () {
