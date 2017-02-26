@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var klass = require('../cssClasses');
-var has3d = require('../has3d')();
 var outerWidth = require('../dimensions').outerWidth;
 var CSSTranslate = require('../CSSTranslate');
 var Swipe = require('react-easy-swipe');
