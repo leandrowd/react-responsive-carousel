@@ -28,6 +28,7 @@ module.exports = React.createClass({
         autoPlay: React.PropTypes.bool,
         stopOnHover: React.PropTypes.bool,
         interval: React.PropTypes.number,
+        transitionTime: React.PropTypes.number,
         swipeScrollTolerance: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
         dynamicHeight: React.PropTypes.bool,
         emulateTouch: React.PropTypes.bool
@@ -46,6 +47,7 @@ module.exports = React.createClass({
             autoPlay: false,
             stopOnHover: true,
             interval: 3000,
+            transitionTime: 350,
             swipeScrollTolerance: 5,
             dynamicHeight: false,
             emulateTouch: false
@@ -361,7 +363,7 @@ module.exports = React.createClass({
         }
 
         return (
-            <Thumbs onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem}>
+            <Thumbs onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem} transitionTime={this.props.transitionTime}>
                 {this.props.children}
             </Thumbs>
         );
@@ -411,13 +413,21 @@ module.exports = React.createClass({
         // if 3d is available, let's take advantage of the performance of transform
         var transformProp = CSSTranslate(currentPosition, this.props.axis);
 
+        var transitionTime = this.props.transitionTime + 'ms';
+
         itemListStyles = {
-            'WebkitTransform': transformProp,
-               'MozTransform': transformProp,
-                'MsTransform': transformProp,
-                 'OTransform': transformProp,
-                  'transform': transformProp,
-                'msTransform': transformProp
+                    'WebkitTransform': transformProp,
+                       'MozTransform': transformProp,
+                        'MsTransform': transformProp,
+                         'OTransform': transformProp,
+                          'transform': transformProp,
+                        'msTransform': transformProp,
+           'WebkitTransitionDuration': transitionTime,
+              'MozTransitionDuration': transitionTime,
+               'MsTransitionDuration': transitionTime,
+                'OTransitionDuration': transitionTime,
+                 'transitionDuration': transitionTime,
+               'msTransitionDuration': transitionTime
         };
 
         var swiperProps = {

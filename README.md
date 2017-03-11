@@ -62,6 +62,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | autoPlay   | `boolean` | false | Auto play |
 | stopOnHover   | `boolean` | true | Stop auto play while mouse is over the carousel |
 | interval   | `number` | `5000` | Interval of auto play |
+| transitionTime   | `number` | `350` | Duration of slide transitions (in miliseconds) |
 | useKeyboardArrows   | `boolean` | `false` | Adds support to next and prev through keyboard arrows |
 | swipeScrollTolerance  | `number` | `5` | Allows scroll when the swipe movement occurs in a different direction than the carousel axis and within the tolerance - Increase for loose - Decrease for strict | 
 | dynamicHeight | `boolean` | false | Adjusts the carousel height if required. -- Do not work with vertical axis -- |
