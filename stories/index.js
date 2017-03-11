@@ -32,6 +32,11 @@ storiesOf('Carousel', module)
         { baseChildren.props.children }
     </Carousel>
   ))
+  .add('custom transition time (1000ms)', () => (
+    <Carousel transitionTime={1000}>
+        { baseChildren.props.children }
+    </Carousel>
+  ))
   .add('emulate touch', () => (
     <Carousel emulateTouch>
         { baseChildren.props.children }

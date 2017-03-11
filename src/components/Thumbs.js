@@ -12,12 +12,14 @@ module.exports = React.createClass({
 
     propsTypes: {
         children: React.PropTypes.element.isRequired,
+        transitionTime: React.PropTypes.number,
         selectedItem: React.PropTypes.number
     },
 
     getDefaultProps () {
         return {
             selectedItem: 0,
+            transitionTime: 350,
             axis: 'horizontal'
         }
     },
@@ -211,14 +213,22 @@ module.exports = React.createClass({
 
         var transformProp = CSSTranslate(currentPosition, this.props.axis);
 
+        var transitionTime = this.props.transitionTime + 'ms';
+
         itemListStyles = {
-            'WebkitTransform': transformProp,
-               'MozTransform': transformProp,
-                'MsTransform': transformProp,
-                 'OTransform': transformProp,
-                  'transform': transformProp,
-                'msTransform': transformProp
-        }
+                    'WebkitTransform': transformProp,
+                       'MozTransform': transformProp,
+                        'MsTransform': transformProp,
+                         'OTransform': transformProp,
+                          'transform': transformProp,
+                        'msTransform': transformProp,
+           'WebkitTransitionDuration': transitionTime,
+              'MozTransitionDuration': transitionTime,
+               'MsTransitionDuration': transitionTime,
+                'OTransitionDuration': transitionTime,
+                 'transitionDuration': transitionTime,
+               'msTransitionDuration': transitionTime
+        };
 
         return (
             <div className={klass.CAROUSEL(false)}>
