@@ -3,6 +3,26 @@
 [![npm version](https://badge.fury.io/js/react-responsive-carousel.svg)](https://badge.fury.io/js/react-responsive-carousel)
 [![Build Status](https://travis-ci.org/leandrowd/react-responsive-carousel.svg?branch=master)](https://travis-ci.org/leandrowd/react-responsive-carousel)
 
+Powerful, lightweight and fully customizable carousel component for React apps. 
+
+### Features
+
+- Responsive
+- Mobile friendly
+- Swipe to slide
+- Mouse emulating touch 
+- Server side rendering
+- Keyboard navigation
+- Custom animation duration
+- Auto play
+- Custom auto play interval
+- Infinite loop
+- Horizontal or Vertical directions
+- Supports images, videos, text content or anything you want. Each direct child represents one slide!
+- Supports any flux library (use `selectedItem` prop to set from the app state, and `onChange` callback to get the new position)
+- Show/hide anything (thumbs, indicators, arrows, status)
+
+
 ### Demo
 <http://leandrowd.github.io/react-responsive-carousel/>
 
