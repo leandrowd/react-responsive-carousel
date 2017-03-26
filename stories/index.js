@@ -83,7 +83,7 @@ storiesOf('Carousel', module)
     </Carousel>
   ))
   .add('auto play', () => (
-    <Carousel autoPlay={true} infiniteLoop={true}>
+    <Carousel autoPlay={true} interval={3000} infiniteLoop={true}>
         { baseChildren.props.children }
     </Carousel>
   ))

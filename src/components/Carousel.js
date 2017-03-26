@@ -108,7 +108,9 @@ module.exports = React.createClass({
         if (this.props.stopOnHover) {
             var carouselWrapper = ReactDOM.findDOMNode(this.carouselWrapper);
             carouselWrapper.addEventListener('mouseenter', this.stopOnHover);
+            carouselWrapper.addEventListener('touchstart', this.stopOnHover);
             carouselWrapper.addEventListener('mouseleave', this.autoPlay);
+            carouselWrapper.addEventListener('touchend', this.autoPlay);
         }
     },
 
@@ -117,20 +119,26 @@ module.exports = React.createClass({
 
         if (this.props.stopOnHover) {
             var carouselWrapper = ReactDOM.findDOMNode(this.carouselWrapper);
-            carouselWrapper.removeEventListener('mousemove', this.stopOnHover);
+            carouselWrapper.removeEventListener('mouseenter', this.stopOnHover);
+            carouselWrapper.removeEventListener('touchstart', this.stopOnHover);
             carouselWrapper.removeEventListener('mouseleave', this.autoPlay);
+            carouselWrapper.removeEventListener('touchend', this.autoPlay);
         }
     },
 
     autoPlay () {
         this.timer = setTimeout(() => {
             this.increment();
-            this.autoPlay();
         }, this.props.interval);
     },
 
     clearAutoPlay () {
         clearTimeout(this.timer);
+    },
+
+    resetAutoPlay() {
+        this.clearAutoPlay();
+        this.autoPlay();
     },
 
     stopOnHover () {
@@ -306,6 +314,10 @@ module.exports = React.createClass({
             // if it's not a slider, we don't need to set position here
             selectedItem: position
         });
+
+        if (this.props.autoPlay) {
+            this.resetAutoPlay();
+        }
     },
 
     changeItem (e) {
