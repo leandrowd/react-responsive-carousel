@@ -47,6 +47,16 @@ storiesOf('Carousel', module)
         { baseChildren.props.children }
     </Carousel>
   ))
+  .add('no arrows + infinite loop + auto play', () => (
+    <Carousel showArrows={false} infiniteLoop autoPlay>
+        { baseChildren.props.children }
+    </Carousel>
+  ))
+  .add('no arrows + infinite loop + emulateTouch', () => (
+    <Carousel showArrows={false} infiniteLoop emulateTouch>
+        { baseChildren.props.children }
+    </Carousel>
+  ))
   .add('no status', () => (
     <Carousel showStatus={false}>
         { baseChildren.props.children }

@@ -414,9 +414,9 @@ module.exports = React.createClass({
         var canShowArrows = this.props.showArrows && itemsLength > 1;
 
         // show left arrow?
-        var hasPrev = canShowArrows && this.state.selectedItem > 0 || this.props.infiniteLoop;
+        var hasPrev = canShowArrows && (this.state.selectedItem > 0 || this.props.infiniteLoop);
         // show right arrow
-        var hasNext = canShowArrows && this.state.selectedItem < itemsLength - 1 || this.props.infiniteLoop;
+        var hasNext = canShowArrows && (this.state.selectedItem < itemsLength - 1 || this.props.infiniteLoop);
         // obj to hold the transformations and styles
         var itemListStyles = {};
 
