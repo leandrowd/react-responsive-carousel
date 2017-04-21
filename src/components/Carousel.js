@@ -86,9 +86,7 @@ module.exports = React.createClass({
             this.setupAutoPlay();
         }
 
-        var images = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img');
-        var initialImage = images && images[this.props.selectedItem];
-
+        var initialImage = this.getInitialImage()
         if (initialImage) {
             // if it's a carousel of images, we set the mount state after the first image is loaded
             initialImage.addEventListener('load', this.setMountState);
@@ -161,6 +159,11 @@ module.exports = React.createClass({
         // removing listeners
         window.removeEventListener("resize", this.updateSizes);
         window.removeEventListener("DOMContentLoaded", this.updateSizes);
+
+        var initialImage = this.getInitialImage();
+        if(initialImage) {
+            initialImage.removeEventListener("load", this.setMountState);
+        }
 
         if (this.props.useKeyboardArrows) {
             document.removeEventListener("keydown", this.navigateWithKeyboard);
@@ -379,6 +382,11 @@ module.exports = React.createClass({
                 {this.props.children}
             </Thumbs>
         );
+    },
+
+    getInitialImage () {
+        var images = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img');
+        return images && images[this.props.selectedItem];
     },
 
     getVariableImageHeight (position) {
