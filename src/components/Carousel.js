@@ -385,8 +385,9 @@ module.exports = React.createClass({
     },
 
     getInitialImage () {
-        var images = ReactDOM.findDOMNode(this.item0).getElementsByTagName('img');
-        return images && images[this.props.selectedItem];
+        var selectedItem = this.props.selectedItem;
+        var images = ReactDOM.findDOMNode(this['item' + selectedItem]).getElementsByTagName('img');
+        return images && images[selectedItem];
     },
 
     getVariableImageHeight (position) {
