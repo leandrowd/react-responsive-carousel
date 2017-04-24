@@ -57,7 +57,6 @@
     "browserify": "^14.3.0",
     "changelog": "^1.0.7",
     "connect-modrewrite": "^0.9.0",
-    "create-react-class": "^15.5.2",
     "css-loader": "^0.28.0",
     "enzyme": "^2.8.2",
     "gh-pages": "^0.11.0",
@@ -90,6 +89,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "create-react-class": "^15.5.2",
     "react-easy-swipe": "^0.0.10",
     "prop-types": "^15.5.8"
   }
