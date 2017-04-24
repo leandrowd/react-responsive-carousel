@@ -121,12 +121,9 @@
  * Removing instance variables
  * Replacing icons by pure css arrows
  * Adding support to storybook
- * Removing release branch from publish step
 
 
 ## 3.0.15 - Wed Sep 07 2016
- * Updating package task to include the fonts
- * Updating docs with example
 
 
 ## 3.0.14 - Wed Sep 07 2016
