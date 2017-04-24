@@ -6,7 +6,8 @@ var jestConfig = {
   rootDir: configs.paths.source,
   "unmockedModulePathPatterns": [
       "./node_modules/"
-  ]
+  ],
+  verbose: false
 };
 
 module.exports = function() {

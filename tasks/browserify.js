@@ -14,8 +14,7 @@ var connect = require('gulp-connect');
 var configs = require('./configs');
 
 var dependencies = [
-	'react',
-  	'react/addons'
+	'react'
 ];
 
 module.exports = function (options) {
