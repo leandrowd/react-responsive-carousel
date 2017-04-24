@@ -13,7 +13,7 @@ var customPropTypes = require('../customPropTypes');
 Swipe = Swipe.default;
 
 module.exports = CreateReactClass({
-    displayName: 'Slider',
+    displayName: 'Carousel',
     propTypes: {
         children: PropTypes.node.isRequired,
         showArrows: PropTypes.bool,
@@ -46,6 +46,7 @@ module.exports = CreateReactClass({
             infiniteLoop: false,
             selectedItem: 0,
             axis: 'horizontal',
+            width: '100%',
             useKeyboardArrows: false,
             autoPlay: false,
             stopOnHover: true,
@@ -493,7 +494,7 @@ module.exports = CreateReactClass({
 
         return (
             <div className={this.props.className} ref="carouselWrapper">
-                <div className={klass.CAROUSEL(true)} style={{width: this.props.width || '100%'}}>
+                <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref="itemsWrapper">
                         <Swipe tagName="ul" {...swiperProps} allowMouseEvents={this.props.emulateTouch}>

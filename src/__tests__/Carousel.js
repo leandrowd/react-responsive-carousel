@@ -34,8 +34,8 @@ describe("Slider", function() {
 
   	describe("Basics", () => {
         describe("DisplayName", () => {
-            it('should be Slider', () => {
-                expect(Carousel.displayName).toBe('Slider');
+            it('should be Carousel', () => {
+                expect(Carousel.displayName).toBe('Carousel');
             });
         });
 
