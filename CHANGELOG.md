@@ -1,6 +1,11 @@
 # React Responsive Carousel
 
 
+## 3.1.9 - Mon Apr 24 2017
+ * Merge pull request #108 from leandrowd/issue-98
+    > #98: Allow carousel slides to be lazy loaded
+
+
 ## 3.1.8 - Mon Apr 24 2017
  * Merge pull request #107 from leandrowd/issue-101
     > #101: Updating to react 15.5.4
@@ -124,10 +129,6 @@
  * Merge pull request #54 from leandrowd/storybook
     > Storybook and many adjusts resulting from tests inside it.
  * Updating editor config properties and reformatting files
- * Update docs
- * Adding presentation mode
- * Adding example of how to create a presentation
- * Removing instance variables
 
 
 ## 3.0.15 - Wed Sep 07 2016
