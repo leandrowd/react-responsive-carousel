@@ -1,6 +1,15 @@
 # React Responsive Carousel
 
 
+## 3.1.8 - Mon Apr 24 2017
+ * Merge pull request #107 from leandrowd/issue-101
+    > #101: Updating to react 15.5.4
+ * Updating versions and setup for tests
+ * Updating storybook + filling in stories
+ * Updating react and tests
+ * Adding changelog
+
+
 ## 3.1.7 - Mon Apr 24 2017
  * Merge pull request #106 from leandrowd/issue-104
     > #104 - Fixes problem where arrows were not appearing after carousel was loaded
@@ -119,8 +128,6 @@
  * Adding presentation mode
  * Adding example of how to create a presentation
  * Removing instance variables
- * Replacing icons by pure css arrows
- * Adding support to storybook
 
 
 ## 3.0.15 - Wed Sep 07 2016
