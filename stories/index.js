@@ -15,74 +15,89 @@ const createCarouselItemImage = (index, options = {}) => (
 );
 
 const addChildren = (ammount = 1, options = {}) => {
-		let current = 0;
-		const children = [];
-		while ( current < ammount ) {
-			children.push(createCarouselItemImage(current, options));
-		}
+	let current = 0;
+	const children = [];
+	while ( current < ammount ) {
+		children.push(createCarouselItemImage(current, options));
+	}
 
-		return children
+	return children
 };
 
 const baseChildren = <div>{ [1,2,3,4,5].map(createCarouselItemImage) }</div>;
 
-storiesOf('Carousel', module)
-  .add('defaults', () => (
+storiesOf('Carousel')
+  .addWithInfo('PropTypes', () => <div/>,
+    { source: false, inline: true, propTables: [Carousel]})
+  .addWithInfo('defaults',() => (
     <Carousel>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('custom transition time (1000ms)', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('handlers',
+    <div>
+    <p>Handlers will be called with the index of the element plus the element. i.e:</p>
+
+    <code>
+        function myHandler(index, element)
+    </code>
+    </div>
+    ,() => (
+    <Carousel onClickThumb={action('click thumb')} onClickItem={action('click item')} onChange={action('change')}>
+        { baseChildren.props.children }
+    </Carousel>
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('custom transition time (1000ms)', () => (
     <Carousel transitionTime={1000}>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('emulate touch', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('emulate touch', () => (
     <Carousel emulateTouch>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('no arrows', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('no arrows', () => (
     <Carousel showArrows={false}>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('no arrows + infinite loop + auto play', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('no arrows + infinite loop + auto play', () => (
     <Carousel showArrows={false} infiniteLoop autoPlay>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('no arrows + infinite loop + emulateTouch', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('no arrows + infinite loop + emulateTouch', () => (
     <Carousel showArrows={false} infiniteLoop emulateTouch>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('no status', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('no status', () => (
     <Carousel showStatus={false}>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('no indicators', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('no indicators', () => (
     <Carousel showIndicators={false}>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('no thumbs', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('no thumbs', () => (
     <Carousel showThumbs={false}>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('no status, no indicators', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('no status, no indicators', () => (
     <Carousel showStatus={false}  showIndicators={false}>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('fixed width', () => (
-    <Carousel width="700">
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('fixed width', () => (
+    <Carousel width="700px">
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('dynamic height images', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('dynamic height images', () => (
     <Carousel showArrows={false} dynamicHeight={true}>
         <div><img src="http://placehold.it/350x150" /></div>
         <div><img src="http://placehold.it/255x150" /></div>
@@ -91,28 +106,28 @@ storiesOf('Carousel', module)
         <div><img src="http://placehold.it/575x250" /></div>
         <div><img src="http://placehold.it/450x150" /></div>
     </Carousel>
-  ))
-  .add('auto play', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('auto play', () => (
     <Carousel autoPlay={true} interval={3000} infiniteLoop={true}>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('auto play stopping on hover', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('auto play stopping on hover', () => (
     <Carousel autoPlay={true} stopOnHover={true} infiniteLoop={true}>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('initial selected', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('initial selected', () => (
     <Carousel selectedItem={3}>
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('vertical axis', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('vertical axis', () => (
     <Carousel axis="vertical">
         { baseChildren.props.children }
     </Carousel>
-  ))
-  .add('youtube', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('youtube', () => (
     <Carousel showThumbs={false}>
 				<div key="youtube-1">
 						<iframe width="560" height="315" src="https://www.youtube.com/embed/n0F6hSpxaFc" />
@@ -130,8 +145,8 @@ storiesOf('Carousel', module)
 						<iframe width="560" height="315" src="https://www.youtube.com/embed/3zrfGHQd4Bo" />
 				</div>
     </Carousel>
-  ))
-  .add('presentation mode', () => (
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('presentation mode', () => (
     <Carousel showThumbs={ false } showStatus={ false } useKeyboardArrows className="presentation-mode">
     		<div key="content-0" className="my-slide primary">
 						<h1>Presentation mode</h1>
@@ -204,4 +219,4 @@ storiesOf('Carousel', module)
 						<h1>Thanks...</h1>
 				</div>
     </Carousel>
-  ));
+  ), { source: true, inline: true, propTables: false});

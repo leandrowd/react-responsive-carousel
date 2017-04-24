@@ -1,37 +1,40 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var PropTypes = require('prop-types');
+var CreateReactClass = require('create-react-class');
 var klass = require('../cssClasses');
 var merge = require('../object-assign');
 var CSSTranslate = require('../CSSTranslate');
 var Swipe = require('react-easy-swipe');
 var Thumbs = require('./Thumbs');
+var customPropTypes = require('../customPropTypes');
 
 // react-swipe was compiled using babel
 Swipe = Swipe.default;
 
-module.exports = React.createClass({
-    displayName: 'Slider',
+module.exports = CreateReactClass({
+    displayName: 'Carousel',
     propTypes: {
-        children: React.PropTypes.node.isRequired,
-        showArrows: React.PropTypes.bool,
-        showStatus: React.PropTypes.bool,
-        showIndicators: React.PropTypes.bool,
-        infiniteLoop: React.PropTypes.bool,
-        showThumbs: React.PropTypes.bool,
-        selectedItem: React.PropTypes.number,
-        onClickItem: React.PropTypes.func,
-        onClickThumb: React.PropTypes.func,
-        onChange: React.PropTypes.func,
-        axis: React.PropTypes.oneOf(['horizontal', 'vertical']),
-        width: React.PropTypes.string,
-        useKeyboardArrows: React.PropTypes.bool,
-        autoPlay: React.PropTypes.bool,
-        stopOnHover: React.PropTypes.bool,
-        interval: React.PropTypes.number,
-        transitionTime: React.PropTypes.number,
-        swipeScrollTolerance: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-        dynamicHeight: React.PropTypes.bool,
-        emulateTouch: React.PropTypes.bool
+        children: PropTypes.node.isRequired,
+        showArrows: PropTypes.bool,
+        showStatus: PropTypes.bool,
+        showIndicators: PropTypes.bool,
+        infiniteLoop: PropTypes.bool,
+        showThumbs: PropTypes.bool,
+        selectedItem: PropTypes.number,
+        onClickItem: PropTypes.func,
+        onClickThumb: PropTypes.func,
+        onChange: PropTypes.func,
+        axis: PropTypes.oneOf(['horizontal', 'vertical']),
+        width: customPropTypes.unit,
+        useKeyboardArrows: PropTypes.bool,
+        autoPlay: PropTypes.bool,
+        stopOnHover: PropTypes.bool,
+        interval: PropTypes.number,
+        transitionTime: PropTypes.number,
+        swipeScrollTolerance: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        dynamicHeight: PropTypes.bool,
+        emulateTouch: PropTypes.bool
     },
 
     getDefaultProps () {
@@ -43,6 +46,7 @@ module.exports = React.createClass({
             infiniteLoop: false,
             selectedItem: 0,
             axis: 'horizontal',
+            width: '100%',
             useKeyboardArrows: false,
             autoPlay: false,
             stopOnHover: true,
@@ -104,7 +108,7 @@ module.exports = React.createClass({
         this.autoPlay();
 
         if (this.props.stopOnHover) {
-            var carouselWrapper = ReactDOM.findDOMNode(this.carouselWrapper);
+            var carouselWrapper = this.refs['carouselWrapper'];
             carouselWrapper.addEventListener('mouseenter', this.stopOnHover);
             carouselWrapper.addEventListener('touchstart', this.stopOnHover);
             carouselWrapper.addEventListener('mouseleave', this.autoPlay);
@@ -116,7 +120,7 @@ module.exports = React.createClass({
         this.clearAutoPlay();
 
         if (this.props.stopOnHover) {
-            var carouselWrapper = ReactDOM.findDOMNode(this.carouselWrapper);
+            var carouselWrapper = this.refs['carouselWrapper'];
             carouselWrapper.removeEventListener('mouseenter', this.stopOnHover);
             carouselWrapper.removeEventListener('touchstart', this.stopOnHover);
             carouselWrapper.removeEventListener('mouseleave', this.autoPlay);
@@ -186,7 +190,7 @@ module.exports = React.createClass({
 
     updateSizes () {
         var isHorizontal = this.props.axis === 'horizontal';
-        var firstItem = ReactDOM.findDOMNode(this.item0);
+        var firstItem = this.refs.item0;
         var itemSize = isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
 
         this.setState({
@@ -256,7 +260,7 @@ module.exports = React.createClass({
     },
 
     onSwipeMove(delta) {
-        var list = ReactDOM.findDOMNode(this.itemList);
+        var list = ReactDOM.findDOMNode(this.refs.itemList);
         var isHorizontal = this.props.axis === 'horizontal';
 
         var initialBoundry = 0;
@@ -342,7 +346,7 @@ module.exports = React.createClass({
             var itemClass = klass.ITEM(true, index === this.state.selectedItem);
 
             return (
-                <li ref={node => this["item" + index] = node} key={"itemKey" + index} className={itemClass}
+                <li ref={"item" + index} key={"itemKey" + index} className={itemClass}
                     onClick={ this.handleClickItem.bind(this, index, item) }>
                     { item }
                 </li>
@@ -385,14 +389,17 @@ module.exports = React.createClass({
     },
 
     getInitialImage () {
-        var selectedItem = this.props.selectedItem;
-        var images = ReactDOM.findDOMNode(this['item' + selectedItem]).getElementsByTagName('img');
+        const selectedItem = this.props.selectedItem;
+        const item = this.refs[`item${selectedItem}`];
+        const images = item && item.getElementsByTagName('img');
         return images && images[selectedItem];
     },
 
     getVariableImageHeight (position) {
-        if (this.state.hasMount && this[`item${position}`].getElementsByTagName('img').length > 0) {
-            const image = this[`item${position}`].getElementsByTagName('img')[0];
+        const item = this.refs[`item${position}`];
+        const images = item && item.getElementsByTagName('img');
+        if (this.state.hasMount && images.length > 0) {
+            const image = images[0];
 
             if (!image.complete) {
                 // if the image is still loading, the size won't be available so we trigger a new render after it's done
@@ -404,7 +411,7 @@ module.exports = React.createClass({
                 image.addEventListener('load', onImageLoad);
             }
 
-            const height = this[`item${position}`].getElementsByTagName('img')[0].clientHeight;
+            const height = image.clientHeight;
             return height > 0 ? height : null;
         }
 
@@ -458,7 +465,7 @@ module.exports = React.createClass({
             onSwipeStart: this.onSwipeStart,
             onSwipeEnd: this.onSwipeEnd,
             style: itemListStyles,
-            ref: node => this.itemList = node
+            ref: 'itemList'
         };
 
         var containerStyles = {};
@@ -486,10 +493,10 @@ module.exports = React.createClass({
         }
 
         return (
-            <div className={this.props.className} ref={node => this.carouselWrapper = node}>
-                <div className={klass.CAROUSEL(true)} style={{width: this.props.width || '100%'}}>
+            <div className={this.props.className} ref="carouselWrapper">
+                <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
-                    <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={node => this.itemsWrapper = node}>
+                    <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref="itemsWrapper">
                         <Swipe tagName="ul" {...swiperProps} allowMouseEvents={this.props.emulateTouch}>
                             { this.renderItems() }
                         </Swipe>
