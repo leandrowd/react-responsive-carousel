@@ -28,12 +28,13 @@
     "test": "jest",
     "prebuild": "npm test",
     "build": "babel ./src -d lib --ignore '__tests__' && gulp styles:package copy:package",
-    "prepublish-to-npm": "git pull && npm run build && git add . && git commit -m 'Prepare for publishing'",
+    "prepublish-to-npm": "git pull && npm run build && npm run changelog && git add . && git commit -m 'Prepare for publishing'",
     "publish-to-npm": "(git pull origin master && npm version patch && git push origin master && npm publish && git push --tags)",
     "prepublish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp prepublish && npm run build-storybook",
     "publish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp publish",
     "storybook": "start-storybook -p 9001 -s ./src -c .storybook",
-    "build-storybook": "build-storybook -s ./src -o ./dist/storybook"
+    "build-storybook": "build-storybook -s ./src -o ./dist/storybook",
+    "changelog": "node ./generate-changelog.js"
   },
   "repository": {
     "type": "git",
@@ -53,6 +54,7 @@
     "babel-preset-react": "^6.11.1",
     "babelify": "^7.3.0",
     "browserify": "^12.0.1",
+    "changelog": "^1.0.7",
     "connect-modrewrite": "^0.9.0",
     "css-loader": "^0.25.0",
     "gh-pages": "^0.11.0",
