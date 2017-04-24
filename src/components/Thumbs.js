@@ -219,7 +219,7 @@ module.exports = CreateReactClass({
     },
 
     render () {
-        if (this.props.children.length === 0) {
+        if (!this.props.children) {
             return null;
         }
 

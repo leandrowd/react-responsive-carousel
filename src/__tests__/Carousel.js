@@ -9,27 +9,34 @@ describe("Slider", function() {
 
 	let component, componentInstance, totalChildren, lastItemIndex;
 
-	const renderComponent = props => {
+	const bootstrap = (props, children) => {
 		component = mount(
 	  		<Carousel {...props}>
-	  			<img src="assets/1.jpeg" />
-				<img src="assets/2.jpeg" />
-				<img src="assets/3.jpeg" />
-				<img src="assets/4.jpeg" />
-				<img src="assets/5.jpeg" />
-				<img src="assets/6.jpeg" />
-				<img src="assets/7.jpeg" />
+	  			{children}
 	  		</Carousel>
 	  	);
 
         componentInstance = component.instance();
 
-        totalChildren = componentInstance.props.children.length;
+        totalChildren = children && children.length ? componentInstance.props.children.length : 0;
         lastItemIndex = totalChildren - 1;
 	}
 
+    const renderDefaultComponent = (props) => {
+        bootstrap(props, [
+                <img src="assets/1.jpeg" key="1" />,
+                <img src="assets/2.jpeg" key="2" />,
+                <img src="assets/3.jpeg" key="3" />,
+                <img src="assets/4.jpeg" key="4" />,
+                <img src="assets/5.jpeg" key="5" />,
+                <img src="assets/6.jpeg" key="6" />,
+                <img src="assets/7.jpeg" key="7" />,
+            ]
+        );
+    }
+
 	beforeEach(() => {
-		renderComponent({});
+		renderDefaultComponent({});
 	});
 
   	describe("Basics", () => {
@@ -81,12 +88,28 @@ describe("Slider", function() {
   	});
 
     describe("componentDidMount", () => {
-        beforeEach(() => {
+        it("should bind the events", () => {
             componentInstance.bindEvents = jest.genMockFunction();
             componentInstance.componentDidMount();
-
+            expect(componentInstance.bindEvents.mock.calls.length).toBe(1);
         });
-        it("should bind the events", () => {
+
+        it('should not bind the events if there are no children', () => {
+            bootstrap({}, null);
+            componentInstance.bindEvents = jest.genMockFunction();
+            componentInstance.componentDidMount();
+            expect(componentInstance.bindEvents.mock.calls.length).toBe(0);
+        });
+
+        it("should bind the events if children were lazy loaded (through componentDidUpdate)", () => {
+            bootstrap({}, null);
+            componentInstance.bindEvents = jest.genMockFunction();
+            expect(componentInstance.bindEvents.mock.calls.length).toBe(0);
+
+            component.setProps({
+                children: [<img src="assets/1.jpeg" key="1" />]
+            });
+
             expect(componentInstance.bindEvents.mock.calls.length).toBe(1);
         });
     });
@@ -125,7 +148,7 @@ describe("Slider", function() {
 
         describe("when useKeyboardArrows is true", () => {
             beforeEach(() => {
-                renderComponent({
+                renderDefaultComponent({
                     useKeyboardArrows: true
                 });
 
@@ -171,7 +194,7 @@ describe("Slider", function() {
 
         describe("when useKeyboardArrows is true", () => {
             beforeEach(() => {
-                renderComponent({
+                renderDefaultComponent({
                     useKeyboardArrows: true
                 });
 
@@ -196,7 +219,7 @@ describe("Slider", function() {
 
     describe("navigateWithKeyboard", () => {
         beforeEach(() => {
-            renderComponent({
+            renderDefaultComponent({
                 useKeyboardArrows: true
             });
 
@@ -285,7 +308,7 @@ describe("Slider", function() {
 		});
 
 		it("should set the selectedItem from the props", () => {
-			renderComponent({selectedItem: 3});
+			renderDefaultComponent({selectedItem: 3});
 			expect(componentInstance.state.selectedItem).toBe(3);
 		});
 
@@ -312,7 +335,7 @@ describe("Slider", function() {
 		it("should call a given onSelectItem function when an item is clicked", () => {
 			var mockedFunction = jest.genMockFunction();
 
-			renderComponent({onClickItem: mockedFunction});
+			renderDefaultComponent({onClickItem: mockedFunction});
 
             component.ref('item1').simulate('click');
 			expect(mockedFunction).toBeCalled();
@@ -345,7 +368,7 @@ describe("Slider", function() {
 
     describe("Infinite Loop", () => {
         beforeEach(() => {
-            renderComponent({
+            renderDefaultComponent({
                 infiniteLoop: true
             })
         });
@@ -386,7 +409,7 @@ describe("Slider", function() {
             jest.useFakeTimers();
             window.addEventListener = jest.genMockFunction();
 
-            renderComponent({
+            renderDefaultComponent({
                 autoPlay: true
             });
         });
