@@ -78,7 +78,7 @@ storiesOf('Carousel', module)
     </Carousel>
   ))
   .add('fixed width', () => (
-    <Carousel width="700">
+    <Carousel width="700px">
         { baseChildren.props.children }
     </Carousel>
   ))

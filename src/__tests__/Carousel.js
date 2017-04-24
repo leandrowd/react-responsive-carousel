@@ -1,11 +1,8 @@
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
+import { shallow, mount } from 'enzyme';
 
 describe("Slider", function() {
-	const findByTag = TestUtils.scryRenderedDOMComponentsWithTag;
-	const findByClass = TestUtils.scryRenderedDOMComponentsWithClass;
-
 	jest.autoMockOff();
 
 	const Carousel = require('../components/Carousel');
@@ -13,7 +10,7 @@ describe("Slider", function() {
 	let component, componentInstance, totalChildren, lastItemIndex;
 
 	const renderComponent = props => {
-		componentInstance = TestUtils.renderIntoDocument(
+		component = mount(
 	  		<Carousel {...props}>
 	  			<img src="assets/1.jpeg" />
 				<img src="assets/2.jpeg" />
@@ -25,6 +22,8 @@ describe("Slider", function() {
 	  		</Carousel>
 	  	);
 
+        componentInstance = component.instance();
+
         totalChildren = componentInstance.props.children.length;
         lastItemIndex = totalChildren - 1;
 	}
@@ -32,13 +31,6 @@ describe("Slider", function() {
 	beforeEach(() => {
 		renderComponent({});
 	});
-
-	afterEach(function() {
-		if (componentInstance && componentInstance.isMounted()) {
-	      // Only components with a parent will be unmounted
-	      ReactDOM.unmountComponentAtNode(document);
-	    }
-  	});
 
   	describe("Basics", () => {
         describe("DisplayName", () => {
@@ -59,7 +51,11 @@ describe("Slider", function() {
                 useKeyboardArrows: false,
                 autoPlay: false,
                 stopOnHover: true,
-                interval: 3000
+                interval: 3000,
+                transitionTime: 350,
+                swipeScrollTolerance: 5,
+                dynamicHeight: false,
+                emulateTouch: false
             };
 
             Object.keys(props).forEach(prop => {
@@ -278,7 +274,7 @@ describe("Slider", function() {
     });
 
 	it("should add a thumb-wrapper container", () => {
-		expect(findByClass(componentInstance, 'thumbs-wrapper').length).toBe(1);
+		expect(component.find('.thumbs-wrapper').length).toBe(1);
 	});
 
 	describe("Moving", () => {
@@ -294,10 +290,10 @@ describe("Slider", function() {
 		});
 
 		it("should update the position of the Carousel if selectedItem is changed", () => {
-			TestUtils.Simulate.click(componentInstance['item2']);
+			component.ref('item2').simulate('click');
 			expect(componentInstance.state.selectedItem).toBe(2);
 
-			TestUtils.Simulate.click(componentInstance['item3']);
+            component.ref('item3').simulate('click');
 			expect(componentInstance.state.selectedItem).toBe(3);
 		});
 	})
@@ -306,10 +302,10 @@ describe("Slider", function() {
 		it("should set the index as selectedItem when clicked", () => {
 			expect(componentInstance.state.selectedItem).toBe(0);
 
-			TestUtils.Simulate.click(componentInstance['item1']);
+            component.ref('item1').simulate('click');
 			expect(componentInstance.state.selectedItem).toBe(1);
 
-			TestUtils.Simulate.click(componentInstance['item3']);
+            component.ref('item3').simulate('click');
 			expect(componentInstance.state.selectedItem).toBe(3);
 		});
 
@@ -318,7 +314,7 @@ describe("Slider", function() {
 
 			renderComponent({onClickItem: mockedFunction});
 
-			TestUtils.Simulate.click(componentInstance['item1']);
+            component.ref('item1').simulate('click');
 			expect(mockedFunction).toBeCalled();
 		});
 	})
@@ -329,20 +325,20 @@ describe("Slider", function() {
 		});
 
 		it("should disable the left arrow if we are showing the first item", () => {
-			TestUtils.Simulate.click(componentInstance['item0']);
+			component.ref('item0').simulate('click');
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(1);
 		});
 
 		it("should enable the left arrow if we are showing other than the first item", () => {
-			TestUtils.Simulate.click(componentInstance['item1']);
+			component.ref('item1').simulate('click');
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
 		});
 
 		it("should disable the right arrow if we reach the lastPosition", () => {
-			TestUtils.Simulate.click(componentInstance['item1']);
+			component.ref('item1').simulate('click');
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
 
-			TestUtils.Simulate.click(componentInstance['item6']);
+			component.ref('item6').simulate('click');
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(1);
 		});
 	});
@@ -355,12 +351,12 @@ describe("Slider", function() {
         });
 
         it("should enable the prev arrow if we are showing the first item", () => {
-            TestUtils.Simulate.click(componentInstance['item0']);
+            component.ref('item0').simulate('click');
             expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
         });
 
         it("should enable the right arrow if we reach the lastPosition", () => {
-            TestUtils.Simulate.click(componentInstance['item6']);
+            component.ref('item6').simulate('click');
             expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
         });
 
