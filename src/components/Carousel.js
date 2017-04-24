@@ -15,7 +15,7 @@ Swipe = Swipe.default;
 module.exports = CreateReactClass({
     displayName: 'Carousel',
     propTypes: {
-        children: PropTypes.node.isRequired,
+        children: PropTypes.node,
         showArrows: PropTypes.bool,
         showStatus: PropTypes.bool,
         showIndicators: PropTypes.bool,
@@ -61,9 +61,18 @@ module.exports = CreateReactClass({
     getInitialState () {
         return {
             // index of the image to be shown.
+            initialized: false,
             selectedItem: this.props.selectedItem,
             hasMount: false
         }
+    },
+
+    componentDidMount () {
+        if (!this.props.children) {
+            return;
+        }
+
+        this.setupCarousel();
     },
 
     componentWillReceiveProps (nextProps) {
@@ -83,7 +92,17 @@ module.exports = CreateReactClass({
         }
     },
 
-    componentDidMount () {
+    componentDidUpdate(prevProps) {
+        if (!prevProps.children && this.props.children && !this.state.initialized) {
+            this.setupCarousel();
+        }
+    },
+
+    componentWillUnmount() {
+        this.destroyCarousel();
+    },
+
+    setupCarousel () {
         this.bindEvents();
 
         if (this.props.autoPlay) {
@@ -97,11 +116,17 @@ module.exports = CreateReactClass({
         } else {
             this.setMountState();
         }
+
+        this.setState({
+            initialized: true
+        });
     },
 
-    componentWillUnmount() {
-        this.unbindEvents();
-        this.destroyAutoPlay();
+    destroyCarousel () {
+        if (this.state.initialized) {
+            this.unbindEvents();
+            this.destroyAutoPlay();
+        }
     },
 
     setupAutoPlay () {
@@ -118,9 +143,9 @@ module.exports = CreateReactClass({
 
     destroyAutoPlay () {
         this.clearAutoPlay();
+        var carouselWrapper = this.refs['carouselWrapper'];
 
-        if (this.props.stopOnHover) {
-            var carouselWrapper = this.refs['carouselWrapper'];
+        if (this.props.stopOnHover && carouselWrapper) {
             carouselWrapper.removeEventListener('mouseenter', this.stopOnHover);
             carouselWrapper.removeEventListener('touchstart', this.stopOnHover);
             carouselWrapper.removeEventListener('mouseleave', this.autoPlay);
@@ -189,6 +214,10 @@ module.exports = CreateReactClass({
     },
 
     updateSizes () {
+        if (!this.state.initialized) {
+            return;
+        }
+
         var isHorizontal = this.props.axis === 'horizontal';
         var firstItem = this.refs.item0;
         var itemSize = isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
@@ -419,6 +448,10 @@ module.exports = CreateReactClass({
     },
 
     render () {
+        if (!this.props.children) {
+            return null;
+        }
+
         var itemsLength = this.props.children.length;
 
         if (itemsLength === 0) {

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import { Carousel } from '../src/index';
+
 
 // carousel styles
 import '../src/main.scss';
@@ -26,18 +27,84 @@ const addChildren = (ammount = 1, options = {}) => {
 
 const baseChildren = <div>{ [1,2,3,4,5].map(createCarouselItemImage) }</div>;
 
+class LazyLoadedCarousel extends Component {
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            slides: null
+        };
+
+        this.loadSlides = this.loadSlides.bind(this);
+    }
+
+    loadSlides() {
+        this.setState({
+            slides: baseChildren.props.children
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <p>Click the button to asynchronously load the slides</p>
+                <button onClick={this.loadSlides} style={{padding: '10px', margin: '10px', fontSize: '1.5em'}}>Load slides</button>
+                <Carousel>
+                    { this.state.slides }
+                </Carousel>
+            </div>
+        );
+    }
+}
+
 storiesOf('Carousel')
-  .addWithInfo('PropTypes', () => <div/>,
+  .addWithInfo('PropTypes',  'All the allowed props and default values', () => <div/>,
     { source: false, inline: true, propTables: [Carousel]})
   .addWithInfo('defaults',() => (
     <Carousel>
         { baseChildren.props.children }
     </Carousel>
   ), { source: true, inline: true, propTables: false})
+  .addWithInfo('lazy loaded',
+    `
+    Code example:
+    ~~~js
+    class LazyLoadedCarousel extends Component {
+        constructor (props) {
+            super(props);
+
+            this.state = {
+                slides: null
+            };
+
+            this.loadSlides = this.loadSlides.bind(this);
+        }
+
+        loadSlides() {
+            this.setState({
+                slides: baseChildren.props.children
+            });
+        }
+
+        render() {
+            return (
+                <div>
+                    <button onClick={this.loadSlides}>Load slides</button>
+                    <Carousel>
+                        { this.state.slides }
+                    </Carousel>
+                </div>
+            );
+        }
+    }
+    ~~~
+            `,
+    () => (
+    <LazyLoadedCarousel />
+  ), { source: true, inline: true, propTables: false})
   .addWithInfo('handlers',
     <div>
     <p>Handlers will be called with the index of the element plus the element. i.e:</p>
-
     <code>
         function myHandler(index, element)
     </code>
