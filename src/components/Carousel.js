@@ -15,6 +15,7 @@ Swipe = Swipe.default;
 module.exports = CreateReactClass({
     displayName: 'Carousel',
     propTypes: {
+        className: PropTypes.string,
         children: PropTypes.node,
         showArrows: PropTypes.bool,
         showStatus: PropTypes.bool,
@@ -60,7 +61,6 @@ module.exports = CreateReactClass({
 
     getInitialState () {
         return {
-            // index of the image to be shown.
             initialized: false,
             selectedItem: this.props.selectedItem,
             hasMount: false
@@ -109,6 +109,10 @@ module.exports = CreateReactClass({
             this.setupAutoPlay();
         }
 
+        this.setState({
+            initialized: true
+        });
+
         var initialImage = this.getInitialImage()
         if (initialImage) {
             // if it's a carousel of images, we set the mount state after the first image is loaded
@@ -116,10 +120,6 @@ module.exports = CreateReactClass({
         } else {
             this.setMountState();
         }
-
-        this.setState({
-            initialized: true
-        });
     },
 
     destroyCarousel () {
@@ -406,7 +406,7 @@ module.exports = CreateReactClass({
     },
 
     renderThumbs () {
-        if (!this.props.showThumbs) {
+        if (!this.props.showThumbs || this.props.children.length === 0) {
             return null
         }
 
@@ -448,15 +448,11 @@ module.exports = CreateReactClass({
     },
 
     render () {
-        if (!this.props.children) {
+        if (!this.props.children || this.props.children.length === 0) {
             return null;
         }
 
         var itemsLength = this.props.children.length;
-
-        if (itemsLength === 0) {
-            return null;
-        }
 
         var isHorizontal = this.props.axis === 'horizontal';
 

@@ -28,10 +28,19 @@ module.exports = CreateReactClass({
 
     getInitialState () {
         return {
+            initialized: false,
             selectedItem: this.props.selectedItem,
             hasMount: false,
             firstItem: this.getFirstItem(this.props.selectedItem)
         };
+    },
+
+    componentDidMount (nextProps) {
+        if (!this.props.children) {
+            return;
+        }
+
+        this.setupThumbs();
     },
 
     componentWillReceiveProps (props, state) {
@@ -43,35 +52,53 @@ module.exports = CreateReactClass({
         }
     },
 
-    componentDidMount (nextProps) {
+    componentDidUpdate(prevProps) {
+        if (!prevProps.children && this.props.children && !this.state.initialized) {
+            this.setupThumbs();
+        }
+    },
+
+    componentWillUnmount() {
+        this.destroyThumbs();
+    },
+
+    setupThumbs () {
         // as the widths are calculated, we need to resize
         // the carousel when the window is resized
-        window.addEventListener("resize", this.updateStatics);
+        window.addEventListener("resize", this.updateSizes);
         // issue #2 - image loading smaller
-        window.addEventListener("DOMContentLoaded", this.updateStatics);
+        window.addEventListener("DOMContentLoaded", this.updateSizes);
+
+        this.setState({
+            initialized: true
+        });
 
         var defaultImg = this.getDefaultImage();
         if (defaultImg) {
-            defaultImg.addEventListener('load', this.onFirstImageLoad);
+            defaultImg.addEventListener('load', this.setMountState);
         }
 
         // when the component is rendered we need to calculate
         // the container size to adjust the responsive behaviour
-        this.updateStatics();
+        this.updateSizes();
     },
 
-    componentWillUnmount() {
+    destroyThumbs () {
         // removing listeners
-        window.removeEventListener("resize", this.updateStatics);
-        window.removeEventListener("DOMContentLoaded", this.updateStatics);
+        window.removeEventListener("resize", this.updateSizes);
+        window.removeEventListener("DOMContentLoaded", this.updateSizes);
 
         var defaultImg = this.getDefaultImage();
         if (defaultImg) {
-            defaultImg.removeEventListener('load', this.onFirstImageLoad);
+            defaultImg.removeEventListener('load', this.setMountState);
         }
     },
 
-    updateStatics () {
+    updateSizes () {
+        if (!this.state.initialized) {
+            return;
+        }
+
         var total = this.props.children.length;
         this.wrapperSize = this.itemsWrapper.clientWidth;
         this.itemSize = outerWidth(this.thumb0);
@@ -91,9 +118,9 @@ module.exports = CreateReactClass({
         return null;
     },
 
-    onFirstImageLoad () {
+    setMountState () {
         this.setState({hasMount: true});
-        this.updateStatics();
+        this.updateSizes();
     },
 
     handleClickItem (index, item) {

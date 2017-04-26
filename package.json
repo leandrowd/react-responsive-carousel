@@ -26,6 +26,7 @@
   "scripts": {
     "start": "node --harmony ./node_modules/gulp/bin/gulp",
     "test": "jest",
+    "prepare-snapshot": "jest --updateSnapshot",
     "prebuild": "npm test",
     "build": "babel ./src -d lib --ignore '__tests__' && gulp styles:package copy:package",
     "prepublish-to-npm": "git pull && npm run build && npm run changelog && git add . && git commit -m 'Prepare for publishing'",
@@ -85,7 +86,8 @@
   "jest": {
     "unmockedModulePathPatterns": [
       "node_modules"
-    ]
+    ],
+    "rootDir": "src"
   },
   "dependencies": {
     "classnames": "^2.2.5",
