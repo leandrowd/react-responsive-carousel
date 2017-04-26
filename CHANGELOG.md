@@ -1,6 +1,11 @@
 # React Responsive Carousel
 
 
+## 3.1.10 - Tue Apr 25 2017
+ * Merge pull request #110 from leandrowd/issue-109
+    > #109: Move create-react-class to dependencies instead of devDependencies
+
+
 ## 3.1.9 - Mon Apr 24 2017
  * Merge pull request #108 from leandrowd/issue-98
     > #98: Allow carousel slides to be lazy loaded
@@ -120,15 +125,9 @@
 
 ## 3.0.17 - Wed Sep 14 2016
  * Adding example with videos
- * Merge pull request #56 from tenshiemi/use-babelify-for-es6
-    > Replacing the deprecated package reactify with babelify
- * Replacing the deprecated package reactify with babelify
 
 
 ## 3.0.16 - Sat Sep 10 2016
- * Merge pull request #54 from leandrowd/storybook
-    > Storybook and many adjusts resulting from tests inside it.
- * Updating editor config properties and reformatting files
 
 
 ## 3.0.15 - Wed Sep 07 2016
