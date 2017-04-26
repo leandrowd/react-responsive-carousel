@@ -1,6 +1,12 @@
 # React Responsive Carousel
 
 
+## 3.1.11 - Wed Apr 26 2017
+ * Merge pull request #111 from leandrowd/issue-98-1
+    > Solving SSR problem when children is lazy loaded.
+ * #98: Adding snapshot tests
+
+
 ## 3.1.10 - Tue Apr 25 2017
  * Merge pull request #110 from leandrowd/issue-109
     > #109: Move create-react-class to dependencies instead of devDependencies
@@ -120,11 +126,9 @@
  * Add build files
  * Add infinite looping feature
  * Add infinite looping documentation
- * Deploying storybook demos
 
 
 ## 3.0.17 - Wed Sep 14 2016
- * Adding example with videos
 
 
 ## 3.0.16 - Sat Sep 10 2016
