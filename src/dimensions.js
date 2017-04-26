@@ -1,9 +1,7 @@
-module.exports = {
-	outerWidth: (el) => {
-		var width = el.offsetWidth;
-		var style = getComputedStyle(el);
+export const outerWidth = (el) => {
+	let width = el.offsetWidth;
+	const style = getComputedStyle(el);
 
-		width += parseInt(style.marginLeft) + parseInt(style.marginRight);
-		return width;
-	}
-}
+	width += parseInt(style.marginLeft) + parseInt(style.marginRight);
+	return width;
+};

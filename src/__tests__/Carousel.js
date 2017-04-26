@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
+import * as index from '../index';
 
 describe("Slider", function() {
 	jest.autoMockOff();
 
-	const Carousel = require('../components/Carousel');
+	const Carousel = require('../components/Carousel').default;
+    const Thumbs = require('../components/Thumbs').default;
 
 	let component, componentInstance, totalChildren, lastItemIndex;
 
@@ -48,6 +50,15 @@ describe("Slider", function() {
 	beforeEach(() => {
 		renderDefaultComponent({});
 	});
+
+    describe("Exports", () => {
+        it('should export Carousel from the main index file', () => {
+            expect(index.Carousel).toBe(Carousel);
+        });
+        it('should export Thumbs from the main index file', () => {
+            expect(index.Thumbs).toBe(Thumbs);
+        });
+    });
 
   	describe("Basics", () => {
         describe("DisplayName", () => {

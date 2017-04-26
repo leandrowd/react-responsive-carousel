@@ -1,4 +1,4 @@
-module.exports = {
-    Carousel: require('./components/Carousel'),
-    Thumbs: require('./components/Thumbs')
-}
+import Carousel from './components/Carousel';
+import Thumbs from './components/Thumbs';
+
+export { Carousel, Thumbs };
