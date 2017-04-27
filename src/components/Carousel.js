@@ -502,7 +502,8 @@ module.exports = CreateReactClass({
         if (isHorizontal) {
             merge(swiperProps, {
                 onSwipeLeft: this.increment,
-                onSwipeRight: this.decrement
+                onSwipeRight: this.decrement,
+                direction: Swipe.horizontal
             });
 
             if (this.props.dynamicHeight) {
@@ -514,7 +515,8 @@ module.exports = CreateReactClass({
         } else {
             merge(swiperProps, {
                 onSwipeUp: this.decrement,
-                onSwipeDown: this.increment
+                onSwipeDown: this.increment,
+                direction: Swipe.vertical
             });
 
             swiperProps.style.height = this.state.itemSize;
