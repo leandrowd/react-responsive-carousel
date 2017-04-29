@@ -25,7 +25,7 @@ module.exports = function (options) {
 		// using dev components
 		entries: [configs.paths.source + '/main.js'],
 		// using npm components
-   	transform: [["babelify", {presets: ["es2015", "react"]}]],
+   	    transform: ["babelify"],
 		debug: isDevelopment,
 		fullPaths: isDevelopment,
 		extension: ['js']
