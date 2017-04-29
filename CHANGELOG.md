@@ -1,6 +1,13 @@
 # React Responsive Carousel
 
 
+## 3.1.14 - Sat Apr 29 2017
+ * Merge pull request #116 from leandrowd/issue-112-2
+    > #112: Fix emulateTouch
+ * #112: Fix emulateTouch
+ * Updating changelog
+
+
 ## 3.1.13 - Sat Apr 29 2017
  * Merge pull request #115 from leandrowd/issue-112-1
     > #112: Fix auto play
@@ -126,9 +133,6 @@
 
 
 ## 3.0.19 - Sat Sep 24 2016
- * Merge pull request #61 from leandrowd/update-swipe
-    > Updating react-easy-swipe
- * Updating react-easy-swipe
 
 
 ## 3.0.18 - Fri Sep 16 2016
