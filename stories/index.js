@@ -175,7 +175,7 @@ storiesOf('Carousel')
     </Carousel>
   ), { source: true, inline: true, propTables: false})
   .addWithInfo('auto play', () => (
-    <Carousel autoPlay={true} interval={3000} infiniteLoop={true}>
+    <Carousel autoPlay={true} interval={1000} infiniteLoop={true}>
         { baseChildren.props.children }
     </Carousel>
   ), { source: true, inline: true, propTables: false})
@@ -244,7 +244,7 @@ storiesOf('Carousel')
 				</li>
 			</ul>
 		</div>
-		<div key="content-5" className="my-slide secondary complex">
+		<div key="content-6" className="my-slide secondary complex">
 			<h2>Pre baked slides:</h2>
 			<ul>
 				<li>Primary - for titles</li>
@@ -252,37 +252,37 @@ storiesOf('Carousel')
 				<li>Content</li>
 			</ul>
 		</div>
-		<div key="content-6" className="my-slide content">
+		<div key="content-7" className="my-slide content">
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/n0F6hSpxaFc" />
 		</div>
-		<div key="content-6" className="my-slide content">
+		<div key="content-8" className="my-slide content">
 			<iframe src="https://player.vimeo.com/video/105955605" width="640" height="360" />
 		</div>
-		<div key="content-7" className="my-slide primary">
+		<div key="content-9" className="my-slide primary">
 			<h1>Lorem Ipsum</h1>
 		</div>
-		<div key="content-8" className="my-slide secondary">
+		<div key="content-10" className="my-slide secondary">
 			<h2>What is Lorem Ipsum?</h2>
 		</div>
-		<div key="content-9" className="my-slide content">
+		<div key="content-11" className="my-slide content">
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the <strong>1500s</strong>, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
 		</div>
-		<div key="content-10" className="my-slide content">
+		<div key="content-12" className="my-slide content">
 			<blockquote>It has survived not only <em>five centuries</em>, but also the leap into electronic typesetting, remaining essentially unchanged. </blockquote>
 		</div>
-		<div key="content-11" className="my-slide content">
+		<div key="content-13" className="my-slide content">
 			<p>It was popularised in the <strong>1960s</strong> with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 		</div>
-		<div key="content-12" className="my-slide secondary">
+		<div key="content-14" className="my-slide secondary">
             <h2>Where does it come from?</h2>
 		</div>
-		<div key="content-13" className="my-slide content">
+		<div key="content-15" className="my-slide content">
 			<p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
 		</div>
-		<div key="content-14" className="my-slide content">
+		<div key="content-16" className="my-slide content">
 			<p>It has roots in a piece of classical Latin literature from <strong>45 BC</strong>, making it over <strong>2000</strong> years old.</p>
 		</div>
-		<div key="content-19" className="my-slide primary">
+		<div key="content-17" className="my-slide primary">
 			<h1>Thanks...</h1>
 		</div>
     </Carousel>
