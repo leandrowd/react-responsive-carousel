@@ -150,22 +150,22 @@ class Carousel extends Component {
         }
     }
 
-    autoPlay () {
+    autoPlay = () => {
         this.timer = setTimeout(() => {
             this.increment();
         }, this.props.interval);
     }
 
-    clearAutoPlay () {
+    clearAutoPlay = () => {
         clearTimeout(this.timer);
     }
 
-    resetAutoPlay() {
+    resetAutoPlay = () => {
         this.clearAutoPlay();
         this.autoPlay();
     }
 
-    stopOnHover () {
+    stopOnHover = () => {
         this.clearAutoPlay();
     }
 
