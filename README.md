@@ -22,12 +22,10 @@ Powerful, lightweight and fully customizable carousel component for React apps.
 - Supports any flux library (use `selectedItem` prop to set from the app state, and `onChange` callback to get the new position)
 - Show/hide anything (thumbs, indicators, arrows, status)
 
-
 ### Demo
 <http://leandrowd.github.io/react-responsive-carousel/>
 
 Check it out these [cool demos](http://react-responsive-carousel.js.org/storybook/) created using [storybook](https://getstorybook.io/). The source code for each example is available [here](https://github.com/leandrowd/react-responsive-carousel/blob/master/stories/index.js)
-
 
 ### Installing as a package
 `npm install react-responsive-carousel --save`
@@ -131,3 +129,7 @@ Feel free to submit a PR or raise issues. When submitting a PR, please:
 
 #### Storybook
 <http://react-responsive-carousel.js.org/storybook/>
+
+=======================
+
+[CHANGELOG](https://github.com/leandrowd/react-responsive-carousel/blob/master/CHANGELOG.md) - [TROUBLESHOOTING](https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md)
