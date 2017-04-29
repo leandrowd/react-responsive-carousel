@@ -28,7 +28,8 @@ class Thumbs extends Component {
             initialized: false,
             selectedItem: props.selectedItem,
             hasMount: false,
-            firstItem: this.getFirstItem(props.selectedItem)
+            firstItem: this.getFirstItem(props.selectedItem),
+            images: []
         }
     }
 
@@ -66,14 +67,16 @@ class Thumbs extends Component {
         // issue #2 - image loading smaller
         window.addEventListener("DOMContentLoaded", this.updateSizes);
 
-        this.setState({
-            initialized: true
-        });
+        const images = this.getImages();
 
-        const defaultImg = this.getDefaultImage();
-        if (defaultImg) {
-            defaultImg.addEventListener('load', this.setMountState);
+        if (!images) {
+            return;
         }
+
+        this.setState({
+            initialized: true,
+            images
+        });
 
         // when the component is rendered we need to calculate
         // the container size to adjust the responsive behaviour
@@ -84,22 +87,6 @@ class Thumbs extends Component {
         // removing listeners
         window.removeEventListener("resize", this.updateSizes);
         window.removeEventListener("DOMContentLoaded", this.updateSizes);
-
-        const defaultImg = this.getDefaultImage();
-        if (defaultImg) {
-            defaultImg.removeEventListener('load', this.setMountState);
-        }
-    }
-
-    getDefaultImage () {
-        const firstItem = ReactDOM.findDOMNode(this.thumb0);
-
-        if (firstItem) {
-            const firstImage = firstItem.getElementsByTagName('img');
-            return firstImage && firstImage[0];
-        }
-
-        return null;
     }
 
     updateSizes = () => {
@@ -109,10 +96,35 @@ class Thumbs extends Component {
 
         const total = this.props.children.length;
         this.wrapperSize = this.itemsWrapper.clientWidth;
-        this.itemSize = outerWidth(this.thumb0);
+        this.itemSize = outerWidth(this.refs.thumb0);
         this.visibleItems = Math.floor(this.wrapperSize / this.itemSize);
         this.lastPosition = total - this.visibleItems;
         this.showArrows = this.visibleItems < total;
+    }
+
+    getImages() {
+        const images = React.Children.map(this.props.children, (item, index) => {
+            let img = item;
+
+            // if the item is not an image, try to find the first image in the item's children.
+            if (item.type !== "img") {
+                img = React.Children.toArray(item.props.children).filter((children) => children.type === "img")[0];
+            }
+
+            if (!img || img.length === 0) {
+                return null;
+            }
+
+            return img;
+        });
+
+        if (images.filter(image => image !== null).length === 0) {
+            console.warn(`No images found! Can't build the thumb list without images. If you don't need thumbs, set showThumbs={false} in the Carousel. Note that it's not possible to get images rendered inside custom components. More info at https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md`);
+
+            return null;
+        }
+
+        return images;
     }
 
     setMountState = () => {
@@ -219,23 +231,24 @@ class Thumbs extends Component {
     }
 
     renderItems () {
-        return React.Children.map(this.props.children, (item, index) => {
+        return this.state.images.map((img, index) => {
             const itemClass = klass.ITEM(false, index === this.state.selectedItem && this.state.hasMount);
 
-            let img = item;
+            const thumbProps = {
+                key: index,
+                ref: `thumb${index}`,
+                className: itemClass,
+                onClick: this.handleClickItem.bind(this, index, this.props.children[index])
+            };
 
-            if (item.type !== "img") {
-                img = React.Children.toArray(item.props.children).filter((children) => children.type === "img")[0];
-            }
-
-            if (img.length) {
-                console.warn(img, img.length, "No images found! Can't build the thumb list. If you don't need thumbs, set showThumbs={false} in the Carousel");
-                return null;
+            if (index === 0) {
+                img = React.cloneElement(img, {
+                    onLoad: this.setMountState
+                });
             }
 
             return (
-                <li key={index} ref={node => this["thumb" + index] = node} className={itemClass}
-                    onClick={ this.handleClickItem.bind(this, index, item) }>
+                <li {...thumbProps}>
                     { img }
                 </li>
             );
@@ -243,7 +256,7 @@ class Thumbs extends Component {
     }
 
     render () {
-        if (!this.props.children) {
+        if (!this.props.children || this.state.images.length === 0) {
             return null;
         }
 
