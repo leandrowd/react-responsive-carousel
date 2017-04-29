@@ -64,7 +64,8 @@
     background: none; }
   .carousel img {
     width: 100%;
-    display: inline-block; }
+    display: inline-block;
+    pointer-events: none; }
   .carousel .carousel {
     position: relative; }
   .carousel .control-arrow {
