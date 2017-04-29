@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import klass from '../cssClasses';
-import merge from '../object-assign';
 import CSSTranslate from '../CSSTranslate';
 import Swipe from 'react-easy-swipe';
 import Thumbs from './Thumbs';
 import * as customPropTypes from '../customPropTypes';
+
+const noop = () => {};
 
 class Carousel extends Component {
     static displayName = 'Carousel';
@@ -20,9 +21,9 @@ class Carousel extends Component {
         infiniteLoop: PropTypes.bool,
         showThumbs: PropTypes.bool,
         selectedItem: PropTypes.number,
-        onClickItem: PropTypes.func,
-        onClickThumb: PropTypes.func,
-        onChange: PropTypes.func,
+        onClickItem: PropTypes.func.isRequired,
+        onClickThumb: PropTypes.func.isRequired,
+        onChange: PropTypes.func.isRequired,
         axis: PropTypes.oneOf(['horizontal', 'vertical']),
         width: customPropTypes.unit,
         useKeyboardArrows: PropTypes.bool,
@@ -51,7 +52,10 @@ class Carousel extends Component {
         transitionTime: 350,
         swipeScrollTolerance: 5,
         dynamicHeight: false,
-        emulateTouch: false
+        emulateTouch: false,
+        onClickItem: noop,
+        onClickThumb: noop,
+        onChange: noop
     };
 
     constructor(props) {
@@ -150,25 +154,6 @@ class Carousel extends Component {
         }
     }
 
-    autoPlay = () => {
-        this.timer = setTimeout(() => {
-            this.increment();
-        }, this.props.interval);
-    }
-
-    clearAutoPlay = () => {
-        clearTimeout(this.timer);
-    }
-
-    resetAutoPlay = () => {
-        this.clearAutoPlay();
-        this.autoPlay();
-    }
-
-    stopOnHover = () => {
-        this.clearAutoPlay();
-    }
-
     bindEvents () {
         // as the widths are calculated, we need to resize
         // the carousel when the window is resized
@@ -194,6 +179,33 @@ class Carousel extends Component {
         if (this.props.useKeyboardArrows) {
             document.removeEventListener("keydown", this.navigateWithKeyboard);
         }
+    }
+
+    autoPlay = () => {
+        if (!this.props.autoPlay) {
+            return;
+        }
+
+        this.timer = setTimeout(() => {
+            this.increment();
+        }, this.props.interval);
+    }
+
+    clearAutoPlay = () => {
+        if (!this.props.autoPlay) {
+            return;
+        }
+
+        clearTimeout(this.timer);
+    }
+
+    resetAutoPlay = () => {
+        this.clearAutoPlay();
+        this.autoPlay();
+    }
+
+    stopOnHover = () => {
+        this.clearAutoPlay();
     }
 
     navigateWithKeyboard = (e) => {
@@ -232,18 +244,14 @@ class Carousel extends Component {
 
     handleClickItem = (index, item) => {
         if (this.state.cancelClick) {
-            this.selectItem({
+            this.setState({
                 cancelClick: false
             });
 
             return;
         }
 
-        const handler = this.props.onClickItem;
-
-        if (typeof handler === 'function') {
-            handler(index, item);
-        }
+        this.props.onClickItem(index, item);
 
         if (index !== this.state.selectedItem) {
             this.setState({
@@ -253,19 +261,11 @@ class Carousel extends Component {
     }
 
     handleOnChange = (index, item) => {
-        const handler = this.props.onChange;
-
-        if (typeof handler === 'function') {
-            handler(index, item);
-        }
+        this.props.onChange(index, item);
     }
 
     handleClickThumb = (index, item) => {
-        const handler = this.props.onClickThumb;
-
-        if (typeof handler === 'function') {
-            handler(index, item);
-        }
+        this.props.onClickThumb(index, item);
 
         this.selectItem({
             selectedItem: index
@@ -273,6 +273,7 @@ class Carousel extends Component {
     }
 
     onSwipeStart = () => {
+        this.clearAutoPlay();
         this.setState({
             swiping: true
         });
@@ -280,9 +281,9 @@ class Carousel extends Component {
 
     onSwipeEnd = () => {
         this.setState({
-            swiping: false,
-            cancelClick: true
+            swiping: false
         });
+        this.autoPlay();
     }
 
     onSwipeMove = (delta) => {
@@ -321,7 +322,15 @@ class Carousel extends Component {
         });
 
         // allows scroll if the swipe was within the tolerance
-        return Math.abs(axisDelta) > this.props.swipeScrollTolerance;
+        const hasMoved = Math.abs(axisDelta) > this.props.swipeScrollTolerance;
+
+        if (hasMoved && !this.state.cancelClick) {
+            this.setState({
+                cancelClick: true
+            });
+        }
+
+        return hasMoved;
     }
 
     decrement = (positions) => {
@@ -364,6 +373,36 @@ class Carousel extends Component {
     selectItem = (state) => {
         this.setState(state);
         this.handleOnChange(state.selectedItem, this.props.children[state.selectedItem]);
+    }
+
+    getInitialImage = () => {
+        const selectedItem = this.props.selectedItem;
+        const item = this.refs[`item${selectedItem}`];
+        const images = item && item.getElementsByTagName('img');
+        return images && images[selectedItem];
+    }
+
+    getVariableImageHeight = (position) => {
+        const item = this.refs[`item${position}`];
+        const images = item && item.getElementsByTagName('img');
+        if (this.state.hasMount && images.length > 0) {
+            const image = images[0];
+
+            if (!image.complete) {
+                // if the image is still loading, the size won't be available so we trigger a new render after it's done
+                const onImageLoad = () => {
+                    this.forceUpdate();
+                    image.removeEventListener('load', onImageLoad);
+                }
+
+                image.addEventListener('load', onImageLoad);
+            }
+
+            const height = image.clientHeight;
+            return height > 0 ? height : null;
+        }
+
+        return null;
     }
 
     renderItems () {
@@ -412,36 +451,6 @@ class Carousel extends Component {
                 {this.props.children}
             </Thumbs>
         );
-    }
-
-    getInitialImage () {
-        const selectedItem = this.props.selectedItem;
-        const item = this.refs[`item${selectedItem}`];
-        const images = item && item.getElementsByTagName('img');
-        return images && images[selectedItem];
-    }
-
-    getVariableImageHeight (position) {
-        const item = this.refs[`item${position}`];
-        const images = item && item.getElementsByTagName('img');
-        if (this.state.hasMount && images.length > 0) {
-            const image = images[0];
-
-            if (!image.complete) {
-                // if the image is still loading, the size won't be available so we trigger a new render after it's done
-                const onImageLoad = () => {
-                    this.forceUpdate();
-                    image.removeEventListener('load', onImageLoad);
-                }
-
-                image.addEventListener('load', onImageLoad);
-            }
-
-            const height = image.clientHeight;
-            return height > 0 ? height : null;
-        }
-
-        return null;
     }
 
     render () {
@@ -497,10 +506,8 @@ class Carousel extends Component {
         const containerStyles = {};
 
         if (isHorizontal) {
-            merge(swiperProps, {
-                onSwipeLeft: this.increment,
-                onSwipeRight: this.decrement
-            });
+            swiperProps.onSwipeLeft = this.increment;
+            swiperProps.onSwipeRight = this.decrement;
 
             if (this.props.dynamicHeight) {
                 const itemHeight = this.getVariableImageHeight(this.state.selectedItem);
@@ -509,11 +516,8 @@ class Carousel extends Component {
             }
 
         } else {
-            merge(swiperProps, {
-                onSwipeUp: this.decrement,
-                onSwipeDown: this.increment
-            });
-
+            swiperProps.onSwipeUp = this.decrement;
+            swiperProps.onSwipeDown = this.increment;
             swiperProps.style.height = this.state.itemSize;
             containerStyles.height = this.state.itemSize;
         }
