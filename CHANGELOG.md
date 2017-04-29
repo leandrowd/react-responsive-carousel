@@ -1,6 +1,13 @@
 # React Responsive Carousel
 
 
+## 3.1.13 - Sat Apr 29 2017
+ * Merge pull request #115 from leandrowd/issue-112-1
+    > #112: Fix auto play
+ * #112: Fix auto play
+ * Updating changelog
+
+
 ## 3.1.12 - Sat Apr 29 2017
  * Merge pull request #114 from leandrowd/issue-98-2
     > #98: Fixing bug where the Thumbs component would throw an error if a custom component was rendered inside it
@@ -122,12 +129,9 @@
  * Merge pull request #61 from leandrowd/update-swipe
     > Updating react-easy-swipe
  * Updating react-easy-swipe
- * Adding support to auto play
 
 
 ## 3.0.18 - Fri Sep 16 2016
- * Merge pull request #58 from leandrowd/moar-tests
-    > Moar tests
 
 
 ## 3.0.17 - Wed Sep 14 2016
