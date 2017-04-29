@@ -26,7 +26,7 @@
   "scripts": {
     "start": "node --harmony ./node_modules/gulp/bin/gulp",
     "test": "jest",
-    "prepare-snapshot": "jest --updateSnapshot",
+    "update-snapshots": "jest --updateSnapshot",
     "prebuild": "npm test",
     "build": "babel ./src -d lib --ignore '__tests__' && gulp styles:package copy:package",
     "prepublish-to-npm": "git pull && npm run build && git add . && git commit -m 'Prepare for publishing'",

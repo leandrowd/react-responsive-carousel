@@ -193,6 +193,7 @@ exports[`Slider Snapshots custom class name 1`] = `
           onClick={[Function]}
         >
           <img
+            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -448,6 +449,7 @@ exports[`Slider Snapshots custom width 1`] = `
           onClick={[Function]}
         >
           <img
+            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -703,6 +705,7 @@ exports[`Slider Snapshots default 1`] = `
           onClick={[Function]}
         >
           <img
+            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -958,6 +961,7 @@ exports[`Slider Snapshots no arrows 1`] = `
           onClick={[Function]}
         >
           <img
+            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -1176,6 +1180,7 @@ exports[`Slider Snapshots no indicators 1`] = `
           onClick={[Function]}
         >
           <img
+            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -1424,6 +1429,7 @@ exports[`Slider Snapshots no indicators 2`] = `
           onClick={[Function]}
         >
           <img
+            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -1841,6 +1847,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
           onClick={[Function]}
         >
           <img
+            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
