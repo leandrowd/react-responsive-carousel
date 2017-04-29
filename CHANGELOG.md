@@ -1,6 +1,15 @@
 # React Responsive Carousel
 
 
+## 3.1.12 - Sat Apr 29 2017
+ * Merge pull request #114 from leandrowd/issue-98-2
+    > #98: Fixing bug where the Thumbs component would throw an error if a custom component was rendered inside it
+ * Adding links for changelog and troubleshooting in the readme
+ * #98: Fixing bug where the Thumbs component would throw an error if a custom component was rendered inside it
+ * Merge pull request #113 from leandrowd/issue-112
+    > #112: Converting source to es6 (MVP)
+
+
 ## 3.1.11 - Wed Apr 26 2017
  * Merge pull request #111 from leandrowd/issue-98-1
     > Solving SSR problem when children is lazy loaded.
@@ -119,13 +128,6 @@
 ## 3.0.18 - Fri Sep 16 2016
  * Merge pull request #58 from leandrowd/moar-tests
     > Moar tests
- * Updating README.md
- * Merge pull request #57 from olxbrasil/feature/infinite-looping
-    > Feature/infinite looping
- * Adding more tests for Carousel
- * Add build files
- * Add infinite looping feature
- * Add infinite looping documentation
 
 
 ## 3.0.17 - Wed Sep 14 2016
