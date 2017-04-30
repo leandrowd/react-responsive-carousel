@@ -25,7 +25,6 @@ exports[`Slider Snapshots custom class name 1`] = `
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -169,7 +168,6 @@ exports[`Slider Snapshots custom class name 1`] = `
         className="thumbs animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -281,7 +279,6 @@ exports[`Slider Snapshots custom width 1`] = `
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -425,7 +422,6 @@ exports[`Slider Snapshots custom width 1`] = `
         className="thumbs animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -537,7 +533,6 @@ exports[`Slider Snapshots default 1`] = `
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -681,7 +676,6 @@ exports[`Slider Snapshots default 1`] = `
         className="thumbs animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -793,7 +787,6 @@ exports[`Slider Snapshots no arrows 1`] = `
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -937,7 +930,6 @@ exports[`Slider Snapshots no arrows 1`] = `
         className="thumbs animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -1051,7 +1043,6 @@ exports[`Slider Snapshots no indicators 1`] = `
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -1156,7 +1147,6 @@ exports[`Slider Snapshots no indicators 1`] = `
         className="thumbs animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -1268,7 +1258,6 @@ exports[`Slider Snapshots no indicators 2`] = `
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -1405,7 +1394,6 @@ exports[`Slider Snapshots no indicators 2`] = `
         className="thumbs animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -1517,7 +1505,6 @@ exports[`Slider Snapshots no thumbs 1`] = `
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -1678,7 +1665,6 @@ exports[`Slider Snapshots vertical axis 1`] = `
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {
@@ -1823,7 +1809,6 @@ exports[`Slider Snapshots vertical axis 1`] = `
         className="thumbs animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
-        onTouchMove={[Function]}
         onTouchStart={[Function]}
         style={
           Object {

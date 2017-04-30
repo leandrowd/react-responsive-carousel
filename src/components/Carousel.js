@@ -136,9 +136,7 @@ class Carousel extends Component {
         if (this.props.stopOnHover) {
             const carouselWrapper = this.refs['carouselWrapper'];
             carouselWrapper.addEventListener('mouseenter', this.stopOnHover);
-            carouselWrapper.addEventListener('touchstart', this.stopOnHover);
             carouselWrapper.addEventListener('mouseleave', this.autoPlay);
-            carouselWrapper.addEventListener('touchend', this.autoPlay);
         }
     }
 
@@ -148,9 +146,7 @@ class Carousel extends Component {
 
         if (this.props.stopOnHover && carouselWrapper) {
             carouselWrapper.removeEventListener('mouseenter', this.stopOnHover);
-            carouselWrapper.removeEventListener('touchstart', this.stopOnHover);
             carouselWrapper.removeEventListener('mouseleave', this.autoPlay);
-            carouselWrapper.removeEventListener('touchend', this.autoPlay);
         }
     }
 
@@ -273,10 +269,10 @@ class Carousel extends Component {
     }
 
     onSwipeStart = () => {
-        this.clearAutoPlay();
         this.setState({
             swiping: true
         });
+        this.clearAutoPlay();
     }
 
     onSwipeEnd = () => {
