@@ -1,6 +1,14 @@
 # React Responsive Carousel
 
 
+## 3.1.15 - Sun Apr 30 2017
+ * Merge pull request #117 from leandrowd/issue-97
+    > #97: Fixing warning about passive listeners and preventDefault
+ * #97: Fixing issue with auto play and swipe on mobile
+ * #97: Updating react-easy-swipe
+ * Updating changelog
+
+
 ## 3.1.14 - Sat Apr 29 2017
  * Merge pull request #116 from leandrowd/issue-112-2
     > #112: Fix emulateTouch
@@ -127,9 +135,6 @@
 
 
 ## 3.0.20 - Sun Sep 25 2016
- * Adding tolerance for swipe scroll behaviour
- * Refactoring tests to use es6 features
- * Adding tests for auto play
 
 
 ## 3.0.19 - Sat Sep 24 2016
