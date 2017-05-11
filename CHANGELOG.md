@@ -1,56 +1,39 @@
 # React Responsive Carousel
 
 
+## 3.1.16 - Thu May 11 2017
+ * #118: Adding support to swipe tolerance
+
+
 ## 3.1.15 - Sun Apr 30 2017
- * Merge pull request #117 from leandrowd/issue-97
-    > #97: Fixing warning about passive listeners and preventDefault
  * #97: Fixing issue with auto play and swipe on mobile
  * #97: Updating react-easy-swipe
- * Updating changelog
 
 
 ## 3.1.14 - Sat Apr 29 2017
- * Merge pull request #116 from leandrowd/issue-112-2
-    > #112: Fix emulateTouch
  * #112: Fix emulateTouch
- * Updating changelog
 
 
 ## 3.1.13 - Sat Apr 29 2017
- * Merge pull request #115 from leandrowd/issue-112-1
-    > #112: Fix auto play
  * #112: Fix auto play
- * Updating changelog
 
 
 ## 3.1.12 - Sat Apr 29 2017
- * Merge pull request #114 from leandrowd/issue-98-2
-    > #98: Fixing bug where the Thumbs component would throw an error if a custom component was rendered inside it
  * Adding links for changelog and troubleshooting in the readme
  * #98: Fixing bug where the Thumbs component would throw an error if a custom component was rendered inside it
- * Merge pull request #113 from leandrowd/issue-112
-    > #112: Converting source to es6 (MVP)
 
 
 ## 3.1.11 - Wed Apr 26 2017
- * Merge pull request #111 from leandrowd/issue-98-1
-    > Solving SSR problem when children is lazy loaded.
  * #98: Adding snapshot tests
 
 
 ## 3.1.10 - Tue Apr 25 2017
- * Merge pull request #110 from leandrowd/issue-109
-    > #109: Move create-react-class to dependencies instead of devDependencies
 
 
 ## 3.1.9 - Mon Apr 24 2017
- * Merge pull request #108 from leandrowd/issue-98
-    > #98: Allow carousel slides to be lazy loaded
 
 
 ## 3.1.8 - Mon Apr 24 2017
- * Merge pull request #107 from leandrowd/issue-101
-    > #101: Updating to react 15.5.4
  * Updating versions and setup for tests
  * Updating storybook + filling in stories
  * Updating react and tests
@@ -58,80 +41,50 @@
 
 
 ## 3.1.7 - Mon Apr 24 2017
- * Merge pull request #106 from leandrowd/issue-104
-    > #104 - Fixes problem where arrows were not appearing after carousel was loaded
  * #104 - Fixes problem where arrows were not appearing after carousel was loaded
- * Merge pull request #103 from ttamminen/master
-    > Fixes issue with initial image having unbinded event
  * Fix issue when selected image is other than zero index
  * Fix #102
 
 
 ## 3.1.6 - Wed Apr 19 2017
- * Merge pull request #100 from leandrowd/issue-99
-    > #99: Fixing bug with infinite loop and showArrows=false
  * #99: Removing node 4 for incompatibility problems with yarn
  * #99: Fixing bug with infinite loop and showArrows=false
 
 
 ## 3.1.5 - Sun Mar 26 2017
- * Merge pull request #93 from leandrowd/issue-63
-    > #63: Stoping autoplay on touch events or manual actions
 
 
 ## 3.1.4 - Sun Mar 26 2017
- * Merge pull request #92 from leandrowd/issue-91
-    > #91: Removing check for has3d as all modern browsers support this capability
  * #91: Removing check for has3d as all modern browsers support this capability
 
 
 ## 3.1.3 - Sat Mar 11 2017
  * Adding extra info
- * Merge pull request #89 from leandrowd/issue-71
-    > #71: Adding custom transition duration
  * #71: Adding custom transition duration
 
 
 ## 3.1.2 - Sun Feb 26 2017
- * Merge pull request #88 from leandrowd/issue-86
-    > #86: Removing unnecessary has3d check
  * #86: Removing unnecessary has3d check
 
 
 ## 3.1.1 - Sun Feb 26 2017
- * Merge pull request #87 from leandrowd/issue-85
-    > #85: Moving event binding to componentDidMount to fix SSR
 
 
 ## 3.1.0 - Fri Feb 10 2017
 
 
 ## 3.0.23 - Fri Feb 10 2017
- * Merge pull request #82 from leandrowd/issue-81
-    > #81: Adding support to mouse swipe:
  * #81: Adding support to mouse swipe:
 - Adjusting swipe movement for more precision;
 
 
 ## 3.0.22 - Sun Jan 29 2017
  * Removing properties from html as it was outdated
- * Merge pull request #78 from leandrowd/issue-69
-    > Fixing issue #69 - styles leaking out of carousel
- * Merge pull request #77 from leandrowd/issue-70
-    > Fixing issue #70 - Adding dynamicHeight prop to adjust when required
  * Fixing issue #69 - styles leaking out of carousel
- * Merge pull request #76 from leandrowd/issue-72
-    > Fixing issue #72 - changes to autoplay property in runtime wouldn't apply
  * Fixing issue #70 - Adding dynamicHeight prop to adjust when required
- * Merge pull request #75 from leandrowd/issue-74
-    > Fixing issue #74 - single images in a slide would cause an error
- * Fixing issue #72 - changes to autoplay property in runtime wouldn't apply
- * Fixing issue #74 - single images in a slide would cause an error
 
 
 ## 3.0.21 - Mon Sep 26 2016
- * Merge pull request #62 from leandrowd/auto-play
-    > Adding support to auto play
 
 
 ## 3.0.20 - Sun Sep 25 2016
