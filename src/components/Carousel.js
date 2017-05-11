@@ -31,7 +31,7 @@ class Carousel extends Component {
         stopOnHover: PropTypes.bool,
         interval: PropTypes.number,
         transitionTime: PropTypes.number,
-        swipeScrollTolerance: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        swipeScrollTolerance: PropTypes.oneOfType([PropTypes.number]),
         dynamicHeight: PropTypes.bool,
         emulateTouch: PropTypes.bool
     };
@@ -132,9 +132,9 @@ class Carousel extends Component {
 
     setupAutoPlay () {
         this.autoPlay();
+        const carouselWrapper = this.refs['carouselWrapper'];
 
-        if (this.props.stopOnHover) {
-            const carouselWrapper = this.refs['carouselWrapper'];
+        if (this.props.stopOnHover && carouselWrapper) {
             carouselWrapper.addEventListener('mouseenter', this.stopOnHover);
             carouselWrapper.addEventListener('mouseleave', this.autoPlay);
         }
@@ -496,6 +496,7 @@ class Carousel extends Component {
             onSwipeStart: this.onSwipeStart,
             onSwipeEnd: this.onSwipeEnd,
             style: itemListStyles,
+            tolerance: this.props.swipeScrollTolerance,
             ref: 'itemList'
         };
 
