@@ -13,11 +13,12 @@ var allowedMessages = [
     'Updat',
     'Refact',
     'Deplo',
-    "Merge pull request"
 ];
 
 var notAllowedMessages = [
-    'Merge branch'
+    'Merge pull request',
+    'Merge branch',
+    'Updating changelog'
 ];
 
 function any(list, message) {
