@@ -480,14 +480,20 @@ class Carousel extends Component {
                         'MsTransform': transformProp,
                          'OTransform': transformProp,
                           'transform': transformProp,
-                        'msTransform': transformProp,
-           'WebkitTransitionDuration': transitionTime,
-              'MozTransitionDuration': transitionTime,
-               'MsTransitionDuration': transitionTime,
-                'OTransitionDuration': transitionTime,
-                 'transitionDuration': transitionTime,
-               'msTransitionDuration': transitionTime
+                        'msTransform': transformProp
         };
+
+        if (!this.state.swiping) {
+            itemListStyles = {
+                ...itemListStyles,
+               'WebkitTransitionDuration': transitionTime,
+                  'MozTransitionDuration': transitionTime,
+                   'MsTransitionDuration': transitionTime,
+                    'OTransitionDuration': transitionTime,
+                     'transitionDuration': transitionTime,
+                   'msTransitionDuration': transitionTime
+            }
+        }
 
         let swiperProps = {
             selectedItem: this.state.selectedItem,

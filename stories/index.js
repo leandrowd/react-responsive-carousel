@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import { Carousel } from '../src/index';
 
-
 // carousel styles
 import '../src/main.scss';
 import '../src/carousel.scss';
