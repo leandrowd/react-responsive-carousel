@@ -1,6 +1,10 @@
 # React Responsive Carousel
 
 
+## 3.1.17 - Mon May 22 2017
+ * #118: Fixing jank swipe on mobile
+
+
 ## 3.1.16 - Thu May 11 2017
  * #118: Adding support to swipe tolerance
 
@@ -80,8 +84,6 @@
 
 ## 3.0.22 - Sun Jan 29 2017
  * Removing properties from html as it was outdated
- * Fixing issue #69 - styles leaking out of carousel
- * Fixing issue #70 - Adding dynamicHeight prop to adjust when required
 
 
 ## 3.0.21 - Mon Sep 26 2016
