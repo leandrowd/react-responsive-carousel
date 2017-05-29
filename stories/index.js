@@ -128,6 +128,11 @@ storiesOf('Carousel')
         { baseChildren.props.children }
     </Carousel>
   ), { source: true, inline: true, propTables: false})
+  .addWithInfo('custom status', () => (
+    <Carousel statusFormatter={(current, total) => `Current slide: ${current} / Total: ${total}`}>
+        { baseChildren.props.children }
+    </Carousel>
+  ), { source: true, inline: true, propTables: false})
   .addWithInfo('axis horizontal + keyboard support', () => (
     <Carousel useKeyboardArrows>
         { baseChildren.props.children }
