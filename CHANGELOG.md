@@ -3,10 +3,12 @@
 
 ## 3.1.19 - Mon May 29 2017
  * #131: Add story and docs about the custom formatter
+ * #131: Allow user to pass a custom formatter for status
  * #131: Removing old unused files
 
 
 ## 3.1.18 - Mon May 29 2017
+ * #129: Allow only right and left keys when axis is horizontal
 
 
 ## 3.1.17 - Mon May 22 2017
@@ -43,6 +45,7 @@
 
 
 ## 3.1.9 - Mon Apr 24 2017
+ * #98: Allow carousel slides to be lazy loaded
 
 
 ## 3.1.8 - Mon Apr 24 2017

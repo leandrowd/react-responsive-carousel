@@ -6,6 +6,7 @@ changelog.generate('react-responsive-carousel')
     .then(showChanges);
 
 var allowedMessages = [
+    'Allow',
     'Add',
     'Fix',
     'Remov',
