@@ -9,6 +9,8 @@ import * as customPropTypes from '../customPropTypes';
 
 const noop = () => {};
 
+const defaultStatusFormatter = (current, total) => `${current} of ${total}`;
+
 class Carousel extends Component {
     static displayName = 'Carousel';
 
@@ -33,7 +35,8 @@ class Carousel extends Component {
         transitionTime: PropTypes.number,
         swipeScrollTolerance: PropTypes.oneOfType([PropTypes.number]),
         dynamicHeight: PropTypes.bool,
-        emulateTouch: PropTypes.bool
+        emulateTouch: PropTypes.bool,
+        statusFormatter: PropTypes.func.isRequired
     };
 
     static defaultProps = {
@@ -55,7 +58,8 @@ class Carousel extends Component {
         emulateTouch: false,
         onClickItem: noop,
         onClickThumb: noop,
-        onChange: noop
+        onChange: noop,
+        statusFormatter: defaultStatusFormatter
     };
 
     constructor(props) {
@@ -434,7 +438,7 @@ class Carousel extends Component {
             return null
         }
 
-        return <p className="carousel-status">{this.state.selectedItem + 1} of {this.props.children.length}</p>;
+        return <p className="carousel-status">{this.props.statusFormatter(this.state.selectedItem + 1, this.props.children.length)}</p>;
     }
 
     renderThumbs () {
