@@ -1,6 +1,11 @@
 # React Responsive Carousel
 
 
+## 3.1.19 - Mon May 29 2017
+ * #131: Add story and docs about the custom formatter
+ * #131: Removing old unused files
+
+
 ## 3.1.18 - Mon May 29 2017
 
 
