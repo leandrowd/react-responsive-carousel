@@ -1,6 +1,9 @@
 # React Responsive Carousel
 
 
+## 3.1.18 - Mon May 29 2017
+
+
 ## 3.1.17 - Mon May 22 2017
  * #118: Fixing jank swipe on mobile
 
@@ -78,12 +81,9 @@
 
 
 ## 3.0.23 - Fri Feb 10 2017
- * #81: Adding support to mouse swipe:
-- Adjusting swipe movement for more precision;
 
 
 ## 3.0.22 - Sun Jan 29 2017
- * Removing properties from html as it was outdated
 
 
 ## 3.0.21 - Mon Sep 26 2016
