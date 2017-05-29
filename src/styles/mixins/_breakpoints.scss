@@ -33,25 +33,3 @@
     @content;
   }
 }
-
-@mixin breakpoints-for-javascript {
-  .breakpoint-detector {
-    display: none;
-
-    &.mobile {
-      @include only-mobile {display: block;}
-    }
-
-    &.tablet {
-      @include only-tablet {display: block;}
-    }
-
-    &.desktop {
-      @include only-desktop {display: block}
-    }
-
-    &.large {
-      @include large {display: block}
-    }
-  }
-}
