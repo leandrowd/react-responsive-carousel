@@ -63,28 +63,29 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 // <link rel="stylesheet" href="carousel.css"/>
 ```
 
-| Attributes | Type | Default | Description |
-| :--------- | :--: | :-----: | :----------- |
-| showArrows | `boolean` | `true` | show prev and next arrows |
-| showStatus | `boolean` | `true` | show index of the current item. i.e: (1/8) |
-| showIndicators | `boolean` | `true` | show little dots at the bottom with links for changing the item |
-| showThumbs | `boolean` | `true` | show thumbnails of the images |
-| infiniteLoop | `boolean` | `false` | infinite loop sliding  |
-| selectedItem | `number` | `0` | selects an item though props / defines the initial selected item |
-| axis       | `string`  | `horizontal` | changes orientation - accepts `horizontal` and `vertical` |
-| onChange   | `function` | - | Fired when changing positions |
-| onClickItem   | `function` | - | Fired when an item is clicked |
-| onClickThumb   | `function` | - | Fired when a thumb it clicked |
-| width   | `string` | - | Allows to set a fixed width |
-| useKeyboardArrows   | `boolean` | false | Adds support to next and prev through keyboard arrows |
-| autoPlay   | `boolean` | false | Auto play |
-| stopOnHover   | `boolean` | true | Stop auto play while mouse is over the carousel |
-| interval   | `number` | `5000` | Interval of auto play |
-| transitionTime   | `number` | `350` | Duration of slide transitions (in miliseconds) |
-| useKeyboardArrows   | `boolean` | `false` | Adds support to next and prev through keyboard arrows |
-| swipeScrollTolerance  | `number` | `5` | Allows scroll when the swipe movement occurs in a different direction than the carousel axis and within the tolerance - Increase for loose - Decrease for strict | 
-| dynamicHeight | `boolean` | false | Adjusts the carousel height if required. -- Do not work with vertical axis -- |
-| emulateTouch | `boolean` | false | Allows mouse to simulate swipe |
+| Attributes            | Type          | Default | Description |
+| :---------            | :--:          | :-----: | :----------- |
+| showArrows            | `boolean`     | `true` | show prev and next arrows |
+| showStatus            | `boolean`     | `true` | show index of the current item. i.e: (1/8) |
+| showIndicators        | `boolean`     | `true` | show little dots at the bottom with links for changing the item |
+| showThumbs            | `boolean`     | `true` | show thumbnails of the images |
+| infiniteLoop          | `boolean`     | `false` | infinite loop sliding  |
+| selectedItem          | `number`      | `0` | selects an item though props / defines the initial selected item |
+| axis                  | `string`      | `horizontal` | changes orientation - accepts `horizontal` and `vertical` |
+| onChange              | `function`    | - | Fired when changing positions |
+| onClickItem           | `function`    | - | Fired when an item is clicked |
+| onClickThumb          | `function`    | - | Fired when a thumb it clicked |
+| width                 | `string`      | - | Allows to set a fixed width |
+| useKeyboardArrows     | `boolean`     | `false` | Adds support to next and prev through keyboard arrows |
+| autoPlay              | `boolean`     | `false` | Auto play |
+| stopOnHover           | `boolean`     | `true` | Stop auto play while mouse is over the carousel |
+| interval              | `number`      | `5000` | Interval of auto play |
+| transitionTime        | `number`      | `350` | Duration of slide transitions (in miliseconds) |
+| useKeyboardArrows     | `boolean`     | `false` | Adds support to next and prev through keyboard arrows |
+| swipeScrollTolerance  | `number`      | `5` | Allows scroll when the swipe movement occurs in a different direction than the carousel axis and within the tolerance - Increase for loose - Decrease for strict | 
+| dynamicHeight         | `boolean`     | `false` | Adjusts the carousel height if required. -- Do not work with vertical axis -- |
+| emulateTouch          | `boolean`     | `false` | Allows mouse to simulate swipe |
+| statusFormatter       | `func`        | (current, total) => `${current} of ${total}` | Allows custom formatting of the status indicator |  
 
 
 =======================

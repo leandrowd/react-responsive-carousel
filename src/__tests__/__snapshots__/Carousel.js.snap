@@ -148,9 +148,7 @@ exports[`Slider Snapshots custom class name 1`] = `
     <p
       className="carousel-status"
     >
-      1
-       of 
-      7
+      1 of 7
     </p>
   </div>
   <div
@@ -402,9 +400,7 @@ exports[`Slider Snapshots custom width 1`] = `
     <p
       className="carousel-status"
     >
-      1
-       of 
-      7
+      1 of 7
     </p>
   </div>
   <div
@@ -656,9 +652,7 @@ exports[`Slider Snapshots default 1`] = `
     <p
       className="carousel-status"
     >
-      1
-       of 
-      7
+      1 of 7
     </p>
   </div>
   <div
@@ -910,9 +904,7 @@ exports[`Slider Snapshots no arrows 1`] = `
     <p
       className="carousel-status"
     >
-      1
-       of 
-      7
+      1 of 7
     </p>
   </div>
   <div
@@ -1127,9 +1119,7 @@ exports[`Slider Snapshots no indicators 1`] = `
     <p
       className="carousel-status"
     >
-      1
-       of 
-      7
+      1 of 7
     </p>
   </div>
   <div
@@ -1628,9 +1618,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
     <p
       className="carousel-status"
     >
-      1
-       of 
-      7
+      1 of 7
     </p>
   </div>
 </div>
@@ -1789,9 +1777,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
     <p
       className="carousel-status"
     >
-      1
-       of 
-      7
+      1 of 7
     </p>
   </div>
   <div
