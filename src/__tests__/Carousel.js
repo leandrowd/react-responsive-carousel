@@ -512,7 +512,20 @@ describe("Slider", function() {
         });
     });
 
-    describe('For Mobile', () => {
+    describe('Swiping', () => {
+        describe('onSwipeStart', () => {
+            it('should set swiping to true', () => {
+                componentInstance.onSwipeStart();
+                expect(componentInstance.state.swiping).toBe(true);
+            });
+
+            it('should stop autoplay', () => {
+                componentInstance.clearAutoPlay = jest.genMockFunction();
+                componentInstance.onSwipeStart();
+                expect(componentInstance.clearAutoPlay.mock.calls.length).toBe(1);
+            });
+        });
+
         describe('onSwipeMove', () => {
             it('should return true to stop scrolling if there was movement in the same direction as the carousel axis', () => {
                 expect(componentInstance.onSwipeMove({
@@ -526,6 +539,23 @@ describe("Slider", function() {
                     x: 0,
                     y: 10
                 })).toBe(false);
+            });
+        });
+
+        describe('onSwipeEnd', () => {
+            it('should set swiping to false', () => {
+                componentInstance.onSwipeEnd();
+                expect(componentInstance.state.swiping).toBe(false);
+            });
+            it('should revert back to inital position', () => {
+                componentInstance.resetPosition = jest.genMockFunction();
+                componentInstance.onSwipeEnd();
+                expect(componentInstance.resetPosition.mock.calls.length).toBe(1);
+            });
+            it('should start autoplay again', () => {
+                componentInstance.autoPlay = jest.genMockFunction();
+                componentInstance.onSwipeEnd();
+                expect(componentInstance.autoPlay.mock.calls.length).toBe(1);
             });
         });
     });

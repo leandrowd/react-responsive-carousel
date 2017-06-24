@@ -33,7 +33,7 @@ class Carousel extends Component {
         stopOnHover: PropTypes.bool,
         interval: PropTypes.number,
         transitionTime: PropTypes.number,
-        swipeScrollTolerance: PropTypes.oneOfType([PropTypes.number]),
+        swipeScrollTolerance: PropTypes.number,
         dynamicHeight: PropTypes.bool,
         emulateTouch: PropTypes.bool,
         statusFormatter: PropTypes.func.isRequired
@@ -280,6 +280,7 @@ class Carousel extends Component {
     }
 
     onSwipeEnd = () => {
+        this.resetPosition();
         this.setState({
             swiping: false
         });
@@ -287,7 +288,6 @@ class Carousel extends Component {
     }
 
     onSwipeMove = (delta) => {
-        const list = ReactDOM.findDOMNode(this.refs.itemList);
         const isHorizontal = this.props.axis === 'horizontal';
 
         const initialBoundry = 0;
@@ -310,16 +310,7 @@ class Carousel extends Component {
 
         const position = currentPosition + (100 / (this.state.itemSize / handledDelta)) + '%';
 
-        [
-            'WebkitTransform',
-            'MozTransform',
-            'MsTransform',
-            'OTransform',
-            'transform',
-            'msTransform'
-        ].forEach((prop) => {
-            list.style[prop] = CSSTranslate(position, this.props.axis);
-        });
+        this.setPosition(position);
 
         // allows scroll if the swipe was within the tolerance
         const hasMoved = Math.abs(axisDelta) > this.props.swipeScrollTolerance;
@@ -331,6 +322,25 @@ class Carousel extends Component {
         }
 
         return hasMoved;
+    }
+
+    resetPosition = () => {
+        const currentPosition = - this.state.selectedItem * 100 + '%';
+        this.setPosition(currentPosition);
+    }
+
+    setPosition = (position) => {
+        const list = ReactDOM.findDOMNode(this.refs.itemList);
+        [
+            'WebkitTransform',
+            'MozTransform',
+            'MsTransform',
+            'OTransform',
+            'transform',
+            'msTransform'
+        ].forEach((prop) => {
+            list.style[prop] = CSSTranslate(position, this.props.axis);
+        });
     }
 
     decrement = (positions) => {
@@ -472,7 +482,6 @@ class Carousel extends Component {
         let itemListStyles = {};
 
         const currentPosition = - this.state.selectedItem * 100 + '%';
-
         // if 3d is available, let's take advantage of the performance of transform
         const transformProp = CSSTranslate(currentPosition, this.props.axis);
 
