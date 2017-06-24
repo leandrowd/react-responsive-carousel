@@ -1,6 +1,14 @@
 # React Responsive Carousel
 
 
+## 3.1.20 - Sat Jun 24 2017
+ * Adding license
+ * Update README.md
+
+Removes duplicate option from the documentation
+ * Update changelog and changelog whitelist
+
+
 ## 3.1.19 - Mon May 29 2017
  * #131: Add story and docs about the custom formatter
  * #131: Allow user to pass a custom formatter for status
@@ -74,12 +82,9 @@
 
 
 ## 3.1.3 - Sat Mar 11 2017
- * Adding extra info
- * #71: Adding custom transition duration
 
 
 ## 3.1.2 - Sun Feb 26 2017
- * #86: Removing unnecessary has3d check
 
 
 ## 3.1.1 - Sun Feb 26 2017
