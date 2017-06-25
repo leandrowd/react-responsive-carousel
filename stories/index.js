@@ -56,8 +56,54 @@ export class LazyLoadedCarousel extends Component {
     }
 }
 
+export class ExternalControlledCarousel extends Component {
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            currentSlide: 0
+        };
+    }
+
+    next = () => {
+        this.setState({
+            currentSlide: this.state.currentSlide + 1
+        });
+    }
+
+    prev = () => {
+        this.setState({
+            currentSlide: this.state.currentSlide - 1
+        });
+    }
+
+    render() {
+        const buttonStyle = {fontSize: 20, padding: '5px 20px', margin: '5px 0px'};
+        const containerStyle = {margin: '5px 0 20px'};
+        return (
+            <div>
+                <div style={containerStyle}>
+                    <p style={containerStyle}>
+                        Use the buttons below to change the selected item in the carousel
+                        <br/>
+
+                        <small><i>Note that the external controls might not respect the carousel boundaries but the carousel won't go past it.</i></small>
+                    </p>
+                    <p>External slide value: {this.state.currentSlide}</p>
+                    <button onClick={this.prev} style={buttonStyle}>Prev</button>
+                    <button onClick={this.next} style={buttonStyle}>Next</button>
+                </div>
+                <Carousel selectedItem={this.state.currentSlide}>
+                    { baseChildren.props.children }
+                </Carousel>
+            </div>
+        );
+    }
+}
+
 storiesOf('Carousel')
-  .addWithInfo('PropTypes',  'All the allowed props and default values', () => <div/>,
+  .addWithInfo('PropTypes',  'All the allowed props and default values', () =>
+    <div/>,
     { source: false, inline: true, propTables: [Carousel]})
   .addWithInfo('defaults',() => (
     <Carousel>
@@ -226,6 +272,9 @@ storiesOf('Carousel')
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/3zrfGHQd4Bo" />
 		</div>
     </Carousel>
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('with external controls', () => (
+    <ExternalControlledCarousel />
   ), { source: true, inline: true, propTables: false})
   .addWithInfo('presentation mode', () => (
     <Carousel showThumbs={ false } showStatus={ false } useKeyboardArrows className="presentation-mode">
