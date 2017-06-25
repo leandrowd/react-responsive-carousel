@@ -1,6 +1,9 @@
 # React Responsive Carousel
 
 
+## 3.1.21 - Sun Jun 25 2017
+
+
 ## 3.1.20 - Sat Jun 24 2017
  * Adding license
  * Update README.md
@@ -78,7 +81,6 @@ Removes duplicate option from the documentation
 
 
 ## 3.1.4 - Sun Mar 26 2017
- * #91: Removing check for has3d as all modern browsers support this capability
 
 
 ## 3.1.3 - Sat Mar 11 2017
