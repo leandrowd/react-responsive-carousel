@@ -13,7 +13,6 @@ export type StatusFormatter = (current: number, total: number) => string;
 
 export interface CarouselProps {
     className?: string;
-
     showArrows?: boolean;
     showStatus?: boolean;
     showIndicators?: boolean;
@@ -34,6 +33,7 @@ export interface CarouselProps {
     dynamicHeight?: boolean;
     emulateTouch?: boolean;
     statusFormatter?: StatusFormatter;
+    children?: React.ReactNode;
 }
 
 export interface CarouselState {
