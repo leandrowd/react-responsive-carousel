@@ -23,6 +23,7 @@
   "engines": {
     "node": ">=4"
   },
+  "types": "./index.d.ts",
   "scripts": {
     "start": "node --harmony ./node_modules/gulp/bin/gulp",
     "test": "jest",
