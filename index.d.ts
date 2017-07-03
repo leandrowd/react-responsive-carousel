@@ -1,6 +1,7 @@
 // Type definitions for react-responsive-carousel 3.1
 // Project: https://github.com/leandrowd/react-responsive-carousel/
 // Definitions by: Tatu Tamminen <https://github.com/ttamminen>
+//                 Deividas Bakanas <https://github.com/DeividasBakanas>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 import * as React from "react";
