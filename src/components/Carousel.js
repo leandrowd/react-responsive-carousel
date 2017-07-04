@@ -365,7 +365,9 @@ class Carousel extends Component {
             selectedItem: position
         });
 
-        if (this.props.autoPlay) {
+        // don't reset auto play when stop on hover is enabled, doing so will trigger a call to auto play more than once
+        // and will result in the interval function not being cleared correctly.
+        if (!this.props.stopOnHover && this.props.autoPlay) {
             this.resetAutoPlay();
         }
     }
