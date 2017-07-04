@@ -1,10 +1,21 @@
 # React Responsive Carousel
 
 
+## 3.1.23 - Tue Jul 04 2017
+ * Types author header added.
+
+
+## 3.1.22 - Mon Jul 03 2017
+ * `children` prop added.
+ * TypeScript types definitions file added.
+
+
 ## 3.1.21 - Sun Jun 25 2017
+ * #134: Using move to on componentWillReceiveProps so the carousel respects its boundaries when changed through external controls
 
 
 ## 3.1.20 - Sat Jun 24 2017
+ * #140: Revert to initial position when movement is less than tolerance
  * Adding license
  * Update README.md
 
@@ -46,13 +57,20 @@ Removes duplicate option from the documentation
 ## 3.1.12 - Sat Apr 29 2017
  * Adding links for changelog and troubleshooting in the readme
  * #98: Fixing bug where the Thumbs component would throw an error if a custom component was rendered inside it
+ * #112: Converting source to es6
+ * #112: Setup for es6
+ * Changing publish task
+ * Creating changelog
 
 
 ## 3.1.11 - Wed Apr 26 2017
+ * #98: Delay rendering of thumbs when children is not provided
  * #98: Adding snapshot tests
+ * #98: Testing only component source, not storybook
 
 
 ## 3.1.10 - Tue Apr 25 2017
+ * #109: Move create-react-class to dependencies instead of devDependencies
 
 
 ## 3.1.9 - Mon Apr 24 2017
@@ -60,6 +78,7 @@ Removes duplicate option from the documentation
 
 
 ## 3.1.8 - Mon Apr 24 2017
+ * Simplify demos
  * Updating versions and setup for tests
  * Updating storybook + filling in stories
  * Updating react and tests
@@ -69,12 +88,9 @@ Removes duplicate option from the documentation
 ## 3.1.7 - Mon Apr 24 2017
  * #104 - Fixes problem where arrows were not appearing after carousel was loaded
  * Fix issue when selected image is other than zero index
- * Fix #102
 
 
 ## 3.1.6 - Wed Apr 19 2017
- * #99: Removing node 4 for incompatibility problems with yarn
- * #99: Fixing bug with infinite loop and showArrows=false
 
 
 ## 3.1.5 - Sun Mar 26 2017

@@ -17,13 +17,15 @@ var allowedMessages = [
 ];
 
 var notAllowedMessages = [
-    'Merge pull request',
-    'Merge branch',
-    'Updating changelog'
+    /^[0-9.]+$/,
+    /Merge pull request/,
+    /Merge branch/,
+    /Updating changelog/,
+    /Prepare for publishing/
 ];
 
 function any(list, message) {
-    return list.filter((item) => message.indexOf(item) !== -1).length > 0;
+    return list.filter(regexp => regexp.test(message)).length > 0;
 };
 
 var log = [];
@@ -52,7 +54,7 @@ function showChanges(data) {
             if (version.changes) {
                 //version.changes is an array of commit messages for that version
                 version.changes.forEach(function(change) {
-                    if (any(allowedMessages, change.message) && !any(notAllowedMessages, change.message)) {
+                    if (!any(notAllowedMessages, change.message)) {
                         agreggate(' * ' + change.message);
                     }
                 });
