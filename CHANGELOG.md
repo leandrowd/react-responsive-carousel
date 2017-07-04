@@ -1,7 +1,17 @@
 # React Responsive Carousel
 
 
+## 3.1.24 - Wed Jul 05 2017
+ * #148 Autoplay and stop on hover causes a warning.
+- Added tests for the internal state isMouseEntered and tests for enabeling and disabeling the auto play function on mouse enter / leave.
+ * #148 Autoplay and stop on hover causes a warning.
+- Added build version of carousel.
+ * #148 Autoplay and stop on hover causes a warning.
+- Added a mouse entered state so we know when not to activate the auto play feature.
+
+
 ## 3.1.23 - Tue Jul 04 2017
+ * #148 Autoplay and stop on hover causes a warning.
  * Types author header added.
 
 
@@ -86,8 +96,6 @@ Removes duplicate option from the documentation
 
 
 ## 3.1.7 - Mon Apr 24 2017
- * #104 - Fixes problem where arrows were not appearing after carousel was loaded
- * Fix issue when selected image is other than zero index
 
 
 ## 3.1.6 - Wed Apr 19 2017
