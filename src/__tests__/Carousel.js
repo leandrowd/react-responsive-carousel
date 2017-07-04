@@ -512,6 +512,34 @@ describe("Slider", function() {
         });
     });
 
+    describe('Mouse enter/leave', () => {
+        describe('onMouseEnter', () => {
+            it('should set isMouseEntered to true', () => {
+                componentInstance.stopOnHover();
+                expect(componentInstance.state.isMouseEntered).toBe(true);
+            });
+
+            it('should stop auto play when hovering', () => {
+                componentInstance.clearAutoPlay = jest.genMockFunction();
+                componentInstance.stopOnHover();
+                expect(componentInstance.clearAutoPlay.mock.calls.length).toBe(1);
+            });
+        });
+
+        describe('onMouseLeave', () => {
+            it('should set isMouseEntered to false', () => {
+                componentInstance.startOnLeave();
+                expect(componentInstance.state.isMouseEntered).toBe(false);
+            });
+
+            it('should start auto play again after hovering', () => {
+                componentInstance.autoPlay = jest.genMockFunction();
+                componentInstance.startOnLeave();
+                expect(componentInstance.autoPlay.mock.calls.length).toBe(1);
+            });
+        });
+    });
+
     describe('Swiping', () => {
         describe('onSwipeStart', () => {
             it('should set swiping to true', () => {
