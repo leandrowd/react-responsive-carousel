@@ -68,7 +68,8 @@ class Carousel extends Component {
         this.state = {
             initialized: false,
             selectedItem: props.selectedItem,
-            hasMount: false
+            hasMount: false,
+            isMouseEntered: false
         };
     }
 
@@ -138,7 +139,7 @@ class Carousel extends Component {
 
         if (this.props.stopOnHover && carouselWrapper) {
             carouselWrapper.addEventListener('mouseenter', this.stopOnHover);
-            carouselWrapper.addEventListener('mouseleave', this.autoPlay);
+            carouselWrapper.addEventListener('mouseleave', this.startOnLeave);
         }
     }
 
@@ -148,7 +149,7 @@ class Carousel extends Component {
 
         if (this.props.stopOnHover && carouselWrapper) {
             carouselWrapper.removeEventListener('mouseenter', this.stopOnHover);
-            carouselWrapper.removeEventListener('mouseleave', this.autoPlay);
+            carouselWrapper.removeEventListener('mouseleave', this.startOnLeave);
         }
     }
 
@@ -203,7 +204,13 @@ class Carousel extends Component {
     }
 
     stopOnHover = () => {
+        this.setState({isMouseEntered: true});
         this.clearAutoPlay();
+    }
+
+    startOnLeave = () => {
+        this.setState({isMouseEntered: false});
+        this.autoPlay();
     }
 
     navigateWithKeyboard = (e) => {
@@ -365,7 +372,9 @@ class Carousel extends Component {
             selectedItem: position
         });
 
-        if (this.props.autoPlay) {
+        // don't reset auto play when stop on hover is enabled, doing so will trigger a call to auto play more than once
+        // and will result in the interval function not being cleared correctly.
+        if (this.props.autoPlay && this.state.isMouseEntered === false) {
             this.resetAutoPlay();
         }
     }
