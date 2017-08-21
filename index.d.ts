@@ -27,7 +27,7 @@ export interface CarouselProps {
     width?: string;
     useKeyboardArrows?: boolean;
     autoPlay?: boolean;
-    stepOnHover?: boolean;
+    stopOnHover?: boolean;
     interval?: number;
     transitionTime?: number;
     swipeScrollTolerance?: number;
