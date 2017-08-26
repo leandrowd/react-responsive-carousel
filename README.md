@@ -62,7 +62,13 @@ var DemoCarousel = React.createClass({
 ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 
 // Don't forget to include the css in your page
-// <link rel="stylesheet" href="carousel.css"/>
+
+// Using webpack
+// import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+// Using html tag:
+// <link rel="stylesheet" href="<NODE_MODULES_FOLDER>/react-responsive-carousel/lib/styles/carousel.min.css"/>
+
 ```
 
 | Attributes            | Type          | Default | Description |

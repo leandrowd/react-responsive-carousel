@@ -5,3 +5,12 @@ dev
 build
 gulpfile.js
 lib/main.js
+.storybook
+stories
+yarn.lock
+.babelrc
+.editorconfig
+.nvmrc
+.travis.yml
+CNAME
+generate-changelog.js
