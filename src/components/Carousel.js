@@ -548,13 +548,13 @@ class Carousel extends Component {
         return (
             <div className={this.props.className} ref="carouselWrapper">
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
-                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
+                    <button type="button" aria-label="Previous" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref="itemsWrapper">
                         <Swipe tagName="ul" {...swiperProps} allowMouseEvents={this.props.emulateTouch}>
                             { this.renderItems() }
                         </Swipe>
                     </div>
-                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} />
+                    <button type="button" aria-label="Next" className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} />
 
                     { this.renderControls() }
                     { this.renderStatus() }
