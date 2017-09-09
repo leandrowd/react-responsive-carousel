@@ -5,14 +5,14 @@
 [![npm version](https://badge.fury.io/js/react-responsive-carousel.svg)](https://badge.fury.io/js/react-responsive-carousel)
 [![Build Status](https://travis-ci.org/leandrowd/react-responsive-carousel.svg?branch=master)](https://travis-ci.org/leandrowd/react-responsive-carousel)
 
-Powerful, lightweight and fully customizable carousel component for React apps. 
+Powerful, lightweight and fully customizable carousel component for React apps.
 
 ### Features
 
 - Responsive
 - Mobile friendly
 - Swipe to slide
-- Mouse emulating touch 
+- Mouse emulating touch
 - Server side rendering
 - Keyboard navigation
 - Custom animation duration
@@ -37,9 +37,9 @@ Customize it yourself <https://codepen.io/leandrowd/pen/xLvOPd>
 ### Usage
 
 ```javascript
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Carousel } from 'react-responsive-carousel');
+import { Carousel } from 'react-responsive-carousel';
 
 class DemoCarousel extends Component {
     render() {
@@ -92,7 +92,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | stopOnHover           | `boolean`     | `true` | Stop auto play while mouse is over the carousel |
 | interval              | `number`      | `5000` | Interval of auto play |
 | transitionTime        | `number`      | `350` | Duration of slide transitions (in miliseconds) |
-| swipeScrollTolerance  | `number`      | `5` | Allows scroll when the swipe movement occurs in a different direction than the carousel axis and within the tolerance - Increase for loose - Decrease for strict | 
+| swipeScrollTolerance  | `number`      | `5` | Allows scroll when the swipe movement occurs in a different direction than the carousel axis and within the tolerance - Increase for loose - Decrease for strict |
 | dynamicHeight         | `boolean`     | `false` | Adjusts the carousel height if required. -- Do not work with vertical axis -- |
 | emulateTouch          | `boolean`     | `false` | Allows mouse to simulate swipe |
 | statusFormatter       | `func`        | (current, total) => `${current} of ${total}` | Allows custom formatting of the status indicator |  
