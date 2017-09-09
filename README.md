@@ -29,20 +29,22 @@ Powerful, lightweight and fully customizable carousel component for React apps.
 
 Check it out these [cool demos](http://react-responsive-carousel.js.org/storybook/) created using [storybook](https://getstorybook.io/). The source code for each example is available [here](https://github.com/leandrowd/react-responsive-carousel/blob/master/stories/index.js)
 
+Customize it yourself <https://codepen.io/leandrowd/pen/xLvOPd>
+
 ### Installing as a package
 `npm install react-responsive-carousel --save`
 
 ### Usage
 
 ```javascript
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Carousel = require('react-responsive-carousel').Carousel;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Carousel } from 'react-responsive-carousel');
 
-var DemoCarousel = React.createClass({
+class DemoCarousel extends Component {
     render() {
         return (
-            <Carousel axis="horizontal|vertical" showThumbs={true|false} showArrows={true|false} onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb} dynamicHeight emulateTouch>
+            <Carousel>
                 <div>
                     <img src="assets/1.jpeg" />
                     <p className="legend">Legend 1</p>
@@ -59,6 +61,7 @@ var DemoCarousel = React.createClass({
         );
     }
 });
+
 ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 
 // Don't forget to include the css in your page
@@ -98,10 +101,14 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 =======================
 
 ### Contributing
-Feel free to submit a PR or raise issues. When submitting a PR, please:
-- add the required tests and an example of usage to `stories/index.js`
-- don't submit changes to the `/lib` folder as it will be generated again after the merge.
-- ensure you have the editorConfig plugin or the same code style settings as defined in `.editorConfig` to avoid excess of spaces in diffs
+Check the [contributing guide](https://github.com/leandrowd/react-responsive-carousel/blob/master/CONTRIBUTING.md)
+
+=======================
+
+### Raising issues
+When raising an issue, please add as much details as possible. Screenshots, video recordings, or anything else that can make it easier to reproduce the bug you are reporting.
+
+* A new option is to create a code pen with the code that causes the bug. Fork this [base pen](https://codepen.io/leandrowd/pen/xLvOPd) and add your code there. Don't forget to save and add the link for the pen to the issue.
 
 =======================
 
@@ -138,6 +145,12 @@ Feel free to submit a PR or raise issues. When submitting a PR, please:
 #### Storybook
 <http://react-responsive-carousel.js.org/storybook/>
 
+#### Codepen
+<https://codepen.io/leandrowd/pen/xLvOPd>
+
 =======================
 
-[CHANGELOG](https://github.com/leandrowd/react-responsive-carousel/blob/master/CHANGELOG.md) - [TROUBLESHOOTING](https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md)
+Quick reads:
+- [CHANGELOG](https://github.com/leandrowd/react-responsive-carousel/blob/master/CHANGELOG.md)
+- [TROUBLESHOOTING](https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md)
+- [CONTRIBUTING](https://github.com/leandrowd/react-responsive-carousel/blob/master/CONTRIBUTING.md)
