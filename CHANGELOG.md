@@ -1,6 +1,22 @@
 # React Responsive Carousel
 
 
+## 3.1.26 - Fri Sep 22 2017
+ * add thumbWidth prop to allow specifying thumbnail width
+add documentation for new thumbWidth prop
+ * added Component and removed bracker from code example of README
+ * Adding CONTRIBUTING.md
+
+
+## 3.1.25 - Sat Aug 26 2017
+ * issue-159: Ignoring storybook when publishing to npm
+ * #159: Updating css instructions
+ * Update README.md
+ * Update index.d.ts
+
+Fix typo!
+
+
 ## 3.1.24 - Wed Jul 05 2017
  * #148 Autoplay and stop on hover causes a warning.
 - Added tests for the internal state isMouseEntered and tests for enabeling and disabeling the auto play function on mouse enter / leave.
@@ -80,19 +96,12 @@ Removes duplicate option from the documentation
 
 
 ## 3.1.10 - Tue Apr 25 2017
- * #109: Move create-react-class to dependencies instead of devDependencies
 
 
 ## 3.1.9 - Mon Apr 24 2017
- * #98: Allow carousel slides to be lazy loaded
 
 
 ## 3.1.8 - Mon Apr 24 2017
- * Simplify demos
- * Updating versions and setup for tests
- * Updating storybook + filling in stories
- * Updating react and tests
- * Adding changelog
 
 
 ## 3.1.7 - Mon Apr 24 2017
