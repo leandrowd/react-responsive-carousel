@@ -12,7 +12,8 @@ class Thumbs extends Component {
     static propsTypes = {
         children: PropTypes.element.isRequired,
         transitionTime: PropTypes.number,
-        selectedItem: PropTypes.number
+        selectedItem: PropTypes.number,
+        thumbWidth: PropTypes.number
     };
 
     static defaultProps = {
@@ -96,7 +97,7 @@ class Thumbs extends Component {
 
         const total = this.props.children.length;
         this.wrapperSize = this.itemsWrapper.clientWidth;
-        this.itemSize = outerWidth(this.refs.thumb0);
+        this.itemSize = this.props.thumbWidth ? this.props.thumbWidth : outerWidth(this.refs.thumb0);
         this.visibleItems = Math.floor(this.wrapperSize / this.itemSize);
         this.lastPosition = total - this.visibleItems;
         this.showArrows = this.visibleItems < total;
