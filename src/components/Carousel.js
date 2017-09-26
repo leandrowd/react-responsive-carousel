@@ -186,6 +186,7 @@ class Carousel extends Component {
             return;
         }
 
+        clearTimeout(this.timer);
         this.timer = setTimeout(() => {
             this.increment();
         }, this.props.interval);
