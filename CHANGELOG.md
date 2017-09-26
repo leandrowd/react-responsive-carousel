@@ -1,6 +1,10 @@
 # React Responsive Carousel
 
 
+## 3.1.27 - Tue Sep 26 2017
+ * #151: Autoplay keeps trying to transition after the component has been unmounted
+
+
 ## 3.1.26 - Fri Sep 22 2017
  * add thumbWidth prop to allow specifying thumbnail width
 add documentation for new thumbWidth prop
@@ -90,9 +94,6 @@ Removes duplicate option from the documentation
 
 
 ## 3.1.11 - Wed Apr 26 2017
- * #98: Delay rendering of thumbs when children is not provided
- * #98: Adding snapshot tests
- * #98: Testing only component source, not storybook
 
 
 ## 3.1.10 - Tue Apr 25 2017
