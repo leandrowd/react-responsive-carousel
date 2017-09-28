@@ -4,6 +4,7 @@
 
 [![npm version](https://badge.fury.io/js/react-responsive-carousel.svg)](https://badge.fury.io/js/react-responsive-carousel)
 [![Build Status](https://travis-ci.org/leandrowd/react-responsive-carousel.svg?branch=master)](https://travis-ci.org/leandrowd/react-responsive-carousel)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel?ref=badge_shield)
 
 Powerful, lightweight and fully customizable carousel component for React apps.
 
@@ -155,3 +156,7 @@ Quick reads:
 - [CHANGELOG](https://github.com/leandrowd/react-responsive-carousel/blob/master/CHANGELOG.md)
 - [TROUBLESHOOTING](https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md)
 - [CONTRIBUTING](https://github.com/leandrowd/react-responsive-carousel/blob/master/CONTRIBUTING.md)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel?ref=badge_large)
