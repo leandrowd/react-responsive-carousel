@@ -4,6 +4,7 @@
 
 [![npm version](https://badge.fury.io/js/react-responsive-carousel.svg)](https://badge.fury.io/js/react-responsive-carousel)
 [![Build Status](https://travis-ci.org/leandrowd/react-responsive-carousel.svg?branch=master)](https://travis-ci.org/leandrowd/react-responsive-carousel)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel?ref=badge_shield)
 
 Powerful, lightweight and fully customizable carousel component for React apps.
 
@@ -80,6 +81,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | showStatus            | `boolean`     | `true` | show index of the current item. i.e: (1/8) |
 | showIndicators        | `boolean`     | `true` | show little dots at the bottom with links for changing the item |
 | showThumbs            | `boolean`     | `true` | show thumbnails of the images |
+| thumbWidth            | `number`      | `undefined` | optionally specify pixel width (as an integer) of a thumbnail (including any padding) to avoid calculating values (helps with server-side renders or page cache issues) |
 | infiniteLoop          | `boolean`     | `false` | infinite loop sliding  |
 | selectedItem          | `number`      | `0` | selects an item though props / defines the initial selected item |
 | axis                  | `string`      | `horizontal` | changes orientation - accepts `horizontal` and `vertical` |
@@ -156,3 +158,7 @@ Quick reads:
 - [CHANGELOG](https://github.com/leandrowd/react-responsive-carousel/blob/master/CHANGELOG.md)
 - [TROUBLESHOOTING](https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md)
 - [CONTRIBUTING](https://github.com/leandrowd/react-responsive-carousel/blob/master/CONTRIBUTING.md)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel?ref=badge_large)

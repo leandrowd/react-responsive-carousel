@@ -22,6 +22,7 @@ class Carousel extends Component {
         showIndicators: PropTypes.bool,
         infiniteLoop: PropTypes.bool,
         showThumbs: PropTypes.bool,
+        thumbWidth: PropTypes.number,
         selectedItem: PropTypes.number,
         onClickItem: PropTypes.func.isRequired,
         onClickThumb: PropTypes.func.isRequired,
@@ -185,6 +186,7 @@ class Carousel extends Component {
             return;
         }
 
+        clearTimeout(this.timer);
         this.timer = setTimeout(() => {
             this.increment();
         }, this.props.interval);
@@ -464,7 +466,7 @@ class Carousel extends Component {
         }
 
         return (
-            <Thumbs onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem} transitionTime={this.props.transitionTime}>
+            <Thumbs onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem} transitionTime={this.props.transitionTime} thumbWidth={this.props.thumbWidth}>
                 {this.props.children}
             </Thumbs>
         );
