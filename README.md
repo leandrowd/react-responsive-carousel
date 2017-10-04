@@ -33,7 +33,7 @@ Check it out these [cool demos](http://react-responsive-carousel.js.org/storyboo
 Customize it yourself <https://codepen.io/leandrowd/pen/xLvOPd>
 
 ### Installing as a package
-`npm install react-responsive-carousel --save`
+`$ npm install react-responsive-carousel --save`
 
 ### Usage
 
@@ -95,7 +95,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | interval              | `number`      | `5000` | Interval of auto play |
 | transitionTime        | `number`      | `350` | Duration of slide transitions (in miliseconds) |
 | swipeScrollTolerance  | `number`      | `5` | Allows scroll when the swipe movement occurs in a different direction than the carousel axis and within the tolerance - Increase for loose - Decrease for strict |
-| dynamicHeight         | `boolean`     | `false` | Adjusts the carousel height if required. -- Do not work with vertical axis -- |
+| dynamicHeight         | `boolean`     | `false` | Adjusts the carousel height if required. -- Does not work with vertical axis -- |
 | emulateTouch          | `boolean`     | `false` | Allows mouse to simulate swipe |
 | statusFormatter       | `func`        | (current, total) => `${current} of ${total}` | Allows custom formatting of the status indicator |  
 
@@ -115,28 +115,30 @@ When raising an issue, please add as much details as possible. Screenshots, vide
 =======================
 
 ### Setting up development environment
-- `git clone git@github.com:leandrowd/react-responsive-carousel.git`
-- `npm install`
-- `npm start`
-- Open your favourite browser on `localhost:8000` - livereload will be enabled and tests will run on each change
+```
+$ git clone git@github.com:leandrowd/react-responsive-carousel.git`
+$ npm install
+$ npm start
+```
+Open your favourite browser on `localhost:8000` - livereload will be enabled and tests will run on each change
 
-> The fastest dev environment is on node 6. If you have `nvm` installed, just run `nvm use 6`. Tests in travis will run on node 4 and 6
+> The fastest dev environment is on node 6. If you have `nvm` installed, just run `$ nvm use 6`. Tests in travis will run on node 4 and 6
 
 #### Running only tests
-- `npm test`
+`$ npm test`
 
 #### Running storybook
-- `npm run storybook`
+`$ npm run storybook`
 
 =======================
 
 ### Only after merged back to master
 
 #### Publish to npm
-- `npm run publish-to-npm`
+`$ npm run publish-to-npm`
 
 #### Pubish to gh-pages
-- `npm run publish-to-gh-pages`
+`$ npm run publish-to-gh-pages`
 
 =======================
 
