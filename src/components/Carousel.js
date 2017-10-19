@@ -341,7 +341,7 @@ class Carousel extends Component {
             if (index && index !== lastPosition) {
                 currentPosition += 10;
             } else if (index === lastPosition) {
-                currentPosition = - (index - 1) * 100;
+                currentPosition += 20;
             }
 
             return currentPosition;

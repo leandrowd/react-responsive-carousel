@@ -619,7 +619,7 @@ describe("Slider", function() {
                 expect(componentInstance.getPosition(4)).toBe(-310);
                 expect(componentInstance.getPosition(5)).toBe(-390);
                 // last one takes up more space
-                expect(componentInstance.getPosition(6)).toBe(-500);
+                expect(componentInstance.getPosition(6)).toBe(-460);
             });
         });
 
