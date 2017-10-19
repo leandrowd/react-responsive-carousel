@@ -349,4 +349,14 @@ storiesOf('Carousel')
 			<h1>Thanks...</h1>
 		</div>
     </Carousel>
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('center mode',() => (
+    <Carousel centerMode>
+        { baseChildren.props.children }
+    </Carousel>
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('center mode with touch',() => (
+    <Carousel centerMode emulateTouch>
+        { baseChildren.props.children }
+    </Carousel>
   ), { source: true, inline: true, propTables: false});

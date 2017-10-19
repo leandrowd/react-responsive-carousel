@@ -37,7 +37,8 @@ class Carousel extends Component {
         swipeScrollTolerance: PropTypes.number,
         dynamicHeight: PropTypes.bool,
         emulateTouch: PropTypes.bool,
-        statusFormatter: PropTypes.func.isRequired
+        statusFormatter: PropTypes.func.isRequired,
+        centerMode: PropTypes.bool
     };
 
     static defaultProps = {
@@ -60,7 +61,8 @@ class Carousel extends Component {
         onClickItem: noop,
         onClickThumb: noop,
         onChange: noop,
-        statusFormatter: defaultStatusFormatter
+        statusFormatter: defaultStatusFormatter,
+        centerMode: false
     };
 
     constructor(props) {
@@ -299,8 +301,8 @@ class Carousel extends Component {
 
         const initialBoundry = 0;
 
-        const currentPosition = - this.state.selectedItem * 100;
-        const finalBoundry = - (this.props.children.length - 1) * 100;
+        const currentPosition = this.getPosition(this.state.selectedItem);
+        const finalBoundry = this.getPosition(this.props.children.length - 1);
 
         const axisDelta = isHorizontal ? delta.x : delta.y;
         let handledDelta = axisDelta;
@@ -331,8 +333,25 @@ class Carousel extends Component {
         return hasMoved;
     }
 
+    getPosition(index) {
+        if (this.props.centerMode && this.props.axis === 'horizontal') {
+            let currentPosition = - index * 80;
+            const lastPosition = this.props.children.length  - 1;
+            
+            if (index && index !== lastPosition) {
+                currentPosition += 10;
+            } else if (index === lastPosition) {
+                currentPosition = - (index - 1) * 100;
+            }
+
+            return currentPosition;
+        }
+
+        return - index * 100;
+    }
+
     resetPosition = () => {
-        const currentPosition = - this.state.selectedItem * 100 + '%';
+        const currentPosition = this.getPosition(this.state.selectedItem) + '%';
         this.setPosition(currentPosition);
     }
 
@@ -427,7 +446,7 @@ class Carousel extends Component {
     renderItems () {
         return React.Children.map(this.props.children, (item, index) => {
             const hasMount = this.state.hasMount;
-            const itemClass = klass.ITEM(true, index === this.state.selectedItem);
+            const itemClass = klass.ITEM(true, index === this.state.selectedItem, this.props.centerMode && this.props.axis === 'horizontal');
 
             return (
                 <li ref={"item" + index} key={"itemKey" + index} className={itemClass}
@@ -490,9 +509,10 @@ class Carousel extends Component {
         // obj to hold the transformations and styles
         let itemListStyles = {};
 
-        const currentPosition = - this.state.selectedItem * 100 + '%';
+        const currentPosition = this.getPosition(this.state.selectedItem);
+
         // if 3d is available, let's take advantage of the performance of transform
-        const transformProp = CSSTranslate(currentPosition, this.props.axis);
+        const transformProp = CSSTranslate(currentPosition + '%', this.props.axis);
 
         const transitionTime = this.props.transitionTime + 'ms';
 

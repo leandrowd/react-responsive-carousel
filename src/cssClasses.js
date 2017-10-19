@@ -19,10 +19,11 @@ export default {
         "animated": !isSwiping
     }),
 
-    ITEM: (isSlider, selected) => classNames({
+    ITEM: (isSlider, selected, isCenterMode) => classNames({
         "thumb": !isSlider,
         "slide": isSlider,
-        "selected": selected
+        "selected": selected,
+        "slide-centermode": isCenterMode
     }),
 
     ARROW_PREV: (disabled) => classNames({

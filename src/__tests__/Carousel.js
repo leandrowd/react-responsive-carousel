@@ -83,7 +83,8 @@ describe("Slider", function() {
                 transitionTime: 350,
                 swipeScrollTolerance: 5,
                 dynamicHeight: false,
-                emulateTouch: false
+                emulateTouch: false,
+                centerMode: false
             };
 
             Object.keys(props).forEach(prop => {
@@ -588,6 +589,55 @@ describe("Slider", function() {
         });
     });
 
+    describe('center mode', () => {
+        beforeEach(() => {
+            renderDefaultComponent({
+                centerMode: true
+            });
+        });
+
+        describe('getPosition', () => {
+            it('should return regular tranform calculation for vertical axis', () => {
+                renderDefaultComponent({
+                    centerMode: true,
+                    axis: 'vertical'
+                });
+                expect(componentInstance.getPosition(0)).toBe(0);
+                expect(componentInstance.getPosition(1)).toBe(-100);
+                expect(componentInstance.getPosition(2)).toBe(-200);
+                expect(componentInstance.getPosition(3)).toBe(-300);
+                expect(componentInstance.getPosition(4)).toBe(-400);
+                expect(componentInstance.getPosition(5)).toBe(-500);
+                expect(componentInstance.getPosition(6)).toBe(-600);
+            });
+    
+            it('should return padded transform calculation for horizontal axis', () => {
+                expect(componentInstance.getPosition(0)).toBe(0);
+                expect(componentInstance.getPosition(1)).toBe(-70);
+                expect(componentInstance.getPosition(2)).toBe(-150);
+                expect(componentInstance.getPosition(3)).toBe(-230);
+                expect(componentInstance.getPosition(4)).toBe(-310);
+                expect(componentInstance.getPosition(5)).toBe(-390);
+                // last one takes up more space
+                expect(componentInstance.getPosition(6)).toBe(-500);
+            });
+        });
+
+        describe('slide', () => {
+            it('should have slide-centermode class', () => {
+                expect(component.find('.slide-centermode').length).toBe(7);
+            });
+
+            it('should have slide-centermode class if axis is vertical', () => {
+                renderDefaultComponent({
+                    centerMode: true,
+                    axis: 'vertical'
+                });
+                expect(component.find('.slide-centermode').length).toBe(0);
+            });
+        })
+    });
+
     describe('Snapshots', () => {
         it('default', () => {
             expect(renderForSnapshot({}, baseChildren)).toMatchSnapshot();
@@ -630,13 +680,19 @@ describe("Slider", function() {
         });
 
         it('vertical axis', () => {
-           expect(renderForSnapshot({
+            expect(renderForSnapshot({
                 axis: 'vertical'
             }, baseChildren)).toMatchSnapshot();
         });
 
         it('no children at mount', () => {
             expect(renderForSnapshot({}, null)).toMatchSnapshot();
+        });
+
+        it('center mode', () => {
+            expect(renderForSnapshot({
+                centerMode: true
+            }, baseChildren)).toMatchSnapshot();
         });
     });
 
