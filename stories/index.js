@@ -359,4 +359,9 @@ storiesOf('Carousel')
     <Carousel centerMode emulateTouch>
         { baseChildren.props.children }
     </Carousel>
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('center mode with centerSlidePercentage of 50',() => (
+    <Carousel centerMode centerSlidePercentage={50} emulateTouch>
+        { baseChildren.props.children }
+    </Carousel>
   ), { source: true, inline: true, propTables: false});

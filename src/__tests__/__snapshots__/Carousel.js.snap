@@ -44,56 +44,91 @@ exports[`Slider Snapshots center mode 1`] = `
         }
       >
         <li
-          className="slide selected slide-centermode"
+          className="slide selected"
           onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
         >
           <img
             src="assets/1.jpeg"
           />
         </li>
         <li
-          className="slide slide-centermode"
+          className="slide"
           onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
         >
           <img
             src="assets/2.jpeg"
           />
         </li>
         <li
-          className="slide slide-centermode"
+          className="slide"
           onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
         >
           <img
             src="assets/3.jpeg"
           />
         </li>
         <li
-          className="slide slide-centermode"
+          className="slide"
           onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
         >
           <img
             src="assets/4.jpeg"
           />
         </li>
         <li
-          className="slide slide-centermode"
+          className="slide"
           onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
         >
           <img
             src="assets/5.jpeg"
           />
         </li>
         <li
-          className="slide slide-centermode"
+          className="slide"
           onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
         >
           <img
             src="assets/6.jpeg"
           />
         </li>
         <li
-          className="slide slide-centermode"
+          className="slide"
           onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
         >
           <img
             src="assets/7.jpeg"

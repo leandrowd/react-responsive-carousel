@@ -621,19 +621,44 @@ describe("Slider", function() {
                 // last one takes up more space
                 expect(componentInstance.getPosition(6)).toBe(-460);
             });
+
+            it('should return padded tranform calculation for custom centerSlidePercentage', () => {
+                renderDefaultComponent({
+                    centerMode: true,
+                    centerSlidePercentage: 50
+                });
+                expect(componentInstance.getPosition(0)).toBe(0);
+                expect(componentInstance.getPosition(1)).toBe(-25);
+                expect(componentInstance.getPosition(2)).toBe(-75);
+                expect(componentInstance.getPosition(3)).toBe(-125);
+                expect(componentInstance.getPosition(4)).toBe(-175);
+                expect(componentInstance.getPosition(5)).toBe(-225);
+                expect(componentInstance.getPosition(6)).toBe(-250);
+            })
         });
 
-        describe('slide', () => {
-            it('should have slide-centermode class', () => {
-                expect(component.find('.slide-centermode').length).toBe(7);
+        describe('slide style', () => {
+            it('should have a min-width of 80%', () => {
+                const slide = shallow(component.find('.slide').get(0));
+                expect(slide.prop('style')).toHaveProperty('minWidth', '80%');
             });
 
-            it('should have slide-centermode class if axis is vertical', () => {
+            it('should have min-width defined by centerSlidePercentage', () => {
+                renderDefaultComponent({
+                    centerMode: true,
+                    centerSlidePercentage: 50
+                });
+                const slide = shallow(component.find('.slide').get(0));
+                expect(slide.prop('style')).toHaveProperty('minWidth', '50%');
+            });
+
+            it('should not be present for vertical axis', () => {
                 renderDefaultComponent({
                     centerMode: true,
                     axis: 'vertical'
                 });
-                expect(component.find('.slide-centermode').length).toBe(0);
+                const slide = shallow(component.find('.slide').get(0));
+                expect(slide.prop('style')).toBeUndefined();
             });
         })
     });

@@ -99,6 +99,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | emulateTouch          | `boolean`     | `false` | Allows mouse to simulate swipe |
 | statusFormatter       | `func`        | (current, total) => `${current} of ${total}` | Allows custom formatting of the status indicator |  
 | centerMode            | `boolean`     | `false` | Enables centered view with partial prev/next slides. Only works with horizontal axis. |
+| centerSlidePercentage | `number`      | `80` | optionally specify percentage width (as an integer) of the slides in `centerMode` |
 
 
 =======================

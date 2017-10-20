@@ -38,7 +38,8 @@ class Carousel extends Component {
         dynamicHeight: PropTypes.bool,
         emulateTouch: PropTypes.bool,
         statusFormatter: PropTypes.func.isRequired,
-        centerMode: PropTypes.bool
+        centerMode: PropTypes.bool,
+        centerSlidePercentage: PropTypes.number
     };
 
     static defaultProps = {
@@ -62,7 +63,8 @@ class Carousel extends Component {
         onClickThumb: noop,
         onChange: noop,
         statusFormatter: defaultStatusFormatter,
-        centerMode: false
+        centerMode: false,
+        centerSlidePercentage: 80
     };
 
     constructor(props) {
@@ -335,13 +337,13 @@ class Carousel extends Component {
 
     getPosition(index) {
         if (this.props.centerMode && this.props.axis === 'horizontal') {
-            let currentPosition = - index * 80;
+            let currentPosition = - index * this.props.centerSlidePercentage;
             const lastPosition = this.props.children.length  - 1;
             
             if (index && index !== lastPosition) {
-                currentPosition += 10;
+                currentPosition += (100 - this.props.centerSlidePercentage) / 2;
             } else if (index === lastPosition) {
-                currentPosition += 20;
+                currentPosition += (100 - this.props.centerSlidePercentage);
             }
 
             return currentPosition;
@@ -445,12 +447,22 @@ class Carousel extends Component {
 
     renderItems () {
         return React.Children.map(this.props.children, (item, index) => {
-            const hasMount = this.state.hasMount;
-            const itemClass = klass.ITEM(true, index === this.state.selectedItem, this.props.centerMode && this.props.axis === 'horizontal');
+            const itemClass = klass.ITEM(true, index === this.state.selectedItem);
+            const slideProps = {
+                ref: 'item' + index,
+                key: 'itemKey' + index,
+                className: klass.ITEM(true, index === this.state.selectedItem),
+                onClick: this.handleClickItem.bind(this, index, item)
+            };
+
+            if (this.props.centerMode && this.props.axis === 'horizontal') {
+                slideProps.style = {
+                    minWidth: this.props.centerSlidePercentage + '%'
+                };
+            }
 
             return (
-                <li ref={"item" + index} key={"itemKey" + index} className={itemClass}
-                    onClick={ this.handleClickItem.bind(this, index, item) }>
+                <li {...slideProps}>
                     { item }
                 </li>
             );
