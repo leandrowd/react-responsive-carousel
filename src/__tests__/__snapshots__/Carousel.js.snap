@@ -1,5 +1,292 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Slider Snapshots center mode 1`] = `
+<div
+  className={undefined}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <button
+      className="control-arrow control-prev control-disabled"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-horizontal"
+      style={Object {}}
+    >
+      <ul
+        className="slider animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0%,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0%,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0%,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0%,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0%,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0%,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide selected"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+    </div>
+    <button
+      className="control-arrow control-next"
+      onClick={[Function]}
+      type="button"
+    />
+    <ul
+      className="control-dots"
+    >
+      <li
+        className="dot selected"
+        onClick={[Function]}
+        value={0}
+      />
+      <li
+        className="dot"
+        onClick={[Function]}
+        value={1}
+      />
+      <li
+        className="dot"
+        onClick={[Function]}
+        value={2}
+      />
+      <li
+        className="dot"
+        onClick={[Function]}
+        value={3}
+      />
+      <li
+        className="dot"
+        onClick={[Function]}
+        value={4}
+      />
+      <li
+        className="dot"
+        onClick={[Function]}
+        value={5}
+      />
+      <li
+        className="dot"
+        onClick={[Function]}
+        value={6}
+      />
+    </ul>
+    <p
+      className="carousel-status"
+    >
+      1 of 7
+    </p>
+  </div>
+  <div
+    className="carousel"
+  >
+    <div
+      className="thumbs-wrapper axis-vertical"
+    >
+      <button
+        className="control-arrow control-prev control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+      <ul
+        className="thumbs animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(NaNpx,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(NaNpx,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(NaNpx,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(NaNpx,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(NaNpx,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(NaNpx,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="thumb"
+          onClick={[Function]}
+        >
+          <img
+            onLoad={[Function]}
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="thumb"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="thumb"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="thumb"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="thumb"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="thumb"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="thumb"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+      <button
+        className="control-arrow control-next control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Slider Snapshots custom class name 1`] = `
 <div
   className="my-custom-carousel"

@@ -83,7 +83,8 @@ describe("Slider", function() {
                 transitionTime: 350,
                 swipeScrollTolerance: 5,
                 dynamicHeight: false,
-                emulateTouch: false
+                emulateTouch: false,
+                centerMode: false
             };
 
             Object.keys(props).forEach(prop => {
@@ -588,6 +589,80 @@ describe("Slider", function() {
         });
     });
 
+    describe('center mode', () => {
+        beforeEach(() => {
+            renderDefaultComponent({
+                centerMode: true
+            });
+        });
+
+        describe('getPosition', () => {
+            it('should return regular tranform calculation for vertical axis', () => {
+                renderDefaultComponent({
+                    centerMode: true,
+                    axis: 'vertical'
+                });
+                expect(componentInstance.getPosition(0)).toBe(0);
+                expect(componentInstance.getPosition(1)).toBe(-100);
+                expect(componentInstance.getPosition(2)).toBe(-200);
+                expect(componentInstance.getPosition(3)).toBe(-300);
+                expect(componentInstance.getPosition(4)).toBe(-400);
+                expect(componentInstance.getPosition(5)).toBe(-500);
+                expect(componentInstance.getPosition(6)).toBe(-600);
+            });
+    
+            it('should return padded transform calculation for horizontal axis', () => {
+                expect(componentInstance.getPosition(0)).toBe(0);
+                expect(componentInstance.getPosition(1)).toBe(-70);
+                expect(componentInstance.getPosition(2)).toBe(-150);
+                expect(componentInstance.getPosition(3)).toBe(-230);
+                expect(componentInstance.getPosition(4)).toBe(-310);
+                expect(componentInstance.getPosition(5)).toBe(-390);
+                // last one takes up more space
+                expect(componentInstance.getPosition(6)).toBe(-460);
+            });
+
+            it('should return padded tranform calculation for custom centerSlidePercentage', () => {
+                renderDefaultComponent({
+                    centerMode: true,
+                    centerSlidePercentage: 50
+                });
+                expect(componentInstance.getPosition(0)).toBe(0);
+                expect(componentInstance.getPosition(1)).toBe(-25);
+                expect(componentInstance.getPosition(2)).toBe(-75);
+                expect(componentInstance.getPosition(3)).toBe(-125);
+                expect(componentInstance.getPosition(4)).toBe(-175);
+                expect(componentInstance.getPosition(5)).toBe(-225);
+                expect(componentInstance.getPosition(6)).toBe(-250);
+            })
+        });
+
+        describe('slide style', () => {
+            it('should have a min-width of 80%', () => {
+                const slide = shallow(component.find('.slide').get(0));
+                expect(slide.prop('style')).toHaveProperty('minWidth', '80%');
+            });
+
+            it('should have min-width defined by centerSlidePercentage', () => {
+                renderDefaultComponent({
+                    centerMode: true,
+                    centerSlidePercentage: 50
+                });
+                const slide = shallow(component.find('.slide').get(0));
+                expect(slide.prop('style')).toHaveProperty('minWidth', '50%');
+            });
+
+            it('should not be present for vertical axis', () => {
+                renderDefaultComponent({
+                    centerMode: true,
+                    axis: 'vertical'
+                });
+                const slide = shallow(component.find('.slide').get(0));
+                expect(slide.prop('style')).toBeUndefined();
+            });
+        })
+    });
+
     describe('Snapshots', () => {
         it('default', () => {
             expect(renderForSnapshot({}, baseChildren)).toMatchSnapshot();
@@ -630,13 +705,19 @@ describe("Slider", function() {
         });
 
         it('vertical axis', () => {
-           expect(renderForSnapshot({
+            expect(renderForSnapshot({
                 axis: 'vertical'
             }, baseChildren)).toMatchSnapshot();
         });
 
         it('no children at mount', () => {
             expect(renderForSnapshot({}, null)).toMatchSnapshot();
+        });
+
+        it('center mode', () => {
+            expect(renderForSnapshot({
+                centerMode: true
+            }, baseChildren)).toMatchSnapshot();
         });
     });
 
