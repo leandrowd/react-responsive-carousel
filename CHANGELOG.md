@@ -1,6 +1,17 @@
 # React Responsive Carousel
 
 
+## 3.1.28 - Sat Oct 21 2017
+ * Add centerSlidePercentage
+ * Fix last centered slide position calculation
+ * Add centerMode prop
+- Update README
+- Add tests
+- Add stories to Storybook
+ * Create CODE_OF_CONDUCT.md
+ * Add license scan report and status
+
+
 ## 3.1.27 - Tue Sep 26 2017
  * #151: Autoplay keeps trying to transition after the component has been unmounted
 
@@ -85,12 +96,6 @@ Removes duplicate option from the documentation
 
 
 ## 3.1.12 - Sat Apr 29 2017
- * Adding links for changelog and troubleshooting in the readme
- * #98: Fixing bug where the Thumbs component would throw an error if a custom component was rendered inside it
- * #112: Converting source to es6
- * #112: Setup for es6
- * Changing publish task
- * Creating changelog
 
 
 ## 3.1.11 - Wed Apr 26 2017
