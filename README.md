@@ -95,7 +95,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | interval              | `number`      | `5000` | Interval of auto play |
 | transitionTime        | `number`      | `350` | Duration of slide transitions (in miliseconds) |
 | swipeScrollTolerance  | `number`      | `5` | Allows scroll when the swipe movement occurs in a different direction than the carousel axis and within the tolerance - Increase for loose - Decrease for strict |
-| swipeabel             | `boolean`     | `true` | Enables swiping gestures |
+| swipeable             | `boolean`     | `true` | Enables swiping gestures |
 | dynamicHeight         | `boolean`     | `false` | Adjusts the carousel height if required. -- Do not work with vertical axis -- |
 | emulateTouch          | `boolean`     | `false` | Allows mouse to simulate swipe |
 | statusFormatter       | `func`        | (current, total) => `${current} of ${total}` | Allows custom formatting of the status indicator |  
