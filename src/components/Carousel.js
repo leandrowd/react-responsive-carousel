@@ -581,22 +581,30 @@ class Carousel extends Component {
             containerStyles.height = this.state.itemSize;
         }
 
+        let slide = null;
+        if (this.props.swipeable) {
+            slide = (
+                <Swipe tagName="ul" {...swiperProps} allowMouseEvents={this.props.emulateTouch}>
+                  { this.renderItems() }
+                </Swipe>
+            )
+        } else {
+            slide = (
+                <ul
+                  className={klass.SLIDER(true, this.state.swiping)}
+                  style={itemListStyles}
+                  ref="itemList">
+                  { this.renderItems() }
+                </ul>
+            )
+        }
+
         return (
             <div className={this.props.className} ref="carouselWrapper">
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref="itemsWrapper">
-                        { this.props.swipeable ?
-                            <Swipe tagName="ul" {...swiperProps} allowMouseEvents={this.props.emulateTouch}>
-                              { this.renderItems() }
-                            </Swipe> :
-                            <ul
-                              className={klass.SLIDER(true, this.state.swiping)}
-                              style={itemListStyles}
-                              ref="itemList">
-                              { this.renderItems() }
-                            </ul>
-                        }
+                        {slide}
                     </div>
                     <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} />
 
