@@ -35,6 +35,7 @@ class Carousel extends Component {
         interval: PropTypes.number,
         transitionTime: PropTypes.number,
         swipeScrollTolerance: PropTypes.number,
+        swipeabel: PropTypes.bool,
         dynamicHeight: PropTypes.bool,
         emulateTouch: PropTypes.bool,
         statusFormatter: PropTypes.func.isRequired,
@@ -57,6 +58,7 @@ class Carousel extends Component {
         interval: 3000,
         transitionTime: 350,
         swipeScrollTolerance: 5,
+        swipeabel: true,
         dynamicHeight: false,
         emulateTouch: false,
         onClickItem: noop,
@@ -339,7 +341,7 @@ class Carousel extends Component {
         if (this.props.centerMode && this.props.axis === 'horizontal') {
             let currentPosition = - index * this.props.centerSlidePercentage;
             const lastPosition = this.props.children.length  - 1;
-            
+
             if (index && index !== lastPosition) {
                 currentPosition += (100 - this.props.centerSlidePercentage) / 2;
             } else if (index === lastPosition) {
@@ -584,9 +586,17 @@ class Carousel extends Component {
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref="itemsWrapper">
-                        <Swipe tagName="ul" {...swiperProps} allowMouseEvents={this.props.emulateTouch}>
-                            { this.renderItems() }
-                        </Swipe>
+                        { this.props.swipeable ?
+                            <Swipe tagName="ul" {...swiperProps} allowMouseEvents={this.props.emulateTouch}>
+                              { this.renderItems() }
+                            </Swipe> :
+                            <ul
+                              className={klass.SLIDER(true, this.state.swiping)}
+                              style={itemListStyles}
+                              ref="itemList">
+                              { this.renderItems() }
+                            </ul>
+                        }
                     </div>
                     <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} />
 
