@@ -1,15 +1,10 @@
 const path = require('path');
 
-module.exports = {
-	module: {
-		loaders: [{
-			test: /.scss$/,
-			loaders: ["style", "css", "sass"],
-			include: path.resolve(__dirname, '../')
-		}, {
-			test: /\.js$/,
-			exclude: /node_modules/,
-			loader: 'babel'
-		}]
-	}
+module.exports = (baseConfig, configType) => {
+    baseConfig.module.rules.push({
+        test: /.scss$/,
+        loaders: ["style-loader", "css-loader", "sass-loader"],
+        include: path.resolve(__dirname, '../')
+    })
+    return baseConfig
 }
