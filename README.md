@@ -30,7 +30,9 @@ Powerful, lightweight and fully customizable carousel component for React apps.
 
 Check it out these [cool demos](http://react-responsive-carousel.js.org/storybook/) created using [storybook](https://getstorybook.io/). The source code for each example is available [here](https://github.com/leandrowd/react-responsive-carousel/blob/master/stories/index.js)
 
-Customize it yourself <https://codepen.io/leandrowd/pen/xLvOPd>
+Customize it yourself:
+- Webpackbin: <https://www.webpackbin.com/bins/-Kxr6IEf5zXSQvGCgKBR>
+- ~~Codepen: <https://codepen.io/leandrowd/pen/xLvOPd>~~ (broken, looks like https://pkgzip.com stopped working)
 
 ### Installing as a package
 `npm install react-responsive-carousel --save`
