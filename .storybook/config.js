@@ -1,4 +1,4 @@
-import {configure, setAddon} from '@storybook/react'
+import { configure, setAddon } from '@storybook/react'
 import infoAddon from '@storybook/addon-info'
 
 function loadStories() {
