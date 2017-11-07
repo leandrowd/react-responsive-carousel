@@ -48,8 +48,11 @@
   },
   "homepage": "http://leandrowd.github.io/react-responsive-carousel/",
   "devDependencies": {
-    "@kadira/react-storybook-addon-info": "^3.4.0",
-    "@kadira/storybook": "^2.35.3",
+    "@storybook/addon-actions": "^3.2.12",
+    "@storybook/addon-info": "^3.2.12",
+    "@storybook/addon-links": "^3.2.12",
+    "@storybook/cli": "^3.2.12",
+    "@storybook/react": "^3.2.12",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-jest": "^19.0.0",
@@ -79,13 +82,15 @@
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.0",
     "jest-cli": "^19.0.2",
+    "node-sass": "^4.5.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-test-renderer": "^15.5.4",
-    "sass-loader": "^4.0.2",
+    "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^2.1.1"
+    "watchify": "^2.1.1",
+    "webpack": "^2.7.0"
   },
   "jest": {
     "unmockedModulePathPatterns": [
