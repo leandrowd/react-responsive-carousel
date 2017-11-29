@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import * as index from '../index';
+import Swipe from 'react-easy-swipe';
 
 describe("Slider", function() {
 	jest.autoMockOff();
@@ -76,6 +77,7 @@ describe("Slider", function() {
                 infiniteLoop: false,
                 selectedItem: 0,
                 axis: 'horizontal',
+                verticalSwipe: 'standard',
                 useKeyboardArrows: false,
                 autoPlay: false,
                 stopOnHover: true,
@@ -587,6 +589,33 @@ describe("Slider", function() {
                 expect(componentInstance.autoPlay.mock.calls.length).toBe(1);
             });
         });
+
+        describe('verticalSwipe === \'standard\'', () => {
+            it('should pass the correct props to <Swipe />', () => {
+                renderDefaultComponent({
+                    axis: 'vertical',
+                });
+
+                const swipeProps = component.find(Swipe).first().props();
+
+                expect(swipeProps.onSwipeUp).toBe(componentInstance.decrement);
+                expect(swipeProps.onSwipeDown).toBe(componentInstance.increment);
+            });
+        });
+
+        describe('verticalSwipe === \'natural\'', () => {
+            it('should pass the correct props to <Swipe />', () => {
+                renderDefaultComponent({
+                    axis: 'vertical',
+                    verticalSwipe: 'natural',
+                });
+
+                const swipeProps = component.find(Swipe).first().props();
+
+                expect(swipeProps.onSwipeUp).toBe(componentInstance.increment);
+                expect(swipeProps.onSwipeDown).toBe(componentInstance.decrement);
+            });
+        });
     });
 
     describe('center mode', () => {
@@ -610,7 +639,7 @@ describe("Slider", function() {
                 expect(componentInstance.getPosition(5)).toBe(-500);
                 expect(componentInstance.getPosition(6)).toBe(-600);
             });
-    
+
             it('should return padded transform calculation for horizontal axis', () => {
                 expect(componentInstance.getPosition(0)).toBe(0);
                 expect(componentInstance.getPosition(1)).toBe(-70);

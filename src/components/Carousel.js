@@ -28,6 +28,7 @@ class Carousel extends Component {
         onClickThumb: PropTypes.func.isRequired,
         onChange: PropTypes.func.isRequired,
         axis: PropTypes.oneOf(['horizontal', 'vertical']),
+        verticalSwipe: PropTypes.oneOf(['natural', 'standard']),
         width: customPropTypes.unit,
         useKeyboardArrows: PropTypes.bool,
         autoPlay: PropTypes.bool,
@@ -50,6 +51,7 @@ class Carousel extends Component {
         infiniteLoop: false,
         selectedItem: 0,
         axis: 'horizontal',
+        verticalSwipe: 'standard',
         width: '100%',
         useKeyboardArrows: false,
         autoPlay: false,
@@ -339,7 +341,7 @@ class Carousel extends Component {
         if (this.props.centerMode && this.props.axis === 'horizontal') {
             let currentPosition = - index * this.props.centerSlidePercentage;
             const lastPosition = this.props.children.length  - 1;
-            
+
             if (index && index !== lastPosition) {
                 currentPosition += (100 - this.props.centerSlidePercentage) / 2;
             } else if (index === lastPosition) {
@@ -573,8 +575,8 @@ class Carousel extends Component {
             }
 
         } else {
-            swiperProps.onSwipeUp = this.decrement;
-            swiperProps.onSwipeDown = this.increment;
+            swiperProps.onSwipeUp = this.props.verticalSwipe === 'natural' ? this.increment : this.decrement;
+            swiperProps.onSwipeDown = this.props.verticalSwipe === 'natural' ? this.decrement : this.increment;
             swiperProps.style.height = this.state.itemSize;
             containerStyles.height = this.state.itemSize;
         }
