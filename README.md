@@ -87,6 +87,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | infiniteLoop          | `boolean`     | `false` | infinite loop sliding  |
 | selectedItem          | `number`      | `0` | selects an item though props / defines the initial selected item |
 | axis                  | `string`      | `horizontal` | changes orientation - accepts `horizontal` and `vertical` |
+| verticalSwipe         | `string`      | `standard` | changes vertical swipe scroll direction - accepts `standard` and `natural` |
 | onChange              | `function`    | - | Fired when changing positions |
 | onClickItem           | `function`    | - | Fired when an item is clicked |
 | onClickThumb          | `function`    | - | Fired when a thumb it clicked |

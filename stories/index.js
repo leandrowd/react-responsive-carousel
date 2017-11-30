@@ -254,6 +254,11 @@ storiesOf('Carousel')
         { baseChildren.props.children }
     </Carousel>
   ), { source: true, inline: true, propTables: false})
+  .addWithInfo('vertical axis + emulateTouch + "natural" vertical swipe', () => (
+    <Carousel axis="vertical" verticalSwipe="natural" emulateTouch>
+        { baseChildren.props.children }
+    </Carousel>
+  ), { source: true, inline: true, propTables: false})
   .addWithInfo('youtube', () => (
     <Carousel showThumbs={false}>
 		<div key="youtube-1">
