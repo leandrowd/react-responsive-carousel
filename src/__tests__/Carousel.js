@@ -253,29 +253,29 @@ describe("Slider", function() {
                 componentInstance.decrement = jest.genMockFunction();
             });
 
-            it('should call only increment on ArrowRight', () => {
-                componentInstance.navigateWithKeyboard({key: 'ArrowRight'});
+            it('should call only increment on 39', () => {
+                componentInstance.navigateWithKeyboard({keyCode: 39});
 
                 expect(componentInstance.increment.mock.calls.length).toBe(1);
                 expect(componentInstance.decrement.mock.calls.length).toBe(0);
             });
 
-            it('should call only decrement on ArrowLeft', () => {
-                componentInstance.navigateWithKeyboard({key: 'ArrowLeft'});
+            it('should call only decrement on 37', () => {
+                componentInstance.navigateWithKeyboard({keyCode: 37});
 
                 expect(componentInstance.decrement.mock.calls.length).toBe(1);
                 expect(componentInstance.increment.mock.calls.length).toBe(0);
             });
 
-            it('should not call increment on ArrowDown', () => {
-                componentInstance.navigateWithKeyboard({key: 'ArrowDown'});
+            it('should not call increment on 40', () => {
+                componentInstance.navigateWithKeyboard({keyCode: 40});
 
                 expect(componentInstance.increment.mock.calls.length).toBe(0);
                 expect(componentInstance.decrement.mock.calls.length).toBe(0);
             });
 
-            it('should not call decrement on ArrowUp', () => {
-                componentInstance.navigateWithKeyboard({key: 'ArrowUp'});
+            it('should not call decrement on 38', () => {
+                componentInstance.navigateWithKeyboard({keyCode: 38});
 
                 expect(componentInstance.decrement.mock.calls.length).toBe(0);
                 expect(componentInstance.increment.mock.calls.length).toBe(0);
@@ -293,29 +293,29 @@ describe("Slider", function() {
                 componentInstance.decrement = jest.genMockFunction();
             });
 
-            it('should call only increment on ArrowDown', () => {
-                componentInstance.navigateWithKeyboard({key: 'ArrowDown'});
+            it('should call only increment on 40', () => {
+                componentInstance.navigateWithKeyboard({keyCode: 40});
 
                 expect(componentInstance.increment.mock.calls.length).toBe(1);
                 expect(componentInstance.decrement.mock.calls.length).toBe(0);
             });
 
-            it('should call only decrement on ArrowUp', () => {
-                componentInstance.navigateWithKeyboard({key: 'ArrowUp'});
+            it('should call only decrement on 38', () => {
+                componentInstance.navigateWithKeyboard({keyCode: 38});
 
                 expect(componentInstance.decrement.mock.calls.length).toBe(1);
                 expect(componentInstance.increment.mock.calls.length).toBe(0);
             });
 
-            it('should not call increment on ArrowRight', () => {
-                componentInstance.navigateWithKeyboard({key: 'ArrowRight'});
+            it('should not call increment on 39', () => {
+                componentInstance.navigateWithKeyboard({keyCode: 39});
 
                 expect(componentInstance.increment.mock.calls.length).toBe(0);
                 expect(componentInstance.decrement.mock.calls.length).toBe(0);
             });
 
-            it('should not call decrement on ArrowLeft', () => {
-                componentInstance.navigateWithKeyboard({key: 'ArrowLeft'});
+            it('should not call decrement on 37', () => {
+                componentInstance.navigateWithKeyboard({keyCode: 37});
 
                 expect(componentInstance.decrement.mock.calls.length).toBe(0);
                 expect(componentInstance.increment.mock.calls.length).toBe(0);

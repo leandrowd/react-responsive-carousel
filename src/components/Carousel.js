@@ -225,12 +225,12 @@ class Carousel extends Component {
         const { axis } = this.props;
         const isHorizontal = axis === 'horizontal';
 
-        const nextKey = isHorizontal ? 'ArrowRight' : 'ArrowDown';
-        const prevKey = isHorizontal ? 'ArrowLeft' : 'ArrowUp';
+        const nextKey = isHorizontal ? 39 : 40;
+        const prevKey = isHorizontal ? 37 : 38;
 
-        if (nextKey === e.key) {
+        if (nextKey === e.keyCode) {
             this.increment();
-        } else if (prevKey === e.key) {
+        } else if (prevKey === e.keyCode) {
             this.decrement();
         }
     }
