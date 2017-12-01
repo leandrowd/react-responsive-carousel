@@ -224,13 +224,19 @@ class Carousel extends Component {
     navigateWithKeyboard = (e) => {
         const { axis } = this.props;
         const isHorizontal = axis === 'horizontal';
+        const keyNames = {
+            ArrowUp: 38,
+            ArrowRight: 39,
+            ArrowDown: 40,
+            ArrowLeft: 37
+        };
 
-        const nextKey = isHorizontal ? 'ArrowRight' : 'ArrowDown';
-        const prevKey = isHorizontal ? 'ArrowLeft' : 'ArrowUp';
+        const nextKey = isHorizontal ? keyNames.ArrowRight : keyNames.ArrowDown;
+        const prevKey = isHorizontal ? keyNames.ArrowLeft : keyNames.ArrowUp;
 
-        if (nextKey === e.key) {
+        if (nextKey === e.keyCode) {
             this.increment();
-        } else if (prevKey === e.key) {
+        } else if (prevKey === e.keyCode) {
             this.decrement();
         }
     }
