@@ -1,6 +1,11 @@
 # React Responsive Carousel
 
 
+## 3.1.30 - Fri Dec 01 2017
+ * Updates per requests from PR
+ * BUGFIX - updates to arrow key navigation handler to work in IE/Edge. Changed match from e.key => e.keyCode. Updated Carousel tests to account for new methods. There are two tests that fail, but they were failing in the existing repo as well.
+
+
 ## 3.1.29 - Thu Nov 30 2017
  * feat: add verticalSwipe property to deal with mobile vertical swipping.
 
@@ -94,8 +99,6 @@ Removes duplicate option from the documentation
 
 
 ## 3.1.15 - Sun Apr 30 2017
- * #97: Fixing issue with auto play and swipe on mobile
- * #97: Updating react-easy-swipe
 
 
 ## 3.1.14 - Sat Apr 29 2017
