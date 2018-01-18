@@ -36,7 +36,7 @@ export interface CarouselProps {
     statusFormatter?: StatusFormatter;
     children?: React.ReactNode;
     centerMode?:boolean;
-    centerSlidePercentage?:number
+    centerSlidePercentage?:number;
 }
 
 export interface CarouselState {
