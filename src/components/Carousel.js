@@ -557,8 +557,7 @@ class Carousel extends Component {
             onSwipeStart: this.onSwipeStart,
             onSwipeEnd: this.onSwipeEnd,
             style: itemListStyles,
-            tolerance: this.props.swipeScrollTolerance,
-            ref: c => this.list = c
+            tolerance: this.props.swipeScrollTolerance
         };
 
         const containerStyles = {};
@@ -587,12 +586,12 @@ class Carousel extends Component {
                         { this.props.swipeable ?
                             <Swipe
                                 tagName="ul"
+                                ref={c => this.list = c}
                                 {...swiperProps}
                                 allowMouseEvents={this.props.emulateTouch}>
                               { this.renderItems() }
                             </Swipe> :
                             <ul
-                                ref={c => this.list = c}
                                 className={klass.SLIDER(true, this.state.swiping)}
                                 style={itemListStyles}>
                                 { this.renderItems() }
