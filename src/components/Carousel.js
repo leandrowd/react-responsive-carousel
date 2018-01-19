@@ -368,7 +368,7 @@ class Carousel extends Component {
             'transform',
             'msTransform'
         ].forEach((prop) => {
-            this.list.style[prop] = CSSTranslate(position, this.props.axis);
+            this.list.swiper.style[prop] = CSSTranslate(position, this.props.axis);
         });
     }
 
@@ -557,7 +557,8 @@ class Carousel extends Component {
             onSwipeStart: this.onSwipeStart,
             onSwipeEnd: this.onSwipeEnd,
             style: itemListStyles,
-            tolerance: this.props.swipeScrollTolerance
+            tolerance: this.props.swipeScrollTolerance,
+            ref: c => this.list = c
         };
 
         const containerStyles = {};
@@ -578,7 +579,6 @@ class Carousel extends Component {
             swiperProps.style.height = this.state.itemSize;
             containerStyles.height = this.state.itemSize;
         }
-
         return (
             <div className={this.props.className} ref="carouselWrapper">
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
@@ -587,7 +587,6 @@ class Carousel extends Component {
                         { this.props.swipeable ?
                             <Swipe
                                 tagName="ul"
-                                ref={c => this.list = c}
                                 {...swiperProps}
                                 allowMouseEvents={this.props.emulateTouch}>
                               { this.renderItems() }
