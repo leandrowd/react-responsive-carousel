@@ -360,6 +360,7 @@ class Carousel extends Component {
     }
 
     setPosition = (position) => {
+        const list = ReactDOM.findDOMNode(this.list);
         [
             'WebkitTransform',
             'MozTransform',
@@ -368,7 +369,7 @@ class Carousel extends Component {
             'transform',
             'msTransform'
         ].forEach((prop) => {
-            this.list.swiper.style[prop] = CSSTranslate(position, this.props.axis);
+            list.style[prop] = CSSTranslate(position, this.props.axis);
         });
     }
 
