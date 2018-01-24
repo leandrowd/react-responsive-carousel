@@ -50,8 +50,6 @@
 
 	// only applying box sizing inside the plugin so it won't break any style
 	* {
-        margin: 0;
-        padding: 0;
 		-webkit-box-sizing: border-box;
 	  	-moz-box-sizing: border-box;
 	  	box-sizing: border-box;
@@ -176,6 +174,8 @@
 	}
 
 	.slider {
+		margin: 0;
+        padding: 0;
 		position: relative;
 		list-style: none;
 		width: 100%;
@@ -272,4 +272,3 @@
 		}
 	}
 }
-
