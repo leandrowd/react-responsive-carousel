@@ -49,8 +49,6 @@
   position: relative;
   width: 100%; }
   .carousel * {
-    margin: 0;
-    padding: 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
@@ -148,6 +146,8 @@
         -webkit-flex-direction: column;
         flex-direction: column; }
   .carousel .slider {
+    margin: 0;
+    padding: 0;
     position: relative;
     list-style: none;
     width: 100%; }
