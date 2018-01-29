@@ -1,12 +1,22 @@
 # React Responsive Carousel
 
 
-## 3.1.30 - Fri Dec 01 2017
+## 3.1.33 - Mon Jan 29 2018
+ * Updating example with external controls
+ * fix: indentation in scss
+ * refactor: move style rules to not be applied to everying inside slide
+ * Update index.d.ts
+ * Update index.d.ts
+
+Add `centerMode` and `centerSlidePercentage`
+
+
+## 3.1.30 - Sat Dec 02 2017
  * Updates per requests from PR
  * BUGFIX - updates to arrow key navigation handler to work in IE/Edge. Changed match from e.key => e.keyCode. Updated Carousel tests to account for new methods. There are two tests that fail, but they were failing in the existing repo as well.
 
 
-## 3.1.29 - Thu Nov 30 2017
+## 3.1.29 - Fri Dec 01 2017
  * feat: add verticalSwipe property to deal with mobile vertical swipping.
 
 This commit aims to fix [issue 198](https://github.com/leandrowd/react-responsive-carousel/issues/198).
@@ -17,7 +27,7 @@ This reverts commit 3dfb04ff2f69200c7f68ae060e5945d7fc3deaf9.
  * Automating gh-pages publishing
 
 
-## 3.1.28 - Fri Oct 20 2017
+## 3.1.28 - Sat Oct 21 2017
  * Add centerSlidePercentage
  * Fix last centered slide position calculation
  * Add centerMode prop
@@ -48,7 +58,7 @@ add documentation for new thumbWidth prop
 Fix typo!
 
 
-## 3.1.24 - Tue Jul 04 2017
+## 3.1.24 - Wed Jul 05 2017
  * #148 Autoplay and stop on hover causes a warning.
 - Added tests for the internal state isMouseEntered and tests for enabeling and disabeling the auto play function on mouse enter / leave.
  * #148 Autoplay and stop on hover causes a warning.
@@ -91,11 +101,9 @@ Removes duplicate option from the documentation
 
 
 ## 3.1.17 - Mon May 22 2017
- * #118: Fixing jank swipe on mobile
 
 
 ## 3.1.16 - Thu May 11 2017
- * #118: Adding support to swipe tolerance
 
 
 ## 3.1.15 - Sun Apr 30 2017
@@ -113,7 +121,7 @@ Removes duplicate option from the documentation
 ## 3.1.11 - Wed Apr 26 2017
 
 
-## 3.1.10 - Mon Apr 24 2017
+## 3.1.10 - Tue Apr 25 2017
 
 
 ## 3.1.9 - Mon Apr 24 2017
@@ -122,7 +130,7 @@ Removes duplicate option from the documentation
 ## 3.1.8 - Mon Apr 24 2017
 
 
-## 3.1.7 - Sun Apr 23 2017
+## 3.1.7 - Mon Apr 24 2017
 
 
 ## 3.1.6 - Wed Apr 19 2017
@@ -158,7 +166,7 @@ Removes duplicate option from the documentation
 ## 3.0.20 - Sun Sep 25 2016
 
 
-## 3.0.19 - Fri Sep 23 2016
+## 3.0.19 - Sat Sep 24 2016
 
 
 ## 3.0.18 - Fri Sep 16 2016
@@ -176,13 +184,13 @@ Removes duplicate option from the documentation
 ## 3.0.14 - Wed Sep 07 2016
 
 
-## 3.0.13 - Sat Aug 27 2016
+## 3.0.13 - Sun Aug 28 2016
 
 
 ## 3.0.12 - Sun Jun 05 2016
 
 
-## 3.0.11 - Thu Apr 14 2016
+## 3.0.11 - Fri Apr 15 2016
 
 
 ## 3.0.10 - Thu Mar 17 2016
@@ -194,7 +202,7 @@ Removes duplicate option from the documentation
 ## 3.0.8 - Sat Jan 16 2016
 
 
-## 3.0.7 - Fri Jan 15 2016
+## 3.0.7 - Sat Jan 16 2016
 
 
 ## 3.0.6 - Thu Jan 14 2016
@@ -203,10 +211,10 @@ Removes duplicate option from the documentation
 ## 3.0.5 - Wed Jan 13 2016
 
 
-## 3.0.4 - Thu Jan 07 2016
+## 3.0.4 - Fri Jan 08 2016
 
 
-## 3.0.3 - Thu Jan 07 2016
+## 3.0.3 - Fri Jan 08 2016
 
 
 ## 3.0.2 - Thu Jan 07 2016
@@ -278,4 +286,4 @@ Removes duplicate option from the documentation
 ## 0.0.2 - Mon Feb 09 2015
 
 
-## 0.0.1 - Sun Feb 08 2015
+## 0.0.1 - Mon Feb 09 2015
