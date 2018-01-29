@@ -610,7 +610,7 @@ describe("Slider", function() {
                 expect(componentInstance.getPosition(5)).toBe(-500);
                 expect(componentInstance.getPosition(6)).toBe(-600);
             });
-    
+
             it('should return padded transform calculation for horizontal axis', () => {
                 expect(componentInstance.getPosition(0)).toBe(0);
                 expect(componentInstance.getPosition(1)).toBe(-70);
@@ -719,8 +719,13 @@ describe("Slider", function() {
                 centerMode: true
             }, baseChildren)).toMatchSnapshot();
         });
+
+        it('swipeable false', () => {
+            expect(renderForSnapshot({
+                swipeable: false
+            }, baseChildren)).toMatchSnapshot();
+        });
     });
 
 	jest.autoMockOn();
 });
-
