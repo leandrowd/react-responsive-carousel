@@ -77,6 +77,16 @@ export class ExternalControlledCarousel extends Component {
         });
     }
 
+    updateCurrentSlide = (index) => {
+        const { currentSlide } = this.state;
+
+        if (currentSlide !== index) {
+            this.setState({
+                currentSlide: index
+            });
+        }
+    }
+
     render() {
         const buttonStyle = {fontSize: 20, padding: '5px 20px', margin: '5px 0px'};
         const containerStyle = {margin: '5px 0 20px'};
@@ -93,7 +103,7 @@ export class ExternalControlledCarousel extends Component {
                     <button onClick={this.prev} style={buttonStyle}>Prev</button>
                     <button onClick={this.next} style={buttonStyle}>Next</button>
                 </div>
-                <Carousel selectedItem={this.state.currentSlide}>
+                <Carousel selectedItem={this.state.currentSlide} onChange={this.updateCurrentSlide} {...this.props}>
                     { baseChildren.props.children }
                 </Carousel>
             </div>
@@ -278,8 +288,8 @@ storiesOf('Carousel')
 		</div>
     </Carousel>
   ), { source: true, inline: true, propTables: false})
-  .addWithInfo('with external controls', () => (
-    <ExternalControlledCarousel />
+  .addWithInfo('with external controls + auto play + inifinite loop', () => (
+    <ExternalControlledCarousel infiniteLoop autoPlay />
   ), { source: true, inline: true, propTables: false})
   .addWithInfo('presentation mode', () => (
     <Carousel showThumbs={ false } showStatus={ false } useKeyboardArrows className="presentation-mode">
