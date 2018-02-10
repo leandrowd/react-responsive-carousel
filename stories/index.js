@@ -381,7 +381,7 @@ storiesOf('Carousel')
     </Carousel>
   ), { source: true, inline: true, propTables: false})
   .addWithInfo('swipeable false',() => (
-    <Carousel swipable={false}>
+    <Carousel swipeable={false}>
         { baseChildren.props.children }
     </Carousel>
   ), { source: true, inline: true, propTables: false});
