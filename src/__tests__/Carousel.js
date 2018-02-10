@@ -748,8 +748,13 @@ describe("Slider", function() {
                 centerMode: true
             }, baseChildren)).toMatchSnapshot();
         });
+
+        it('swipeable false', () => {
+            expect(renderForSnapshot({
+                swipeable: false
+            }, baseChildren)).toMatchSnapshot();
+        });
     });
 
 	jest.autoMockOn();
 });
-

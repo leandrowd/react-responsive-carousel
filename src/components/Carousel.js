@@ -36,6 +36,7 @@ class Carousel extends Component {
         interval: PropTypes.number,
         transitionTime: PropTypes.number,
         swipeScrollTolerance: PropTypes.number,
+        swipeable: PropTypes.bool,
         dynamicHeight: PropTypes.bool,
         emulateTouch: PropTypes.bool,
         statusFormatter: PropTypes.func.isRequired,
@@ -59,6 +60,7 @@ class Carousel extends Component {
         interval: 3000,
         transitionTime: 350,
         swipeScrollTolerance: 5,
+        swipeable: true,
         dynamicHeight: false,
         emulateTouch: false,
         onClickItem: noop,
@@ -366,7 +368,7 @@ class Carousel extends Component {
     }
 
     setPosition = (position) => {
-        const list = ReactDOM.findDOMNode(this.refs.itemList);
+        const list = ReactDOM.findDOMNode(this.list);
         [
             'WebkitTransform',
             'MozTransform',
@@ -564,8 +566,7 @@ class Carousel extends Component {
             onSwipeStart: this.onSwipeStart,
             onSwipeEnd: this.onSwipeEnd,
             style: itemListStyles,
-            tolerance: this.props.swipeScrollTolerance,
-            ref: 'itemList'
+            tolerance: this.props.swipeScrollTolerance
         };
 
         const containerStyles = {};
@@ -586,15 +587,25 @@ class Carousel extends Component {
             swiperProps.style.height = this.state.itemSize;
             containerStyles.height = this.state.itemSize;
         }
-
         return (
             <div className={this.props.className} ref="carouselWrapper">
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref="itemsWrapper">
-                        <Swipe tagName="ul" {...swiperProps} allowMouseEvents={this.props.emulateTouch}>
-                            { this.renderItems() }
-                        </Swipe>
+                        { this.props.swipeable ?
+                            <Swipe
+                                tagName="ul"
+                                ref={c => this.list = c}
+                                {...swiperProps}
+                                allowMouseEvents={this.props.emulateTouch}>
+                              { this.renderItems() }
+                            </Swipe> :
+                            <ul
+                                className={klass.SLIDER(true, this.state.swiping)}
+                                style={itemListStyles}>
+                                { this.renderItems() }
+                            </ul>
+                        }
                     </div>
                     <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} />
 
