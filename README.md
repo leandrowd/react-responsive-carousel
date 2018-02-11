@@ -25,6 +25,14 @@ Powerful, lightweight and fully customizable carousel component for React apps.
 - Supports any flux library (use `selectedItem` prop to set from the app state, and `onChange` callback to get the new position)
 - Show/hide anything (thumbs, indicators, arrows, status)
 
+### Important links:
+- [Before contributing](https://github.com/leandrowd/react-responsive-carousel/blob/master/CONTRIBUTING.md)
+- [Customizable example](https://www.webpackbin.com/bins/-Kxr6IEf5zXSQvGCgKBR)
+- [Demos](http://react-responsive-carousel.js.org/storybook/)
+- [Changelog](https://github.com/leandrowd/react-responsive-carousel/blob/master/CHANGELOG.md)
+- [Troubleshooting](https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md)
+
+
 ### Demo
 <http://leandrowd.github.io/react-responsive-carousel/>
 
@@ -32,7 +40,6 @@ Check it out these [cool demos](http://react-responsive-carousel.js.org/storyboo
 
 Customize it yourself:
 - Webpackbin: <https://www.webpackbin.com/bins/-Kxr6IEf5zXSQvGCgKBR>
-- ~~Codepen: <https://codepen.io/leandrowd/pen/xLvOPd>~~ (broken, looks like https://pkgzip.com stopped working)
 
 ### Installing as a package
 `npm install react-responsive-carousel --save`
@@ -157,12 +164,6 @@ When raising an issue, please add as much details as possible. Screenshots, vide
 <https://codepen.io/leandrowd/pen/xLvOPd>
 
 =======================
-
-Quick reads:
-- [CHANGELOG](https://github.com/leandrowd/react-responsive-carousel/blob/master/CHANGELOG.md)
-- [TROUBLESHOOTING](https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md)
-- [CONTRIBUTING](https://github.com/leandrowd/react-responsive-carousel/blob/master/CONTRIBUTING.md)
-
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel?ref=badge_large)

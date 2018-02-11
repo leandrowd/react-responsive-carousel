@@ -29,5 +29,5 @@ Open your favourite browser on `localhost:8000` - livereload will be enabled and
 ## Raising issues
 When raising an issue, please add as much details as possible. Screenshots, video recordings, or anything else that can make it easier to reproduce the bug you are reporting.
 
-* A new option is to create a code pen with the code that causes the bug. Fork this [base pen](https://codepen.io/leandrowd/pen/xLvOPd) and add your code there. Don't forget to save and add the link for the pen to the issue.
+* A new option is to create a code pen with the code that causes the bug. Fork this [example](https://www.webpackbin.com/bins/-Kxr6IEf5zXSQvGCgKBR) and add your code there, then fork and add the new link to the issue.
 
