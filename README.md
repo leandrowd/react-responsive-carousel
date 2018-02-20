@@ -27,7 +27,7 @@ Powerful, lightweight and fully customizable carousel component for React apps.
 
 ### Important links:
 - [Before contributing](https://github.com/leandrowd/react-responsive-carousel/blob/master/CONTRIBUTING.md)
-- [Customizable example](https://www.webpackbin.com/bins/-Kxr6IEf5zXSQvGCgKBR)
+- [Customizable example](https://codesandbox.io/s/lp602ljjj7)
 - [Demos](http://react-responsive-carousel.js.org/storybook/)
 - [Changelog](https://github.com/leandrowd/react-responsive-carousel/blob/master/CHANGELOG.md)
 - [Troubleshooting](https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md)
@@ -39,7 +39,7 @@ Powerful, lightweight and fully customizable carousel component for React apps.
 Check it out these [cool demos](http://react-responsive-carousel.js.org/storybook/) created using [storybook](https://getstorybook.io/). The source code for each example is available [here](https://github.com/leandrowd/react-responsive-carousel/blob/master/stories/index.js)
 
 Customize it yourself:
-- Webpackbin: <https://www.webpackbin.com/bins/-Kxr6IEf5zXSQvGCgKBR>
+- Codesandbox: <https://codesandbox.io/s/lp602ljjj7>
 
 ### Installing as a package
 `npm install react-responsive-carousel --save`
@@ -123,7 +123,7 @@ Check the [contributing guide](https://github.com/leandrowd/react-responsive-car
 ### Raising issues
 When raising an issue, please add as much details as possible. Screenshots, video recordings, or anything else that can make it easier to reproduce the bug you are reporting.
 
-* A new option is to create a code pen with the code that causes the bug. Fork this [base pen](https://codepen.io/leandrowd/pen/xLvOPd) and add your code there. Don't forget to save and add the link for the pen to the issue.
+* A new option is to create an example with the code that causes the bug. Fork this [example from codesandbox](https://codesandbox.io/s/lp602ljjj7) and add your code there. Don't forget to fork, save and add the link for the example to the issue.
 
 =======================
 
@@ -160,8 +160,8 @@ When raising an issue, please add as much details as possible. Screenshots, vide
 #### Storybook
 <http://react-responsive-carousel.js.org/storybook/>
 
-#### Codepen
-<https://codepen.io/leandrowd/pen/xLvOPd>
+#### Codesandbox
+<https://codesandbox.io/s/lp602ljjj7>
 
 =======================
 
