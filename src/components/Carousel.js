@@ -118,7 +118,7 @@ class Carousel extends Component {
     setupCarousel () {
         this.bindEvents();
 
-        if (this.props.autoPlay) {
+        if (this.props.autoPlay && React.Children.count(this.props.children) > 1) {
             this.setupAutoPlay();
         }
 
@@ -190,7 +190,7 @@ class Carousel extends Component {
     }
 
     autoPlay = () => {
-        if (!this.props.autoPlay) {
+        if (!this.props.autoPlay || React.Children.count(this.props.children) < 2) {
             return;
         }
 
@@ -254,7 +254,7 @@ class Carousel extends Component {
 
         this.setState({
             itemSize: itemSize,
-            wrapperSize: isHorizontal ? itemSize * this.props.children.length : itemSize
+            wrapperSize: isHorizontal ? itemSize * React.Children.count(this.props.children) : itemSize
         });
     }
 
@@ -264,6 +264,10 @@ class Carousel extends Component {
     }
 
     handleClickItem = (index, item) => {
+        if (React.Children.count(this.props.children) < 2) {
+            return;
+        }
+
         if (this.state.cancelClick) {
             this.setState({
                 cancelClick: false
@@ -282,6 +286,10 @@ class Carousel extends Component {
     }
 
     handleOnChange = (index, item) => {
+        if (React.Children.count(this.props.children) < 2) {
+            return;
+        }
+
         this.props.onChange(index, item);
     }
 
@@ -314,7 +322,7 @@ class Carousel extends Component {
         const initialBoundry = 0;
 
         const currentPosition = this.getPosition(this.state.selectedItem);
-        const finalBoundry = this.getPosition(this.props.children.length - 1);
+        const finalBoundry = this.getPosition(React.Children.count(this.props.children) - 1);
 
         const axisDelta = isHorizontal ? delta.x : delta.y;
         let handledDelta = axisDelta;
@@ -348,7 +356,7 @@ class Carousel extends Component {
     getPosition(index) {
         if (this.props.centerMode && this.props.axis === 'horizontal') {
             let currentPosition = - index * this.props.centerSlidePercentage;
-            const lastPosition = this.props.children.length  - 1;
+            const lastPosition = React.Children.count(this.props.children)  - 1;
 
             if (index && index !== lastPosition) {
                 currentPosition += (100 - this.props.centerSlidePercentage) / 2;
@@ -390,7 +398,7 @@ class Carousel extends Component {
     }
 
     moveTo = (position) => {
-        const lastPosition = this.props.children.length  - 1;
+        const lastPosition = React.Children.count(this.props.children) - 1;
 
         if (position < 0 ) {
           position = this.props.infiniteLoop ?  lastPosition : 0;
@@ -422,7 +430,7 @@ class Carousel extends Component {
 
     selectItem = (state) => {
         this.setState(state);
-        this.handleOnChange(state.selectedItem, this.props.children[state.selectedItem]);
+        this.handleOnChange(state.selectedItem, React.Children.toArray(this.props.children)[state.selectedItem]);
     }
 
     getInitialImage = () => {
@@ -498,11 +506,11 @@ class Carousel extends Component {
             return null
         }
 
-        return <p className="carousel-status">{this.props.statusFormatter(this.state.selectedItem + 1, this.props.children.length)}</p>;
+        return <p className="carousel-status">{this.props.statusFormatter(this.state.selectedItem + 1, React.Children.count(this.props.children))}</p>;
     }
 
     renderThumbs () {
-        if (!this.props.showThumbs || this.props.children.length === 0) {
+        if (!this.props.showThumbs || React.Children.count(this.props.children) === 0) {
             return null
         }
 
@@ -514,11 +522,11 @@ class Carousel extends Component {
     }
 
     render () {
-        if (!this.props.children || this.props.children.length === 0) {
+        if (!this.props.children || React.Children.count(this.props.children) === 0) {
             return null;
         }
 
-        const itemsLength = this.props.children.length;
+        const itemsLength = React.Children.count(this.props.children);
 
         const isHorizontal = this.props.axis === 'horizontal';
 
