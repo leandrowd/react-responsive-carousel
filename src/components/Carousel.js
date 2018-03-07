@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Children } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import klass from '../cssClasses';
@@ -118,7 +118,7 @@ class Carousel extends Component {
     setupCarousel () {
         this.bindEvents();
 
-        if (this.props.autoPlay && React.Children.count(this.props.children) > 1) {
+        if (this.props.autoPlay && Children.count(this.props.children) > 1) {
             this.setupAutoPlay();
         }
 
@@ -190,7 +190,7 @@ class Carousel extends Component {
     }
 
     autoPlay = () => {
-        if (!this.props.autoPlay || React.Children.count(this.props.children) < 2) {
+        if (!this.props.autoPlay || Children.count(this.props.children) <= 1) {
             return;
         }
 
@@ -254,7 +254,7 @@ class Carousel extends Component {
 
         this.setState({
             itemSize: itemSize,
-            wrapperSize: isHorizontal ? itemSize * React.Children.count(this.props.children) : itemSize
+            wrapperSize: isHorizontal ? itemSize * Children.count(this.props.children) : itemSize
         });
     }
 
@@ -264,7 +264,7 @@ class Carousel extends Component {
     }
 
     handleClickItem = (index, item) => {
-        if (React.Children.count(this.props.children) < 2) {
+        if (Children.count(this.props.children) <= 1) {
             return;
         }
 
@@ -286,7 +286,7 @@ class Carousel extends Component {
     }
 
     handleOnChange = (index, item) => {
-        if (React.Children.count(this.props.children) < 2) {
+        if (Children.count(this.props.children) <= 1) {
             return;
         }
 
@@ -322,7 +322,7 @@ class Carousel extends Component {
         const initialBoundry = 0;
 
         const currentPosition = this.getPosition(this.state.selectedItem);
-        const finalBoundry = this.getPosition(React.Children.count(this.props.children) - 1);
+        const finalBoundry = this.getPosition(Children.count(this.props.children) - 1);
 
         const axisDelta = isHorizontal ? delta.x : delta.y;
         let handledDelta = axisDelta;
@@ -356,7 +356,7 @@ class Carousel extends Component {
     getPosition(index) {
         if (this.props.centerMode && this.props.axis === 'horizontal') {
             let currentPosition = - index * this.props.centerSlidePercentage;
-            const lastPosition = React.Children.count(this.props.children)  - 1;
+            const lastPosition = Children.count(this.props.children) - 1;
 
             if (index && index !== lastPosition) {
                 currentPosition += (100 - this.props.centerSlidePercentage) / 2;
@@ -398,7 +398,7 @@ class Carousel extends Component {
     }
 
     moveTo = (position) => {
-        const lastPosition = React.Children.count(this.props.children) - 1;
+        const lastPosition = Children.count(this.props.children) - 1;
 
         if (position < 0 ) {
           position = this.props.infiniteLoop ?  lastPosition : 0;
@@ -430,7 +430,7 @@ class Carousel extends Component {
 
     selectItem = (state) => {
         this.setState(state);
-        this.handleOnChange(state.selectedItem, React.Children.toArray(this.props.children)[state.selectedItem]);
+        this.handleOnChange(state.selectedItem, Children.toArray(this.props.children)[state.selectedItem]);
     }
 
     getInitialImage = () => {
@@ -464,7 +464,7 @@ class Carousel extends Component {
     }
 
     renderItems () {
-        return React.Children.map(this.props.children, (item, index) => {
+        return Children.map(this.props.children, (item, index) => {
             const itemClass = klass.ITEM(true, index === this.state.selectedItem);
             const slideProps = {
                 ref: 'item' + index,
@@ -494,7 +494,7 @@ class Carousel extends Component {
 
         return (
             <ul className="control-dots">
-                {React.Children.map(this.props.children, (item, index) => {
+                {Children.map(this.props.children, (item, index) => {
                     return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} value={index} key={index} />;
                 })}
             </ul>
@@ -506,11 +506,11 @@ class Carousel extends Component {
             return null
         }
 
-        return <p className="carousel-status">{this.props.statusFormatter(this.state.selectedItem + 1, React.Children.count(this.props.children))}</p>;
+        return <p className="carousel-status">{this.props.statusFormatter(this.state.selectedItem + 1, Children.count(this.props.children))}</p>;
     }
 
     renderThumbs () {
-        if (!this.props.showThumbs || React.Children.count(this.props.children) === 0) {
+        if (!this.props.showThumbs || Children.count(this.props.children) === 0) {
             return null
         }
 
@@ -522,11 +522,11 @@ class Carousel extends Component {
     }
 
     render () {
-        if (!this.props.children || React.Children.count(this.props.children) === 0) {
+        if (!this.props.children || Children.count(this.props.children) === 0) {
             return null;
         }
 
-        const itemsLength = React.Children.count(this.props.children);
+        const itemsLength = Children.count(this.props.children);
 
         const isHorizontal = this.props.axis === 'horizontal';
 
