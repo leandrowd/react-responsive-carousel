@@ -36,7 +36,7 @@ Powerful, lightweight and fully customizable carousel component for React apps.
 ### Demo
 <http://leandrowd.github.io/react-responsive-carousel/>
 
-Check it out these [cool demos](http://react-responsive-carousel.js.org/storybook/) created using [storybook](https://getstorybook.io/). The source code for each example is available [here](https://github.com/leandrowd/react-responsive-carousel/blob/master/stories/index.js)
+Check it out these [cool demos](http://react-responsive-carousel.js.org/storybook/index.html) created using [storybook](https://getstorybook.io/). The source code for each example is available [here](https://github.com/leandrowd/react-responsive-carousel/blob/master/stories/index.js)
 
 Customize it yourself:
 - Codesandbox: <https://codesandbox.io/s/lp602ljjj7>
