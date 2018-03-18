@@ -204,17 +204,17 @@ exports[`Slider Snapshots center mode 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(NaNpx,0,0)",
+            "MozTransform": "translate3d(0px,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(NaNpx,0,0)",
+            "MsTransform": "translate3d(0px,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(NaNpx,0,0)",
+            "OTransform": "translate3d(0px,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(NaNpx,0,0)",
+            "WebkitTransform": "translate3d(0px,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(NaNpx,0,0)",
+            "msTransform": "translate3d(0px,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(NaNpx,0,0)",
+            "transform": "translate3d(0px,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -456,17 +456,17 @@ exports[`Slider Snapshots custom class name 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(NaNpx,0,0)",
+            "MozTransform": "translate3d(0px,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(NaNpx,0,0)",
+            "MsTransform": "translate3d(0px,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(NaNpx,0,0)",
+            "OTransform": "translate3d(0px,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(NaNpx,0,0)",
+            "WebkitTransform": "translate3d(0px,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(NaNpx,0,0)",
+            "msTransform": "translate3d(0px,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(NaNpx,0,0)",
+            "transform": "translate3d(0px,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -708,17 +708,17 @@ exports[`Slider Snapshots custom width 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(NaNpx,0,0)",
+            "MozTransform": "translate3d(0px,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(NaNpx,0,0)",
+            "MsTransform": "translate3d(0px,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(NaNpx,0,0)",
+            "OTransform": "translate3d(0px,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(NaNpx,0,0)",
+            "WebkitTransform": "translate3d(0px,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(NaNpx,0,0)",
+            "msTransform": "translate3d(0px,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(NaNpx,0,0)",
+            "transform": "translate3d(0px,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -960,17 +960,17 @@ exports[`Slider Snapshots default 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(NaNpx,0,0)",
+            "MozTransform": "translate3d(0px,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(NaNpx,0,0)",
+            "MsTransform": "translate3d(0px,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(NaNpx,0,0)",
+            "OTransform": "translate3d(0px,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(NaNpx,0,0)",
+            "WebkitTransform": "translate3d(0px,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(NaNpx,0,0)",
+            "msTransform": "translate3d(0px,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(NaNpx,0,0)",
+            "transform": "translate3d(0px,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -1212,17 +1212,17 @@ exports[`Slider Snapshots no arrows 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(NaNpx,0,0)",
+            "MozTransform": "translate3d(0px,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(NaNpx,0,0)",
+            "MsTransform": "translate3d(0px,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(NaNpx,0,0)",
+            "OTransform": "translate3d(0px,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(NaNpx,0,0)",
+            "WebkitTransform": "translate3d(0px,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(NaNpx,0,0)",
+            "msTransform": "translate3d(0px,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(NaNpx,0,0)",
+            "transform": "translate3d(0px,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -1427,17 +1427,17 @@ exports[`Slider Snapshots no indicators 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(NaNpx,0,0)",
+            "MozTransform": "translate3d(0px,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(NaNpx,0,0)",
+            "MsTransform": "translate3d(0px,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(NaNpx,0,0)",
+            "OTransform": "translate3d(0px,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(NaNpx,0,0)",
+            "WebkitTransform": "translate3d(0px,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(NaNpx,0,0)",
+            "msTransform": "translate3d(0px,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(NaNpx,0,0)",
+            "transform": "translate3d(0px,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -1674,17 +1674,17 @@ exports[`Slider Snapshots no indicators 2`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(NaNpx,0,0)",
+            "MozTransform": "translate3d(0px,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(NaNpx,0,0)",
+            "MsTransform": "translate3d(0px,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(NaNpx,0,0)",
+            "OTransform": "translate3d(0px,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(NaNpx,0,0)",
+            "WebkitTransform": "translate3d(0px,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(NaNpx,0,0)",
+            "msTransform": "translate3d(0px,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(NaNpx,0,0)",
+            "transform": "translate3d(0px,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -2077,17 +2077,17 @@ exports[`Slider Snapshots swipeable false 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(NaNpx,0,0)",
+            "MozTransform": "translate3d(0px,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(NaNpx,0,0)",
+            "MsTransform": "translate3d(0px,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(NaNpx,0,0)",
+            "OTransform": "translate3d(0px,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(NaNpx,0,0)",
+            "WebkitTransform": "translate3d(0px,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(NaNpx,0,0)",
+            "msTransform": "translate3d(0px,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(NaNpx,0,0)",
+            "transform": "translate3d(0px,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -2334,17 +2334,17 @@ exports[`Slider Snapshots vertical axis 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(NaNpx,0,0)",
+            "MozTransform": "translate3d(0px,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(NaNpx,0,0)",
+            "MsTransform": "translate3d(0px,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(NaNpx,0,0)",
+            "OTransform": "translate3d(0px,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(NaNpx,0,0)",
+            "WebkitTransform": "translate3d(0px,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(NaNpx,0,0)",
+            "msTransform": "translate3d(0px,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(NaNpx,0,0)",
+            "transform": "translate3d(0px,0,0)",
             "transitionDuration": "350ms",
           }
         }
