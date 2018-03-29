@@ -1,10 +1,23 @@
 # React Responsive Carousel
 
 
+## 3.1.34 - Fri Mar 30 2018
+ * Include index.html to storybook url
+ * Replacing codepen with codesandbox
+ * Updating readme
+ * Fix story for swipeable
+ * feat: add story for swipeable
+ * test: add snapshot for swipeable false
+
+
 ## 3.1.33 - Mon Jan 29 2018
  * Updating example with external controls
  * fix: indentation in scss
  * refactor: move style rules to not be applied to everying inside slide
+ * chore: add build /lib
+ * refactor: finding DOMNode of swiper with ReactDom method
+ * refactor: remove unused ref on ul tag
+ * fix: setting transform properties on swipe
  * Update index.d.ts
  * Update index.d.ts
 
@@ -21,6 +34,10 @@ Add `centerMode` and `centerSlidePercentage`
 
 This commit aims to fix [issue 198](https://github.com/leandrowd/react-responsive-carousel/issues/198).
  * issue #191: Add alternative to codepen
+ * refactor: using ref as a callback instead of string to fix react ref error
+ * refactor: using if else statement instead of ternary to avoid multiple elements with same ref in render
+ * fix: typos in README and Carousel.js
+ * feat: add property to enable and disable swiping
  * Revert "Automating gh-pages publishing"
 
 This reverts commit 3dfb04ff2f69200c7f68ae060e5945d7fc3deaf9.
@@ -84,20 +101,12 @@ Fix typo!
 ## 3.1.20 - Sat Jun 24 2017
  * #140: Revert to initial position when movement is less than tolerance
  * Adding license
- * Update README.md
-
-Removes duplicate option from the documentation
- * Update changelog and changelog whitelist
 
 
 ## 3.1.19 - Mon May 29 2017
- * #131: Add story and docs about the custom formatter
- * #131: Allow user to pass a custom formatter for status
- * #131: Removing old unused files
 
 
 ## 3.1.18 - Mon May 29 2017
- * #129: Allow only right and left keys when axis is horizontal
 
 
 ## 3.1.17 - Mon May 22 2017
