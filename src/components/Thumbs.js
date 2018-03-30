@@ -26,81 +26,85 @@ class Thumbs extends Component {
         super(props);
 
         this.state = {
-            initialized: false,
             selectedItem: props.selectedItem,
             hasMount: false,
-            firstItem: this.getFirstItem(props.selectedItem),
-            images: []
+            firstItem: 0,
+            itemSize: null,
+            visibleItems: 0,
+            lastPosition: 0,
+            showArrows: false,
+            images: this.getImages()
         }
     }
 
-    componentDidMount (nextProps) {
-        if (!this.props.children) {
-            return;
-        }
-
+    componentDidMount(nextProps) {
         this.setupThumbs();
     }
 
-    componentWillReceiveProps (props, state) {
+    componentWillReceiveProps(props, state) {
         if (props.selectedItem !== this.state.selectedItem) {
             this.setState({
                 selectedItem: props.selectedItem,
                 firstItem: this.getFirstItem(props.selectedItem)
             });
         }
+        if (props.children !== this.props.children) {
+            this.setState({
+               images: this.getImages()
+            });
+        }
     }
 
     componentDidUpdate(prevProps) {
-        if (!prevProps.children && this.props.children && !this.state.initialized) {
-            this.setupThumbs();
+        if (this.props.children === prevProps.children) {
+            return;
         }
+
+        // This will capture any size changes for arrow adjustments etc.
+        // usually in the same render cycle so we don't see any flickers
+        this.updateSizes();
     }
 
     componentWillUnmount() {
         this.destroyThumbs();
     }
 
-    setupThumbs () {
+    setupThumbs() {
         // as the widths are calculated, we need to resize
         // the carousel when the window is resized
         window.addEventListener("resize", this.updateSizes);
         // issue #2 - image loading smaller
         window.addEventListener("DOMContentLoaded", this.updateSizes);
 
-        const images = this.getImages();
-
-        if (!images) {
-            return;
-        }
-
-        this.setState({
-            initialized: true,
-            images
-        });
-
         // when the component is rendered we need to calculate
         // the container size to adjust the responsive behaviour
         this.updateSizes();
     }
 
-    destroyThumbs () {
+    destroyThumbs() {
         // removing listeners
         window.removeEventListener("resize", this.updateSizes);
         window.removeEventListener("DOMContentLoaded", this.updateSizes);
     }
 
     updateSizes = () => {
-        if (!this.state.initialized) {
+        if (!this.props.children || !this.refs.itemsWrapper) {
             return;
         }
 
         const total = this.props.children.length;
-        this.wrapperSize = this.itemsWrapper.clientWidth;
-        this.itemSize = this.props.thumbWidth ? this.props.thumbWidth : outerWidth(this.refs.thumb0);
-        this.visibleItems = Math.floor(this.wrapperSize / this.itemSize);
-        this.lastPosition = total - this.visibleItems;
-        this.showArrows = this.visibleItems < total;
+        const wrapperSize = this.refs.itemsWrapper.clientWidth;
+        const itemSize = this.props.thumbWidth ? this.props.thumbWidth : outerWidth(this.refs.thumb0);
+        const visibleItems = Math.floor(wrapperSize / itemSize);
+        const lastPosition = total - visibleItems;
+        const showArrows = visibleItems < total;
+        this.setState({
+            itemSize,
+            visibleItems,
+            firstItem: showArrows ? this.getFirstItem(this.props.selectedItem) : 0,
+            lastPosition,
+            showArrows
+        })
     }
 
     getImages() {
@@ -155,13 +159,9 @@ class Thumbs extends Component {
 
     onSwipeMove = (deltaX) => {
         const leftBoundry = 0;
-        const list = ReactDOM.findDOMNode(this.itemList);
-        const wrapperSize = list.clientWidth;
-        const visibleItems = Math.floor(wrapperSize / this.itemSize);
 
-        const currentPosition = - this.state.firstItem * this.itemSize;
-        const lastLeftBoundry = - this.visibleItems * this.itemSize;
-
+        const currentPosition = - this.state.firstItem * this.state.itemSize;
+        const lastLeftBoundry = - this.state.visibleItems * this.state.itemSize;
 
         // prevent user from swiping left out of boundaries
         if (currentPosition === leftBoundry && deltaX > 0) {
@@ -210,17 +210,13 @@ class Thumbs extends Component {
     }
 
     getFirstItem (selectedItem) {
-        if (!this.showArrows) {
-            return 0;
-        }
-
         let firstItem = selectedItem;
 
-        if (selectedItem >= this.lastPosition) {
-            firstItem = this.lastPosition;
+        if (selectedItem >= this.state.lastPosition) {
+            firstItem = this.state.lastPosition;
         }
 
-        if (selectedItem < (this.state.firstItem + this.visibleItems)) {
+        if (selectedItem < (this.state.firstItem + this.state.visibleItems)) {
             firstItem = this.state.firstItem;
         }
 
@@ -257,18 +253,18 @@ class Thumbs extends Component {
     }
 
     render () {
-        if (!this.props.children || this.state.images.length === 0) {
+        if (!this.props.children) {
             return null;
         }
 
         // show left arrow?
-        const hasPrev = this.showArrows && this.state.firstItem > 0;
+        const hasPrev = this.state.showArrows && this.state.firstItem > 0;
         // show right arrow
-        const hasNext = this.showArrows && this.state.firstItem < this.lastPosition;
+        const hasNext = this.state.showArrows && this.state.firstItem < this.state.lastPosition;
         // obj to hold the transformations and styles
         let itemListStyles = {};
 
-        const currentPosition = - this.state.firstItem * this.itemSize + 'px';
+        const currentPosition = - this.state.firstItem * this.state.itemSize + 'px';
 
         const transformProp = CSSTranslate(currentPosition, this.props.axis);
 
@@ -291,7 +287,7 @@ class Thumbs extends Component {
 
         return (
             <div className={klass.CAROUSEL(false)}>
-                <div className={klass.WRAPPER(false)} ref={node => this.itemsWrapper = node}>
+                <div className={klass.WRAPPER(false)} ref="itemsWrapper">
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.slideRight} />
                     <Swipe tagName="ul"
                         selectedItem={this.state.selectedItem}

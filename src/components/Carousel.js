@@ -256,6 +256,10 @@ class Carousel extends Component {
             itemSize: itemSize,
             wrapperSize: isHorizontal ? itemSize * this.props.children.length : itemSize
         });
+
+        if (this.refs.thumbs) {
+            this.refs.thumbs.updateSizes();
+        }
     }
 
     setMountState = () => {
@@ -507,7 +511,7 @@ class Carousel extends Component {
         }
 
         return (
-            <Thumbs onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem} transitionTime={this.props.transitionTime} thumbWidth={this.props.thumbWidth}>
+            <Thumbs ref="thumbs" onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem} transitionTime={this.props.transitionTime} thumbWidth={this.props.thumbWidth}>
                 {this.props.children}
             </Thumbs>
         );
