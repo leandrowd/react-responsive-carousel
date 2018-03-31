@@ -1,7 +1,14 @@
 # React Responsive Carousel
 
 
+## 3.1.35 - Sat Mar 31 2018
+
+
 ## 3.1.34 - Fri Mar 30 2018
+ * Refactor thumbs state to reduce flicker on thumbs by calculating arrows immediately and using setState to increase change of rerendering in same react render cycle
+Add updateSizes call on carousel trigger same process on thumbs
+Fix thumbs not updating when images change by checking for new images during update and updating accordingly
+Fix firstItem not updating correctly when removing and adding arrows so we neither lose thumbs nor lose the selected item
  * Include index.html to storybook url
  * Replacing codepen with codesandbox
  * Updating readme
@@ -99,8 +106,6 @@ Fix typo!
 
 
 ## 3.1.20 - Sat Jun 24 2017
- * #140: Revert to initial position when movement is less than tolerance
- * Adding license
 
 
 ## 3.1.19 - Mon May 29 2017
