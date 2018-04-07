@@ -69,6 +69,21 @@ class Thumbs extends Component {
         this.destroyThumbs();
     }
 
+    setItemsWrapperRef = e => {
+        this.itemsWrapperRef = e;
+    }
+
+    setItemsListRef = e => {   
+        this.itemsListRef = e;
+    }
+
+    setThumbsRef = (e, index) => {
+        if (!this.thumbsRef) {
+            this.thumbsRef = {};
+        }
+        this.thumbsRef[index] = e;
+    }
+
     setupThumbs() {
         // as the widths are calculated, we need to resize
         // the carousel when the window is resized
@@ -88,13 +103,13 @@ class Thumbs extends Component {
     }
 
     updateSizes = () => {
-        if (!this.props.children || !this.refs.itemsWrapper) {
+        if (!this.props.children || !this.itemsWrapperRef) {
             return;
         }
 
         const total = this.props.children.length;
-        const wrapperSize = this.refs.itemsWrapper.clientWidth;
-        const itemSize = this.props.thumbWidth ? this.props.thumbWidth : outerWidth(this.refs.thumb0);
+        const wrapperSize = this.itemsWrapperRef.clientWidth;
+        const itemSize = this.props.thumbWidth ? this.props.thumbWidth : outerWidth(this.thumbsRef[0]);
         const visibleItems = Math.floor(wrapperSize / itemSize);
         const lastPosition = total - visibleItems;
         const showArrows = visibleItems < total;
@@ -233,7 +248,7 @@ class Thumbs extends Component {
 
             const thumbProps = {
                 key: index,
-                ref: `thumb${index}`,
+                ref: e => this.setThumbsRef(e, index),
                 className: itemClass,
                 onClick: this.handleClickItem.bind(this, index, this.props.children[index])
             };
@@ -287,7 +302,7 @@ class Thumbs extends Component {
 
         return (
             <div className={klass.CAROUSEL(false)}>
-                <div className={klass.WRAPPER(false)} ref="itemsWrapper">
+                <div className={klass.WRAPPER(false)} ref={this.setItemsWrapperRef}>
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.slideRight} />
                     <Swipe tagName="ul"
                         selectedItem={this.state.selectedItem}
@@ -298,7 +313,7 @@ class Thumbs extends Component {
                         onSwipeStart={this.onSwipeStart}
                         onSwipeEnd={this.onSwipeEnd}
                         style={itemListStyles}
-                        ref={node => this.itemList = node}>
+                        ref={this.setItemsListRef}>
                         { this.renderItems() }
                     </Swipe>
                     <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.slideLeft} />
