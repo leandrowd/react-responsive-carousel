@@ -381,10 +381,10 @@ describe("Slider", function() {
 		});
 
 		it("should update the position of the Carousel if selectedItem is changed", () => {
-			component.ref('item2').simulate('click');
+			component.findWhere(n => n.node === componentInstance.itemsRef[2]).simulate('click');
 			expect(componentInstance.state.selectedItem).toBe(2);
-
-            component.ref('item3').simulate('click');
+        
+            component.findWhere(n => n.node === componentInstance.itemsRef[3]).simulate('click');
 			expect(componentInstance.state.selectedItem).toBe(3);
 		});
 	})
@@ -393,10 +393,10 @@ describe("Slider", function() {
 		it("should set the index as selectedItem when clicked", () => {
 			expect(componentInstance.state.selectedItem).toBe(0);
 
-            component.ref('item1').simulate('click');
+            component.findWhere(n => n.node === componentInstance.itemsRef[1]).simulate('click');
 			expect(componentInstance.state.selectedItem).toBe(1);
 
-            component.ref('item3').simulate('click');
+            component.findWhere(n => n.node === componentInstance.itemsRef[3]).simulate('click');
 			expect(componentInstance.state.selectedItem).toBe(3);
 		});
 
@@ -405,7 +405,7 @@ describe("Slider", function() {
 
 			renderDefaultComponent({onClickItem: mockedFunction});
 
-            component.ref('item1').simulate('click');
+            component.findWhere(n => n.node === componentInstance.itemsRef[1]).simulate('click');
 			expect(mockedFunction).toBeCalled();
 		});
 	})
@@ -416,20 +416,20 @@ describe("Slider", function() {
 		});
 
 		it("should disable the left arrow if we are showing the first item", () => {
-			component.ref('item0').simulate('click');
+			component.findWhere(n => n.node === componentInstance.itemsRef[0]).simulate('click');
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(1);
 		});
 
 		it("should enable the left arrow if we are showing other than the first item", () => {
-			component.ref('item1').simulate('click');
+			component.findWhere(n => n.node === componentInstance.itemsRef[1]).simulate('click');
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
 		});
 
 		it("should disable the right arrow if we reach the lastPosition", () => {
-			component.ref('item1').simulate('click');
+			component.findWhere(n => n.node === componentInstance.itemsRef[1]).simulate('click');
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
 
-			component.ref('item6').simulate('click');
+			component.findWhere(n => n.node === componentInstance.itemsRef[6]).simulate('click');
 			expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(1);
 		});
 	});
@@ -442,12 +442,12 @@ describe("Slider", function() {
         });
 
         it("should enable the prev arrow if we are showing the first item", () => {
-            component.ref('item0').simulate('click');
+            component.findWhere(n => n.node === componentInstance.itemsRef[0]).simulate('click');
             expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-prev.control-disabled').length).toBe(0);
         });
 
         it("should enable the right arrow if we reach the lastPosition", () => {
-            component.ref('item6').simulate('click');
+            component.findWhere(n => n.node === componentInstance.itemsRef[6]).simulate('click');
             expect(ReactDOM.findDOMNode(componentInstance).querySelectorAll('.carousel-slider .control-next.control-disabled').length).toBe(0);
         });
 
