@@ -115,6 +115,29 @@ class Carousel extends Component {
         this.destroyCarousel();
     }
 
+    setThumbsRef = node => {
+        this.thumbsRef = node;
+    }
+
+    setCarouselWrapperRef = node => {
+        this.carouselWrapperRef = node;
+    }
+
+    setListRef = node => {
+        this.listRef = node;
+    }
+
+    setItemsWrapperRef = node => {
+        this.itemsWrapperRef = node;
+    }
+
+    setItemsRef = (node, index) => {
+        if (!this.itemsRef) {
+            this.itemsRef = [];
+        }
+        this.itemsRef[index] = node;
+    }
+
     setupCarousel () {
         this.bindEvents();
 
@@ -144,7 +167,7 @@ class Carousel extends Component {
 
     setupAutoPlay () {
         this.autoPlay();
-        const carouselWrapper = this.refs['carouselWrapper'];
+        const carouselWrapper = this.carouselWrapperRef;
 
         if (this.props.stopOnHover && carouselWrapper) {
             carouselWrapper.addEventListener('mouseenter', this.stopOnHover);
@@ -154,7 +177,7 @@ class Carousel extends Component {
 
     destroyAutoPlay () {
         this.clearAutoPlay();
-        const carouselWrapper = this.refs['carouselWrapper'];
+        const carouselWrapper = this.carouselWrapperRef;
 
         if (this.props.stopOnHover && carouselWrapper) {
             carouselWrapper.removeEventListener('mouseenter', this.stopOnHover);
@@ -249,7 +272,7 @@ class Carousel extends Component {
         }
 
         const isHorizontal = this.props.axis === 'horizontal';
-        const firstItem = this.refs.item0;
+        const firstItem = this.itemsRef[0];
         const itemSize = isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
 
         this.setState({
@@ -257,8 +280,8 @@ class Carousel extends Component {
             wrapperSize: isHorizontal ? itemSize * this.props.children.length : itemSize
         });
 
-        if (this.refs.thumbs) {
-            this.refs.thumbs.updateSizes();
+        if (this.thumbsRef) {
+            this.thumbsRef.updateSizes();
         }
     }
 
@@ -372,7 +395,7 @@ class Carousel extends Component {
     }
 
     setPosition = (position) => {
-        const list = ReactDOM.findDOMNode(this.list);
+        const list = ReactDOM.findDOMNode(this.listRef);
         [
             'WebkitTransform',
             'MozTransform',
@@ -431,13 +454,13 @@ class Carousel extends Component {
 
     getInitialImage = () => {
         const selectedItem = this.props.selectedItem;
-        const item = this.refs[`item${selectedItem}`];
+        const item = this.itemsRef[selectedItem];
         const images = item && item.getElementsByTagName('img');
         return images && images[selectedItem];
     }
 
     getVariableImageHeight = (position) => {
-        const item = this.refs[`item${position}`];
+        const item = this.itemsRef[position];
         const images = item && item.getElementsByTagName('img');
         if (this.state.hasMount && images.length > 0) {
             const image = images[0];
@@ -463,7 +486,7 @@ class Carousel extends Component {
         return React.Children.map(this.props.children, (item, index) => {
             const itemClass = klass.ITEM(true, index === this.state.selectedItem);
             const slideProps = {
-                ref: 'item' + index,
+                ref: (e) => this.setItemsRef(e, index),
                 key: 'itemKey' + index,
                 className: klass.ITEM(true, index === this.state.selectedItem),
                 onClick: this.handleClickItem.bind(this, index, item)
@@ -511,7 +534,7 @@ class Carousel extends Component {
         }
 
         return (
-            <Thumbs ref="thumbs" onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem} transitionTime={this.props.transitionTime} thumbWidth={this.props.thumbWidth}>
+            <Thumbs ref={this.setThumbsRef} onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem} transitionTime={this.props.transitionTime} thumbWidth={this.props.thumbWidth}>
                 {this.props.children}
             </Thumbs>
         );
@@ -592,14 +615,14 @@ class Carousel extends Component {
             containerStyles.height = this.state.itemSize;
         }
         return (
-            <div className={this.props.className} ref="carouselWrapper">
+            <div className={this.props.className} ref={this.setCarouselWrapperRef}>
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
-                    <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref="itemsWrapper">
+                    <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={this.setItemsWrapperRef}>
                         { this.props.swipeable ?
                             <Swipe
                                 tagName="ul"
-                                ref={c => this.list = c}
+                                ref={this.setListRef}
                                 {...swiperProps}
                                 allowMouseEvents={this.props.emulateTouch}>
                               { this.renderItems() }
