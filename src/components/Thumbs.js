@@ -69,19 +69,19 @@ class Thumbs extends Component {
         this.destroyThumbs();
     }
 
-    setItemsWrapperRef = e => {
-        this.itemsWrapperRef = e;
+    setItemsWrapperRef = node => {
+        this.itemsWrapperRef = node;
     }
 
-    setItemsListRef = e => {   
-        this.itemsListRef = e;
+    setItemsListRef = node => {   
+        this.itemsListRef = node;
     }
 
-    setThumbsRef = (e, index) => {
+    setThumbsRef = (node, index) => {
         if (!this.thumbsRef) {
-            this.thumbsRef = {};
+            this.thumbsRef = [];
         }
-        this.thumbsRef[index] = e;
+        this.thumbsRef[index] = node;
     }
 
     setupThumbs() {

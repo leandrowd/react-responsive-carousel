@@ -115,27 +115,27 @@ class Carousel extends Component {
         this.destroyCarousel();
     }
 
-    setThumbsRef = e => {
-        this.thumbsRef = e;
+    setThumbsRef = node => {
+        this.thumbsRef = node;
     }
 
-    setCarouselWrapperRef = e => {
-        this.carouselWrapperRef = e;
+    setCarouselWrapperRef = node => {
+        this.carouselWrapperRef = node;
     }
 
-    setListRef = e => {
-        this.list = e;
+    setListRef = node => {
+        this.listRef = node;
     }
 
-    setItemsWrapperRef = e => {
-        this.itemsWrapperRef = e;
+    setItemsWrapperRef = node => {
+        this.itemsWrapperRef = node;
     }
 
-    setItemsRef = (e, index) => {
+    setItemsRef = (node, index) => {
         if (!this.itemsRef) {
-            this.itemsRef = {};
+            this.itemsRef = [];
         }
-        this.itemsRef[index] = e;
+        this.itemsRef[index] = node;
     }
 
     setupCarousel () {
@@ -395,7 +395,7 @@ class Carousel extends Component {
     }
 
     setPosition = (position) => {
-        const list = ReactDOM.findDOMNode(this.list);
+        const list = ReactDOM.findDOMNode(this.listRef);
         [
             'WebkitTransform',
             'MozTransform',
