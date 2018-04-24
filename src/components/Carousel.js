@@ -454,13 +454,13 @@ class Carousel extends Component {
 
     getInitialImage = () => {
         const selectedItem = this.props.selectedItem;
-        const item = this.itemsRef[selectedItem];
+        const item = this.itemsRef && this.itemsRef[selectedItem];
         const images = item && item.getElementsByTagName('img');
         return images && images[selectedItem];
     }
 
     getVariableImageHeight = (position) => {
-        const item = this.itemsRef[position];
+        const item = this.itemsRef && this.itemsRef[position];
         const images = item && item.getElementsByTagName('img');
         if (this.state.hasMount && images.length > 0) {
             const image = images[0];
