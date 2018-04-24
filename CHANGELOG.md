@@ -1,15 +1,30 @@
 # React Responsive Carousel
 
 
+## 3.1.37 - Wed Apr 25 2018
+ * Updating react-easy-swipe
+ * Fix broken test from merge
+ * Add defensive checks for before items are initialized
+
+
+## 3.1.36 - Mon Apr 09 2018
+ * Minor changes based on code review
+ * Updated tests
+ * Updated to refs callback
+
+
 ## 3.1.35 - Sat Mar 31 2018
 
 
 ## 3.1.34 - Fri Mar 30 2018
+ * remove .idea/ directory; remove package-lock.json
  * Refactor thumbs state to reduce flicker on thumbs by calculating arrows immediately and using setState to increase change of rerendering in same react render cycle
 Add updateSizes call on carousel trigger same process on thumbs
 Fix thumbs not updating when images change by checking for new images during update and updating accordingly
 Fix firstItem not updating correctly when removing and adding arrows so we neither lose thumbs nor lose the selected item
  * Include index.html to storybook url
+ * import Children from React, other minor changes
+ * make carousel work with only 1 child passed in
  * Replacing codepen with codesandbox
  * Updating readme
  * Fix story for swipeable
@@ -87,22 +102,15 @@ Fix typo!
 - Added tests for the internal state isMouseEntered and tests for enabeling and disabeling the auto play function on mouse enter / leave.
  * #148 Autoplay and stop on hover causes a warning.
 - Added build version of carousel.
- * #148 Autoplay and stop on hover causes a warning.
-- Added a mouse entered state so we know when not to activate the auto play feature.
 
 
 ## 3.1.23 - Tue Jul 04 2017
- * #148 Autoplay and stop on hover causes a warning.
- * Types author header added.
 
 
 ## 3.1.22 - Mon Jul 03 2017
- * `children` prop added.
- * TypeScript types definitions file added.
 
 
 ## 3.1.21 - Sun Jun 25 2017
- * #134: Using move to on componentWillReceiveProps so the carousel respects its boundaries when changed through external controls
 
 
 ## 3.1.20 - Sat Jun 24 2017
