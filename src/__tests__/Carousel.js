@@ -383,7 +383,7 @@ describe("Slider", function() {
 		it("should update the position of the Carousel if selectedItem is changed", () => {
 			component.findWhere(n => n.node === componentInstance.itemsRef[2]).simulate('click');
 			expect(componentInstance.state.selectedItem).toBe(2);
-        
+
             component.findWhere(n => n.node === componentInstance.itemsRef[3]).simulate('click');
 			expect(componentInstance.state.selectedItem).toBe(3);
 		});
@@ -408,7 +408,7 @@ describe("Slider", function() {
             component.findWhere(n => n.node === componentInstance.itemsRef[1]).simulate('click');
 			expect(mockedFunction).toBeCalled();
         });
-        
+
         it('should be disabled when only 1 child is present', () => {
             var mockedFunction = jest.genMockFunction();
 
@@ -418,7 +418,7 @@ describe("Slider", function() {
             });
             expect(componentInstance.state.selectedItem).toBe(0);
 
-            component.ref('item0').simulate('click');
+            component.findWhere(n => n.node === componentInstance.itemsRef[0]).simulate('click');
             expect(componentInstance.state.selectedItem).toBe(0);
 			expect(mockedFunction).not.toBeCalled();
 		});
