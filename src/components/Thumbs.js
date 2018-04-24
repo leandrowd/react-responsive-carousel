@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Children } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import klass from '../cssClasses';
@@ -123,12 +123,12 @@ class Thumbs extends Component {
     }
 
     getImages() {
-        const images = React.Children.map(this.props.children, (item, index) => {
+        const images = Children.map(this.props.children, (item, index) => {
             let img = item;
 
             // if the item is not an image, try to find the first image in the item's children.
             if (item.type !== "img") {
-                img = React.Children.toArray(item.props.children).filter((children) => children.type === "img")[0];
+                img = Children.toArray(item.props.children).filter((children) => children.type === "img")[0];
             }
 
             if (!img || img.length === 0) {

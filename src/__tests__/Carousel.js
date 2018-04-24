@@ -36,8 +36,8 @@ describe("Slider", function() {
         <img src="assets/7.jpeg" key="7" />,
     ];
 
-    const renderDefaultComponent = (props) => {
-        bootstrap(props, baseChildren);
+    const renderDefaultComponent = ({ children = baseChildren, ...props }) => {
+        bootstrap(props, children);
     }
 
     const renderForSnapshot = (props, children) => {
@@ -407,6 +407,20 @@ describe("Slider", function() {
 
             component.findWhere(n => n.node === componentInstance.itemsRef[1]).simulate('click');
 			expect(mockedFunction).toBeCalled();
+        });
+        
+        it('should be disabled when only 1 child is present', () => {
+            var mockedFunction = jest.genMockFunction();
+
+            renderDefaultComponent({
+                children: <img src="assets/1.jpeg" key="1" />,
+                onClickItem: mockedFunction
+            });
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            component.ref('item0').simulate('click');
+            expect(componentInstance.state.selectedItem).toBe(0);
+			expect(mockedFunction).not.toBeCalled();
 		});
 	})
 
@@ -485,6 +499,19 @@ describe("Slider", function() {
         afterEach(() => {
             jest.useRealTimers();
         });
+
+        it('should disable when only 1 child is present', () => {
+            renderDefaultComponent({
+                children: <img src="assets/1.jpeg" key="1" />,
+                autoPlay: true
+            });
+
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(0);
+        })
 
         it('should change items automatically', () => {
             expect(componentInstance.state.selectedItem).toBe(0);
