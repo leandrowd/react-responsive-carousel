@@ -96,6 +96,6 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "prop-types": "^15.5.8",
-    "react-easy-swipe": "^0.0.14"
+    "react-easy-swipe": "^0.0.16"
   }
 }
