@@ -1,6 +1,11 @@
 # React Responsive Carousel
 
 
+## 3.1.38 - Mon May 21 2018
+ * Updating react-easy-swipe
+ * Fix wrapperSize init
+
+
 ## 3.1.37 - Wed Apr 25 2018
  * Updating react-easy-swipe
  * Fix broken test from merge
@@ -92,16 +97,9 @@ add documentation for new thumbWidth prop
  * issue-159: Ignoring storybook when publishing to npm
  * #159: Updating css instructions
  * Update README.md
- * Update index.d.ts
-
-Fix typo!
 
 
 ## 3.1.24 - Wed Jul 05 2017
- * #148 Autoplay and stop on hover causes a warning.
-- Added tests for the internal state isMouseEntered and tests for enabeling and disabeling the auto play function on mouse enter / leave.
- * #148 Autoplay and stop on hover causes a warning.
-- Added build version of carousel.
 
 
 ## 3.1.23 - Tue Jul 04 2017
