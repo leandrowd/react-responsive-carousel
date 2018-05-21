@@ -205,11 +205,11 @@ class Thumbs extends Component {
     }
 
     slideRight = (positions) => {
-        this.moveTo(this.state.firstItem - (typeof positions === 'Number' ? positions : 1));
+        this.moveTo(this.state.firstItem - (typeof positions === 'number' ? positions : 1));
     }
 
     slideLeft = (positions) => {
-        this.moveTo(this.state.firstItem + (typeof positions === 'Number' ? positions : 1));
+        this.moveTo(this.state.firstItem + (typeof positions === 'number' ? positions : 1));
     }
 
     moveTo = (position) => {
