@@ -73,7 +73,7 @@ class Thumbs extends Component {
         this.itemsWrapperRef = node;
     }
 
-    setItemsListRef = node => {   
+    setItemsListRef = node => {
         this.itemsListRef = node;
     }
 
@@ -200,16 +200,16 @@ class Thumbs extends Component {
             'transform',
             'msTransform'
         ].forEach((prop) => {
-            list.style[prop] = CSSTranslate(position, this.props.axis);
+            this.itemsListRef.style[prop] = CSSTranslate(position, this.props.axis);
         });
     }
 
     slideRight = (positions) => {
-        this.moveTo(this.state.firstItem - (typeof positions === 'Number' ? positions : 1));
+        this.moveTo(this.state.firstItem - (typeof positions === 'number' ? positions : 1));
     }
 
     slideLeft = (positions) => {
-        this.moveTo(this.state.firstItem + (typeof positions === 'Number' ? positions : 1));
+        this.moveTo(this.state.firstItem + (typeof positions === 'number' ? positions : 1));
     }
 
     moveTo = (position) => {
