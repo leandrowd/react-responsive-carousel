@@ -1,6 +1,11 @@
 # React Responsive Carousel
 
 
+## 3.1.39 - Tue May 22 2018
+ * Fix typeof comparison
+ * Fix itemsList ref
+
+
 ## 3.1.38 - Mon May 21 2018
  * Updating react-easy-swipe
  * Fix wrapperSize init
@@ -94,9 +99,6 @@ add documentation for new thumbWidth prop
 
 
 ## 3.1.25 - Sat Aug 26 2017
- * issue-159: Ignoring storybook when publishing to npm
- * #159: Updating css instructions
- * Update README.md
 
 
 ## 3.1.24 - Wed Jul 05 2017
