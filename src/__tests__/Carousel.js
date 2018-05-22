@@ -605,11 +605,6 @@ describe("Slider", function() {
                 componentInstance.onSwipeEnd();
                 expect(componentInstance.state.swiping).toBe(false);
             });
-            it('should revert back to inital position', () => {
-                componentInstance.resetPosition = jest.genMockFunction();
-                componentInstance.onSwipeEnd();
-                expect(componentInstance.resetPosition.mock.calls.length).toBe(1);
-            });
             it('should start autoplay again', () => {
                 componentInstance.autoPlay = jest.genMockFunction();
                 componentInstance.onSwipeEnd();
