@@ -97,6 +97,7 @@ class Carousel extends Component {
         }
 
         if (nextProps.autoPlay !== this.props.autoPlay) {
+            this.props.autoPlay = nextProps.autoPlay;
             if (nextProps.autoPlay) {
                 this.setupAutoPlay();
             } else {
