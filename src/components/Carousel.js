@@ -78,7 +78,8 @@ class Carousel extends Component {
             initialized: false,
             selectedItem: props.selectedItem,
             hasMount: false,
-            isMouseEntered: false
+            isMouseEntered: false,
+            autoPlay: props.autoPlay
         };
     }
 
@@ -96,13 +97,16 @@ class Carousel extends Component {
             this.moveTo(nextProps.selectedItem);
         }
 
-        if (nextProps.autoPlay !== this.props.autoPlay) {
-            this.props.autoPlay = nextProps.autoPlay;
-            if (nextProps.autoPlay) {
-                this.setupAutoPlay();
-            } else {
-                this.destroyAutoPlay();
-            }
+        if (nextProps.autoPlay !== this.state.autoPlay) {
+            this.setState({
+                autoPlay: nextProps.autoPlay
+            }, () => {
+                if (this.state.autoPlay) {
+                    this.setupAutoPlay();
+                } else {
+                    this.destroyAutoPlay();
+                }
+            });
         }
     }
 
@@ -142,7 +146,7 @@ class Carousel extends Component {
     setupCarousel () {
         this.bindEvents();
 
-        if (this.props.autoPlay && Children.count(this.props.children) > 1) {
+        if (this.state.autoPlay && Children.count(this.props.children) > 1) {
             this.setupAutoPlay();
         }
 
@@ -214,7 +218,7 @@ class Carousel extends Component {
     }
 
     autoPlay = () => {
-        if (!this.props.autoPlay || Children.count(this.props.children) <= 1) {
+        if (!this.state.autoPlay || Children.count(this.props.children) <= 1) {
             return;
         }
 
@@ -225,7 +229,7 @@ class Carousel extends Component {
     }
 
     clearAutoPlay = () => {
-        if (!this.props.autoPlay) {
+        if (!this.state.autoPlay) {
             return;
         }
 
@@ -443,7 +447,7 @@ class Carousel extends Component {
 
         // don't reset auto play when stop on hover is enabled, doing so will trigger a call to auto play more than once
         // and will result in the interval function not being cleared correctly.
-        if (this.props.autoPlay && this.state.isMouseEntered === false) {
+        if (this.state.autoPlay && this.state.isMouseEntered === false) {
             this.resetAutoPlay();
         }
     }
