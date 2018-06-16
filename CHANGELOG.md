@@ -1,6 +1,13 @@
 # React Responsive Carousel
 
 
+## 3.1.40 - Sat Jun 16 2018
+ * add autoPlay to state and update upon props change
+ * assign new autoPlay props when received
+
+to work with up-to-date values in setup/destroy autoplay
+
+
 ## 3.1.39 - Tue May 22 2018
  * Fix typeof comparison
  * Fix itemsList ref
@@ -92,10 +99,6 @@ This reverts commit 3dfb04ff2f69200c7f68ae060e5945d7fc3deaf9.
 
 
 ## 3.1.26 - Fri Sep 22 2017
- * add thumbWidth prop to allow specifying thumbnail width
-add documentation for new thumbWidth prop
- * added Component and removed bracker from code example of README
- * Adding CONTRIBUTING.md
 
 
 ## 3.1.25 - Sat Aug 26 2017
