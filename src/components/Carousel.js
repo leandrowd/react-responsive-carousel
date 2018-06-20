@@ -341,7 +341,6 @@ class Carousel extends Component {
     }
 
     onSwipeEnd = () => {
-        this.resetPosition();
         this.setState({
             swiping: false
         });
@@ -400,11 +399,6 @@ class Carousel extends Component {
         }
 
         return - index * 100;
-    }
-
-    resetPosition = () => {
-        const currentPosition = this.getPosition(this.state.selectedItem) + '%';
-        this.setPosition(currentPosition);
     }
 
     setPosition = (position) => {
