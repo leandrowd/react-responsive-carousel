@@ -1,11 +1,17 @@
 # React Responsive Carousel
 
 
+## 3.1.41 - Wed Jun 20 2018
+ * Removing package-lock.json
+
+
 ## 3.1.40 - Sat Jun 16 2018
  * add autoPlay to state and update upon props change
  * assign new autoPlay props when received
 
 to work with up-to-date values in setup/destroy autoplay
+ * add built files
+ * fix: remove resetPosition() on swipe end
 
 
 ## 3.1.39 - Tue May 22 2018
@@ -95,7 +101,6 @@ This reverts commit 3dfb04ff2f69200c7f68ae060e5945d7fc3deaf9.
 
 
 ## 3.1.27 - Tue Sep 26 2017
- * #151: Autoplay keeps trying to transition after the component has been unmounted
 
 
 ## 3.1.26 - Fri Sep 22 2017
