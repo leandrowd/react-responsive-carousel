@@ -1,6 +1,8 @@
 # React Responsive Carousel
 
-#### Help wanted - please read: https://github.com/leandrowd/react-responsive-carousel/issues/160
+
+# Help wanted
+Things here are running very slowly as I have a lot of other stuff to take care at the moment so please don't be upset if I don't answer your question or if a PR sits unreviewed for a few days or weeks. Anyone interested in helping it move faster can help by submitting or reviewing PR's and answering each other's questions. (https://github.com/leandrowd/react-responsive-carousel/issues/160)
 
 [![npm version](https://badge.fury.io/js/react-responsive-carousel.svg)](https://badge.fury.io/js/react-responsive-carousel)
 [![Build Status](https://travis-ci.org/leandrowd/react-responsive-carousel.svg?branch=master)](https://travis-ci.org/leandrowd/react-responsive-carousel)
