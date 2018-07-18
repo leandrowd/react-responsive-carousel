@@ -18,6 +18,8 @@ class Carousel extends Component {
         className: PropTypes.string,
         children: PropTypes.node,
         showArrows: PropTypes.bool,
+        leftArrow: PropTypes.func,
+        rightArrow: PropTypes.func,
         showStatus: PropTypes.bool,
         showIndicators: PropTypes.bool,
         infiniteLoop: PropTypes.bool,
@@ -624,7 +626,10 @@ class Carousel extends Component {
         return (
             <div className={this.props.className} ref={this.setCarouselWrapperRef}>
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
-                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
+                    { this.props.leftArrow ? this.props.leftArrow({hasPrev, onClick: this.decrement}) :
+                        <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
+                    }
+
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={this.setItemsWrapperRef}>
                         { this.props.swipeable ?
                             <Swipe
@@ -641,7 +646,9 @@ class Carousel extends Component {
                             </ul>
                         }
                     </div>
-                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} />
+                    { this.props.rightArrow ? this.props.rightArrow({hasNext, onClick: this.increment}) :
+                        <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} />
+                    }
 
                     { this.renderControls() }
                     { this.renderStatus() }
