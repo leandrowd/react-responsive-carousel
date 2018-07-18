@@ -22,6 +22,7 @@ class Carousel extends Component {
         rightArrow: PropTypes.func,
         showStatus: PropTypes.bool,
         showIndicators: PropTypes.bool,
+        indicator: PropTypes.func,
         infiniteLoop: PropTypes.bool,
         showThumbs: PropTypes.bool,
         thumbWidth: PropTypes.number,
@@ -520,10 +521,15 @@ class Carousel extends Component {
             return null
         }
 
+
         return (
             <ul className="control-dots">
                 {Children.map(this.props.children, (item, index) => {
-                    return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} value={index} key={index} />;
+                    const isSelected = index === this.state.selectedItem
+                    const onClick = this.changeItem
+                    return this.props.indicator ?
+                        this.props.indicator({onClick, value, isSelected}) :
+                        <li className={klass.DOT(isSelected)} onClick={onClick} value={index} key={index} />;
                 })}
             </ul>
         );
