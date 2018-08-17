@@ -138,6 +138,15 @@ describe("Slider", function() {
         });
     });
 
+    describe("componentDidUpdate", () => {
+        it("should unbind the events", () => {
+            componentInstance.resetPosition = jest.genMockFunction();
+            componentInstance.setState({swiping: false});
+            componentInstance.componentDidUpdate({}, {swiping: true});
+            expect(componentInstance.resetPosition.mock.calls.length).toBe(1);
+        });
+    });
+
     describe("componentWillUnmount", () => {
         beforeEach(() => {
             componentInstance.unbindEvents = jest.genMockFunction();
