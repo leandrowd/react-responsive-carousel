@@ -110,9 +110,13 @@ class Carousel extends Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         if (!prevProps.children && this.props.children && !this.state.initialized) {
             this.setupCarousel();
+        }
+        if (prevState.swiping && !this.state.swiping) {
+            // We stopped swiping, ensure we are heading to the new/current slide and not stuck
+            this.resetPosition();
         }
     }
 
@@ -413,6 +417,11 @@ class Carousel extends Component {
         ].forEach((prop) => {
             list.style[prop] = CSSTranslate(position, this.props.axis);
         });
+    }
+
+    resetPosition = () => {
+        const currentPosition = this.getPosition(this.state.selectedItem) + '%';
+        this.setPosition(currentPosition);
     }
 
     decrement = (positions) => {
