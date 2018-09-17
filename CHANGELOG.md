@@ -1,6 +1,14 @@
 # React Responsive Carousel
 
 
+## 3.1.42 - Mon Sep 17 2018
+ * Restore resetPosition but place on componentDidUpdate so it resets position to the NEW slide in the case where a change just occurred
+ * css file added in usage (README.md)
+ * Update README.md
+
+Help wanted
+
+
 ## 3.1.41 - Wed Jun 20 2018
  * Removing package-lock.json
 
@@ -91,13 +99,6 @@ This reverts commit 3dfb04ff2f69200c7f68ae060e5945d7fc3deaf9.
 
 ## 3.1.28 - Sat Oct 21 2017
  * Add centerSlidePercentage
- * Fix last centered slide position calculation
- * Add centerMode prop
-- Update README
-- Add tests
-- Add stories to Storybook
- * Create CODE_OF_CONDUCT.md
- * Add license scan report and status
 
 
 ## 3.1.27 - Tue Sep 26 2017
