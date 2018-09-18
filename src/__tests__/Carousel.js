@@ -5,6 +5,10 @@ import renderer from 'react-test-renderer';
 import * as index from '../index';
 import Swipe from 'react-easy-swipe';
 
+window.requestAnimationFrame = fn => {
+    setTimeout(fn, 0);
+};
+
 describe("Slider", function() {
 	jest.autoMockOff();
 

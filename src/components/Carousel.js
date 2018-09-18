@@ -7,10 +7,6 @@ import Swipe from 'react-easy-swipe';
 import Thumbs from './Thumbs';
 import * as customPropTypes from '../customPropTypes';
 
-window.requestAnimationFrame = fn => {
-    setTimeout(fn, 0);
-};
-
 const noop = () => {};
 
 const defaultStatusFormatter = (current, total) => `${current} of ${total}`;
