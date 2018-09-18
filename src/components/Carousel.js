@@ -7,6 +7,10 @@ import Swipe from 'react-easy-swipe';
 import Thumbs from './Thumbs';
 import * as customPropTypes from '../customPropTypes';
 
+window.requestAnimationFrame = fn => {
+    setTimeout(fn, 0);
+};
+
 const noop = () => {};
 
 const defaultStatusFormatter = (current, total) => `${current} of ${total}`;
@@ -79,8 +83,12 @@ class Carousel extends Component {
             selectedItem: props.selectedItem,
             hasMount: false,
             isMouseEntered: false,
-            autoPlay: props.autoPlay
+            autoPlay: props.autoPlay,
+            loop: false,
+            swipeLoop: false
         };
+
+        this.childrenLength = Children.count(this.props.children);
     }
 
     componentDidMount () {
@@ -150,7 +158,7 @@ class Carousel extends Component {
     setupCarousel () {
         this.bindEvents();
 
-        if (this.state.autoPlay && Children.count(this.props.children) > 1) {
+        if (this.state.autoPlay && this.childrenLength > 1) {
             this.setupAutoPlay();
         }
 
@@ -222,7 +230,7 @@ class Carousel extends Component {
     }
 
     autoPlay = () => {
-        if (!this.state.autoPlay || Children.count(this.props.children) <= 1) {
+        if (!this.state.autoPlay || this.childrenLength <= 1) {
             return;
         }
 
@@ -286,7 +294,7 @@ class Carousel extends Component {
 
         this.setState({
             itemSize: itemSize,
-            wrapperSize: isHorizontal ? itemSize * Children.count(this.props.children) : itemSize
+            wrapperSize: isHorizontal ? itemSize * this.childrenLength : itemSize
         });
 
         if (this.thumbsRef) {
@@ -300,7 +308,7 @@ class Carousel extends Component {
     }
 
     handleClickItem = (index, item) => {
-        if (Children.count(this.props.children) <= 1) {
+        if (this.childrenLength <= 1) {
             return;
         }
 
@@ -322,7 +330,7 @@ class Carousel extends Component {
     }
 
     handleOnChange = (index, item) => {
-        if (Children.count(this.props.children) <= 1) {
+        if (this.childrenLength <= 1) {
             return;
         }
 
@@ -339,8 +347,13 @@ class Carousel extends Component {
 
     onSwipeStart = () => {
         this.setState({
-            swiping: true
+            swiping: true,
         });
+        if (this.props.infiniteLoop) {
+            this.setState({
+                swipeLoop: true,
+            });
+        }
         this.clearAutoPlay();
     }
 
@@ -348,6 +361,15 @@ class Carousel extends Component {
         this.setState({
             swiping: false
         });
+        if (this.props.infiniteLoop) {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    this.setState({
+                        swipeLoop: false
+                    });
+                });
+            });
+        }
         this.autoPlay();
     }
 
@@ -357,7 +379,7 @@ class Carousel extends Component {
         const initialBoundry = 0;
 
         const currentPosition = this.getPosition(this.state.selectedItem);
-        const finalBoundry = this.getPosition(Children.count(this.props.children) - 1);
+        const finalBoundry = this.getPosition(this.childrenLength - 1, true);
 
         const axisDelta = isHorizontal ? delta.x : delta.y;
         let handledDelta = axisDelta;
@@ -372,8 +394,15 @@ class Carousel extends Component {
             handledDelta = 0;
         }
 
-        const position = currentPosition + (100 / (this.state.itemSize / handledDelta)) + '%';
-
+        let position = currentPosition + (100 / (this.state.itemSize / handledDelta));
+        if (this.props.infiniteLoop) {
+            if (this.state.selectedItem === 0 && position > -100) {
+                position -= this.childrenLength * 100;
+            } else if (this.state.selectedItem === this.childrenLength - 1 && position <  - this.childrenLength * 100) {
+                position += this.childrenLength * 100;
+            }
+        }
+        position += '%';
         this.setPosition(position);
 
         // allows scroll if the swipe was within the tolerance
@@ -388,10 +417,10 @@ class Carousel extends Component {
         return hasMoved;
     }
 
-    getPosition(index) {
+    getPosition(index, swiping) {
         if (this.props.centerMode && this.props.axis === 'horizontal') {
             let currentPosition = - index * this.props.centerSlidePercentage;
-            const lastPosition = Children.count(this.props.children) - 1;
+            const lastPosition = this.childrenLength - 1;
 
             if (index && index !== lastPosition) {
                 currentPosition += (100 - this.props.centerSlidePercentage) / 2;
@@ -400,6 +429,16 @@ class Carousel extends Component {
             }
 
             return currentPosition;
+        }
+
+        if (this.props.infiniteLoop) {
+            if (this.state.loop && index === 0) {
+                return 0;
+            }
+            if ((this.state.loop || swiping) && index === this.childrenLength - 1) {
+                return - (this.childrenLength + 1) * 100;
+            }
+            return - (index + 1) * 100;
         }
 
         return - index * 100;
@@ -433,7 +472,8 @@ class Carousel extends Component {
     }
 
     moveTo = (position) => {
-        const lastPosition = Children.count(this.props.children) - 1;
+        const lastPosition = this.childrenLength - 1;
+        const needClonedSlide = this.props.infiniteLoop && !this.state.swipeLoop && (position < 0 || position > lastPosition);
 
         if (position < 0 ) {
           position = this.props.infiniteLoop ?  lastPosition : 0;
@@ -443,10 +483,24 @@ class Carousel extends Component {
           position = this.props.infiniteLoop ? 0 : lastPosition;
         }
 
-        this.selectItem({
-            // if it's not a slider, we don't need to set position here
-            selectedItem: position
-        });
+        if (needClonedSlide) {
+            this.selectItem({
+                selectedItem: position,
+                loop: true
+            });
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    this.selectItem({
+                        loop: false
+                    });
+                });
+            });
+        } else {
+            this.selectItem({
+                // if it's not a slider, we don't need to set position here
+                selectedItem: position
+            });
+        }
 
         // don't reset auto play when stop on hover is enabled, doing so will trigger a call to auto play more than once
         // and will result in the interval function not being cleared correctly.
@@ -500,7 +554,6 @@ class Carousel extends Component {
 
     renderItems () {
         return Children.map(this.props.children, (item, index) => {
-            const itemClass = klass.ITEM(true, index === this.state.selectedItem);
             const slideProps = {
                 ref: (e) => this.setItemsRef(e, index),
                 key: 'itemKey' + index,
@@ -522,6 +575,46 @@ class Carousel extends Component {
         });
     }
 
+    renderFirstClone () {
+        const item = Children.toArray(this.props.children)[0];
+        const slideProps = {
+            key: 'itemKey-1',
+            className: klass.ITEM(true, 0 === this.state.selectedItem)
+        };
+
+        if (this.props.centerMode && this.props.axis === 'horizontal') {
+            slideProps.style = {
+                minWidth: this.props.centerSlidePercentage + '%'
+            };
+        }
+
+        return (
+            <li {...slideProps}>
+                { item }
+            </li>
+        );
+    }
+
+    renderLastClone () {
+        const item = Children.toArray(this.props.children)[this.childrenLength - 1];
+        const slideProps = {
+            key: 'itemKey+1',
+            className: klass.ITEM(true, this.childrenLength - 1 === this.state.selectedItem)
+        };
+
+        if (this.props.centerMode && this.props.axis === 'horizontal') {
+            slideProps.style = {
+                minWidth: this.props.centerSlidePercentage + '%'
+            };
+        }
+
+        return (
+            <li {...slideProps}>
+                { item }
+            </li>
+        );
+    }
+
     renderControls () {
         if (!this.props.showIndicators) {
             return null
@@ -541,11 +634,11 @@ class Carousel extends Component {
             return null
         }
 
-        return <p className="carousel-status">{this.props.statusFormatter(this.state.selectedItem + 1, Children.count(this.props.children))}</p>;
+        return <p className="carousel-status">{this.props.statusFormatter(this.state.selectedItem + 1, this.childrenLength)}</p>;
     }
 
     renderThumbs () {
-        if (!this.props.showThumbs || Children.count(this.props.children) === 0) {
+        if (!this.props.showThumbs || this.childrenLength === 0) {
             return null
         }
 
@@ -557,20 +650,18 @@ class Carousel extends Component {
     }
 
     render () {
-        if (!this.props.children || Children.count(this.props.children) === 0) {
+        if (!this.props.children || this.childrenLength === 0) {
             return null;
         }
 
-        const itemsLength = Children.count(this.props.children);
-
         const isHorizontal = this.props.axis === 'horizontal';
 
-        const canShowArrows = this.props.showArrows && itemsLength > 1;
+        const canShowArrows = this.props.showArrows && this.childrenLength > 1;
 
         // show left arrow?
         const hasPrev = canShowArrows && (this.state.selectedItem > 0 || this.props.infiniteLoop);
         // show right arrow
-        const hasNext = canShowArrows && (this.state.selectedItem < itemsLength - 1 || this.props.infiniteLoop);
+        const hasNext = canShowArrows && (this.state.selectedItem < this.childrenLength - 1 || this.props.infiniteLoop);
         // obj to hold the transformations and styles
         let itemListStyles = {};
 
@@ -579,7 +670,7 @@ class Carousel extends Component {
         // if 3d is available, let's take advantage of the performance of transform
         const transformProp = CSSTranslate(currentPosition + '%', this.props.axis);
 
-        const transitionTime = this.props.transitionTime + 'ms';
+        const transitionTime = this.state.loop ? '0ms' : this.props.transitionTime + 'ms';
 
         itemListStyles = {
                     'WebkitTransform': transformProp,
@@ -641,12 +732,16 @@ class Carousel extends Component {
                                 ref={this.setListRef}
                                 {...swiperProps}
                                 allowMouseEvents={this.props.emulateTouch}>
-                              { this.renderItems() }
+                                { this.props.infiniteLoop && this.renderLastClone() }
+                                { this.renderItems() }
+                                { this.props.infiniteLoop && this.renderFirstClone() }
                             </Swipe> :
                             <ul
                                 className={klass.SLIDER(true, this.state.swiping)}
                                 style={itemListStyles}>
+                                { this.props.infiniteLoop && this.renderLastClone() }
                                 { this.renderItems() }
+                                { this.props.infiniteLoop && this.renderFirstClone() }
                             </ul>
                         }
                     </div>

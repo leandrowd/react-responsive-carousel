@@ -785,6 +785,12 @@ describe("Slider", function() {
                 swipeable: false
             }, baseChildren)).toMatchSnapshot();
         });
+
+        it('infinite loop', () => {
+            expect(renderForSnapshot({
+                infiniteLoop: true
+            }, baseChildren)).toMatchSnapshot();
+        });
     });
 
 	jest.autoMockOn();
