@@ -23,7 +23,7 @@ export default {
         "thumb": !isSlider,
         "slide": isSlider,
         "selected": selected,
-        [`${customAnimation}`]: isSlider && selected & customAnimation
+        [`${customAnimation}`]: isSlider && selected && customAnimation
     }),
 
     ARROW_PREV: (disabled) => classNames({
