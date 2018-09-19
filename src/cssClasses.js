@@ -22,7 +22,8 @@ export default {
     ITEM: (isSlider, selected) => classNames({
         "thumb": !isSlider,
         "slide": isSlider,
-        "selected": selected
+        "selected": selected,
+        "rollIn animated":isSlider && selected
     }),
 
     ARROW_PREV: (disabled) => classNames({

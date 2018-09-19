@@ -41,7 +41,8 @@ class Carousel extends Component {
         emulateTouch: PropTypes.bool,
         statusFormatter: PropTypes.func.isRequired,
         centerMode: PropTypes.bool,
-        centerSlidePercentage: PropTypes.number
+        centerSlidePercentage: PropTypes.number,
+        customTransition: PropTypes.bool
     };
 
     static defaultProps = {
@@ -515,7 +516,7 @@ class Carousel extends Component {
             }
 
             return (
-                <li {...slideProps}>
+                <li {...slideProps} >
                     { item }
                 </li>
             );
