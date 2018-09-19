@@ -19,11 +19,11 @@ export default {
         "animated": !isSwiping
     }),
 
-    ITEM: (isSlider, selected) => classNames({
+    ITEM: (isSlider, selected, customAnimation) => classNames({
         "thumb": !isSlider,
         "slide": isSlider,
         "selected": selected,
-        "rollIn animated":isSlider && selected
+        [`${customAnimation}`]: isSlider && selected & customAnimation
     }),
 
     ARROW_PREV: (disabled) => classNames({

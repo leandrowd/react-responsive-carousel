@@ -42,7 +42,7 @@ class Carousel extends Component {
         statusFormatter: PropTypes.func.isRequired,
         centerMode: PropTypes.bool,
         centerSlidePercentage: PropTypes.number,
-        customTransition: PropTypes.bool
+        customTransition: PropTypes.string
     };
 
     static defaultProps = {
@@ -69,7 +69,8 @@ class Carousel extends Component {
         onChange: noop,
         statusFormatter: defaultStatusFormatter,
         centerMode: false,
-        centerSlidePercentage: 80
+        centerSlidePercentage: 80,
+        customTransition: ''
     };
 
     constructor(props) {
@@ -501,11 +502,10 @@ class Carousel extends Component {
 
     renderItems () {
         return Children.map(this.props.children, (item, index) => {
-            const itemClass = klass.ITEM(true, index === this.state.selectedItem);
             const slideProps = {
                 ref: (e) => this.setItemsRef(e, index),
                 key: 'itemKey' + index,
-                className: klass.ITEM(true, index === this.state.selectedItem),
+                className: klass.ITEM(true, index === this.state.selectedItem, this.props.customTransition),
                 onClick: this.handleClickItem.bind(this, index, item)
             };
 
@@ -516,7 +516,7 @@ class Carousel extends Component {
             }
 
             return (
-                <li {...slideProps} >
+                <li {...slideProps}>
                     { item }
                 </li>
             );
@@ -580,7 +580,7 @@ class Carousel extends Component {
         // if 3d is available, let's take advantage of the performance of transform
         const transformProp = CSSTranslate(currentPosition + '%', this.props.axis);
 
-        const transitionTime = this.props.transitionTime + 'ms';
+        const transitionTime = this.props.customTransition ? '0ms' : this.props.transitionTime + 'ms';
 
         itemListStyles = {
                     'WebkitTransform': transformProp,
