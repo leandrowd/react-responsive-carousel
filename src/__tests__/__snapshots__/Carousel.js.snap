@@ -1088,6 +1088,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
       >
         <li
           className="slide"
+          onClick={[Function]}
         >
           <img
             src="assets/7.jpeg"
@@ -1151,6 +1152,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         </li>
         <li
           className="slide selected"
+          onClick={[Function]}
         >
           <img
             src="assets/1.jpeg"

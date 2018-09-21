@@ -548,11 +548,11 @@ class Carousel extends Component {
         return null;
     }
 
-    renderItems () {
+    renderItems (isClone) {
         return Children.map(this.props.children, (item, index) => {
             const slideProps = {
                 ref: (e) => this.setItemsRef(e, index),
-                key: 'itemKey' + index,
+                key: 'itemKey' + index + (isClone ? 'clone' : ''),
                 className: klass.ITEM(true, index === this.state.selectedItem),
                 onClick: this.handleClickItem.bind(this, index, item)
             };
@@ -569,46 +569,6 @@ class Carousel extends Component {
                 </li>
             );
         });
-    }
-
-    renderFirstClone () {
-        const item = Children.toArray(this.props.children)[0];
-        const slideProps = {
-            key: 'itemKey-1',
-            className: klass.ITEM(true, 0 === this.state.selectedItem)
-        };
-
-        if (this.props.centerMode && this.props.axis === 'horizontal') {
-            slideProps.style = {
-                minWidth: this.props.centerSlidePercentage + '%'
-            };
-        }
-
-        return (
-            <li {...slideProps}>
-                { item }
-            </li>
-        );
-    }
-
-    renderLastClone () {
-        const item = Children.toArray(this.props.children)[this.childrenLength - 1];
-        const slideProps = {
-            key: 'itemKey+1',
-            className: klass.ITEM(true, this.childrenLength - 1 === this.state.selectedItem)
-        };
-
-        if (this.props.centerMode && this.props.axis === 'horizontal') {
-            slideProps.style = {
-                minWidth: this.props.centerSlidePercentage + '%'
-            };
-        }
-
-        return (
-            <li {...slideProps}>
-                { item }
-            </li>
-        );
     }
 
     renderControls () {
@@ -689,6 +649,10 @@ class Carousel extends Component {
             }
         }
 
+        const itemsClone = [...this.renderItems(true)];
+        const firstClone = itemsClone.shift();
+        const lastClone = itemsClone.pop();
+
         let swiperProps = {
             selectedItem: this.state.selectedItem,
             className: klass.SLIDER(true, this.state.swiping),
@@ -728,16 +692,16 @@ class Carousel extends Component {
                                 ref={this.setListRef}
                                 {...swiperProps}
                                 allowMouseEvents={this.props.emulateTouch}>
-                                { this.props.infiniteLoop && this.renderLastClone() }
+                                { this.props.infiniteLoop && lastClone }
                                 { this.renderItems() }
-                                { this.props.infiniteLoop && this.renderFirstClone() }
+                                { this.props.infiniteLoop && firstClone }
                             </Swipe> :
                             <ul
                                 className={klass.SLIDER(true, this.state.swiping)}
                                 style={itemListStyles}>
-                                { this.props.infiniteLoop && this.renderLastClone() }
+                                { this.props.infiniteLoop && lastClone }
                                 { this.renderItems() }
-                                { this.props.infiniteLoop && this.renderFirstClone() }
+                                { this.props.infiniteLoop && firstClone }
                             </ul>
                         }
                     </div>
