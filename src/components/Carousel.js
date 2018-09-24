@@ -580,7 +580,9 @@ class Carousel extends Component {
         // if 3d is available, let's take advantage of the performance of transform
         const transformProp = CSSTranslate(currentPosition + '%', this.props.axis);
 
-        const transitionTime = this.props.customTransition ? '0ms' : this.props.transitionTime + 'ms';
+        const transitionTime = this.props.transitionTime + 'ms';
+
+        const noSliderTransition = this.state.swiping || this.props.customTransition;
 
         itemListStyles = {
                     'WebkitTransform': transformProp,
@@ -591,7 +593,7 @@ class Carousel extends Component {
                         'msTransform': transformProp
         };
 
-        if (!this.state.swiping) {
+        if (!noSliderTransition) {
             itemListStyles = {
                 ...itemListStyles,
                'WebkitTransitionDuration': transitionTime,
@@ -605,7 +607,7 @@ class Carousel extends Component {
 
         let swiperProps = {
             selectedItem: this.state.selectedItem,
-            className: klass.SLIDER(true, this.state.swiping),
+            className: klass.SLIDER(true, noSliderTransition),
             onSwipeMove: this.onSwipeMove,
             onSwipeStart: this.onSwipeStart,
             onSwipeEnd: this.onSwipeEnd,
@@ -645,7 +647,7 @@ class Carousel extends Component {
                               { this.renderItems() }
                             </Swipe> :
                             <ul
-                                className={klass.SLIDER(true, this.state.swiping)}
+                                className={klass.SLIDER(true, noSliderTransition)}
                                 style={itemListStyles}>
                                 { this.renderItems() }
                             </ul>

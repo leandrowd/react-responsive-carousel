@@ -180,7 +180,7 @@
 		list-style: none;
 		width: 100%;
 
-		&.animated {
+		&.animate-sliding {
 			@include transition(all, .35s, ease-in-out);
 			// activate hardware accelerated animations using translate property
 			// @include enhanceAnimations();

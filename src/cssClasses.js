@@ -13,10 +13,10 @@ export default {
         "axis-vertical": axis !== "horizontal"
     }),
 
-    SLIDER: (isSlider, isSwiping) => classNames({
+    SLIDER: (isSlider, noSliderTransition) => classNames({
         "thumbs": !isSlider,
         "slider": isSlider,
-        "animated": !isSwiping
+        "animate-sliding": !noSliderTransition
     }),
 
     ITEM: (isSlider, selected, customAnimation) => classNames({
