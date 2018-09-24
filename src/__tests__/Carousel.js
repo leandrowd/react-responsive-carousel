@@ -103,13 +103,17 @@ describe("Slider", function() {
         describe("Initial State", () => {
             const props = {
                 selectedItem: 0,
-                hasMount: false
+                hasMount: false,
+                loop: false,
+                swipeLoop: false
             };
 
             Object.keys(props).forEach(prop => {
                 it(`should have ${prop} as ${props[prop]}`, () => {
                     expect(componentInstance.state.selectedItem).toBe(0);
                     expect(componentInstance.state.hasMount).toBe(false);
+                    expect(componentInstance.state.loop).toBe(false);
+                    expect(componentInstance.state.swipeLoop).toBe(false);
                 });
             });
         });

@@ -356,16 +356,18 @@ class Carousel extends Component {
     onSwipeEnd = () => {
         this.setState({
             swiping: false
-        });
-        if (this.props.infiniteLoop) {
-            requestAnimationFrame(() => {
+        }, () => {
+            if (this.props.infiniteLoop) {
                 requestAnimationFrame(() => {
-                    this.setState({
-                        swipeLoop: false
+                    requestAnimationFrame(() => {
+                        this.setState({
+                            swipeLoop: false
+                        });
                     });
                 });
-            });
-        }
+            }
+        });
+
         this.autoPlay();
     }
 
@@ -483,14 +485,16 @@ class Carousel extends Component {
             this.selectItem({
                 selectedItem: position,
                 loop: true
-            });
-            requestAnimationFrame(() => {
+            }, () => {
                 requestAnimationFrame(() => {
-                    this.selectItem({
-                        loop: false
+                    requestAnimationFrame(() => {
+                        this.selectItem({
+                            loop: false
+                        });
                     });
                 });
             });
+
         } else {
             this.selectItem({
                 // if it's not a slider, we don't need to set position here
@@ -513,8 +517,8 @@ class Carousel extends Component {
         });
     }
 
-    selectItem = (state) => {
-        this.setState(state);
+    selectItem = (state, cb) => {
+        this.setState(state, cb);
         this.handleOnChange(state.selectedItem, Children.toArray(this.props.children)[state.selectedItem]);
     }
 
@@ -649,7 +653,7 @@ class Carousel extends Component {
             }
         }
 
-        const itemsClone = [...this.renderItems(true)];
+        const itemsClone = this.renderItems(true);
         const firstClone = itemsClone.shift();
         const lastClone = itemsClone.pop();
 
