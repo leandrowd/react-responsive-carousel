@@ -116,6 +116,7 @@ class Carousel extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (!prevProps.children && this.props.children && !this.state.initialized) {
+            this.childrenLength = Children.count(this.props.children);
             this.setupCarousel();
         }
         if (prevState.swiping && !this.state.swiping) {
