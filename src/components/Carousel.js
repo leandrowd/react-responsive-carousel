@@ -83,8 +83,6 @@ class Carousel extends Component {
             loop: false,
             swipeLoop: false
         };
-
-        this.childrenLength = Children.count(this.props.children);
     }
 
     componentDidMount () {
@@ -116,7 +114,6 @@ class Carousel extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (!prevProps.children && this.props.children && !this.state.initialized) {
-            this.childrenLength = Children.count(this.props.children);
             this.setupCarousel();
         }
         if (prevState.swiping && !this.state.swiping) {
@@ -155,7 +152,7 @@ class Carousel extends Component {
     setupCarousel () {
         this.bindEvents();
 
-        if (this.state.autoPlay && this.childrenLength > 1) {
+        if (this.state.autoPlay && Children.count(this.props.children) > 1) {
             this.setupAutoPlay();
         }
 
@@ -227,7 +224,7 @@ class Carousel extends Component {
     }
 
     autoPlay = () => {
-        if (!this.state.autoPlay || this.childrenLength <= 1) {
+        if (!this.state.autoPlay || Children.count(this.props.children) <= 1) {
             return;
         }
 
@@ -291,7 +288,7 @@ class Carousel extends Component {
 
         this.setState({
             itemSize: itemSize,
-            wrapperSize: isHorizontal ? itemSize * this.childrenLength : itemSize
+            wrapperSize: isHorizontal ? itemSize * Children.count(this.props.children) : itemSize
         });
 
         if (this.thumbsRef) {
@@ -305,7 +302,7 @@ class Carousel extends Component {
     }
 
     handleClickItem = (index, item) => {
-        if (this.childrenLength <= 1) {
+        if (Children.count(this.props.children) <= 1) {
             return;
         }
 
@@ -327,7 +324,7 @@ class Carousel extends Component {
     }
 
     handleOnChange = (index, item) => {
-        if (this.childrenLength <= 1) {
+        if (Children.count(this.props.children) <= 1) {
             return;
         }
 
@@ -374,11 +371,12 @@ class Carousel extends Component {
 
     onSwipeMove = (delta) => {
         const isHorizontal = this.props.axis === 'horizontal';
+        const childrenLength = Children.count(this.props.children)
 
         const initialBoundry = 0;
 
         const currentPosition = this.getPosition(this.state.selectedItem);
-        const finalBoundry = this.getPosition(this.childrenLength - 1, true);
+        const finalBoundry = this.getPosition(childrenLength - 1, true);
 
         const axisDelta = isHorizontal ? delta.x : delta.y;
         let handledDelta = axisDelta;
@@ -396,9 +394,9 @@ class Carousel extends Component {
         let position = currentPosition + (100 / (this.state.itemSize / handledDelta));
         if (this.props.infiniteLoop) {
             if (this.state.selectedItem === 0 && position > -100) {
-                position -= this.childrenLength * 100;
-            } else if (this.state.selectedItem === this.childrenLength - 1 && position <  - this.childrenLength * 100) {
-                position += this.childrenLength * 100;
+                position -= childrenLength * 100;
+            } else if (this.state.selectedItem === childrenLength - 1 && position <  - childrenLength * 100) {
+                position += childrenLength * 100;
             }
         }
         position += '%';
@@ -417,9 +415,10 @@ class Carousel extends Component {
     }
 
     getPosition(index, swiping) {
+        const childrenLength = Children.count(this.props.children);
         if (this.props.centerMode && this.props.axis === 'horizontal') {
             let currentPosition = - index * this.props.centerSlidePercentage;
-            const lastPosition = this.childrenLength - 1;
+            const lastPosition = childrenLength - 1;
 
             if (index && index !== lastPosition) {
                 currentPosition += (100 - this.props.centerSlidePercentage) / 2;
@@ -434,8 +433,8 @@ class Carousel extends Component {
             if (this.state.loop && index === 0) {
                 return 0;
             }
-            if ((this.state.loop || swiping) && index === this.childrenLength - 1) {
-                return - (this.childrenLength + 1) * 100;
+            if ((this.state.loop || swiping) && index === childrenLength - 1) {
+                return - (childrenLength + 1) * 100;
             }
             return - (index + 1) * 100;
         }
@@ -471,7 +470,7 @@ class Carousel extends Component {
     }
 
     moveTo = (position) => {
-        const lastPosition = this.childrenLength - 1;
+        const lastPosition = Children.count(this.props.children) - 1;
         const needClonedSlide = this.props.infiniteLoop && !this.state.swipeLoop && (position < 0 || position > lastPosition);
 
         if (position < 0 ) {
@@ -595,11 +594,11 @@ class Carousel extends Component {
             return null
         }
 
-        return <p className="carousel-status">{this.props.statusFormatter(this.state.selectedItem + 1, this.childrenLength)}</p>;
+        return <p className="carousel-status">{this.props.statusFormatter(this.state.selectedItem + 1, Children.count(this.props.children))}</p>;
     }
 
     renderThumbs () {
-        if (!this.props.showThumbs || this.childrenLength === 0) {
+        if (!this.props.showThumbs || Children.count(this.props.children) === 0) {
             return null
         }
 
@@ -611,18 +610,18 @@ class Carousel extends Component {
     }
 
     render () {
-        if (!this.props.children || this.childrenLength === 0) {
+        if (!this.props.children || Children.count(this.props.children) === 0) {
             return null;
         }
 
         const isHorizontal = this.props.axis === 'horizontal';
 
-        const canShowArrows = this.props.showArrows && this.childrenLength > 1;
+        const canShowArrows = this.props.showArrows && Children.count(this.props.children) > 1;
 
         // show left arrow?
         const hasPrev = canShowArrows && (this.state.selectedItem > 0 || this.props.infiniteLoop);
         // show right arrow
-        const hasNext = canShowArrows && (this.state.selectedItem < this.childrenLength - 1 || this.props.infiniteLoop);
+        const hasNext = canShowArrows && (this.state.selectedItem < Children.count(this.props.children) - 1 || this.props.infiniteLoop);
         // obj to hold the transformations and styles
         let itemListStyles = {};
 
