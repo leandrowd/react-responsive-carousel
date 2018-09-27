@@ -5,10 +5,6 @@ import renderer from 'react-test-renderer';
 import * as index from '../index';
 import Swipe from 'react-easy-swipe';
 
-window.requestAnimationFrame = fn => {
-    setTimeout(fn, 0);
-};
-
 describe("Slider", function() {
 	jest.autoMockOff();
 
@@ -103,17 +99,13 @@ describe("Slider", function() {
         describe("Initial State", () => {
             const props = {
                 selectedItem: 0,
-                hasMount: false,
-                loop: false,
-                swipeLoop: false
+                hasMount: false
             };
 
             Object.keys(props).forEach(prop => {
                 it(`should have ${prop} as ${props[prop]}`, () => {
                     expect(componentInstance.state.selectedItem).toBe(0);
                     expect(componentInstance.state.hasMount).toBe(false);
-                    expect(componentInstance.state.loop).toBe(false);
-                    expect(componentInstance.state.swipeLoop).toBe(false);
                 });
             });
         });
@@ -499,6 +491,51 @@ describe("Slider", function() {
 
             componentInstance.decrement();
 
+            expect(componentInstance.state.selectedItem).toBe(lastItemIndex);
+        });
+
+        it('should render the clone slides', () => {
+            expect(component.find('.slide').at(0).key()).toContain('itemKey6clone');
+            expect(component.find('.slide').at(8).key()).toContain('itemKey0clone');
+        });
+
+        it('should set slide position directly and trigger a reflow when doing first to last transition', () => {
+            componentInstance.setPosition = jest.genMockFunction();
+            componentInstance.decrement();
+            expect(componentInstance.setPosition).toBeCalledWith('-800%', true);
+            componentInstance.setPosition.mockClear();
+        });
+
+        it('should set slide position directly and trigger a reflow when doing last to first transition', () => {
+            renderDefaultComponent({
+                infiniteLoop: true,
+                selectedItem: 7
+            })
+
+            componentInstance.setPosition = jest.genMockFunction();
+            componentInstance.increment();
+            expect(componentInstance.setPosition).toHaveBeenCalled();
+        });
+
+        it('should not call setPosition if swiping with inifinite scrolling', () => {
+            componentInstance.setPosition = jest.genMockFunction();
+            componentInstance.decrement(1, true);
+            expect(componentInstance.setPosition).not.toHaveBeenCalled();
+        });
+
+        it('should work with minimal children', () => {
+            renderDefaultComponent({
+                children: [<img src="assets/1.jpeg" key="1" />, <img src="assets/2.jpeg" key="2" />],
+                infiniteLoop: true
+            });
+            componentInstance.decrement();
+            expect(componentInstance.state.selectedItem).toBe(lastItemIndex);
+
+            renderDefaultComponent({
+                children: [<img src="assets/1.jpeg" key="1" />],
+                infiniteLoop: true
+            });
+            componentInstance.decrement();
             expect(componentInstance.state.selectedItem).toBe(lastItemIndex);
         });
     });
