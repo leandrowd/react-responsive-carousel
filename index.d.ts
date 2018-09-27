@@ -35,8 +35,11 @@ export interface CarouselProps {
     emulateTouch?: boolean;
     statusFormatter?: StatusFormatter;
     children?: React.ReactNode;
-    centerMode?:boolean;
-    centerSlidePercentage?:number;
+    centerMode?: boolean;
+    centerSlidePercentage?: number;
+    enterClass?: string;
+    exitClass?: string;
+    exitTimeout?: string;
 }
 
 export interface CarouselState {
@@ -47,6 +50,7 @@ export interface CarouselState {
     wrapperSize: number;
     cancelClick: boolean;
     swiping: boolean;
+    exiting: booleam;
 }
 
 export class Carousel extends React.Component<CarouselProps, CarouselState> {

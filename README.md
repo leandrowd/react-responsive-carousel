@@ -26,6 +26,7 @@ Powerful, lightweight and fully customizable carousel component for React apps.
 - Supports images, videos, text content or anything you want. Each direct child represents one slide!
 - Supports any flux library (use `selectedItem` prop to set from the app state, and `onChange` callback to get the new position)
 - Show/hide anything (thumbs, indicators, arrows, status)
+- Custom transition supported
 
 ### Important links:
 - [Before contributing](https://github.com/leandrowd/react-responsive-carousel/blob/master/CONTRIBUTING.md)
@@ -114,7 +115,9 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | statusFormatter       | `func`        | (current, total) => `${current} of ${total}` | Allows custom formatting of the status indicator |  
 | centerMode            | `boolean`     | `false` | Enables centered view with partial prev/next slides. Only works with horizontal axis. |
 | centerSlidePercentage | `number`      | `80` | optionally specify percentage width (as an integer) of the slides in `centerMode` |
-
+| enterClass            | `string`      | ``   | custom transition class name, for entering effect   |
+| exitClass             | `string`      | ``   | custom transition class name, for exiting effect    |
+| exitTimeout           | `number`      | ``   | exit transition duration |
 
 =======================
 

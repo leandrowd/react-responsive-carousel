@@ -42,7 +42,9 @@ class Carousel extends Component {
         statusFormatter: PropTypes.func.isRequired,
         centerMode: PropTypes.bool,
         centerSlidePercentage: PropTypes.number,
-        customTransition: PropTypes.string
+        enterClass: PropTypes.string,
+        exitClass: PropTypes.string,
+        exitTimeout: PropTypes.number
     };
 
     static defaultProps = {
@@ -70,7 +72,9 @@ class Carousel extends Component {
         statusFormatter: defaultStatusFormatter,
         centerMode: false,
         centerSlidePercentage: 80,
-        customTransition: ''
+        enterClass: '',
+        exitClass: '',
+        exitTimeout: 0
     };
 
     constructor(props) {
@@ -81,7 +85,8 @@ class Carousel extends Component {
             selectedItem: props.selectedItem,
             hasMount: false,
             isMouseEntered: false,
-            autoPlay: props.autoPlay
+            autoPlay: props.autoPlay,
+            exiting: false
         };
     }
 
@@ -445,10 +450,23 @@ class Carousel extends Component {
           position = this.props.infiniteLoop ? 0 : lastPosition;
         }
 
-        this.selectItem({
-            // if it's not a slider, we don't need to set position here
-            selectedItem: position
-        });
+        if (this.props.exitTimeout) {
+            this.selectItem({
+                exiting: true
+            }, () => {
+                setTimeout(() => {
+                    this.selectItem({
+                        exiting: false,
+                        selectedItem: position
+                    });
+                }, this.props.exitTimeout);
+            });
+        } else {
+            this.selectItem({
+                // if it's not a slider, we don't need to set position here
+                selectedItem: position
+            });
+        }
 
         // don't reset auto play when stop on hover is enabled, doing so will trigger a call to auto play more than once
         // and will result in the interval function not being cleared correctly.
@@ -465,8 +483,8 @@ class Carousel extends Component {
         });
     }
 
-    selectItem = (state) => {
-        this.setState(state);
+    selectItem = (state, cb) => {
+        this.setState(state, cb);
         this.handleOnChange(state.selectedItem, Children.toArray(this.props.children)[state.selectedItem]);
     }
 
@@ -505,7 +523,7 @@ class Carousel extends Component {
             const slideProps = {
                 ref: (e) => this.setItemsRef(e, index),
                 key: 'itemKey' + index,
-                className: klass.ITEM(true, index === this.state.selectedItem, this.props.customTransition),
+                className: klass.ITEM(true, index === this.state.selectedItem, this.props.enterClass, this.props.exitClass, this.state.exiting),
                 onClick: this.handleClickItem.bind(this, index, item)
             };
 
@@ -582,7 +600,7 @@ class Carousel extends Component {
 
         const transitionTime = this.props.transitionTime + 'ms';
 
-        const noSliderTransition = this.state.swiping || this.props.customTransition;
+        const noSliderTransition = this.state.swiping || this.props.enterClass;
 
         itemListStyles = {
                     'WebkitTransform': transformProp,

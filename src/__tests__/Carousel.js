@@ -723,6 +723,30 @@ describe("Slider", function() {
         })
     });
 
+    describe('custom transition', () => {
+        beforeEach(() => {
+            jest.useFakeTimers();
+            renderDefaultComponent({
+                enterClass: 'enterClass',
+                exitClass: 'exitClass',
+                exitTimeout: 1000
+            });
+        });
+
+        it('set exit state and class', () => {
+            componentInstance.increment();
+            expect(componentInstance.state.exiting).toBe(true);
+            expect(component.find('.selected.exitClass').length).toBe(1);
+        })
+
+        it('set exit state and class', () => {
+            componentInstance.increment();
+            jest.runOnlyPendingTimers();
+            expect(componentInstance.state.exiting).toBe(false);
+            expect(component.find('.selected.enterClass').length).toBe(1);
+        })
+    })
+
     describe('Snapshots', () => {
         it('default', () => {
             expect(renderForSnapshot({}, baseChildren)).toMatchSnapshot();
