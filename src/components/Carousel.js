@@ -633,7 +633,7 @@ class Carousel extends Component {
         return (
             <div className={this.props.className} ref={this.setCarouselWrapperRef}>
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
-                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
+                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} role="presentation" aria-label="mobile navigation"/>
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={this.setItemsWrapperRef}>
                         { this.props.swipeable ?
                             <Swipe
@@ -650,7 +650,7 @@ class Carousel extends Component {
                             </ul>
                         }
                     </div>
-                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} />
+                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} role="presentation" aria-label="mobile navigation"/>
 
                     { this.renderControls() }
                     { this.renderStatus() }

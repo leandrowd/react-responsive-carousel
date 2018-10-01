@@ -304,7 +304,7 @@ class Thumbs extends Component {
         return (
             <div className={klass.CAROUSEL(false)}>
                 <div className={klass.WRAPPER(false)} ref={this.setItemsWrapperRef}>
-                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.slideRight} />
+                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.slideRight} role="presentation" aria-label="mobile navigation"/>
                     <Swipe tagName="ul"
                         selectedItem={this.state.selectedItem}
                         className={klass.SLIDER(false, this.state.swiping)}
@@ -317,7 +317,7 @@ class Thumbs extends Component {
                         ref={this.setItemsListRef}>
                         { this.renderItems() }
                     </Swipe>
-                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.slideLeft} />
+                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.slideLeft} role="presentation" aria-label="mobile navigation"/>
                 </div>
             </div>
         );
