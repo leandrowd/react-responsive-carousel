@@ -19,12 +19,12 @@ export default {
         "animate-sliding": !noSliderTransition
     }),
 
-    ITEM: (isSlider, selected, enterClass, exitClass, exiting) => classNames({
+    ITEM: (isSlider, selected, enterClass, exitClass, entering, exiting) => classNames({
         "thumb": !isSlider,
         "slide": isSlider,
         "selected": selected,
-        [`${enterClass}`]: isSlider && selected && enterClass && !exiting,
-        [`${exitClass}`]: isSlider && selected && exitClass && exiting
+        [`${enterClass}`]: isSlider && selected && entering,
+        [`${exitClass}`]: isSlider && selected && exiting
     }),
 
     ARROW_PREV: (disabled) => classNames({

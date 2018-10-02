@@ -729,13 +729,15 @@ describe("Slider", function() {
             renderDefaultComponent({
                 enterClass: 'enterClass',
                 exitClass: 'exitClass',
-                exitTimeout: 1000
+                exitTimeout: 1000,
+
             });
         });
 
         it('set exit state and class', () => {
             componentInstance.increment();
             expect(componentInstance.state.exiting).toBe(true);
+            expect(componentInstance.state.entering).toBe(false);
             expect(component.find('.selected.exitClass').length).toBe(1);
         })
 
@@ -743,7 +745,17 @@ describe("Slider", function() {
             componentInstance.increment();
             jest.runOnlyPendingTimers();
             expect(componentInstance.state.exiting).toBe(false);
+            expect(componentInstance.state.entering).toBe(true);
             expect(component.find('.selected.enterClass').length).toBe(1);
+        })
+
+        it('when swiping, custom transition should be disabled', () => {
+            componentInstance.increment(1, true);
+            expect(componentInstance.state.exiting).toBe(false);
+            expect(component.find('.selected.exitClass').length).toBe(0);
+            jest.runOnlyPendingTimers();
+            expect(componentInstance.state.entering).toBe(false);
+            expect(component.find('.selected.enterClass').length).toBe(0);
         })
     })
 

@@ -86,6 +86,7 @@ class Carousel extends Component {
             hasMount: false,
             isMouseEntered: false,
             autoPlay: props.autoPlay,
+            entering: false,
             exiting: false
         };
     }
@@ -431,15 +432,15 @@ class Carousel extends Component {
         this.setPosition(currentPosition);
     }
 
-    decrement = (positions) => {
-        this.moveTo(this.state.selectedItem - (typeof positions === 'Number' ? positions : 1));
+    decrement = (positions, fromSwipe) => {
+        this.moveTo(this.state.selectedItem - (typeof positions === 'Number' ? positions : 1), fromSwipe);
     }
 
-    increment = (positions) => {
-        this.moveTo(this.state.selectedItem + (typeof positions === 'Number' ? positions : 1));
+    increment = (positions, fromSwipe) => {
+        this.moveTo(this.state.selectedItem + (typeof positions === 'Number' ? positions : 1), fromSwipe);
     }
 
-    moveTo = (position) => {
+    moveTo = (position, fromSwipe) => {
         const lastPosition = Children.count(this.props.children) - 1;
 
         if (position < 0 ) {
@@ -450,13 +451,15 @@ class Carousel extends Component {
           position = this.props.infiniteLoop ? 0 : lastPosition;
         }
 
-        if (this.props.exitTimeout) {
+        if (this.props.exitTimeout && !fromSwipe) {
             this.selectItem({
-                exiting: true
+                exiting: true,
+                entering: false
             }, () => {
                 setTimeout(() => {
                     this.selectItem({
                         exiting: false,
+                        entering: true,
                         selectedItem: position
                     });
                 }, this.props.exitTimeout);
@@ -464,7 +467,8 @@ class Carousel extends Component {
         } else {
             this.selectItem({
                 // if it's not a slider, we don't need to set position here
-                selectedItem: position
+                selectedItem: position,
+                entering: false
             });
         }
 
@@ -523,7 +527,7 @@ class Carousel extends Component {
             const slideProps = {
                 ref: (e) => this.setItemsRef(e, index),
                 key: 'itemKey' + index,
-                className: klass.ITEM(true, index === this.state.selectedItem, this.props.enterClass, this.props.exitClass, this.state.exiting),
+                className: klass.ITEM(true, index === this.state.selectedItem, this.props.enterClass, this.props.exitClass, this.state.entering, this.state.exiting),
                 onClick: this.handleClickItem.bind(this, index, item)
             };
 
@@ -600,7 +604,7 @@ class Carousel extends Component {
 
         const transitionTime = this.props.transitionTime + 'ms';
 
-        const noSliderTransition = this.state.swiping || this.props.enterClass;
+        const noSliderTransition = this.state.swiping || this.state.entering || this.state.exiting;
 
         itemListStyles = {
                     'WebkitTransform': transformProp,
@@ -636,8 +640,8 @@ class Carousel extends Component {
         const containerStyles = {};
 
         if (isHorizontal) {
-            swiperProps.onSwipeLeft = this.increment;
-            swiperProps.onSwipeRight = this.decrement;
+            swiperProps.onSwipeLeft = this.increment.bind(this, 1, true);
+            swiperProps.onSwipeRight = this.decrement.bind(this, 1, true);
 
             if (this.props.dynamicHeight) {
                 const itemHeight = this.getVariableImageHeight(this.state.selectedItem);
