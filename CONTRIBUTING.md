@@ -19,7 +19,7 @@ Start the dev server:
 Open your favourite browser on `localhost:8000` - livereload will be enabled and tests will run on each change.
 
 ### Guidelines
-- Make sure your editor support [editorConfig](http://editorconfig.org/) so the code formatting is consistent;
+- Make sure your editor supports [editorConfig](http://editorconfig.org/) so the code formatting is consistent;
 - Add a descriptive commit message;
 - Add tests to cover your changes;
 - If needed, add a story (storybook);

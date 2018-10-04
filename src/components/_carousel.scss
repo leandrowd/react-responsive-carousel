@@ -55,12 +55,6 @@
 	  	box-sizing: border-box;
 	}
 
-    button {
-        outline: 0;
-        border: 0;
-        background: none;
-    }
-
 	img {
 		width: 100%;
 		display: inline-block;
@@ -73,6 +67,9 @@
 
 	.control-arrow {
 		@extend %arrows;
+        outline: 0;
+        border: 0;
+        background: none;
 		top: 50%;
 		margin-top: -13px;
 		font-size: 18px;
