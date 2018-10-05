@@ -52,10 +52,6 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
-  .carousel button {
-    outline: 0;
-    border: 0;
-    background: none; }
   .carousel img {
     width: 100%;
     display: inline-block;
@@ -63,6 +59,9 @@
   .carousel .carousel {
     position: relative; }
   .carousel .control-arrow {
+    outline: 0;
+    border: 0;
+    background: none;
     top: 50%;
     margin-top: -13px;
     font-size: 18px; }
