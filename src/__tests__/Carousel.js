@@ -335,7 +335,7 @@ describe("Slider", function() {
 
     describe("changeItem", () => {
         beforeEach(() => {
-            componentInstance.selectItem = jest.genMockFunction();
+            componentInstance.moveTo = jest.genMockFunction();
             componentInstance.getFirstItem = jest.genMockFunction().mockReturnValue(2);
             componentInstance.changeItem({
                 target: {
@@ -344,10 +344,8 @@ describe("Slider", function() {
             });
         });
 
-        it("should call selectItem sending selectedItem as 1", () => {
-            expect(componentInstance.selectItem.mock.calls[0][0]).toEqual({
-                selectedItem: 1
-            });
+        it("should call moveTo sending position as 1", () => {
+            expect(componentInstance.moveTo.mock.calls[0][0]).toEqual(1);
         });
     });
 

@@ -340,9 +340,7 @@ class Carousel extends Component {
     handleClickThumb = (index, item) => {
         this.props.onClickThumb(index, item);
 
-        this.selectItem({
-            selectedItem: index
-        });
+        this.moveTo(index);
     }
 
     onSwipeStart = () => {
@@ -482,9 +480,7 @@ class Carousel extends Component {
     changeItem = (e) => {
         const newIndex = e.target.value;
 
-        this.selectItem({
-            selectedItem: newIndex
-        });
+        this.moveTo(newIndex);
     }
 
     selectItem = (state, cb) => {
