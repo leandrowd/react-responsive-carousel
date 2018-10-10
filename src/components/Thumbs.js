@@ -248,10 +248,12 @@ class Thumbs extends Component {
             const itemClass = klass.ITEM(false, index === this.state.selectedItem && this.state.hasMount);
 
             const thumbProps = {
-                key: index,
-                ref: e => this.setThumbsRef(e, index),
-                className: itemClass,
-                onClick: this.handleClickItem.bind(this, index, this.props.children[index])
+              key: index,
+              ref: e => this.setThumbsRef(e, index),
+              className: itemClass,
+              onClick: this.handleClickItem.bind(this, index, this.props.children[index])
+              role='button'
+              tabIndex={0}
             };
 
             if (index === 0) {
