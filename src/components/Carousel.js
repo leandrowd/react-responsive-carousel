@@ -506,6 +506,8 @@ class Carousel extends Component {
                 key: 'itemKey' + index,
                 className: klass.ITEM(true, index === this.state.selectedItem),
                 onClick: this.handleClickItem.bind(this, index, item)
+                role='button'
+                tabIndex={0}
             };
 
             if (this.props.centerMode && this.props.axis === 'horizontal') {
