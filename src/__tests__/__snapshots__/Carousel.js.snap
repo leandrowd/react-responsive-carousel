@@ -13,8 +13,10 @@ exports[`Slider Snapshots center mode 1`] = `
     }
   >
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <div
@@ -137,8 +139,10 @@ exports[`Slider Snapshots center mode 1`] = `
       </ul>
     </div>
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-next"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <ul
@@ -193,8 +197,10 @@ exports[`Slider Snapshots center mode 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
       <ul
@@ -278,8 +284,10 @@ exports[`Slider Snapshots center mode 1`] = `
         </li>
       </ul>
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
     </div>
@@ -300,8 +308,10 @@ exports[`Slider Snapshots custom class name 1`] = `
     }
   >
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <div
@@ -389,8 +399,10 @@ exports[`Slider Snapshots custom class name 1`] = `
       </ul>
     </div>
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-next"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <ul
@@ -445,8 +457,10 @@ exports[`Slider Snapshots custom class name 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
       <ul
@@ -530,8 +544,10 @@ exports[`Slider Snapshots custom class name 1`] = `
         </li>
       </ul>
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
     </div>
@@ -552,8 +568,10 @@ exports[`Slider Snapshots custom width 1`] = `
     }
   >
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <div
@@ -641,8 +659,10 @@ exports[`Slider Snapshots custom width 1`] = `
       </ul>
     </div>
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-next"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <ul
@@ -697,8 +717,10 @@ exports[`Slider Snapshots custom width 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
       <ul
@@ -782,8 +804,10 @@ exports[`Slider Snapshots custom width 1`] = `
         </li>
       </ul>
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
     </div>
@@ -804,8 +828,10 @@ exports[`Slider Snapshots default 1`] = `
     }
   >
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <div
@@ -893,8 +919,10 @@ exports[`Slider Snapshots default 1`] = `
       </ul>
     </div>
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-next"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <ul
@@ -949,8 +977,10 @@ exports[`Slider Snapshots default 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
       <ul
@@ -1034,8 +1064,10 @@ exports[`Slider Snapshots default 1`] = `
         </li>
       </ul>
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
     </div>
@@ -1056,8 +1088,10 @@ exports[`Slider Snapshots no arrows 1`] = `
     }
   >
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <div
@@ -1145,8 +1179,10 @@ exports[`Slider Snapshots no arrows 1`] = `
       </ul>
     </div>
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-next control-disabled"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <ul
@@ -1201,8 +1237,10 @@ exports[`Slider Snapshots no arrows 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
       <ul
@@ -1286,8 +1324,10 @@ exports[`Slider Snapshots no arrows 1`] = `
         </li>
       </ul>
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
     </div>
@@ -1310,8 +1350,10 @@ exports[`Slider Snapshots no indicators 1`] = `
     }
   >
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <div
@@ -1399,8 +1441,10 @@ exports[`Slider Snapshots no indicators 1`] = `
       </ul>
     </div>
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-next"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <p
@@ -1416,8 +1460,10 @@ exports[`Slider Snapshots no indicators 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
       <ul
@@ -1501,8 +1547,10 @@ exports[`Slider Snapshots no indicators 1`] = `
         </li>
       </ul>
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
     </div>
@@ -1523,8 +1571,10 @@ exports[`Slider Snapshots no indicators 2`] = `
     }
   >
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <div
@@ -1612,8 +1662,10 @@ exports[`Slider Snapshots no indicators 2`] = `
       </ul>
     </div>
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-next"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <ul
@@ -1663,8 +1715,10 @@ exports[`Slider Snapshots no indicators 2`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
       <ul
@@ -1748,8 +1802,10 @@ exports[`Slider Snapshots no indicators 2`] = `
         </li>
       </ul>
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
     </div>
@@ -1770,8 +1826,10 @@ exports[`Slider Snapshots no thumbs 1`] = `
     }
   >
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <div
@@ -1859,8 +1917,10 @@ exports[`Slider Snapshots no thumbs 1`] = `
       </ul>
     </div>
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-next"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <ul
@@ -1924,8 +1984,10 @@ exports[`Slider Snapshots swipeable false 1`] = `
     }
   >
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <div
@@ -2010,8 +2072,10 @@ exports[`Slider Snapshots swipeable false 1`] = `
       </ul>
     </div>
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-next"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <ul
@@ -2066,8 +2130,10 @@ exports[`Slider Snapshots swipeable false 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
       <ul
@@ -2151,8 +2217,10 @@ exports[`Slider Snapshots swipeable false 1`] = `
         </li>
       </ul>
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
     </div>
@@ -2173,8 +2241,10 @@ exports[`Slider Snapshots vertical axis 1`] = `
     }
   >
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <div
@@ -2267,8 +2337,10 @@ exports[`Slider Snapshots vertical axis 1`] = `
       </ul>
     </div>
     <button
+      aria-label="mobile navigation"
       className="control-arrow control-next"
       onClick={[Function]}
+      role="presentation"
       type="button"
     />
     <ul
@@ -2323,8 +2395,10 @@ exports[`Slider Snapshots vertical axis 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
       <ul
@@ -2408,8 +2482,10 @@ exports[`Slider Snapshots vertical axis 1`] = `
         </li>
       </ul>
       <button
+        aria-label="mobile navigation"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
+        role="presentation"
         type="button"
       />
     </div>
