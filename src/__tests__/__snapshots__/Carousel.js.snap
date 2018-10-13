@@ -222,6 +222,9 @@ exports[`Slider Snapshots center mode 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             onLoad={[Function]}
@@ -231,6 +234,9 @@ exports[`Slider Snapshots center mode 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/2.jpeg"
@@ -239,6 +245,9 @@ exports[`Slider Snapshots center mode 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/3.jpeg"
@@ -247,6 +256,9 @@ exports[`Slider Snapshots center mode 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/4.jpeg"
@@ -255,6 +267,9 @@ exports[`Slider Snapshots center mode 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/5.jpeg"
@@ -263,6 +278,9 @@ exports[`Slider Snapshots center mode 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/6.jpeg"
@@ -271,6 +289,9 @@ exports[`Slider Snapshots center mode 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/7.jpeg"
@@ -474,6 +495,9 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             onLoad={[Function]}
@@ -483,6 +507,9 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/2.jpeg"
@@ -491,6 +518,9 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/3.jpeg"
@@ -499,6 +529,9 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/4.jpeg"
@@ -507,6 +540,9 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/5.jpeg"
@@ -515,6 +551,9 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/6.jpeg"
@@ -523,6 +562,9 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/7.jpeg"
@@ -726,6 +768,9 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             onLoad={[Function]}
@@ -735,6 +780,9 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/2.jpeg"
@@ -743,6 +791,9 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/3.jpeg"
@@ -751,6 +802,9 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/4.jpeg"
@@ -759,6 +813,9 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/5.jpeg"
@@ -767,6 +824,9 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/6.jpeg"
@@ -775,6 +835,9 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/7.jpeg"
@@ -978,6 +1041,9 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             onLoad={[Function]}
@@ -987,6 +1053,9 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/2.jpeg"
@@ -995,6 +1064,9 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/3.jpeg"
@@ -1003,6 +1075,9 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/4.jpeg"
@@ -1011,6 +1086,9 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/5.jpeg"
@@ -1019,6 +1097,9 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/6.jpeg"
@@ -1027,6 +1108,9 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/7.jpeg"
@@ -1230,6 +1314,9 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             onLoad={[Function]}
@@ -1239,6 +1326,9 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/2.jpeg"
@@ -1247,6 +1337,9 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/3.jpeg"
@@ -1255,6 +1348,9 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/4.jpeg"
@@ -1263,6 +1359,9 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/5.jpeg"
@@ -1271,6 +1370,9 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/6.jpeg"
@@ -1279,6 +1381,9 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/7.jpeg"
@@ -1445,6 +1550,9 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             onLoad={[Function]}
@@ -1454,6 +1562,9 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/2.jpeg"
@@ -1462,6 +1573,9 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/3.jpeg"
@@ -1470,6 +1584,9 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/4.jpeg"
@@ -1478,6 +1595,9 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/5.jpeg"
@@ -1486,6 +1606,9 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/6.jpeg"
@@ -1494,6 +1617,9 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/7.jpeg"
@@ -1692,6 +1818,9 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             onLoad={[Function]}
@@ -1701,6 +1830,9 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/2.jpeg"
@@ -1709,6 +1841,9 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/3.jpeg"
@@ -1717,6 +1852,9 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/4.jpeg"
@@ -1725,6 +1863,9 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/5.jpeg"
@@ -1733,6 +1874,9 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/6.jpeg"
@@ -1741,6 +1885,9 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/7.jpeg"
@@ -2095,6 +2242,9 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             onLoad={[Function]}
@@ -2104,6 +2254,9 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/2.jpeg"
@@ -2112,6 +2265,9 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/3.jpeg"
@@ -2120,6 +2276,9 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/4.jpeg"
@@ -2128,6 +2287,9 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/5.jpeg"
@@ -2136,6 +2298,9 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/6.jpeg"
@@ -2144,6 +2309,9 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/7.jpeg"
@@ -2352,6 +2520,9 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             onLoad={[Function]}
@@ -2361,6 +2532,9 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/2.jpeg"
@@ -2369,6 +2543,9 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/3.jpeg"
@@ -2377,6 +2554,9 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/4.jpeg"
@@ -2385,6 +2565,9 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/5.jpeg"
@@ -2393,6 +2576,9 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/6.jpeg"
@@ -2401,6 +2587,9 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/7.jpeg"
