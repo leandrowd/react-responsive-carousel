@@ -147,36 +147,57 @@ exports[`Slider Snapshots center mode 1`] = `
       <li
         className="dot selected"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={0}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={1}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={2}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={3}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={4}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={5}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={6}
       />
     </ul>
@@ -399,36 +420,57 @@ exports[`Slider Snapshots custom class name 1`] = `
       <li
         className="dot selected"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={0}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={1}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={2}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={3}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={4}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={5}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={6}
       />
     </ul>
@@ -651,36 +693,57 @@ exports[`Slider Snapshots custom width 1`] = `
       <li
         className="dot selected"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={0}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={1}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={2}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={3}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={4}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={5}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={6}
       />
     </ul>
@@ -903,36 +966,57 @@ exports[`Slider Snapshots default 1`] = `
       <li
         className="dot selected"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={0}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={1}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={2}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={3}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={4}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={5}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={6}
       />
     </ul>
@@ -1155,36 +1239,57 @@ exports[`Slider Snapshots no arrows 1`] = `
       <li
         className="dot selected"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={0}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={1}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={2}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={3}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={4}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={5}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={6}
       />
     </ul>
@@ -1622,36 +1727,57 @@ exports[`Slider Snapshots no indicators 2`] = `
       <li
         className="dot selected"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={0}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={1}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={2}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={3}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={4}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={5}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={6}
       />
     </ul>
@@ -1869,36 +1995,57 @@ exports[`Slider Snapshots no thumbs 1`] = `
       <li
         className="dot selected"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={0}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={1}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={2}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={3}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={4}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={5}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={6}
       />
     </ul>
@@ -2020,36 +2167,57 @@ exports[`Slider Snapshots swipeable false 1`] = `
       <li
         className="dot selected"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={0}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={1}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={2}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={3}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={4}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={5}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={6}
       />
     </ul>
@@ -2277,36 +2445,57 @@ exports[`Slider Snapshots vertical axis 1`] = `
       <li
         className="dot selected"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={0}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={1}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={2}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={3}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={4}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={5}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={6}
       />
     </ul>
