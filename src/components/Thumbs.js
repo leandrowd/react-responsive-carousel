@@ -113,13 +113,13 @@ class Thumbs extends Component {
         const visibleItems = Math.floor(wrapperSize / itemSize);
         const lastPosition = total - visibleItems;
         const showArrows = visibleItems < total;
-        this.setState({
+        this.setState((_state, props) => ({
             itemSize,
             visibleItems,
-            firstItem: showArrows ? this.getFirstItem(this.props.selectedItem) : 0,
+            firstItem: showArrows ? this.getFirstItem(props.selectedItem) : 0,
             lastPosition,
             showArrows
-        })
+        }))
     }
 
     getImages() {
