@@ -425,11 +425,11 @@ class Carousel extends Component {
     }
 
     decrement = (positions) => {
-        this.moveTo(this.state.selectedItem - (typeof positions === 'Number' ? positions : 1));
+        this.moveTo(this.state.selectedItem - (typeof positions === 'number' ? positions : 1));
     }
 
     increment = (positions) => {
-        this.moveTo(this.state.selectedItem + (typeof positions === 'Number' ? positions : 1));
+        this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1));
     }
 
     moveTo = (position) => {
