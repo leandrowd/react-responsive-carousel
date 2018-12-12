@@ -192,16 +192,18 @@ class Thumbs extends Component {
         const position = currentPosition + (100 / (wrapperSize / deltaX)) + '%';
 
         // if 3d isn't available we will use left to move
-        [
-            'WebkitTransform',
-            'MozTransform',
-            'MsTransform',
-            'OTransform',
-            'transform',
-            'msTransform'
-        ].forEach((prop) => {
-            this.itemsListRef.style[prop] = CSSTranslate(position, this.props.axis);
-        });
+        if (this.itemsListRef) {
+            [
+                'WebkitTransform',
+                'MozTransform',
+                'MsTransform',
+                'OTransform',
+                'transform',
+                'msTransform'
+            ].forEach((prop) => {
+                this.itemsListRef.style[prop] = CSSTranslate(position, this.props.axis);
+            });
+        }
     }
 
     slideRight = (positions) => {
