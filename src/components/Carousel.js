@@ -284,10 +284,10 @@ class Carousel extends Component {
         const firstItem = this.itemsRef[0];
         const itemSize = isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
 
-        this.setState({
+        this.setState((_state, props) => ({
             itemSize: itemSize,
-            wrapperSize: isHorizontal ? itemSize * Children.count(this.props.children) : itemSize
-        });
+            wrapperSize: isHorizontal ? itemSize * Children.count(props.children) : itemSize
+        }));
 
         if (this.thumbsRef) {
             this.thumbsRef.updateSizes();
@@ -443,11 +443,11 @@ class Carousel extends Component {
     }
 
     decrement = (positions, fromSwipe) => {
-        this.moveTo(this.state.selectedItem - (typeof positions === 'Number' ? positions : 1), fromSwipe);
+        this.moveTo(this.state.selectedItem - (typeof positions === 'number' ? positions : 1), fromSwipe);
     }
 
     increment = (positions, fromSwipe) => {
-        this.moveTo(this.state.selectedItem + (typeof positions === 'Number' ? positions : 1), fromSwipe);
+        this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1), fromSwipe);
     }
 
     moveTo = (position, fromSwipe) => {
@@ -499,11 +499,13 @@ class Carousel extends Component {
     }
 
     changeItem = (e) => {
-        const newIndex = e.target.value;
+        if (!e.key || e.key === 'Enter') {
+            const newIndex = e.target.value;
 
-        this.selectItem({
-            selectedItem: newIndex
-        });
+            this.selectItem({
+                selectedItem: newIndex
+            });
+        }
     }
 
     selectItem = (state, cb) => {
@@ -572,7 +574,7 @@ class Carousel extends Component {
         return (
             <ul className="control-dots">
                 {Children.map(this.props.children, (item, index) => {
-                    return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} value={index} key={index} />;
+                    return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} onKeyDown={this.changeItem} value={index} key={index} role='button' tabIndex={0} />;
                 })}
             </ul>
         );

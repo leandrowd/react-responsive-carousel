@@ -1,6 +1,10 @@
 # React Responsive Carousel
 
 
+## 3.1.43 - Sat Oct 06 2018
+ * Issue #261 - style control arrow buttons using CSS classes instead of button tag
+
+
 ## 3.1.42 - Mon Sep 17 2018
  * Restore resetPosition but place on componentDidUpdate so it resets position to the NEW slide in the case where a change just occurred
  * css file added in usage (README.md)
@@ -98,7 +102,6 @@ This reverts commit 3dfb04ff2f69200c7f68ae060e5945d7fc3deaf9.
 
 
 ## 3.1.28 - Sat Oct 21 2017
- * Add centerSlidePercentage
 
 
 ## 3.1.27 - Tue Sep 26 2017

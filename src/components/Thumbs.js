@@ -113,13 +113,13 @@ class Thumbs extends Component {
         const visibleItems = Math.floor(wrapperSize / itemSize);
         const lastPosition = total - visibleItems;
         const showArrows = visibleItems < total;
-        this.setState({
+        this.setState((_state, props) => ({
             itemSize,
             visibleItems,
-            firstItem: showArrows ? this.getFirstItem(this.props.selectedItem) : 0,
+            firstItem: showArrows ? this.getFirstItem(props.selectedItem) : 0,
             lastPosition,
             showArrows
-        })
+        }))
     }
 
     getImages() {
@@ -152,11 +152,13 @@ class Thumbs extends Component {
         this.updateSizes();
     }
 
-    handleClickItem = (index, item) => {
-        const handler = this.props.onSelectItem;
+    handleClickItem = (index, item, e) => {
+        if (!e.keyCode || e.key === 'Enter') {
+            const handler = this.props.onSelectItem;
 
-        if (typeof handler === 'function') {
-            handler(index, item);
+            if (typeof handler === 'function') {
+                handler(index, item);
+            }
         }
     }
 
@@ -192,16 +194,18 @@ class Thumbs extends Component {
         const position = currentPosition + (100 / (wrapperSize / deltaX)) + '%';
 
         // if 3d isn't available we will use left to move
-        [
-            'WebkitTransform',
-            'MozTransform',
-            'MsTransform',
-            'OTransform',
-            'transform',
-            'msTransform'
-        ].forEach((prop) => {
-            this.itemsListRef.style[prop] = CSSTranslate(position, this.props.axis);
-        });
+        if (this.itemsListRef) {
+            [
+                'WebkitTransform',
+                'MozTransform',
+                'MsTransform',
+                'OTransform',
+                'transform',
+                'msTransform'
+            ].forEach((prop) => {
+                this.itemsListRef.style[prop] = CSSTranslate(position, this.props.axis);
+            });
+        }
     }
 
     slideRight = (positions) => {
@@ -248,10 +252,11 @@ class Thumbs extends Component {
             const itemClass = klass.ITEM(false, index === this.state.selectedItem && this.state.hasMount);
 
             const thumbProps = {
-                key: index,
-                ref: e => this.setThumbsRef(e, index),
-                className: itemClass,
-                onClick: this.handleClickItem.bind(this, index, this.props.children[index])
+              key: index,
+              ref: e => this.setThumbsRef(e, index),
+              className: itemClass,
+              onClick: this.handleClickItem.bind(this, index, this.props.children[index]),
+              onKeyDown: this.handleClickItem.bind(this, index, this.props.children[index])
             };
 
             if (index === 0) {
@@ -261,7 +266,7 @@ class Thumbs extends Component {
             }
 
             return (
-                <li {...thumbProps}>
+                <li {...thumbProps} role='button' tabIndex={0}>
                     { img }
                 </li>
             );
