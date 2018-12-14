@@ -1,5 +1,4 @@
 var jest = require('jest-cli');
-var gutil = require('gulp-util');
 var configs = require('./configs');
 
 var jestConfig = {
@@ -10,8 +9,12 @@ var jestConfig = {
   verbose: false
 };
 
-module.exports = function() {
-    jest.runCLI({ config: jestConfig }), configs.paths.source, function() {
-      done().on('error', gutil.log);
-    };
+module.exports = function(callback) {
+    jest.runCLI({ config: jestConfig }, configs.paths.source, function(result) {
+      if (!result || !result.success) {
+        callback('Jest tests failed')
+      } else {
+        callback()
+      }
+    });
 };

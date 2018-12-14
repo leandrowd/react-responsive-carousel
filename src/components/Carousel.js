@@ -284,10 +284,10 @@ class Carousel extends Component {
         const firstItem = this.itemsRef[0];
         const itemSize = isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
 
-        this.setState({
+        this.setState((_state, props) => ({
             itemSize: itemSize,
-            wrapperSize: isHorizontal ? itemSize * Children.count(this.props.children) : itemSize
-        });
+            wrapperSize: isHorizontal ? itemSize * Children.count(props.children) : itemSize
+        }));
 
         if (this.thumbsRef) {
             this.thumbsRef.updateSizes();
@@ -425,11 +425,11 @@ class Carousel extends Component {
     }
 
     decrement = (positions) => {
-        this.moveTo(this.state.selectedItem - (typeof positions === 'Number' ? positions : 1));
+        this.moveTo(this.state.selectedItem - (typeof positions === 'number' ? positions : 1));
     }
 
     increment = (positions) => {
-        this.moveTo(this.state.selectedItem + (typeof positions === 'Number' ? positions : 1));
+        this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1));
     }
 
     moveTo = (position) => {

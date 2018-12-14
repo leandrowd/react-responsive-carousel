@@ -15,8 +15,8 @@ gulp.task('webserver', function() {
   connectTask();
 });
 
-gulp.task('test', function() {
-  jestTask();
+gulp.task('test', function(callback) {
+  return jestTask(callback);
 });
 
 gulp.task('scripts', function() {
