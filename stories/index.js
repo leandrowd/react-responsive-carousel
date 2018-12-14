@@ -189,6 +189,11 @@ storiesOf('Carousel')
         { baseChildren.props.children }
     </Carousel>
   ), { source: true, inline: true, propTables: false})
+  .addWithInfo('infinite loop + keyboard support + auto play', () => (
+    <Carousel infiniteLoop useKeyboardArrows autoPlay>
+        { baseChildren.props.children }
+    </Carousel>
+  ), { source: true, inline: true, propTables: false})  
   .addWithInfo('axis horizontal + keyboard support', () => (
     <Carousel useKeyboardArrows>
         { baseChildren.props.children }
