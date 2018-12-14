@@ -99,9 +99,13 @@
 		border: 3px solid #fff;
 		padding: 2px;
 
+		&:focus {
+			border: 3px solid #ccc;
+			outline: none;			
+		}
+
 		&.selected, &:hover {
 			border: 3px solid $color-primary;
-			padding: 2px;
 		}
 
 		img {
