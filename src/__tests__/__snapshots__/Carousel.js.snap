@@ -1339,36 +1339,57 @@ exports[`Slider Snapshots infinite loop 1`] = `
       <li
         className="dot selected"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={0}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={1}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={2}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={3}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={4}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={5}
       />
       <li
         className="dot"
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
         value={6}
       />
     </ul>
@@ -1414,6 +1435,9 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             onLoad={[Function]}
@@ -1423,6 +1447,9 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/2.jpeg"
@@ -1431,6 +1458,9 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/3.jpeg"
@@ -1439,6 +1469,9 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/4.jpeg"
@@ -1447,6 +1480,9 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/5.jpeg"
@@ -1455,6 +1491,9 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/6.jpeg"
@@ -1463,6 +1502,9 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="thumb"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
           <img
             src="assets/7.jpeg"
