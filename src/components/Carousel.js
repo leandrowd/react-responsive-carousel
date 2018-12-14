@@ -456,11 +456,13 @@ class Carousel extends Component {
     }
 
     changeItem = (e) => {
-        const newIndex = e.target.value;
+        if (!e.key || e.key === 'Enter') {
+            const newIndex = e.target.value;
 
-        this.selectItem({
-            selectedItem: newIndex
-        });
+            this.selectItem({
+                selectedItem: newIndex
+            });
+        }
     }
 
     selectItem = (state) => {
@@ -530,7 +532,7 @@ class Carousel extends Component {
         return (
             <ul className="control-dots">
                 {Children.map(this.props.children, (item, index) => {
-                    return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} value={index} key={index} />;
+                    return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} onKeyDown={this.changeItem} value={index} key={index} role='button' tabIndex={0} />;
                 })}
             </ul>
         );
