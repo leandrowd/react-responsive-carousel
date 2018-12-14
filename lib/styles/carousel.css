@@ -95,9 +95,11 @@
     overflow: hidden;
     border: 3px solid #fff;
     padding: 2px; }
+    .carousel .thumb:focus {
+      border: 3px solid #ccc;
+      outline: none; }
     .carousel .thumb.selected, .carousel .thumb:hover {
-      border: 3px solid #333;
-      padding: 2px; }
+      border: 3px solid #333; }
     .carousel .thumb img {
       vertical-align: top; }
   .carousel.carousel-slider {
