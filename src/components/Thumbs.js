@@ -152,11 +152,13 @@ class Thumbs extends Component {
         this.updateSizes();
     }
 
-    handleClickItem = (index, item) => {
-        const handler = this.props.onSelectItem;
+    handleClickItem = (index, item, e) => {
+        if (!e.keyCode || e.key === 'Enter') {
+            const handler = this.props.onSelectItem;
 
-        if (typeof handler === 'function') {
-            handler(index, item);
+            if (typeof handler === 'function') {
+                handler(index, item);
+            }
         }
     }
 
@@ -250,10 +252,11 @@ class Thumbs extends Component {
             const itemClass = klass.ITEM(false, index === this.state.selectedItem && this.state.hasMount);
 
             const thumbProps = {
-                key: index,
-                ref: e => this.setThumbsRef(e, index),
-                className: itemClass,
-                onClick: this.handleClickItem.bind(this, index, this.props.children[index])
+              key: index,
+              ref: e => this.setThumbsRef(e, index),
+              className: itemClass,
+              onClick: this.handleClickItem.bind(this, index, this.props.children[index]),
+              onKeyDown: this.handleClickItem.bind(this, index, this.props.children[index])
             };
 
             if (index === 0) {
@@ -263,7 +266,7 @@ class Thumbs extends Component {
             }
 
             return (
-                <li {...thumbProps}>
+                <li {...thumbProps} role='button' tabIndex={0}>
                     { img }
                 </li>
             );
