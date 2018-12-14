@@ -47,6 +47,7 @@ export interface CarouselState {
     wrapperSize: number;
     cancelClick: boolean;
     swiping: boolean;
+    autoPlay: boolean;
 }
 
 export class Carousel extends React.Component<CarouselProps, CarouselState> {
