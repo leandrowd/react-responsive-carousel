@@ -105,7 +105,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | useKeyboardArrows     | `boolean`     | `false` | Adds support to next and prev through keyboard arrows |
 | autoPlay              | `boolean`     | `false` | Auto play |
 | stopOnHover           | `boolean`     | `true` | Stop auto play while mouse is over the carousel |
-| interval              | `number`      | `5000` | Interval of auto play |
+| interval              | `number`      | `3000` | Interval of auto play |
 | transitionTime        | `number`      | `350` | Duration of slide transitions (in miliseconds) |
 | swipeScrollTolerance  | `number`      | `5` | Allows scroll when the swipe movement occurs in a different direction than the carousel axis and within the tolerance - Increase for loose - Decrease for strict |
 | swipeable             | `boolean`     | `true` | Enables swiping gestures |
