@@ -42,4 +42,4 @@ module.exports = function (options) {
         gutil.log('CSS bundle built in ' + (Date.now() - start) + 'ms');
       }))
       .pipe(connect.reload());
-}
+};

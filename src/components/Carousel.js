@@ -353,7 +353,7 @@ class Carousel extends Component {
 
     onSwipeMove = (delta) => {
         const isHorizontal = this.props.axis === 'horizontal';
-        const childrenLength = Children.count(this.props.children)
+        const childrenLength = Children.count(this.props.children);
 
         const initialBoundry = 0;
 
@@ -641,7 +641,7 @@ class Carousel extends Component {
                     'OTransitionDuration': transitionTime,
                      'transitionDuration': transitionTime,
                    'msTransitionDuration': transitionTime
-            }
+            };
         }
 
         const itemsClone = this.renderItems(true);
