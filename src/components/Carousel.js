@@ -41,7 +41,8 @@ class Carousel extends Component {
         emulateTouch: PropTypes.bool,
         statusFormatter: PropTypes.func.isRequired,
         centerMode: PropTypes.bool,
-        centerSlidePercentage: PropTypes.number
+        centerSlidePercentage: PropTypes.number,
+        rtlEnabled: PropTypes.bool
     };
 
     static defaultProps = {
@@ -68,7 +69,8 @@ class Carousel extends Component {
         onChange: noop,
         statusFormatter: defaultStatusFormatter,
         centerMode: false,
-        centerSlidePercentage: 80
+        centerSlidePercentage: 80,
+        rtlEnabled: false
     };
 
     constructor(props) {
@@ -430,7 +432,7 @@ class Carousel extends Component {
             'transform',
             'msTransform'
         ].forEach((prop) => {
-            list.style[prop] = CSSTranslate(position, this.props.axis);
+            list.style[prop] = CSSTranslate(position, this.props.axis, this.props.rtlEnabled);
         });
         if (forceReflow) {
             list.offsetLeft;
@@ -619,7 +621,7 @@ class Carousel extends Component {
         const currentPosition = this.getPosition(this.state.selectedItem);
 
         // if 3d is available, let's take advantage of the performance of transform
-        const transformProp = CSSTranslate(currentPosition + '%', this.props.axis);
+        const transformProp = CSSTranslate(currentPosition + '%', this.props.axis, this.props.rtlEnabled);
 
         const transitionTime = this.props.transitionTime + 'ms';
 
