@@ -14,16 +14,6 @@ const createCarouselItemImage = (index, options = {}) => (
     </div>
 );
 
-const addChildren = (ammount = 1, options = {}) => {
-	let current = 0;
-	const children = [];
-	while ( current < ammount ) {
-		children.push(createCarouselItemImage(current, options));
-	}
-
-	return children
-};
-
 const baseChildren = <div>{ [1,2,3,4,5].map(createCarouselItemImage) }</div>;
 
 export class LazyLoadedCarousel extends Component {
@@ -193,7 +183,7 @@ storiesOf('Carousel')
     <Carousel infiniteLoop useKeyboardArrows autoPlay>
         { baseChildren.props.children }
     </Carousel>
-  ), { source: true, inline: true, propTables: false})  
+  ), { source: true, inline: true, propTables: false})
   .addWithInfo('axis horizontal + keyboard support', () => (
     <Carousel useKeyboardArrows>
         { baseChildren.props.children }

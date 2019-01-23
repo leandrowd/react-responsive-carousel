@@ -1,6 +1,4 @@
 var gulp = require('gulp');
-var path = require('path');
-var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var gulpif = require('gulp-if');
 var minifyCSS = require('gulp-clean-css');
@@ -42,4 +40,4 @@ module.exports = function (options) {
         gutil.log('CSS bundle built in ' + (Date.now() - start) + 'ms');
       }))
       .pipe(connect.reload());
-}
+};

@@ -1,8 +1,6 @@
 var configs = require('./tasks/configs');
 
 var gulp = require('gulp');
-var connect = require('gulp-connect');
-var shell = require('gulp-shell');
 
 var browserifyTask = require('./tasks/browserify');
 var cssTask = require('./tasks/css');
