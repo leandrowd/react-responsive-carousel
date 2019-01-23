@@ -421,7 +421,7 @@ class Carousel extends Component {
     }
 
     setPosition = (position, forceReflow) => {
-        const list = ReactDOM.findDOMNode(this.listRef);
+        const list = ReactDOM.findDOMNode(this.listRef);        
         [
             'WebkitTransform',
             'MozTransform',
@@ -442,15 +442,15 @@ class Carousel extends Component {
         this.setPosition(currentPosition);
     }
 
-    decrement = (positions, fromSwipe) => {
+    decrement = (positions = 1, fromSwipe = false) => {
         this.moveTo(this.state.selectedItem - (typeof positions === 'number' ? positions : 1), fromSwipe);
     }
 
-    increment = (positions, fromSwipe) => {
+    increment = (positions = 1, fromSwipe = false) => {
         this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1), fromSwipe);
     }
 
-    moveTo = (position, fromSwipe) => {
+    moveTo = (position, fromSwipe) => {        
         const lastPosition = Children.count(this.props.children) - 1;
         const needClonedSlide = this.props.infiniteLoop && !fromSwipe && (position < 0 || position > lastPosition);
         const oldPosition = position;
@@ -496,6 +496,22 @@ class Carousel extends Component {
         if (this.state.autoPlay && this.state.isMouseEntered === false) {
             this.resetAutoPlay();
         }
+    }
+
+    onClickNext = () => {
+        this.increment(1, false);
+    }
+
+    onClickPrev = () => {
+        this.decrement(1, false);
+    }
+
+    onSwipeForward = () => {
+        this.increment(1, true);
+    }
+
+    onSwipeBackwards = () => {
+        this.decrement(1, true);
     }
 
     changeItem = (e) => {
@@ -661,8 +677,8 @@ class Carousel extends Component {
         const containerStyles = {};
 
         if (isHorizontal) {
-            swiperProps.onSwipeLeft = this.increment.bind(this, 1, true);
-            swiperProps.onSwipeRight = this.decrement.bind(this, 1, true);
+            swiperProps.onSwipeLeft = this.onSwipeBackwards;
+            swiperProps.onSwipeRight = this.onSwipeForward;
 
             if (this.props.dynamicHeight) {
                 const itemHeight = this.getVariableImageHeight(this.state.selectedItem);
@@ -670,16 +686,16 @@ class Carousel extends Component {
                 containerStyles.height = itemHeight || 'auto';
             }
 
-        } else {
-            swiperProps.onSwipeUp = this.props.verticalSwipe === 'natural' ? this.increment : this.decrement;
-            swiperProps.onSwipeDown = this.props.verticalSwipe === 'natural' ? this.decrement : this.increment;
+        } else {            
+            swiperProps.onSwipeUp = this.props.verticalSwipe === 'natural' ? this.onSwipeForward : this.onSwipeBackwards;
+            swiperProps.onSwipeDown = this.props.verticalSwipe === 'natural' ? this.onSwipeBackwards : this.onSwipeForward;
             swiperProps.style.height = this.state.itemSize;
             containerStyles.height = this.state.itemSize;
         }
         return (
             <div className={this.props.className} ref={this.setCarouselWrapperRef}>
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
-                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement} />
+                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.onClickPrev} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={this.setItemsWrapperRef}>
                         { this.props.swipeable ?
                             <Swipe
@@ -693,6 +709,7 @@ class Carousel extends Component {
                             </Swipe> :
                             <ul
                                 className={klass.SLIDER(true, this.state.swiping)}
+                                ref={this.setListRef}
                                 style={itemListStyles}>
                                 { this.props.infiniteLoop && lastClone }
                                 { this.renderItems() }
@@ -700,7 +717,7 @@ class Carousel extends Component {
                             </ul>
                         }
                     </div>
-                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment} />
+                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.onClickNext} />
 
                     { this.renderControls() }
                     { this.renderStatus() }
