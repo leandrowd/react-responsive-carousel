@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-carousel",
-  "version": "3.1.45",
+  "version": "3.1.46",
   "description": "React Responsive Carousel",
   "author": {
     "name": "Leandro Augusto Lemos",
@@ -37,7 +37,7 @@
     "publish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp publish",
     "storybook": "start-storybook -p 9001 -s ./src -c .storybook",
     "build-storybook": "build-storybook -s ./src -o ./dist/storybook",
-    "changelog": "auto-changelog --ignore-commit-pattern=\"(Merge pull request|Merge branch|Updating changelog|Prepare for publishing)\""    
+    "changelog": "auto-changelog --ignore-commit-pattern=\"(Merge pull request|Merge branch|Updating changelog|Prepare for publishing)\""
   },
   "repository": {
     "type": "git",
