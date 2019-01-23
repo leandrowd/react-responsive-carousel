@@ -674,8 +674,8 @@ describe("Slider", function() {
 
                 const swipeProps = component.find(Swipe).first().props();
 
-                expect(swipeProps.onSwipeUp).toBe(componentInstance.decrement);
-                expect(swipeProps.onSwipeDown).toBe(componentInstance.increment);
+                expect(swipeProps.onSwipeUp).toBe(componentInstance.onSwipeBackwards);
+                expect(swipeProps.onSwipeDown).toBe(componentInstance.onSwipeForward);
             });
         });
 
@@ -688,8 +688,8 @@ describe("Slider", function() {
 
                 const swipeProps = component.find(Swipe).first().props();
 
-                expect(swipeProps.onSwipeUp).toBe(componentInstance.increment);
-                expect(swipeProps.onSwipeDown).toBe(componentInstance.decrement);
+                expect(swipeProps.onSwipeUp).toBe(componentInstance.onSwipeForward);
+                expect(swipeProps.onSwipeDown).toBe(componentInstance.onSwipeBackwards);
             });
         });
     });

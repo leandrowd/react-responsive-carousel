@@ -184,6 +184,11 @@ storiesOf('Carousel')
         { baseChildren.props.children }
     </Carousel>
   ), { source: true, inline: true, propTables: false})
+  .addWithInfo('infinite loop + auto play - swipeable', () => (
+    <Carousel infiniteLoop autoPlay swipeable={false}>
+        { baseChildren.props.children }
+    </Carousel>
+  ), { source: true, inline: true, propTables: false})
   .addWithInfo('axis horizontal + keyboard support', () => (
     <Carousel useKeyboardArrows>
         { baseChildren.props.children }
@@ -261,6 +266,11 @@ storiesOf('Carousel')
   ), { source: true, inline: true, propTables: false})
   .addWithInfo('vertical axis + emulateTouch + "natural" vertical swipe', () => (
     <Carousel axis="vertical" verticalSwipe="natural" emulateTouch>
+        { baseChildren.props.children }
+    </Carousel>
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('vertical axis + emulateTouch + "natural" vertical swipe + inifinite loop', () => (
+    <Carousel axis="vertical" verticalSwipe="natural" emulateTouch infiniteLoop>
         { baseChildren.props.children }
     </Carousel>
   ), { source: true, inline: true, propTables: false})
