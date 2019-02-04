@@ -519,11 +519,11 @@ class Carousel extends Component {
         this.increment(1, true);
     };
 
-    onSwipeUp = () => {
+    onSwipeUpWard = () => {
         this.increment(1, true);
     };
 
-    onSwipeDown = () => {
+    onSwipeDownWard = () => {
         this.decrement(1, true);
     };
 
@@ -717,8 +717,9 @@ class Carousel extends Component {
                 containerStyles.height = itemHeight || "auto";
             }
         } else {
-            swiperProps.onSwipeUp = this.props.verticalSwipe === "natural" ? this.onSwipeUp : this.onSwipeDown;
-            swiperProps.onSwipeDown = this.props.verticalSwipe === "natural" ? this.onSwipeDown : this.onSwipeUp;
+            swiperProps.onSwipeUp = this.props.verticalSwipe === "natural" ? this.onSwipeUpWard : this.onSwipeDownWard;
+            swiperProps.onSwipeDown =
+                this.props.verticalSwipe === "natural" ? this.onSwipeDownWard : this.onSwipeUpWard;
             swiperProps.style.height = this.state.itemSize;
             containerStyles.height = this.state.itemSize;
         }
