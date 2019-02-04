@@ -73,7 +73,6 @@
     "gulp-if": "^2.0.1",
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.0",
-    "gulp-sass": "^2.2.0",
     "gulp-shell": "^0.2.10",
     "gulp-streamify": "1.0.2",
     "gulp-uglify": "^2.0.0",
@@ -101,6 +100,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "gulp-sass": "^4.0.2",
     "prop-types": "^15.5.8",
     "react-easy-swipe": "^0.0.16"
   }
