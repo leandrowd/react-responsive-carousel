@@ -7,8 +7,7 @@ import Swipe from 'react-easy-swipe';
 import Thumbs from './Thumbs';
 import * as customPropTypes from '../customPropTypes';
 
-const noop = () => {
-};
+const noop = () => {};
 
 const defaultStatusFormatter = (current, total) => `${current} of ${total}`;
 
@@ -239,7 +238,6 @@ class Carousel extends Component {
         }
 
         clearTimeout(this.timer);
-        this.timer = undefined;
     }
 
     resetAutoPlay = () => {
@@ -449,11 +447,11 @@ class Carousel extends Component {
         this.setPosition(currentPosition);
     }
 
-    decrement = (positions, fromSwipe) => {
+    decrement = (positions = 1, fromSwipe = false) => {
         this.moveTo(this.state.selectedItem - (typeof positions === 'number' ? positions : 1), fromSwipe);
     }
 
-    increment = (positions, fromSwipe) => {
+    increment = (positions = 1, fromSwipe = false) => {
         this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1), fromSwipe);
     }
 
@@ -500,10 +498,25 @@ class Carousel extends Component {
 
         // don't reset auto play when stop on hover is enabled, doing so will trigger a call to auto play more than once
         // and will result in the interval function not being cleared correctly.
-
         if (this.state.autoPlay && (this.state.isMouseEntered === false) && this.shouldAutoPlayRun(position)) {
             this.resetAutoPlay();
         }
+    }
+
+    onClickNext = () => {
+        this.increment(1, false);
+    }
+
+    onClickPrev = () => {
+        this.decrement(1, false);
+    }
+
+    onSwipeForward = () => {
+        this.increment(1, true);
+    }
+
+    onSwipeBackwards = () => {
+        this.decrement(1, true);
     }
 
     changeItem = (e) => {
@@ -594,8 +607,7 @@ class Carousel extends Component {
             return null
         }
 
-        return <p
-            className="carousel-status">{this.props.statusFormatter(this.state.selectedItem + 1, Children.count(this.props.children))}</p>;
+        return <p className="carousel-status">{this.props.statusFormatter(this.state.selectedItem + 1, Children.count(this.props.children))}</p>;
     }
 
     renderThumbs() {
@@ -604,8 +616,7 @@ class Carousel extends Component {
         }
 
         return (
-            <Thumbs ref={this.setThumbsRef} onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem}
-                    transitionTime={this.props.transitionTime} thumbWidth={this.props.thumbWidth}>
+            <Thumbs ref={this.setThumbsRef} onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem} transitionTime={this.props.transitionTime} thumbWidth={this.props.thumbWidth}>
                 {this.props.children}
             </Thumbs>
         );
@@ -652,7 +663,7 @@ class Carousel extends Component {
                 'OTransitionDuration': transitionTime,
                 'transitionDuration': transitionTime,
                 'msTransitionDuration': transitionTime
-            }
+            };
         }
 
         const itemsClone = this.renderItems(true);
@@ -672,8 +683,8 @@ class Carousel extends Component {
         const containerStyles = {};
 
         if (isHorizontal) {
-            swiperProps.onSwipeLeft = this.increment.bind(this, 1, true);
-            swiperProps.onSwipeRight = this.decrement.bind(this, 1, true);
+            swiperProps.onSwipeLeft = this.onSwipeForward;
+            swiperProps.onSwipeRight = this.onSwipeBackwards;
 
             if (this.props.dynamicHeight) {
                 const itemHeight = this.getVariableImageHeight(this.state.selectedItem);
@@ -682,15 +693,15 @@ class Carousel extends Component {
             }
 
         } else {
-            swiperProps.onSwipeUp = this.props.verticalSwipe === 'natural' ? this.increment : this.decrement;
-            swiperProps.onSwipeDown = this.props.verticalSwipe === 'natural' ? this.decrement : this.increment;
+            swiperProps.onSwipeUp = this.props.verticalSwipe === 'natural' ? this.onSwipeBackwards : this.onSwipeForward;
+            swiperProps.onSwipeDown = this.props.verticalSwipe === 'natural' ? this.onSwipeForward : this.onSwipeBackwards;
             swiperProps.style.height = this.state.itemSize;
             containerStyles.height = this.state.itemSize;
         }
         return (
             <div className={this.props.className} ref={this.setCarouselWrapperRef}>
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
-                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.decrement}/>
+                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.onClickPrev}/>
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles}
                          ref={this.setItemsWrapperRef}>
                         {this.props.swipeable ?
@@ -705,6 +716,7 @@ class Carousel extends Component {
                             </Swipe> :
                             <ul
                                 className={klass.SLIDER(true, this.state.swiping)}
+                                ref={this.setListRef}
                                 style={itemListStyles}>
                                 {this.props.infiniteLoop && lastClone}
                                 {this.renderItems()}
@@ -712,7 +724,7 @@ class Carousel extends Component {
                             </ul>
                         }
                     </div>
-                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.increment}/>
+                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.onClickNext}/>
 
                     {this.renderControls()}
                     {this.renderStatus()}

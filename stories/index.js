@@ -14,16 +14,6 @@ const createCarouselItemImage = (index, options = {}) => (
     </div>
 );
 
-const addChildren = (ammount = 1, options = {}) => {
-	let current = 0;
-	const children = [];
-	while ( current < ammount ) {
-		children.push(createCarouselItemImage(current, options));
-	}
-
-	return children
-};
-
 const baseChildren = <div>{ [1,2,3,4,5].map(createCarouselItemImage) }</div>;
 
 export class LazyLoadedCarousel extends Component {
@@ -193,7 +183,12 @@ storiesOf('Carousel')
     <Carousel infiniteLoop useKeyboardArrows autoPlay>
         { baseChildren.props.children }
     </Carousel>
-  ), { source: true, inline: true, propTables: false})  
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('infinite loop + auto play - swipeable', () => (
+    <Carousel infiniteLoop autoPlay swipeable={false}>
+        { baseChildren.props.children }
+    </Carousel>
+  ), { source: true, inline: true, propTables: false})
   .addWithInfo('axis horizontal + keyboard support', () => (
     <Carousel useKeyboardArrows>
         { baseChildren.props.children }
@@ -271,6 +266,11 @@ storiesOf('Carousel')
   ), { source: true, inline: true, propTables: false})
   .addWithInfo('vertical axis + emulateTouch + "natural" vertical swipe', () => (
     <Carousel axis="vertical" verticalSwipe="natural" emulateTouch>
+        { baseChildren.props.children }
+    </Carousel>
+  ), { source: true, inline: true, propTables: false})
+  .addWithInfo('vertical axis + emulateTouch + "natural" vertical swipe + inifinite loop', () => (
+    <Carousel axis="vertical" verticalSwipe="natural" emulateTouch infiniteLoop>
         { baseChildren.props.children }
     </Carousel>
   ), { source: true, inline: true, propTables: false})

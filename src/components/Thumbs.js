@@ -1,5 +1,4 @@
 import React, { Component, Children } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import klass from '../cssClasses';
 import { outerWidth } from '../dimensions';
