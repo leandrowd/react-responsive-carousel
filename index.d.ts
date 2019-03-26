@@ -30,6 +30,7 @@ export interface CarouselProps {
     stopOnHover?: boolean;
     interval?: number;
     transitionTime?: number;
+    swipeable?: boolean;
     swipeScrollTolerance?: number;
     dynamicHeight?: boolean;
     emulateTouch?: boolean;
