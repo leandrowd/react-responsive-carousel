@@ -416,9 +416,12 @@ describe("Slider", function() {
 
             component.findWhere(n => n.node === componentInstance.itemsRef[1]).simulate('click');
 			expect(mockedFunction).toBeCalled();
+
+            component.findWhere(n => n.node === componentInstance.itemsRef[0]).simulate('click');
+            expect(componentInstance.state.selectedItem).toBe(0);
         });
 
-        it('should be disabled when only 1 child is present', () => {
+        it('should call onSelectItem function when exactly 1 child is present', () => {
             var mockedFunction = jest.genMockFunction();
 
             renderDefaultComponent({
@@ -429,7 +432,7 @@ describe("Slider", function() {
 
             component.findWhere(n => n.node === componentInstance.itemsRef[0]).simulate('click');
             expect(componentInstance.state.selectedItem).toBe(0);
-			expect(mockedFunction).not.toBeCalled();
+			expect(mockedFunction).toBeCalled();
 		});
 	})
 
