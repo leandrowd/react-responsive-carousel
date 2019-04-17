@@ -300,7 +300,7 @@ class Carousel extends Component {
     }
 
     handleClickItem = (index, item) => {
-        if (Children.count(this.props.children) <= 1) {
+        if (Children.count(this.props.children) == 0) {
             return;
         }
 
