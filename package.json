@@ -85,7 +85,7 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^2.1.1"
+    "watchify": "^3.11.1"
   },
   "jest": {
     "unmockedModulePathPatterns": [
