@@ -46,7 +46,7 @@
       border-left: 8px solid #fff; }
 
 .carousel {
-  position: relative;
+ position:absolute;
   width: 100%; }
   .carousel * {
     -webkit-box-sizing: border-box;
@@ -57,7 +57,7 @@
     display: inline-block;
     pointer-events: none; }
   .carousel .carousel {
-    position: relative; }
+    position: absolute; }
   .carousel .control-arrow {
     outline: 0;
     border: 0;
