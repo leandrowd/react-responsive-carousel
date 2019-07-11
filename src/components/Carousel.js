@@ -50,7 +50,7 @@ class Carousel extends Component {
         showStatus:true,
         showThumbs:true,
         infiniteLoop: false,
-        selectedItem: 0,
+        selectedItem: undefined,
         axis: 'horizontal',
         verticalSwipe: 'standard',
         width: '100%',
@@ -76,7 +76,7 @@ class Carousel extends Component {
 
         this.state = {
             initialized: false,
-            selectedItem: props.selectedItem,
+            selectedItem: props.selectedItem || 0,
             hasMount: false,
             isMouseEntered: false,
             autoPlay: props.autoPlay
@@ -92,7 +92,7 @@ class Carousel extends Component {
     }
 
     componentWillReceiveProps (nextProps) {
-        if (nextProps.selectedItem !== this.state.selectedItem) {
+        if (nextProps.selectedItem && nextProps.selectedItem !== this.state.selectedItem) {
             this.updateSizes();
             this.moveTo(nextProps.selectedItem);
         }
