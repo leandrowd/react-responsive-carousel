@@ -75,7 +75,7 @@ describe("Slider", function() {
                 showStatus:true,
                 showThumbs:true,
                 infiniteLoop: false,
-                selectedItem: 0,
+                selectedItem: undefined,
                 axis: 'horizontal',
                 verticalSwipe: 'standard',
                 useKeyboardArrows: false,
@@ -98,7 +98,7 @@ describe("Slider", function() {
 
         describe("Initial State", () => {
             const props = {
-                selectedItem: 0,
+                selectedItem: undefined,
                 hasMount: false
             };
 
