@@ -10,7 +10,7 @@ var rename = require("gulp-rename");
 
 var configs = require('./configs');
 
-module.exports = function (options) {
+module.exports = async function (options) {
     if (!options || !options.environment) {
       options.environment = "development";
     }
@@ -40,4 +40,6 @@ module.exports = function (options) {
         gutil.log('CSS bundle built in ' + (Date.now() - start) + 'ms');
       }))
       .pipe(connect.reload());
+
+    await Promise.resolve('css task completed');
 };
