@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Slider Snapshots center mode 1`] = `
-<div
-  className={undefined}
->
+<div>
   <div
     className="carousel carousel-slider"
     style={
@@ -26,6 +24,7 @@ exports[`Slider Snapshots center mode 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0%,0,0)",
@@ -223,6 +222,7 @@ exports[`Slider Snapshots center mode 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0px,0,0)",
@@ -355,6 +355,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0%,0,0)",
@@ -517,6 +518,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0px,0,0)",
@@ -624,9 +626,7 @@ exports[`Slider Snapshots custom class name 1`] = `
 `;
 
 exports[`Slider Snapshots custom width 1`] = `
-<div
-  className={undefined}
->
+<div>
   <div
     className="carousel carousel-slider"
     style={
@@ -649,6 +649,7 @@ exports[`Slider Snapshots custom width 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0%,0,0)",
@@ -811,6 +812,7 @@ exports[`Slider Snapshots custom width 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0px,0,0)",
@@ -918,9 +920,7 @@ exports[`Slider Snapshots custom width 1`] = `
 `;
 
 exports[`Slider Snapshots default 1`] = `
-<div
-  className={undefined}
->
+<div>
   <div
     className="carousel carousel-slider"
     style={
@@ -943,6 +943,7 @@ exports[`Slider Snapshots default 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0%,0,0)",
@@ -1105,6 +1106,7 @@ exports[`Slider Snapshots default 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0px,0,0)",
@@ -1212,9 +1214,7 @@ exports[`Slider Snapshots default 1`] = `
 `;
 
 exports[`Slider Snapshots infinite loop 1`] = `
-<div
-  className={undefined}
->
+<div>
   <div
     className="carousel carousel-slider"
     style={
@@ -1237,6 +1237,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(-100%,0,0)",
@@ -1415,6 +1416,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0px,0,0)",
@@ -1522,9 +1524,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
 `;
 
 exports[`Slider Snapshots no arrows 1`] = `
-<div
-  className={undefined}
->
+<div>
   <div
     className="carousel carousel-slider"
     style={
@@ -1547,6 +1547,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0%,0,0)",
@@ -1709,6 +1710,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0px,0,0)",
@@ -1818,9 +1820,7 @@ exports[`Slider Snapshots no arrows 1`] = `
 exports[`Slider Snapshots no children at mount 1`] = `null`;
 
 exports[`Slider Snapshots no indicators 1`] = `
-<div
-  className={undefined}
->
+<div>
   <div
     className="carousel carousel-slider"
     style={
@@ -1843,6 +1843,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0%,0,0)",
@@ -1945,6 +1946,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0px,0,0)",
@@ -2052,9 +2054,7 @@ exports[`Slider Snapshots no indicators 1`] = `
 `;
 
 exports[`Slider Snapshots no indicators 2`] = `
-<div
-  className={undefined}
->
+<div>
   <div
     className="carousel carousel-slider"
     style={
@@ -2077,6 +2077,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0%,0,0)",
@@ -2234,6 +2235,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0px,0,0)",
@@ -2341,9 +2343,7 @@ exports[`Slider Snapshots no indicators 2`] = `
 `;
 
 exports[`Slider Snapshots no thumbs 1`] = `
-<div
-  className={undefined}
->
+<div>
   <div
     className="carousel carousel-slider"
     style={
@@ -2366,6 +2366,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0%,0,0)",
@@ -2516,9 +2517,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
 `;
 
 exports[`Slider Snapshots swipeable false 1`] = `
-<div
-  className={undefined}
->
+<div>
   <div
     className="carousel carousel-slider"
     style={
@@ -2700,6 +2699,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0px,0,0)",
@@ -2807,9 +2807,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
 `;
 
 exports[`Slider Snapshots vertical axis 1`] = `
-<div
-  className={undefined}
->
+<div>
   <div
     className="carousel carousel-slider"
     style={
@@ -2836,6 +2834,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0,0%,0)",
@@ -2999,6 +2998,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        selectedItem={0}
         style={
           Object {
             "MozTransform": "translate3d(0px,0,0)",
