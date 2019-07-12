@@ -310,7 +310,6 @@ class Thumbs extends Component {
                 <div className={klass.WRAPPER(false)} ref={this.setItemsWrapperRef}>
                     <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.slideRight} />
                     <Swipe tagName="ul"
-                        selectedItem={this.state.selectedItem}
                         className={klass.SLIDER(false, this.state.swiping)}
                         onSwipeLeft={this.slideLeft}
                         onSwipeRight={this.slideRight}
