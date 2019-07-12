@@ -97,16 +97,11 @@ describe("Slider", function() {
         });
 
         describe("Initial State", () => {
-            const props = {
-                selectedItem: undefined,
-                hasMount: false
-            };
-
-            Object.keys(props).forEach(prop => {
-                it(`should have ${prop} as ${props[prop]}`, () => {
-                    expect(componentInstance.state.selectedItem).toBe(0);
-                    expect(componentInstance.state.hasMount).toBe(false);
-                });
+            it(`should have selectedItem as 0`, () => {
+                expect(componentInstance.state.selectedItem).toBe(0);
+            });
+            it(`should have hasMount as true`, () => {
+                expect(componentInstance.state.hasMount).toBe(true);
             });
         });
   	});
