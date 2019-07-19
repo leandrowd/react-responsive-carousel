@@ -38,7 +38,7 @@ export interface CarouselProps {
     children?: React.ReactNode;
     centerMode?:boolean;
     centerSlidePercentage?:number;
-    onResize: (height: number) => void,
+    onResize?: (height: number) => void,
 }
 
 export interface CarouselState {
