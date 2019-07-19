@@ -501,7 +501,7 @@ class Carousel extends Component {
         }
     }
 
-    onSizing = (height: number) => {
+    onSizing = (height) => {
         if (this.state.height !== height && this.props.onResize) {
             this.props.onResize(height);
             this.setState({
