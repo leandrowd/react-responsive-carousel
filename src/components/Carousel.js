@@ -41,7 +41,8 @@ class Carousel extends Component {
         emulateTouch: PropTypes.bool,
         statusFormatter: PropTypes.func.isRequired,
         centerMode: PropTypes.bool,
-        centerSlidePercentage: PropTypes.number
+        centerSlidePercentage: PropTypes.number,
+        onResize: PropTypes.func,
     };
 
     static defaultProps = {
@@ -68,7 +69,8 @@ class Carousel extends Component {
         onChange: noop,
         statusFormatter: defaultStatusFormatter,
         centerMode: false,
-        centerSlidePercentage: 80
+        centerSlidePercentage: 80,
+        onResize: noop
     };
 
     constructor(props) {
@@ -683,6 +685,9 @@ class Carousel extends Component {
                 const itemHeight = this.getVariableImageHeight(this.state.selectedItem);
                 swiperProps.style.height = itemHeight || 'auto';
                 containerStyles.height = itemHeight || 'auto';
+                if (this.props.onResize) {
+                    this.props.onResize(itemHeight);
+                }
             }
 
         } else {            
