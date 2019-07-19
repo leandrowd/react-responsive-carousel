@@ -81,7 +81,8 @@ class Carousel extends Component {
             selectedItem: props.selectedItem || 0,
             hasMount: false,
             isMouseEntered: false,
-            autoPlay: props.autoPlay
+            autoPlay: props.autoPlay,
+            height: 0
         };
     }
 
@@ -500,6 +501,15 @@ class Carousel extends Component {
         }
     }
 
+    onSizing = (height: number) => {
+        if (this.state.height !== height && this.props.onResize) {
+            this.props.onResize(height);
+            this.setState({
+                height
+            });
+        }
+    }
+
     onClickNext = () => {
         this.increment(1, false);
     }
@@ -685,9 +695,7 @@ class Carousel extends Component {
                 const itemHeight = this.getVariableImageHeight(this.state.selectedItem);
                 swiperProps.style.height = itemHeight || 'auto';
                 containerStyles.height = itemHeight || 'auto';
-                if (this.props.onResize) {
-                    this.props.onResize(itemHeight);
-                }
+                this.onSizing(itemHeight);
             }
 
         } else {            

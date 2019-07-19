@@ -50,6 +50,7 @@ export interface CarouselState {
     cancelClick: boolean;
     swiping: boolean;
     autoPlay: boolean;
+    height: number;
 }
 
 export class Carousel extends React.Component<CarouselProps, CarouselState> {
