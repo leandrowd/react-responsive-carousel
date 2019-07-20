@@ -81,8 +81,7 @@ class Carousel extends Component {
             selectedItem: props.selectedItem || 0,
             hasMount: false,
             isMouseEntered: false,
-            autoPlay: props.autoPlay,
-            height: 0
+            autoPlay: props.autoPlay
         };
     }
 
@@ -502,11 +501,9 @@ class Carousel extends Component {
     }
 
     onSizing = (height) => {
-        if (this.state.height !== height && this.props.onResize) {
+        if (this.height !== height && this.props.onResize) {
             this.props.onResize(height);
-            this.setState({
-                height
-            });
+            this.height = height;
         }
     }
 
