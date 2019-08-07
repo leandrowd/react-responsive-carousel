@@ -13,6 +13,7 @@ exports[`Slider Snapshots center mode 1`] = `
     }
   >
     <button
+      aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
       type="button"
@@ -137,6 +138,7 @@ exports[`Slider Snapshots center mode 1`] = `
       </ul>
     </div>
     <button
+      aria-label="next slide / item"
       className="control-arrow control-next"
       onClick={[Function]}
       type="button"
@@ -342,6 +344,7 @@ exports[`Slider Snapshots custom class name 1`] = `
     }
   >
     <button
+      aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
       type="button"
@@ -431,6 +434,7 @@ exports[`Slider Snapshots custom class name 1`] = `
       </ul>
     </div>
     <button
+      aria-label="next slide / item"
       className="control-arrow control-next"
       onClick={[Function]}
       type="button"
@@ -636,6 +640,7 @@ exports[`Slider Snapshots custom width 1`] = `
     }
   >
     <button
+      aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
       type="button"
@@ -725,6 +730,7 @@ exports[`Slider Snapshots custom width 1`] = `
       </ul>
     </div>
     <button
+      aria-label="next slide / item"
       className="control-arrow control-next"
       onClick={[Function]}
       type="button"
@@ -930,6 +936,7 @@ exports[`Slider Snapshots default 1`] = `
     }
   >
     <button
+      aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
       type="button"
@@ -1019,6 +1026,7 @@ exports[`Slider Snapshots default 1`] = `
       </ul>
     </div>
     <button
+      aria-label="next slide / item"
       className="control-arrow control-next"
       onClick={[Function]}
       type="button"
@@ -1224,6 +1232,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
     }
   >
     <button
+      aria-label="previous slide / item"
       className="control-arrow control-prev"
       onClick={[Function]}
       type="button"
@@ -1329,6 +1338,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
       </ul>
     </div>
     <button
+      aria-label="next slide / item"
       className="control-arrow control-next"
       onClick={[Function]}
       type="button"
@@ -1534,6 +1544,7 @@ exports[`Slider Snapshots no arrows 1`] = `
     }
   >
     <button
+      aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
       type="button"
@@ -1623,6 +1634,7 @@ exports[`Slider Snapshots no arrows 1`] = `
       </ul>
     </div>
     <button
+      aria-label="next slide / item"
       className="control-arrow control-next control-disabled"
       onClick={[Function]}
       type="button"
@@ -1830,6 +1842,7 @@ exports[`Slider Snapshots no indicators 1`] = `
     }
   >
     <button
+      aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
       type="button"
@@ -1919,6 +1932,7 @@ exports[`Slider Snapshots no indicators 1`] = `
       </ul>
     </div>
     <button
+      aria-label="next slide / item"
       className="control-arrow control-next"
       onClick={[Function]}
       type="button"
@@ -2064,6 +2078,7 @@ exports[`Slider Snapshots no indicators 2`] = `
     }
   >
     <button
+      aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
       type="button"
@@ -2153,6 +2168,7 @@ exports[`Slider Snapshots no indicators 2`] = `
       </ul>
     </div>
     <button
+      aria-label="next slide / item"
       className="control-arrow control-next"
       onClick={[Function]}
       type="button"
@@ -2353,6 +2369,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
     }
   >
     <button
+      aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
       type="button"
@@ -2442,6 +2459,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
       </ul>
     </div>
     <button
+      aria-label="next slide / item"
       className="control-arrow control-next"
       onClick={[Function]}
       type="button"
@@ -2528,6 +2546,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
     }
   >
     <button
+      aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
       type="button"
@@ -2614,6 +2633,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
       </ul>
     </div>
     <button
+      aria-label="next slide / item"
       className="control-arrow control-next"
       onClick={[Function]}
       type="button"
@@ -2819,6 +2839,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
     }
   >
     <button
+      aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
       onClick={[Function]}
       type="button"
@@ -2913,6 +2934,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
       </ul>
     </div>
     <button
+      aria-label="next slide / item"
       className="control-arrow control-next"
       onClick={[Function]}
       type="button"

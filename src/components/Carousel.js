@@ -41,7 +41,9 @@ class Carousel extends Component {
         emulateTouch: PropTypes.bool,
         statusFormatter: PropTypes.func.isRequired,
         centerMode: PropTypes.bool,
-        centerSlidePercentage: PropTypes.number
+        centerSlidePercentage: PropTypes.number,
+        ariaLabelLeft: PropTypes.string,
+        ariaLabelRight: PropTypes.string
     };
 
     static defaultProps = {
@@ -68,7 +70,9 @@ class Carousel extends Component {
         onChange: noop,
         statusFormatter: defaultStatusFormatter,
         centerMode: false,
-        centerSlidePercentage: 80
+        centerSlidePercentage: 80,
+        ariaLabelLeft: 'previous slide / item',
+        ariaLabelRight: 'next slide / item'
     };
 
     constructor(props) {
@@ -695,7 +699,7 @@ class Carousel extends Component {
         return (
             <div className={this.props.className} ref={this.setCarouselWrapperRef}>
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
-                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.onClickPrev} />
+                    <button type="button" aria-label={this.props.ariaLabelLeft} className={klass.ARROW_PREV(!hasPrev)} onClick={this.onClickPrev} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={this.setItemsWrapperRef}>
                         { this.props.swipeable ?
                             <Swipe
@@ -717,7 +721,7 @@ class Carousel extends Component {
                             </ul>
                         }
                     </div>
-                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.onClickNext} />
+                    <button type="button" aria-label={this.props.ariaLabelRight} className={klass.ARROW_NEXT(!hasNext)} onClick={this.onClickNext} />
 
                     { this.renderControls() }
                     { this.renderStatus() }
