@@ -300,7 +300,7 @@ class Carousel extends Component {
     }
 
     handleClickItem = (index, item) => {
-        if (Children.count(this.props.children) <= 1) {
+        if (Children.count(this.props.children) === 0) {
             return;
         }
 
@@ -346,7 +346,8 @@ class Carousel extends Component {
 
     onSwipeEnd = () => {
         this.setState({
-            swiping: false
+            swiping: false,
+            cancelClick: false
         });
         this.autoPlay();
     }
