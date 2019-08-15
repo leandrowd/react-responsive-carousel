@@ -40,7 +40,7 @@ class Thumbs extends Component {
         this.setupThumbs();
     }
 
-    componentWillReceiveProps(props, state) {
+    static getDerivedStateFromProps(props, state) {
         if (props.selectedItem !== this.state.selectedItem) {
             this.setState({
                 selectedItem: props.selectedItem,
@@ -52,6 +52,7 @@ class Thumbs extends Component {
                images: this.getImages()
             });
         }
+        return null;
     }
 
     componentDidUpdate(prevProps) {
