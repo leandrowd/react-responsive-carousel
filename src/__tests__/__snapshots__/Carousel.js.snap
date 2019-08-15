@@ -147,6 +147,7 @@ exports[`Slider Snapshots center mode 1`] = `
       className="control-dots"
     >
       <li
+        aria-label="slide item 1"
         className="dot selected"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -155,6 +156,7 @@ exports[`Slider Snapshots center mode 1`] = `
         value={0}
       />
       <li
+        aria-label="slide item 2"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -163,6 +165,7 @@ exports[`Slider Snapshots center mode 1`] = `
         value={1}
       />
       <li
+        aria-label="slide item 3"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -171,6 +174,7 @@ exports[`Slider Snapshots center mode 1`] = `
         value={2}
       />
       <li
+        aria-label="slide item 4"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -179,6 +183,7 @@ exports[`Slider Snapshots center mode 1`] = `
         value={3}
       />
       <li
+        aria-label="slide item 5"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -187,6 +192,7 @@ exports[`Slider Snapshots center mode 1`] = `
         value={4}
       />
       <li
+        aria-label="slide item 6"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -195,6 +201,7 @@ exports[`Slider Snapshots center mode 1`] = `
         value={5}
       />
       <li
+        aria-label="slide item 7"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -216,6 +223,7 @@ exports[`Slider Snapshots center mode 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="previous slide / item"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
         type="button"
@@ -243,6 +251,7 @@ exports[`Slider Snapshots center mode 1`] = `
         }
       >
         <li
+          aria-label="slide item 1"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -255,6 +264,7 @@ exports[`Slider Snapshots center mode 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 2"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -266,6 +276,7 @@ exports[`Slider Snapshots center mode 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 3"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -277,6 +288,7 @@ exports[`Slider Snapshots center mode 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 4"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -288,6 +300,7 @@ exports[`Slider Snapshots center mode 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 5"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -299,6 +312,7 @@ exports[`Slider Snapshots center mode 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 6"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -310,6 +324,7 @@ exports[`Slider Snapshots center mode 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 7"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -322,6 +337,7 @@ exports[`Slider Snapshots center mode 1`] = `
         </li>
       </ul>
       <button
+        aria-label="next slide / item"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
         type="button"
@@ -443,6 +459,7 @@ exports[`Slider Snapshots custom class name 1`] = `
       className="control-dots"
     >
       <li
+        aria-label="slide item 1"
         className="dot selected"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -451,6 +468,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         value={0}
       />
       <li
+        aria-label="slide item 2"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -459,6 +477,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         value={1}
       />
       <li
+        aria-label="slide item 3"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -467,6 +486,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         value={2}
       />
       <li
+        aria-label="slide item 4"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -475,6 +495,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         value={3}
       />
       <li
+        aria-label="slide item 5"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -483,6 +504,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         value={4}
       />
       <li
+        aria-label="slide item 6"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -491,6 +513,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         value={5}
       />
       <li
+        aria-label="slide item 7"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -512,6 +535,7 @@ exports[`Slider Snapshots custom class name 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="previous slide / item"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
         type="button"
@@ -539,6 +563,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         }
       >
         <li
+          aria-label="slide item 1"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -551,6 +576,7 @@ exports[`Slider Snapshots custom class name 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 2"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -562,6 +588,7 @@ exports[`Slider Snapshots custom class name 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 3"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -573,6 +600,7 @@ exports[`Slider Snapshots custom class name 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 4"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -584,6 +612,7 @@ exports[`Slider Snapshots custom class name 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 5"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -595,6 +624,7 @@ exports[`Slider Snapshots custom class name 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 6"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -606,6 +636,7 @@ exports[`Slider Snapshots custom class name 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 7"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -618,6 +649,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         </li>
       </ul>
       <button
+        aria-label="next slide / item"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
         type="button"
@@ -739,6 +771,7 @@ exports[`Slider Snapshots custom width 1`] = `
       className="control-dots"
     >
       <li
+        aria-label="slide item 1"
         className="dot selected"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -747,6 +780,7 @@ exports[`Slider Snapshots custom width 1`] = `
         value={0}
       />
       <li
+        aria-label="slide item 2"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -755,6 +789,7 @@ exports[`Slider Snapshots custom width 1`] = `
         value={1}
       />
       <li
+        aria-label="slide item 3"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -763,6 +798,7 @@ exports[`Slider Snapshots custom width 1`] = `
         value={2}
       />
       <li
+        aria-label="slide item 4"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -771,6 +807,7 @@ exports[`Slider Snapshots custom width 1`] = `
         value={3}
       />
       <li
+        aria-label="slide item 5"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -779,6 +816,7 @@ exports[`Slider Snapshots custom width 1`] = `
         value={4}
       />
       <li
+        aria-label="slide item 6"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -787,6 +825,7 @@ exports[`Slider Snapshots custom width 1`] = `
         value={5}
       />
       <li
+        aria-label="slide item 7"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -808,6 +847,7 @@ exports[`Slider Snapshots custom width 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="previous slide / item"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
         type="button"
@@ -835,6 +875,7 @@ exports[`Slider Snapshots custom width 1`] = `
         }
       >
         <li
+          aria-label="slide item 1"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -847,6 +888,7 @@ exports[`Slider Snapshots custom width 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 2"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -858,6 +900,7 @@ exports[`Slider Snapshots custom width 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 3"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -869,6 +912,7 @@ exports[`Slider Snapshots custom width 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 4"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -880,6 +924,7 @@ exports[`Slider Snapshots custom width 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 5"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -891,6 +936,7 @@ exports[`Slider Snapshots custom width 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 6"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -902,6 +948,7 @@ exports[`Slider Snapshots custom width 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 7"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -914,6 +961,7 @@ exports[`Slider Snapshots custom width 1`] = `
         </li>
       </ul>
       <button
+        aria-label="next slide / item"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
         type="button"
@@ -1035,6 +1083,7 @@ exports[`Slider Snapshots default 1`] = `
       className="control-dots"
     >
       <li
+        aria-label="slide item 1"
         className="dot selected"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1043,6 +1092,7 @@ exports[`Slider Snapshots default 1`] = `
         value={0}
       />
       <li
+        aria-label="slide item 2"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1051,6 +1101,7 @@ exports[`Slider Snapshots default 1`] = `
         value={1}
       />
       <li
+        aria-label="slide item 3"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1059,6 +1110,7 @@ exports[`Slider Snapshots default 1`] = `
         value={2}
       />
       <li
+        aria-label="slide item 4"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1067,6 +1119,7 @@ exports[`Slider Snapshots default 1`] = `
         value={3}
       />
       <li
+        aria-label="slide item 5"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1075,6 +1128,7 @@ exports[`Slider Snapshots default 1`] = `
         value={4}
       />
       <li
+        aria-label="slide item 6"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1083,6 +1137,7 @@ exports[`Slider Snapshots default 1`] = `
         value={5}
       />
       <li
+        aria-label="slide item 7"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1104,6 +1159,7 @@ exports[`Slider Snapshots default 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="previous slide / item"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
         type="button"
@@ -1131,6 +1187,7 @@ exports[`Slider Snapshots default 1`] = `
         }
       >
         <li
+          aria-label="slide item 1"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1143,6 +1200,7 @@ exports[`Slider Snapshots default 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 2"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1154,6 +1212,7 @@ exports[`Slider Snapshots default 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 3"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1165,6 +1224,7 @@ exports[`Slider Snapshots default 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 4"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1176,6 +1236,7 @@ exports[`Slider Snapshots default 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 5"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1187,6 +1248,7 @@ exports[`Slider Snapshots default 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 6"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1198,6 +1260,7 @@ exports[`Slider Snapshots default 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 7"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1210,6 +1273,7 @@ exports[`Slider Snapshots default 1`] = `
         </li>
       </ul>
       <button
+        aria-label="next slide / item"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
         type="button"
@@ -1347,6 +1411,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
       className="control-dots"
     >
       <li
+        aria-label="slide item 1"
         className="dot selected"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1355,6 +1420,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         value={0}
       />
       <li
+        aria-label="slide item 2"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1363,6 +1429,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         value={1}
       />
       <li
+        aria-label="slide item 3"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1371,6 +1438,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         value={2}
       />
       <li
+        aria-label="slide item 4"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1379,6 +1447,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         value={3}
       />
       <li
+        aria-label="slide item 5"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1387,6 +1456,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         value={4}
       />
       <li
+        aria-label="slide item 6"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1395,6 +1465,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         value={5}
       />
       <li
+        aria-label="slide item 7"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1416,6 +1487,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="previous slide / item"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
         type="button"
@@ -1443,6 +1515,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         }
       >
         <li
+          aria-label="slide item 1"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1455,6 +1528,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 2"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1466,6 +1540,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 3"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1477,6 +1552,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 4"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1488,6 +1564,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 5"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1499,6 +1576,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 6"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1510,6 +1588,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 7"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1522,6 +1601,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         </li>
       </ul>
       <button
+        aria-label="next slide / item"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
         type="button"
@@ -1643,6 +1723,7 @@ exports[`Slider Snapshots no arrows 1`] = `
       className="control-dots"
     >
       <li
+        aria-label="slide item 1"
         className="dot selected"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1651,6 +1732,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         value={0}
       />
       <li
+        aria-label="slide item 2"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1659,6 +1741,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         value={1}
       />
       <li
+        aria-label="slide item 3"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1667,6 +1750,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         value={2}
       />
       <li
+        aria-label="slide item 4"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1675,6 +1759,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         value={3}
       />
       <li
+        aria-label="slide item 5"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1683,6 +1768,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         value={4}
       />
       <li
+        aria-label="slide item 6"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1691,6 +1777,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         value={5}
       />
       <li
+        aria-label="slide item 7"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1712,6 +1799,7 @@ exports[`Slider Snapshots no arrows 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="previous slide / item"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
         type="button"
@@ -1739,6 +1827,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         }
       >
         <li
+          aria-label="slide item 1"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1751,6 +1840,7 @@ exports[`Slider Snapshots no arrows 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 2"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1762,6 +1852,7 @@ exports[`Slider Snapshots no arrows 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 3"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1773,6 +1864,7 @@ exports[`Slider Snapshots no arrows 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 4"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1784,6 +1876,7 @@ exports[`Slider Snapshots no arrows 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 5"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1795,6 +1888,7 @@ exports[`Slider Snapshots no arrows 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 6"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1806,6 +1900,7 @@ exports[`Slider Snapshots no arrows 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 7"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1818,6 +1913,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         </li>
       </ul>
       <button
+        aria-label="next slide / item"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
         type="button"
@@ -1950,6 +2046,7 @@ exports[`Slider Snapshots no indicators 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="previous slide / item"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
         type="button"
@@ -1977,6 +2074,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         }
       >
         <li
+          aria-label="slide item 1"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1989,6 +2087,7 @@ exports[`Slider Snapshots no indicators 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 2"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2000,6 +2099,7 @@ exports[`Slider Snapshots no indicators 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 3"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2011,6 +2111,7 @@ exports[`Slider Snapshots no indicators 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 4"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2022,6 +2123,7 @@ exports[`Slider Snapshots no indicators 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 5"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2033,6 +2135,7 @@ exports[`Slider Snapshots no indicators 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 6"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2044,6 +2147,7 @@ exports[`Slider Snapshots no indicators 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 7"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2056,6 +2160,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         </li>
       </ul>
       <button
+        aria-label="next slide / item"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
         type="button"
@@ -2177,6 +2282,7 @@ exports[`Slider Snapshots no indicators 2`] = `
       className="control-dots"
     >
       <li
+        aria-label="slide item 1"
         className="dot selected"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2185,6 +2291,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         value={0}
       />
       <li
+        aria-label="slide item 2"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2193,6 +2300,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         value={1}
       />
       <li
+        aria-label="slide item 3"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2201,6 +2309,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         value={2}
       />
       <li
+        aria-label="slide item 4"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2209,6 +2318,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         value={3}
       />
       <li
+        aria-label="slide item 5"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2217,6 +2327,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         value={4}
       />
       <li
+        aria-label="slide item 6"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2225,6 +2336,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         value={5}
       />
       <li
+        aria-label="slide item 7"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2241,6 +2353,7 @@ exports[`Slider Snapshots no indicators 2`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="previous slide / item"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
         type="button"
@@ -2268,6 +2381,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         }
       >
         <li
+          aria-label="slide item 1"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2280,6 +2394,7 @@ exports[`Slider Snapshots no indicators 2`] = `
           />
         </li>
         <li
+          aria-label="slide item 2"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2291,6 +2406,7 @@ exports[`Slider Snapshots no indicators 2`] = `
           />
         </li>
         <li
+          aria-label="slide item 3"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2302,6 +2418,7 @@ exports[`Slider Snapshots no indicators 2`] = `
           />
         </li>
         <li
+          aria-label="slide item 4"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2313,6 +2430,7 @@ exports[`Slider Snapshots no indicators 2`] = `
           />
         </li>
         <li
+          aria-label="slide item 5"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2324,6 +2442,7 @@ exports[`Slider Snapshots no indicators 2`] = `
           />
         </li>
         <li
+          aria-label="slide item 6"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2335,6 +2454,7 @@ exports[`Slider Snapshots no indicators 2`] = `
           />
         </li>
         <li
+          aria-label="slide item 7"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2347,6 +2467,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         </li>
       </ul>
       <button
+        aria-label="next slide / item"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
         type="button"
@@ -2468,6 +2589,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
       className="control-dots"
     >
       <li
+        aria-label="slide item 1"
         className="dot selected"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2476,6 +2598,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         value={0}
       />
       <li
+        aria-label="slide item 2"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2484,6 +2607,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         value={1}
       />
       <li
+        aria-label="slide item 3"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2492,6 +2616,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         value={2}
       />
       <li
+        aria-label="slide item 4"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2500,6 +2625,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         value={3}
       />
       <li
+        aria-label="slide item 5"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2508,6 +2634,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         value={4}
       />
       <li
+        aria-label="slide item 6"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2516,6 +2643,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         value={5}
       />
       <li
+        aria-label="slide item 7"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2642,6 +2770,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
       className="control-dots"
     >
       <li
+        aria-label="slide item 1"
         className="dot selected"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2650,6 +2779,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         value={0}
       />
       <li
+        aria-label="slide item 2"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2658,6 +2788,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         value={1}
       />
       <li
+        aria-label="slide item 3"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2666,6 +2797,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         value={2}
       />
       <li
+        aria-label="slide item 4"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2674,6 +2806,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         value={3}
       />
       <li
+        aria-label="slide item 5"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2682,6 +2815,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         value={4}
       />
       <li
+        aria-label="slide item 6"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2690,6 +2824,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         value={5}
       />
       <li
+        aria-label="slide item 7"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2711,6 +2846,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="previous slide / item"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
         type="button"
@@ -2738,6 +2874,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         }
       >
         <li
+          aria-label="slide item 1"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2750,6 +2887,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 2"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2761,6 +2899,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 3"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2772,6 +2911,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 4"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2783,6 +2923,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 5"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2794,6 +2935,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 6"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2805,6 +2947,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 7"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2817,6 +2960,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         </li>
       </ul>
       <button
+        aria-label="next slide / item"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
         type="button"
@@ -2943,6 +3087,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
       className="control-dots"
     >
       <li
+        aria-label="slide item 1"
         className="dot selected"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2951,6 +3096,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         value={0}
       />
       <li
+        aria-label="slide item 2"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2959,6 +3105,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         value={1}
       />
       <li
+        aria-label="slide item 3"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2967,6 +3114,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         value={2}
       />
       <li
+        aria-label="slide item 4"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2975,6 +3123,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         value={3}
       />
       <li
+        aria-label="slide item 5"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2983,6 +3132,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         value={4}
       />
       <li
+        aria-label="slide item 6"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2991,6 +3141,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         value={5}
       />
       <li
+        aria-label="slide item 7"
         className="dot"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -3012,6 +3163,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
       className="thumbs-wrapper axis-vertical"
     >
       <button
+        aria-label="previous slide / item"
         className="control-arrow control-prev control-disabled"
         onClick={[Function]}
         type="button"
@@ -3039,6 +3191,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         }
       >
         <li
+          aria-label="slide item 1"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3051,6 +3204,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 2"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3062,6 +3216,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 3"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3073,6 +3228,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 4"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3084,6 +3240,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 5"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3095,6 +3252,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 6"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3106,6 +3264,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
           />
         </li>
         <li
+          aria-label="slide item 7"
           className="thumb"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3118,6 +3277,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         </li>
       </ul>
       <button
+        aria-label="next slide / item"
         className="control-arrow control-next control-disabled"
         onClick={[Function]}
         type="button"
