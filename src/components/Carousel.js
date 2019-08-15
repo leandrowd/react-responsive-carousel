@@ -91,7 +91,7 @@ class Carousel extends Component {
         this.setupCarousel();
     }
 
-    componentWillReceiveProps (nextProps) {
+    static getDerivedStateFromProps(nextProps) {
         if (nextProps.selectedItem !== this.state.selectedItem) {
             this.updateSizes();
             this.moveTo(nextProps.selectedItem);
@@ -108,6 +108,7 @@ class Carousel extends Component {
                 }
             });
         }
+        return null;
     }
 
     componentDidUpdate(prevProps, prevState) {
