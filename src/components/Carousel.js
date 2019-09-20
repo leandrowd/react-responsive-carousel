@@ -10,6 +10,7 @@ import * as customPropTypes from '../customPropTypes';
 const noop = () => {};
 
 const defaultStatusFormatter = (current, total) => `${current} of ${total}`;
+const defaultGetStatus = (state) => state;
 
 class Carousel extends Component {
     static displayName = 'Carousel';
@@ -41,7 +42,8 @@ class Carousel extends Component {
         emulateTouch: PropTypes.bool,
         statusFormatter: PropTypes.func.isRequired,
         centerMode: PropTypes.bool,
-        centerSlidePercentage: PropTypes.number
+        centerSlidePercentage: PropTypes.number,
+        getStatus: PropTypes.func.isRequired
     };
 
     static defaultProps = {
@@ -68,7 +70,8 @@ class Carousel extends Component {
         onChange: noop,
         statusFormatter: defaultStatusFormatter,
         centerMode: false,
-        centerSlidePercentage: 80
+        centerSlidePercentage: 80,
+        getStatus: defaultGetStatus,
     };
 
     constructor(props) {
@@ -89,6 +92,7 @@ class Carousel extends Component {
         }
 
         this.setupCarousel();
+        this.props.getStatus(this.state);
     }
 
     componentWillReceiveProps (nextProps) {
@@ -117,6 +121,9 @@ class Carousel extends Component {
         if (prevState.swiping && !this.state.swiping) {
             // We stopped swiping, ensure we are heading to the new/current slide and not stuck
             this.resetPosition();
+        }
+        if (prevState !== this.state){
+            this.props.getStatus(this.state);
         }
     }
 
@@ -422,7 +429,7 @@ class Carousel extends Component {
     }
 
     setPosition = (position, forceReflow) => {
-        const list = ReactDOM.findDOMNode(this.listRef);        
+        const list = ReactDOM.findDOMNode(this.listRef);
         [
             'WebkitTransform',
             'MozTransform',
@@ -451,7 +458,7 @@ class Carousel extends Component {
         this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1), fromSwipe);
     }
 
-    moveTo = (position, fromSwipe) => {        
+    moveTo = (position, fromSwipe) => {
         const lastPosition = Children.count(this.props.children) - 1;
         const needClonedSlide = this.props.infiniteLoop && !fromSwipe && (position < 0 || position > lastPosition);
         const oldPosition = position;
@@ -687,7 +694,7 @@ class Carousel extends Component {
                 containerStyles.height = itemHeight || 'auto';
             }
 
-        } else {            
+        } else {
             swiperProps.onSwipeUp = this.props.verticalSwipe === 'natural' ? this.onSwipeBackwards : this.onSwipeForward;
             swiperProps.onSwipeDown = this.props.verticalSwipe === 'natural' ? this.onSwipeForward : this.onSwipeBackwards;
             swiperProps.style.height = this.state.itemSize;
