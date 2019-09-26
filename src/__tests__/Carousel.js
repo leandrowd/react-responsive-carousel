@@ -639,6 +639,14 @@ describe("Slider", function() {
                 componentInstance.onSwipeStart();
                 expect(componentInstance.clearAutoPlay.mock.calls.length).toBe(1);
             });
+
+            it('should call onSwipeStart callback', () => {
+                var onSwipeStartFunction = jest.genMockFunction();
+                renderDefaultComponent({onSwipeStart: onSwipeStartFunction});
+
+                componentInstance.onSwipeStart();
+                expect(onSwipeStartFunction).toBeCalled();
+            });
         });
 
         describe('onSwipeMove', () => {
@@ -655,6 +663,14 @@ describe("Slider", function() {
                     y: 10
                 })).toBe(false);
             });
+
+            it('should call onSwipeMove callback', () => {
+                var onSwipeMoveFunction = jest.genMockFunction();
+                renderDefaultComponent({onSwipeMove: onSwipeMoveFunction});
+
+                componentInstance.onSwipeMove({ x: 0, y: 10 });
+                expect(onSwipeMoveFunction).toBeCalled();
+            });
         });
 
         describe('onSwipeEnd', () => {
@@ -666,6 +682,14 @@ describe("Slider", function() {
                 componentInstance.autoPlay = jest.genMockFunction();
                 componentInstance.onSwipeEnd();
                 expect(componentInstance.autoPlay.mock.calls.length).toBe(1);
+            });
+
+            it('should call onSwipeEnd callback', () => {
+                var onSwipeEndFunction = jest.genMockFunction();
+                renderDefaultComponent({onSwipeEnd: onSwipeEndFunction});
+
+                componentInstance.onSwipeEnd();
+                expect(onSwipeEndFunction).toBeCalled();
             });
         });
 
