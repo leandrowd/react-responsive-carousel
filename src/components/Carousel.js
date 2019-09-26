@@ -46,7 +46,10 @@ class Carousel extends Component {
             leftArrow: PropTypes.string,
             rightArrow: PropTypes.string,
             item: PropTypes.string
-        })
+        }),
+        onSwipeStart: PropTypes.func,
+        onSwipeEnd: PropTypes.func,
+        onSwipeMove: PropTypes.func
     };
 
     static defaultProps = {
@@ -78,7 +81,10 @@ class Carousel extends Component {
             leftArrow: 'previous slide / item',
             rightArrow: 'next slide / item',
             item: 'slide item'
-        }
+        },
+        onSwipeStart: () => {},
+        onSwipeEnd: () => {},
+        onSwipeMove: () => {}
     };
 
     constructor(props) {
@@ -351,6 +357,7 @@ class Carousel extends Component {
         this.setState({
             swiping: true,
         });
+        this.props.onSwipeStart();
         this.clearAutoPlay();
     }
 
@@ -359,10 +366,12 @@ class Carousel extends Component {
             swiping: false,
             cancelClick: false
         });
+        this.props.onSwipeEnd();
         this.autoPlay();
     }
 
     onSwipeMove = (delta) => {
+        this.props.onSwipeMove();
         const isHorizontal = this.props.axis === 'horizontal';
         const childrenLength = Children.count(this.props.children);
 
