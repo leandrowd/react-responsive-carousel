@@ -117,7 +117,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | labels | `object [key: string]: string`      | `{ leftArrow, rightArrow, item }` | optionally specify labels to be applied to controls |
 | onSwipeStart          | `function`    | - | Fired when a swiping gesture has started |
 | onSwipeEnd            | `function`    | - | Fired when a swiping gesture has ended |
-| onSwipeMove           | `function`    | - | Fired when a swiping gesture is happening|
+| onSwipeMove           | `function`    | - | Fired when a swiping gesture is happening |
 
 
 =======================
