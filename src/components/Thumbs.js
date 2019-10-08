@@ -12,7 +12,12 @@ class Thumbs extends Component {
         children: PropTypes.element.isRequired,
         transitionTime: PropTypes.number,
         selectedItem: PropTypes.number,
-        thumbWidth: PropTypes.number
+        thumbWidth: PropTypes.number,
+        labels: PropTypes.shape({
+            leftArrow: PropTypes.string,
+            rightArrow: PropTypes.string,
+            item: PropTypes.string
+        })
     };
 
     static defaultProps = {
@@ -255,7 +260,8 @@ class Thumbs extends Component {
               ref: e => this.setThumbsRef(e, index),
               className: itemClass,
               onClick: this.handleClickItem.bind(this, index, this.props.children[index]),
-              onKeyDown: this.handleClickItem.bind(this, index, this.props.children[index])
+              onKeyDown: this.handleClickItem.bind(this, index, this.props.children[index]),
+              'aria-label': `${this.props.labels.item} ${index + 1}`
             };
 
             if (index === 0) {
@@ -308,7 +314,7 @@ class Thumbs extends Component {
         return (
             <div className={klass.CAROUSEL(false)}>
                 <div className={klass.WRAPPER(false)} ref={this.setItemsWrapperRef}>
-                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.slideRight} />
+                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.slideRight} aria-label={this.props.labels.leftArrow} />
                     <Swipe tagName="ul"
                         selectedItem={this.state.selectedItem}
                         className={klass.SLIDER(false, this.state.swiping)}
@@ -321,7 +327,7 @@ class Thumbs extends Component {
                         ref={this.setItemsListRef}>
                         { this.renderItems() }
                     </Swipe>
-                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.slideLeft} />
+                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.slideLeft} aria-label={this.props.labels.rightArrow} />
                 </div>
             </div>
         );

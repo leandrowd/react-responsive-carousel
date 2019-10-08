@@ -41,7 +41,12 @@ class Carousel extends Component {
         emulateTouch: PropTypes.bool,
         statusFormatter: PropTypes.func.isRequired,
         centerMode: PropTypes.bool,
-        centerSlidePercentage: PropTypes.number
+        centerSlidePercentage: PropTypes.number,
+        labels: PropTypes.shape({
+            leftArrow: PropTypes.string,
+            rightArrow: PropTypes.string,
+            item: PropTypes.string
+        })
     };
 
     static defaultProps = {
@@ -68,7 +73,12 @@ class Carousel extends Component {
         onChange: noop,
         statusFormatter: defaultStatusFormatter,
         centerMode: false,
-        centerSlidePercentage: 80
+        centerSlidePercentage: 80,
+        labels: {
+            leftArrow: 'previous slide / item',
+            rightArrow: 'next slide / item',
+            item: 'slide item'
+        }
     };
 
     constructor(props) {
@@ -591,7 +601,7 @@ class Carousel extends Component {
         return (
             <ul className="control-dots">
                 {Children.map(this.props.children, (item, index) => {
-                    return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} onKeyDown={this.changeItem} value={index} key={index} role='button' tabIndex={0} />;
+                    return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} onKeyDown={this.changeItem} value={index} key={index} role='button' tabIndex={0} aria-label={`${this.props.labels.item} ${index + 1}`} />;
                 })}
             </ul>
         );
@@ -611,7 +621,7 @@ class Carousel extends Component {
         }
 
         return (
-            <Thumbs ref={this.setThumbsRef} onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem} transitionTime={this.props.transitionTime} thumbWidth={this.props.thumbWidth}>
+            <Thumbs ref={this.setThumbsRef} onSelectItem={this.handleClickThumb} selectedItem={this.state.selectedItem} transitionTime={this.props.transitionTime} thumbWidth={this.props.thumbWidth} labels={this.props.labels}>
                 {this.props.children}
             </Thumbs>
         );
@@ -696,7 +706,7 @@ class Carousel extends Component {
         return (
             <div className={this.props.className} ref={this.setCarouselWrapperRef}>
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
-                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.onClickPrev} />
+                    <button type="button" aria-label={this.props.labels.leftArrow} className={klass.ARROW_PREV(!hasPrev)} onClick={this.onClickPrev} />
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={this.setItemsWrapperRef}>
                         { this.props.swipeable ?
                             <Swipe
@@ -718,7 +728,7 @@ class Carousel extends Component {
                             </ul>
                         }
                     </div>
-                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.onClickNext} />
+                    <button type="button" aria-label={this.props.labels.rightArrow} className={klass.ARROW_NEXT(!hasNext)} onClick={this.onClickNext} />
 
                     { this.renderControls() }
                     { this.renderStatus() }
