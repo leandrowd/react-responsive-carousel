@@ -44,7 +44,7 @@ Customize it yourself:
 - Codesandbox: <https://codesandbox.io/s/lp602ljjj7>
 
 ### Installing as a package
-`npm install react-responsive-carousel --save`
+`npm install react-responsive-carousel`
 
 ### Usage
 
