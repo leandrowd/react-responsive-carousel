@@ -594,6 +594,31 @@ describe("Slider", function() {
 
             expect(componentInstance.state.selectedItem).toBe(1);
         });
+
+        it('should not fire onChange callback (directly, or indirectly) when on the last slide and autoPlay = {true} && infiniteLoop = {false}', () => {
+            renderDefaultComponent({
+                children: [<img src="assets/1.jpeg" key="1"/>, <img src="assets/2.jpeg" key="2"/>],
+                autoPlay: true
+            });
+            componentInstance.handleOnChange = jest.genMockFunction();
+            jest.runOnlyPendingTimers();
+            jest.runOnlyPendingTimers();
+            expect(componentInstance.handleOnChange).toHaveBeenCalledTimes(1);
+            expect(componentInstance.state.selectedItem).toBe(1);
+        });
+
+        it('should fire onChange callback when on the last slide and autoPlay = {true} && infiniteLoop = {true}', () => {
+            renderDefaultComponent({
+                children: [<img src="assets/1.jpeg" key="1"/>, <img src="assets/2.jpeg" key="2"/>],
+                autoPlay: true,
+                infiniteLoop: true,
+            });
+            componentInstance.handleOnChange = jest.genMockFunction();
+            jest.runOnlyPendingTimers();
+            jest.runOnlyPendingTimers();
+            expect(componentInstance.handleOnChange).toHaveBeenCalledTimes(2);
+            expect(componentInstance.state.selectedItem).toBe(0);
+        })
     });
 
     describe('Mouse enter/leave', () => {

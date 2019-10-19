@@ -245,6 +245,11 @@ class Carousel extends Component {
         this.autoPlay();
     }
 
+    shouldAutoPlayRun = (position) => {
+        const lastPosition = Children.count(this.props.children) - 1;
+        return position < lastPosition || this.props.infiniteLoop;
+    }
+
     stopOnHover = () => {
         this.setState({isMouseEntered: true});
         this.clearAutoPlay();
@@ -493,7 +498,7 @@ class Carousel extends Component {
 
         // don't reset auto play when stop on hover is enabled, doing so will trigger a call to auto play more than once
         // and will result in the interval function not being cleared correctly.
-        if (this.state.autoPlay && this.state.isMouseEntered === false) {
+        if (this.state.autoPlay && (this.state.isMouseEntered === false) && this.shouldAutoPlayRun(position)) {
             this.resetAutoPlay();
         }
     }
@@ -517,10 +522,10 @@ class Carousel extends Component {
     changeItem = (e) => {
         if (!e.key || e.key === 'Enter') {
             const newIndex = e.target.value;
-
-            this.selectItem({
-                selectedItem: newIndex
-            });
+            this.selectItem(
+                {selectedItem: newIndex},
+                this.shouldAutoPlayRun(newIndex) && this.resetAutoPlay()
+            );
         }
     }
 
