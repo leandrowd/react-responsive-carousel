@@ -1,4 +1,4 @@
-import React, { Component, Children } from 'react';
+import React, {Component, Children} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import klass from '../cssClasses';
@@ -83,7 +83,7 @@ class Carousel extends Component {
         };
     }
 
-    componentDidMount () {
+    componentDidMount() {
         if (!this.props.children) {
             return;
         }
@@ -91,7 +91,7 @@ class Carousel extends Component {
         this.setupCarousel();
     }
 
-    componentWillReceiveProps (nextProps) {
+    componentWillReceiveProps(nextProps) {
         if (nextProps.selectedItem !== this.state.selectedItem) {
             this.updateSizes();
             this.moveTo(nextProps.selectedItem);
@@ -147,7 +147,7 @@ class Carousel extends Component {
         this.itemsRef[index] = node;
     }
 
-    setupCarousel () {
+    setupCarousel() {
         this.bindEvents();
 
         if (this.state.autoPlay && Children.count(this.props.children) > 1) {
@@ -158,7 +158,7 @@ class Carousel extends Component {
             initialized: true
         });
 
-        const initialImage = this.getInitialImage()
+        const initialImage = this.getInitialImage();
         if (initialImage) {
             // if it's a carousel of images, we set the mount state after the first image is loaded
             initialImage.addEventListener('load', this.setMountState);
@@ -167,14 +167,14 @@ class Carousel extends Component {
         }
     }
 
-    destroyCarousel () {
+    destroyCarousel() {
         if (this.state.initialized) {
             this.unbindEvents();
             this.destroyAutoPlay();
         }
     }
 
-    setupAutoPlay () {
+    setupAutoPlay() {
         this.autoPlay();
         const carouselWrapper = this.carouselWrapperRef;
 
@@ -184,7 +184,7 @@ class Carousel extends Component {
         }
     }
 
-    destroyAutoPlay () {
+    destroyAutoPlay() {
         this.clearAutoPlay();
         const carouselWrapper = this.carouselWrapperRef;
 
@@ -194,7 +194,7 @@ class Carousel extends Component {
         }
     }
 
-    bindEvents () {
+    bindEvents() {
         // as the widths are calculated, we need to resize
         // the carousel when the window is resized
         window.addEventListener("resize", this.updateSizes);
@@ -206,13 +206,13 @@ class Carousel extends Component {
         }
     }
 
-    unbindEvents () {
+    unbindEvents() {
         // removing listeners
         window.removeEventListener("resize", this.updateSizes);
         window.removeEventListener("DOMContentLoaded", this.updateSizes);
 
         const initialImage = this.getInitialImage();
-        if(initialImage) {
+        if (initialImage) {
             initialImage.removeEventListener("load", this.setMountState);
         }
 
@@ -261,7 +261,7 @@ class Carousel extends Component {
     }
 
     navigateWithKeyboard = (e) => {
-        const { axis } = this.props;
+        const {axis} = this.props;
         const isHorizontal = axis === 'horizontal';
         const keyNames = {
             ArrowUp: 38,
@@ -384,7 +384,7 @@ class Carousel extends Component {
             // if we slide even further we need to jump to other side so it can continue - and vice versa for the last slide
             if (this.state.selectedItem === 0 && position > -100) {
                 position -= childrenLength * 100;
-            } else if (this.state.selectedItem === childrenLength - 1 && position <  - childrenLength * 100) {
+            } else if (this.state.selectedItem === childrenLength - 1 && position < -childrenLength * 100) {
                 position += childrenLength * 100;
             }
         }
@@ -410,7 +410,7 @@ class Carousel extends Component {
         }
         const childrenLength = Children.count(this.props.children);
         if (this.props.centerMode && this.props.axis === 'horizontal') {
-            let currentPosition = - index * this.props.centerSlidePercentage;
+            let currentPosition = -index * this.props.centerSlidePercentage;
             const lastPosition = childrenLength - 1;
 
             if (index && (index !== lastPosition || this.props.infiniteLoop)) {
@@ -422,11 +422,11 @@ class Carousel extends Component {
             return currentPosition;
         }
 
-        return - index * 100;
+        return -index * 100;
     }
 
     setPosition = (position, forceReflow) => {
-        const list = ReactDOM.findDOMNode(this.listRef);        
+        const list = ReactDOM.findDOMNode(this.listRef);
         [
             'WebkitTransform',
             'MozTransform',
@@ -455,17 +455,17 @@ class Carousel extends Component {
         this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1), fromSwipe);
     }
 
-    moveTo = (position, fromSwipe) => {        
+    moveTo = (position, fromSwipe) => {
         const lastPosition = Children.count(this.props.children) - 1;
         const needClonedSlide = this.props.infiniteLoop && !fromSwipe && (position < 0 || position > lastPosition);
         const oldPosition = position;
 
-        if (position < 0 ) {
-          position = this.props.infiniteLoop ?  lastPosition : 0;
+        if (position < 0) {
+            position = this.props.infiniteLoop ? lastPosition : 0;
         }
 
         if (position > lastPosition) {
-          position = this.props.infiniteLoop ? 0 : lastPosition;
+            position = this.props.infiniteLoop ? 0 : lastPosition;
         }
 
         if (needClonedSlide) {
@@ -564,7 +564,7 @@ class Carousel extends Component {
         return null;
     }
 
-    renderItems (isClone) {
+    renderItems(isClone) {
         return Children.map(this.props.children, (item, index) => {
             const slideProps = {
                 ref: (e) => this.setItemsRef(e, index),
@@ -581,13 +581,13 @@ class Carousel extends Component {
 
             return (
                 <li {...slideProps}>
-                    { item }
+                    {item}
                 </li>
             );
         });
     }
 
-    renderControls () {
+    renderControls() {
         if (!this.props.showIndicators) {
             return null
         }
@@ -595,13 +595,14 @@ class Carousel extends Component {
         return (
             <ul className="control-dots">
                 {Children.map(this.props.children, (item, index) => {
-                    return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem} onKeyDown={this.changeItem} value={index} key={index} role='button' tabIndex={0} />;
+                    return <li className={klass.DOT(index === this.state.selectedItem)} onClick={this.changeItem}
+                               onKeyDown={this.changeItem} value={index} key={index} role='button' tabIndex={0}/>;
                 })}
             </ul>
         );
     }
 
-    renderStatus () {
+    renderStatus() {
         if (!this.props.showStatus) {
             return null
         }
@@ -609,7 +610,7 @@ class Carousel extends Component {
         return <p className="carousel-status">{this.props.statusFormatter(this.state.selectedItem + 1, Children.count(this.props.children))}</p>;
     }
 
-    renderThumbs () {
+    renderThumbs() {
         if (!this.props.showThumbs || Children.count(this.props.children) === 0) {
             return null
         }
@@ -621,7 +622,7 @@ class Carousel extends Component {
         );
     }
 
-    render () {
+    render() {
         if (!this.props.children || Children.count(this.props.children) === 0) {
             return null;
         }
@@ -645,23 +646,23 @@ class Carousel extends Component {
         const transitionTime = this.props.transitionTime + 'ms';
 
         itemListStyles = {
-                    'WebkitTransform': transformProp,
-                       'MozTransform': transformProp,
-                        'MsTransform': transformProp,
-                         'OTransform': transformProp,
-                          'transform': transformProp,
-                        'msTransform': transformProp
+            'WebkitTransform': transformProp,
+            'MozTransform': transformProp,
+            'MsTransform': transformProp,
+            'OTransform': transformProp,
+            'transform': transformProp,
+            'msTransform': transformProp
         };
 
         if (!this.state.swiping) {
             itemListStyles = {
                 ...itemListStyles,
-               'WebkitTransitionDuration': transitionTime,
-                  'MozTransitionDuration': transitionTime,
-                   'MsTransitionDuration': transitionTime,
-                    'OTransitionDuration': transitionTime,
-                     'transitionDuration': transitionTime,
-                   'msTransitionDuration': transitionTime
+                'WebkitTransitionDuration': transitionTime,
+                'MozTransitionDuration': transitionTime,
+                'MsTransitionDuration': transitionTime,
+                'OTransitionDuration': transitionTime,
+                'transitionDuration': transitionTime,
+                'msTransitionDuration': transitionTime
             };
         }
 
@@ -691,7 +692,7 @@ class Carousel extends Component {
                 containerStyles.height = itemHeight || 'auto';
             }
 
-        } else {            
+        } else {
             swiperProps.onSwipeUp = this.props.verticalSwipe === 'natural' ? this.onSwipeBackwards : this.onSwipeForward;
             swiperProps.onSwipeDown = this.props.verticalSwipe === 'natural' ? this.onSwipeForward : this.onSwipeBackwards;
             swiperProps.style.height = this.state.itemSize;
@@ -700,34 +701,35 @@ class Carousel extends Component {
         return (
             <div className={this.props.className} ref={this.setCarouselWrapperRef}>
                 <div className={klass.CAROUSEL(true)} style={{width: this.props.width}}>
-                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.onClickPrev} />
-                    <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles} ref={this.setItemsWrapperRef}>
-                        { this.props.swipeable ?
+                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.onClickPrev}/>
+                    <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles}
+                         ref={this.setItemsWrapperRef}>
+                        {this.props.swipeable ?
                             <Swipe
                                 tagName="ul"
                                 ref={this.setListRef}
                                 {...swiperProps}
                                 allowMouseEvents={this.props.emulateTouch}>
-                                { this.props.infiniteLoop && lastClone }
-                                { this.renderItems() }
-                                { this.props.infiniteLoop && firstClone }
+                                {this.props.infiniteLoop && lastClone}
+                                {this.renderItems()}
+                                {this.props.infiniteLoop && firstClone}
                             </Swipe> :
                             <ul
                                 className={klass.SLIDER(true, this.state.swiping)}
                                 ref={this.setListRef}
                                 style={itemListStyles}>
-                                { this.props.infiniteLoop && lastClone }
-                                { this.renderItems() }
-                                { this.props.infiniteLoop && firstClone }
+                                {this.props.infiniteLoop && lastClone}
+                                {this.renderItems()}
+                                {this.props.infiniteLoop && firstClone}
                             </ul>
                         }
                     </div>
-                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.onClickNext} />
+                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.onClickNext}/>
 
-                    { this.renderControls() }
-                    { this.renderStatus() }
+                    {this.renderControls()}
+                    {this.renderStatus()}
                 </div>
-                { this.renderThumbs() }
+                {this.renderThumbs()}
             </div>
         );
 
