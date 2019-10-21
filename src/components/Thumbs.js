@@ -227,9 +227,7 @@ class Thumbs extends Component {
         position = position >= this.lastPosition ? this.lastPosition : position;
 
         this.setState({
-            firstItem: position,
-            // if it's not a slider, we don't need to set position here
-            selectedItem: this.state.selectedItem
+            firstItem: position
         });
     }
 
