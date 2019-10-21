@@ -353,25 +353,25 @@ class Carousel extends Component {
         });
     }
 
-    onSwipeStart = () => {
+    onSwipeStart = (event) => {
         this.setState({
             swiping: true,
         });
-        this.props.onSwipeStart();
+        this.props.onSwipeStart(event);
         this.clearAutoPlay();
     }
 
-    onSwipeEnd = () => {
+    onSwipeEnd = (event) => {
         this.setState({
             swiping: false,
             cancelClick: false
         });
-        this.props.onSwipeEnd();
+        this.props.onSwipeEnd(event);
         this.autoPlay();
     }
 
-    onSwipeMove = (delta) => {
-        this.props.onSwipeMove();
+    onSwipeMove = (delta, event) => {
+        this.props.onSwipeMove(event);
         const isHorizontal = this.props.axis === 'horizontal';
         const childrenLength = Children.count(this.props.children);
 
