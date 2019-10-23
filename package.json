@@ -21,12 +21,12 @@
         "view"
     ],
     "engines": {
-        "node": ">=4"
+        "node": ">=8"
     },
     "types": "./index.d.ts",
     "scripts": {
         "start": "node --harmony ./node_modules/gulp/bin/gulp",
-        "test": "jest",
+        "test": "prettier --check ./src/**/*.js && jest",
         "update-snapshots": "jest --updateSnapshot",
         "prebuild": "npm test",
         "build": "babel ./src -d lib --ignore '__tests__' && gulp styles:package copy:package",
@@ -38,11 +38,6 @@
         "storybook": "start-storybook -p 9001 -s ./src -c .storybook",
         "build-storybook": "build-storybook -s ./src -o ./dist/storybook",
         "changelog": "auto-changelog --ignore-commit-pattern=\"(Merge pull request|Merge branch|Updating changelog|Prepare for publishing)\""
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "pretty-quick --staged"
-        }
     },
     "repository": {
         "type": "git",
@@ -95,21 +90,26 @@
         "vinyl-source-stream": "^1.1.0",
         "watchify": "^3.11.1"
     },
+    "dependencies": {
+        "classnames": "^2.2.5",
+        "prop-types": "^15.5.8",
+        "react-easy-swipe": "^0.0.16"
+    },
     "jest": {
         "unmockedModulePathPatterns": [
             "node_modules"
         ],
         "rootDir": "src"
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    },
     "auto-changelog": {
         "output": "CHANGELOG.md",
         "template": "keepachangelog",
         "unreleased": true,
         "commitLimit": true
-    },
-    "dependencies": {
-        "classnames": "^2.2.5",
-        "prop-types": "^15.5.8",
-        "react-easy-swipe": "^0.0.16"
     }
 }
