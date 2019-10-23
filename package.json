@@ -26,7 +26,8 @@
     "types": "./index.d.ts",
     "scripts": {
         "start": "node --harmony ./node_modules/gulp/bin/gulp",
-        "test": "yarn format:check && jest",
+        "test": "yarn format:check && yarn jest",
+        "jest": "jest",
         "format": "prettier '**/*.{js,json}'",
         "format:check": "yarn format --check",
         "format:write": "yarn format --write",
