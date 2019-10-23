@@ -115,6 +115,9 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | centerMode            | `boolean`     | `false` | Enables centered view with partial prev/next slides. Only works with horizontal axis. |
 | centerSlidePercentage | `number`      | `80` | optionally specify percentage width (as an integer) of the slides in `centerMode` |
 | labels | `object [key: string]: string`      | `{ leftArrow, rightArrow, item }` | optionally specify labels to be applied to controls |
+| onSwipeStart          | `function`    | - | Fired when a swiping gesture has started |
+| onSwipeEnd            | `function`    | - | Fired when a swiping gesture has ended |
+| onSwipeMove           | `function`    | - | Fired when a swiping gesture is happening |
 
 
 =======================
