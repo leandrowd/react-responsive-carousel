@@ -16,14 +16,14 @@ class Thumbs extends Component {
         labels: PropTypes.shape({
             leftArrow: PropTypes.string,
             rightArrow: PropTypes.string,
-            item: PropTypes.string
-        })
+            item: PropTypes.string,
+        }),
     };
 
     static defaultProps = {
         selectedItem: 0,
         transitionTime: 350,
-        axis: 'horizontal'
+        axis: 'horizontal',
     };
 
     constructor(props) {
@@ -37,8 +37,8 @@ class Thumbs extends Component {
             visibleItems: 0,
             lastPosition: 0,
             showArrows: false,
-            images: this.getImages()
-        }
+            images: this.getImages(),
+        };
     }
 
     componentDidMount(nextProps) {
@@ -49,12 +49,12 @@ class Thumbs extends Component {
         if (props.selectedItem !== this.state.selectedItem) {
             this.setState({
                 selectedItem: props.selectedItem,
-                firstItem: this.getFirstItem(props.selectedItem)
+                firstItem: this.getFirstItem(props.selectedItem),
             });
         }
         if (props.children !== this.props.children) {
             this.setState({
-               images: this.getImages()
+                images: this.getImages(),
             });
         }
     }
@@ -73,27 +73,27 @@ class Thumbs extends Component {
         this.destroyThumbs();
     }
 
-    setItemsWrapperRef = node => {
+    setItemsWrapperRef = (node) => {
         this.itemsWrapperRef = node;
-    }
+    };
 
-    setItemsListRef = node => {
+    setItemsListRef = (node) => {
         this.itemsListRef = node;
-    }
+    };
 
     setThumbsRef = (node, index) => {
         if (!this.thumbsRef) {
             this.thumbsRef = [];
         }
         this.thumbsRef[index] = node;
-    }
+    };
 
     setupThumbs() {
         // as the widths are calculated, we need to resize
         // the carousel when the window is resized
-        window.addEventListener("resize", this.updateSizes);
+        window.addEventListener('resize', this.updateSizes);
         // issue #2 - image loading smaller
-        window.addEventListener("DOMContentLoaded", this.updateSizes);
+        window.addEventListener('DOMContentLoaded', this.updateSizes);
 
         // when the component is rendered we need to calculate
         // the container size to adjust the responsive behaviour
@@ -102,8 +102,8 @@ class Thumbs extends Component {
 
     destroyThumbs() {
         // removing listeners
-        window.removeEventListener("resize", this.updateSizes);
-        window.removeEventListener("DOMContentLoaded", this.updateSizes);
+        window.removeEventListener('resize', this.updateSizes);
+        window.removeEventListener('DOMContentLoaded', this.updateSizes);
     }
 
     updateSizes = () => {
@@ -122,17 +122,17 @@ class Thumbs extends Component {
             visibleItems,
             firstItem: showArrows ? this.getFirstItem(props.selectedItem) : 0,
             lastPosition,
-            showArrows
-        }))
-    }
+            showArrows,
+        }));
+    };
 
     getImages() {
         const images = Children.map(this.props.children, (item, index) => {
             let img = item;
 
             // if the item is not an image, try to find the first image in the item's children.
-            if (item.type !== "img") {
-                img = Children.toArray(item.props.children).filter((children) => children.type === "img")[0];
+            if (item.type !== 'img') {
+                img = Children.toArray(item.props.children).filter((children) => children.type === 'img')[0];
             }
 
             if (!img || img.length === 0) {
@@ -142,8 +142,10 @@ class Thumbs extends Component {
             return img;
         });
 
-        if (images.filter(image => image !== null).length === 0) {
-            console.warn(`No images found! Can't build the thumb list without images. If you don't need thumbs, set showThumbs={false} in the Carousel. Note that it's not possible to get images rendered inside custom components. More info at https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md`);
+        if (images.filter((image) => image !== null).length === 0) {
+            console.warn(
+                `No images found! Can't build the thumb list without images. If you don't need thumbs, set showThumbs={false} in the Carousel. Note that it's not possible to get images rendered inside custom components. More info at https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md`
+            );
 
             return null;
         }
@@ -152,9 +154,9 @@ class Thumbs extends Component {
     }
 
     setMountState = () => {
-        this.setState({hasMount: true});
+        this.setState({ hasMount: true });
         this.updateSizes();
-    }
+    };
 
     handleClickItem = (index, item, e) => {
         if (!e.keyCode || e.key === 'Enter') {
@@ -164,25 +166,25 @@ class Thumbs extends Component {
                 handler(index, item);
             }
         }
-    }
+    };
 
     onSwipeStart = () => {
         this.setState({
-            swiping: true
+            swiping: true,
         });
-    }
+    };
 
     onSwipeEnd = () => {
         this.setState({
-            swiping: false
+            swiping: false,
         });
-    }
+    };
 
     onSwipeMove = (deltaX) => {
         const leftBoundary = 0;
 
-        const currentPosition = - this.state.firstItem * this.state.itemSize;
-        const lastLeftBoundary = - this.state.visibleItems * this.state.itemSize;
+        const currentPosition = -this.state.firstItem * this.state.itemSize;
+        const lastLeftBoundary = -this.state.visibleItems * this.state.itemSize;
 
         // prevent user from swiping left out of boundaries
         if (currentPosition === leftBoundary && deltaX > 0) {
@@ -195,30 +197,25 @@ class Thumbs extends Component {
         }
 
         const wrapperSize = this.itemsWrapperRef.clientWidth;
-        const position = currentPosition + (100 / (wrapperSize / deltaX)) + '%';
+        const position = currentPosition + 100 / (wrapperSize / deltaX) + '%';
 
         // if 3d isn't available we will use left to move
         if (this.itemsListRef) {
-            [
-                'WebkitTransform',
-                'MozTransform',
-                'MsTransform',
-                'OTransform',
-                'transform',
-                'msTransform'
-            ].forEach((prop) => {
-                this.itemsListRef.style[prop] = CSSTranslate(position, this.props.axis);
-            });
+            ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach(
+                (prop) => {
+                    this.itemsListRef.style[prop] = CSSTranslate(position, this.props.axis);
+                }
+            );
         }
-    }
+    };
 
     slideRight = (positions) => {
         this.moveTo(this.state.firstItem - (typeof positions === 'number' ? positions : 1));
-    }
+    };
 
     slideLeft = (positions) => {
         this.moveTo(this.state.firstItem + (typeof positions === 'number' ? positions : 1));
-    }
+    };
 
     moveTo = (position) => {
         // position can't be lower than 0
@@ -227,18 +224,18 @@ class Thumbs extends Component {
         position = position >= this.lastPosition ? this.lastPosition : position;
 
         this.setState({
-            firstItem: position
+            firstItem: position,
         });
-    }
+    };
 
-    getFirstItem (selectedItem) {
+    getFirstItem(selectedItem) {
         let firstItem = selectedItem;
 
         if (selectedItem >= this.state.lastPosition) {
             firstItem = this.state.lastPosition;
         }
 
-        if (selectedItem < (this.state.firstItem + this.state.visibleItems)) {
+        if (selectedItem < this.state.firstItem + this.state.visibleItems) {
             firstItem = this.state.firstItem;
         }
 
@@ -249,34 +246,34 @@ class Thumbs extends Component {
         return firstItem;
     }
 
-    renderItems () {
+    renderItems() {
         return this.state.images.map((img, index) => {
             const itemClass = klass.ITEM(false, index === this.state.selectedItem && this.state.hasMount);
 
             const thumbProps = {
-              key: index,
-              ref: e => this.setThumbsRef(e, index),
-              className: itemClass,
-              onClick: this.handleClickItem.bind(this, index, this.props.children[index]),
-              onKeyDown: this.handleClickItem.bind(this, index, this.props.children[index]),
-              'aria-label': `${this.props.labels.item} ${index + 1}`
+                key: index,
+                ref: (e) => this.setThumbsRef(e, index),
+                className: itemClass,
+                onClick: this.handleClickItem.bind(this, index, this.props.children[index]),
+                onKeyDown: this.handleClickItem.bind(this, index, this.props.children[index]),
+                'aria-label': `${this.props.labels.item} ${index + 1}`,
             };
 
             if (index === 0) {
                 img = React.cloneElement(img, {
-                    onLoad: this.setMountState
+                    onLoad: this.setMountState,
                 });
             }
 
             return (
-                <li {...thumbProps} role='button' tabIndex={0}>
-                    { img }
+                <li {...thumbProps} role="button" tabIndex={0}>
+                    {img}
                 </li>
             );
         });
     }
 
-    render () {
+    render() {
         if (!this.props.children) {
             return null;
         }
@@ -288,32 +285,38 @@ class Thumbs extends Component {
         // obj to hold the transformations and styles
         let itemListStyles = {};
 
-        const currentPosition = - this.state.firstItem * this.state.itemSize + 'px';
+        const currentPosition = -this.state.firstItem * this.state.itemSize + 'px';
 
         const transformProp = CSSTranslate(currentPosition, this.props.axis);
 
         const transitionTime = this.props.transitionTime + 'ms';
 
         itemListStyles = {
-                    'WebkitTransform': transformProp,
-                       'MozTransform': transformProp,
-                        'MsTransform': transformProp,
-                         'OTransform': transformProp,
-                          'transform': transformProp,
-                        'msTransform': transformProp,
-           'WebkitTransitionDuration': transitionTime,
-              'MozTransitionDuration': transitionTime,
-               'MsTransitionDuration': transitionTime,
-                'OTransitionDuration': transitionTime,
-                 'transitionDuration': transitionTime,
-               'msTransitionDuration': transitionTime
+            WebkitTransform: transformProp,
+            MozTransform: transformProp,
+            MsTransform: transformProp,
+            OTransform: transformProp,
+            transform: transformProp,
+            msTransform: transformProp,
+            WebkitTransitionDuration: transitionTime,
+            MozTransitionDuration: transitionTime,
+            MsTransitionDuration: transitionTime,
+            OTransitionDuration: transitionTime,
+            transitionDuration: transitionTime,
+            msTransitionDuration: transitionTime,
         };
 
         return (
             <div className={klass.CAROUSEL(false)}>
                 <div className={klass.WRAPPER(false)} ref={this.setItemsWrapperRef}>
-                    <button type="button" className={klass.ARROW_PREV(!hasPrev)} onClick={this.slideRight} aria-label={this.props.labels.leftArrow} />
-                    <Swipe tagName="ul"
+                    <button
+                        type="button"
+                        className={klass.ARROW_PREV(!hasPrev)}
+                        onClick={this.slideRight}
+                        aria-label={this.props.labels.leftArrow}
+                    />
+                    <Swipe
+                        tagName="ul"
                         selectedItem={this.state.selectedItem}
                         className={klass.SLIDER(false, this.state.swiping)}
                         onSwipeLeft={this.slideLeft}
@@ -322,10 +325,16 @@ class Thumbs extends Component {
                         onSwipeStart={this.onSwipeStart}
                         onSwipeEnd={this.onSwipeEnd}
                         style={itemListStyles}
-                        ref={this.setItemsListRef}>
-                        { this.renderItems() }
+                        ref={this.setItemsListRef}
+                    >
+                        {this.renderItems()}
                     </Swipe>
-                    <button type="button" className={klass.ARROW_NEXT(!hasNext)} onClick={this.slideLeft} aria-label={this.props.labels.rightArrow} />
+                    <button
+                        type="button"
+                        className={klass.ARROW_NEXT(!hasNext)}
+                        onClick={this.slideLeft}
+                        aria-label={this.props.labels.rightArrow}
+                    />
                 </div>
             </div>
         );
