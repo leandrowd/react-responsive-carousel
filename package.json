@@ -26,7 +26,10 @@
     "types": "./index.d.ts",
     "scripts": {
         "start": "node --harmony ./node_modules/gulp/bin/gulp",
-        "test": "prettier --check ./src/**/*.js && jest",
+        "test": "yarn format:check && jest",
+        "format": "prettier '**/*.{js,json}'",
+        "format:check": "yarn format --check",
+        "format:write": "yarn format --write",
         "update-snapshots": "jest --updateSnapshot",
         "prebuild": "npm test",
         "build": "babel ./src -d lib --ignore '__tests__' && gulp styles:package copy:package",
@@ -103,7 +106,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "pretty-quick --staged"
+            "pre-commit": "pretty-quick --staged --pattern '**/*.(js|json)'"
         }
     },
     "auto-changelog": {
