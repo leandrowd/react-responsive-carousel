@@ -20,9 +20,6 @@
         "react-component",
         "view"
     ],
-    "engines": {
-        "node": ">=8"
-    },
     "types": "./index.d.ts",
     "scripts": {
         "start": "node --harmony ./node_modules/gulp/bin/gulp",

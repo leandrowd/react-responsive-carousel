@@ -44,7 +44,7 @@ Customize it yourself:
 - Codesandbox: <https://codesandbox.io/s/lp602ljjj7>
 
 ### Installing as a package
-`npm install react-responsive-carousel`
+`yarn add react-responsive-carousel`
 
 ### Usage
 
@@ -123,7 +123,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 =======================
 
 ### Contributing
-Check the [contributing guide](https://github.com/leandrowd/react-responsive-carousel/blob/master/CONTRIBUTING.md)
+The [contributing guide](https://github.com/leandrowd/react-responsive-carousel/blob/master/CONTRIBUTING.md) contains details on how to create pull requests and setup your dev environment. Please read it before contributing!
 
 =======================
 
@@ -131,32 +131,6 @@ Check the [contributing guide](https://github.com/leandrowd/react-responsive-car
 When raising an issue, please add as much details as possible. Screenshots, video recordings, or anything else that can make it easier to reproduce the bug you are reporting.
 
 * A new option is to create an example with the code that causes the bug. Fork this [example from codesandbox](https://codesandbox.io/s/lp602ljjj7) and add your code there. Don't forget to fork, save and add the link for the example to the issue.
-
-=======================
-
-### Setting up development environment
-- `git clone git@github.com:leandrowd/react-responsive-carousel.git`
-- `npm install`
-- `npm start`
-- Open your favourite browser on `localhost:8000` - livereload will be enabled and tests will run on each change
-
-> The fastest dev environment is on node 6. If you have `nvm` installed, just run `nvm use 6`. Tests in travis will run on node 4 and 6
-
-#### Running only tests
-- `npm test`
-
-#### Running storybook
-- `npm run storybook`
-
-=======================
-
-### Only after merged back to master
-
-#### Publish to npm
-- `npm run publish-to-npm`
-
-#### Pubish to gh-pages
-- `npm run publish-to-gh-pages`
 
 =======================
 
