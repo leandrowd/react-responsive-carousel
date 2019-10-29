@@ -7,8 +7,10 @@
 import * as React from "react";
 
 export type Axis = "horizontal" | "vertical";
+export type srcType =  "receive-props" | "auto-play" | "click-dot" | "click-thumb" | "click-prev" | "click-next" | "swipe-prev" | "swipe-next"  | "key-next" | "key-prev";
 
 export type CarouselCallback = (index: number, item: React.ReactNode) => void;
+export type CarouselChangeCallback = (index: number, item: React.ReactNode, srcType: srcType) => void;
 
 export type StatusFormatter = (current: number, total: number) => string;
 
@@ -21,7 +23,8 @@ export interface CarouselProps {
     infiniteLoop?: boolean;
     selectedItem?: number;
     axis?: Axis;
-    onChange?: CarouselCallback;
+    onChange?: CarouselChangeCallback;
+    onUserChange?: CarouselChangeCallback;
     onClickItem?: CarouselCallback;
     onClickThumb?: CarouselCallback;
     width?: string;

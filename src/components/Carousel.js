@@ -290,9 +290,9 @@ class Carousel extends Component {
         const prevKey = isHorizontal ? keyNames.ArrowLeft : keyNames.ArrowUp;
 
         if (nextKey === e.keyCode) {
-            this.increment(1, false, 'next-key' );
+            this.increment(1, false, 'key-next' );
         } else if (prevKey === e.keyCode) {
-            this.decrement(1, false, 'prev-key');
+            this.decrement(1, false, 'key-prev');
         }
     };
 
@@ -350,13 +350,13 @@ class Carousel extends Component {
 
         this.props.onChange(index, item, srcType);
         switch (srcType) {
-            case 'dot-clicked':
+            case 'click-dot':
             case 'click-prev':
-            case 'swipe-backwards':
-            case 'swipe-forward':
+            case 'swipe-prev':
+            case 'swipe-next':
             case 'click-next':
-            case 'next-key':
-            case 'prev-key':
+            case 'key-next':
+            case 'key-prev':
             case 'click-thumb':
                 this.props.onUserChange(index, item, srcType);
             break;
@@ -550,11 +550,11 @@ class Carousel extends Component {
     };
 
     onSwipeForward = () => {
-        this.increment(1, true, 'swipe-forward');
+        this.increment(1, true, 'swipe-next');
     };
 
     onSwipeBackwards = () => {
-        this.decrement(1, true, 'swipe-backwards');
+        this.decrement(1, true, 'swipe-prev');
     };
 
     changeItem = (e) => {
@@ -563,7 +563,7 @@ class Carousel extends Component {
 
             this.selectItem({
                 selectedItem: newIndex,
-            }, null, 'dot-clicked');
+            }, null, 'click-dot');
         }
     };
 
