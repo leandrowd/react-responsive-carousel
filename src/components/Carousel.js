@@ -27,6 +27,7 @@ class Carousel extends Component {
         onClickItem: PropTypes.func.isRequired,
         onClickThumb: PropTypes.func.isRequired,
         onChange: PropTypes.func.isRequired,
+        onUserChange: PropTypes.func.isRequired,
         axis: PropTypes.oneOf(['horizontal', 'vertical']),
         verticalSwipe: PropTypes.oneOf(['natural', 'standard']),
         width: customPropTypes.unit,
@@ -74,6 +75,7 @@ class Carousel extends Component {
         onClickItem: noop,
         onClickThumb: noop,
         onChange: noop,
+        onUserChange: noop,
         statusFormatter: defaultStatusFormatter,
         centerMode: false,
         centerSlidePercentage: 80,
@@ -110,7 +112,7 @@ class Carousel extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.selectedItem !== this.state.selectedItem) {
             this.updateSizes();
-            this.moveTo(nextProps.selectedItem);
+            this.moveTo(nextProps.selectedItem, null, 'receive-props');
         }
 
         if (nextProps.autoPlay !== this.state.autoPlay) {
@@ -247,7 +249,7 @@ class Carousel extends Component {
 
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
-            this.increment();
+            this.increment(1, false, 'auto-play');
         }, this.props.interval);
     };
 
@@ -288,9 +290,9 @@ class Carousel extends Component {
         const prevKey = isHorizontal ? keyNames.ArrowLeft : keyNames.ArrowUp;
 
         if (nextKey === e.keyCode) {
-            this.increment();
+            this.increment(1, false, 'next-key' );
         } else if (prevKey === e.keyCode) {
-            this.decrement();
+            this.decrement(1, false, 'prev-key');
         }
     };
 
@@ -337,14 +339,31 @@ class Carousel extends Component {
                 selectedItem: index,
             });
         }
+
+        // TODO: is onChange event emitter missing here?
     };
 
-    handleOnChange = (index, item) => {
+    handleOnChange = (index, item, srcType) => {
         if (Children.count(this.props.children) <= 1) {
             return;
         }
 
-        this.props.onChange(index, item);
+        this.props.onChange(index, item, srcType);
+        switch (srcType) {
+            case 'dot-clicked':
+            case 'click-prev':
+            case 'swipe-backwards':
+            case 'swipe-forward':
+            case 'click-next':
+            case 'next-key':
+            case 'prev-key':
+            case 'click-thumb':
+                this.props.onUserChange(index, item, srcType);
+            break;
+            default:
+                // receive-props
+                // auto-play
+        }
     };
 
     handleClickThumb = (index, item) => {
@@ -352,7 +371,7 @@ class Carousel extends Component {
 
         this.selectItem({
             selectedItem: index,
-        });
+        }, null, 'click-thumb');
     };
 
     onSwipeStart = (event) => {
@@ -459,15 +478,15 @@ class Carousel extends Component {
         this.setPosition(currentPosition);
     };
 
-    decrement = (positions = 1, fromSwipe = false) => {
-        this.moveTo(this.state.selectedItem - (typeof positions === 'number' ? positions : 1), fromSwipe);
+    decrement = (positions = 1, fromSwipe = false, srcType) => {
+        this.moveTo(this.state.selectedItem - (typeof positions === 'number' ? positions : 1), fromSwipe, srcType);
     };
 
-    increment = (positions = 1, fromSwipe = false) => {
-        this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1), fromSwipe);
+    increment = (positions = 1, fromSwipe = false, srcType) => {
+        this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1), fromSwipe, srcType);
     };
 
-    moveTo = (position, fromSwipe) => {
+    moveTo = (position, fromSwipe, srcType) => {
         const lastPosition = Children.count(this.props.children) - 1;
         const needClonedSlide = this.props.infiniteLoop && !fromSwipe && (position < 0 || position > lastPosition);
         const oldPosition = position;
@@ -505,14 +524,14 @@ class Carousel extends Component {
                     this.selectItem({
                         selectedItem: position,
                         swiping: false,
-                    });
+                    }, null, srcType);
                 }
             );
         } else {
             this.selectItem({
                 // if it's not a slider, we don't need to set position here
                 selectedItem: position,
-            });
+            }, null, srcType);
         }
 
         // don't reset auto play when stop on hover is enabled, doing so will trigger a call to auto play more than once
@@ -523,19 +542,19 @@ class Carousel extends Component {
     };
 
     onClickNext = () => {
-        this.increment(1, false);
+        this.increment(1, false, 'click-next');
     };
 
     onClickPrev = () => {
-        this.decrement(1, false);
+        this.decrement(1, false, 'click-prev');
     };
 
     onSwipeForward = () => {
-        this.increment(1, true);
+        this.increment(1, true, 'swipe-forward');
     };
 
     onSwipeBackwards = () => {
-        this.decrement(1, true);
+        this.decrement(1, true, 'swipe-backwards');
     };
 
     changeItem = (e) => {
@@ -544,13 +563,13 @@ class Carousel extends Component {
 
             this.selectItem({
                 selectedItem: newIndex,
-            });
+            }, null, 'dot-clicked');
         }
     };
 
-    selectItem = (state, cb) => {
+    selectItem = (state, cb, srcType) => {
         this.setState(state, cb);
-        this.handleOnChange(state.selectedItem, Children.toArray(this.props.children)[state.selectedItem]);
+        this.handleOnChange(state.selectedItem, Children.toArray(this.props.children)[state.selectedItem], srcType);
     };
 
     getInitialImage = () => {
