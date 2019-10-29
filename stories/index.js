@@ -166,9 +166,12 @@ storiesOf('Carousel')
         </div>,
         () => (
             <Carousel
+                autoPlay
+                useKeyboardArrows
                 onClickThumb={action('click thumb')}
                 onClickItem={action('click item')}
                 onChange={action('change')}
+                onUserChange={action('userChange')}
             >
                 {baseChildren.props.children}
             </Carousel>

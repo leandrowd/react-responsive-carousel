@@ -99,6 +99,7 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | axis                  | `string`      | `horizontal` | changes orientation - accepts `horizontal` and `vertical` |
 | verticalSwipe         | `string`      | `standard` | changes vertical swipe scroll direction - accepts `standard` and `natural` |
 | onChange              | `function`    | - | Fired when changing positions |
+| onUserChange          | `function`    | - | Fired when changing positions by user (click/swipe/key) |
 | onClickItem           | `function`    | - | Fired when an item is clicked |
 | onClickThumb          | `function`    | - | Fired when a thumb it clicked |
 | width                 | `string`      | - | Allows to set a fixed width |

@@ -381,6 +381,37 @@ describe('Slider', function() {
         });
     });
 
+    describe('onChange', () => {
+        var mockedChangeFunction, mockedUserChangeFunction = null;
+        beforeEach(function(){
+            mockedChangeFunction = jest.genMockFunction();
+            mockedUserChangeFunction = jest.genMockFunction();
+            renderDefaultComponent({
+                showArrows: true,
+                onChange: mockedChangeFunction,
+                onUserChange: mockedUserChangeFunction,
+            });
+        });        
+
+        describe('and onUserChange', () => {
+            it(' should be fired on arrow next click', () => {
+                const slide = shallow(component.find('.control-next').get(0));
+                slide.simulate('click');
+    
+                 expect(mockedChangeFunction).toBeCalledWith(1, expect.anything(), 'click-next');
+                 expect(mockedUserChangeFunction).toBeCalledWith(1, expect.anything(), 'click-next');
+            });
+        }) 
+
+        describe('without onUserChange', () => {
+            it('should be fired after componentWillReceiveProps', () => {
+                componentInstance.moveTo(4, null, 'receive-props');
+                expect(mockedChangeFunction).toBeCalledWith(4, expect.anything(), 'receive-props');
+                expect(mockedUserChangeFunction).toHaveBeenCalledTimes(0);
+            });
+        })
+    });
+
     it('should add a thumb-wrapper container', () => {
         expect(component.find('.thumbs-wrapper').length).toBe(1);
     });
