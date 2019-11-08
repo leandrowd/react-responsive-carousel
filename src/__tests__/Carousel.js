@@ -382,8 +382,9 @@ describe('Slider', function() {
     });
 
     describe('onChange', () => {
-        var mockedChangeFunction, mockedUserChangeFunction = null;
-        beforeEach(function(){
+        var mockedChangeFunction,
+            mockedUserChangeFunction = null;
+        beforeEach(function() {
             mockedChangeFunction = jest.genMockFunction();
             mockedUserChangeFunction = jest.genMockFunction();
             renderDefaultComponent({
@@ -391,17 +392,17 @@ describe('Slider', function() {
                 onChange: mockedChangeFunction,
                 onUserChange: mockedUserChangeFunction,
             });
-        });        
+        });
 
         describe('and onUserChange', () => {
             it(' should be fired on arrow next click', () => {
                 const slide = shallow(component.find('.control-next').get(0));
                 slide.simulate('click');
-    
-                 expect(mockedChangeFunction).toBeCalledWith(1, expect.anything(), 'click-next');
-                 expect(mockedUserChangeFunction).toBeCalledWith(1, expect.anything(), 'click-next');
+
+                expect(mockedChangeFunction).toBeCalledWith(1, expect.anything(), 'click-next');
+                expect(mockedUserChangeFunction).toBeCalledWith(1, expect.anything(), 'click-next');
             });
-        }) 
+        });
 
         describe('without onUserChange', () => {
             it('should be fired after componentWillReceiveProps', () => {
@@ -409,7 +410,7 @@ describe('Slider', function() {
                 expect(mockedChangeFunction).toBeCalledWith(4, expect.anything(), 'receive-props');
                 expect(mockedUserChangeFunction).toHaveBeenCalledTimes(0);
             });
-        })
+        });
     });
 
     it('should add a thumb-wrapper container', () => {

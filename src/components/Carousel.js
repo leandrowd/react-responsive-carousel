@@ -290,7 +290,7 @@ class Carousel extends Component {
         const prevKey = isHorizontal ? keyNames.ArrowLeft : keyNames.ArrowUp;
 
         if (nextKey === e.keyCode) {
-            this.increment(1, false, 'key-next' );
+            this.increment(1, false, 'key-next');
         } else if (prevKey === e.keyCode) {
             this.decrement(1, false, 'key-prev');
         }
@@ -359,19 +359,23 @@ class Carousel extends Component {
             case 'key-prev':
             case 'click-thumb':
                 this.props.onUserChange(index, item, srcType);
-            break;
+                break;
             default:
-                // receive-props
-                // auto-play
+            // receive-props
+            // auto-play
         }
     };
 
     handleClickThumb = (index, item) => {
         this.props.onClickThumb(index, item);
 
-        this.selectItem({
-            selectedItem: index,
-        }, null, 'click-thumb');
+        this.selectItem(
+            {
+                selectedItem: index,
+            },
+            null,
+            'click-thumb'
+        );
     };
 
     onSwipeStart = (event) => {
@@ -521,17 +525,25 @@ class Carousel extends Component {
                         this.setPosition(0, true);
                     }
 
-                    this.selectItem({
-                        selectedItem: position,
-                        swiping: false,
-                    }, null, srcType);
+                    this.selectItem(
+                        {
+                            selectedItem: position,
+                            swiping: false,
+                        },
+                        null,
+                        srcType
+                    );
                 }
             );
         } else {
-            this.selectItem({
-                // if it's not a slider, we don't need to set position here
-                selectedItem: position,
-            }, null, srcType);
+            this.selectItem(
+                {
+                    // if it's not a slider, we don't need to set position here
+                    selectedItem: position,
+                },
+                null,
+                srcType
+            );
         }
 
         // don't reset auto play when stop on hover is enabled, doing so will trigger a call to auto play more than once
@@ -561,9 +573,13 @@ class Carousel extends Component {
         if (!e.key || e.key === 'Enter') {
             const newIndex = e.target.value;
 
-            this.selectItem({
-                selectedItem: newIndex,
-            }, null, 'click-dot');
+            this.selectItem(
+                {
+                    selectedItem: newIndex,
+                },
+                null,
+                'click-dot'
+            );
         }
     };
 
