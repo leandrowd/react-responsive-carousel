@@ -107,19 +107,19 @@ class Carousel extends Component {
         this.setupCarousel();
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.selectedItem !== this.state.selectedItem) {
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.selectedItem !== nextState.selectedItem) {
             this.updateSizes();
             this.moveTo(nextProps.selectedItem);
         }
 
-        if (nextProps.autoPlay !== this.state.autoPlay) {
+        if (nextProps.autoPlay !== nextState.autoPlay) {
             this.setState(
                 {
                     autoPlay: nextProps.autoPlay,
                 },
                 () => {
-                    if (this.state.autoPlay) {
+                    if (nextState.autoPlay) {
                         this.setupAutoPlay();
                     } else {
                         this.destroyAutoPlay();
@@ -127,6 +127,8 @@ class Carousel extends Component {
                 }
             );
         }
+
+        return true;
     }
 
     componentDidUpdate(prevProps, prevState) {
