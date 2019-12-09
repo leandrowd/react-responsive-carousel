@@ -173,17 +173,22 @@ class Carousel extends Component {
             this.setupAutoPlay();
         }
 
-        this.setState({
-            initialized: true,
-        });
-
-        const initialImage = this.getInitialImage();
-        if (initialImage) {
-            // if it's a carousel of images, we set the mount state after the first image is loaded
-            initialImage.addEventListener('load', this.setMountState);
-        } else {
-            this.setMountState();
-        }
+        this.setState(
+            {
+                initialized: true,
+            },
+            () => {
+                // use a callback since 'updateSizes()' depends on 'initialized' attribute
+                const initialImage = this.getInitialImage();
+                // when image is browser cached (i.e., true === initialImage.complete), "load" event is not triggered
+                if (initialImage && false === initialImage.complete) {
+                    // if it's a carousel of images, we set the mount state after the first image is loaded
+                    initialImage.addEventListener('load', this.setMountState);
+                } else {
+                    this.setMountState();
+                }
+            }
+        );
     }
 
     destroyCarousel() {
