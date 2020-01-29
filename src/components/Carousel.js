@@ -107,19 +107,19 @@ class Carousel extends Component {
         this.setupCarousel();
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.selectedItem !== this.state.selectedItem) {
+    static getDerivedStateFromProps(state, props) {
+        if (props.selectedItem !== state.selectedItem) {
             this.updateSizes();
-            this.moveTo(nextProps.selectedItem);
+            this.moveTo(props.selectedItem);
         }
 
-        if (nextProps.autoPlay !== this.state.autoPlay) {
+        if (props.autoPlay !== state.autoPlay) {
             this.setState(
                 {
-                    autoPlay: nextProps.autoPlay,
+                    autoPlay: props.autoPlay,
                 },
                 () => {
-                    if (this.state.autoPlay) {
+                    if (state.autoPlay) {
                         this.setupAutoPlay();
                     } else {
                         this.destroyAutoPlay();
