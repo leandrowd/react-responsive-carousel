@@ -107,12 +107,6 @@ class Carousel extends Component {
         this.setupCarousel();
     }
 
-    static getDerivedStateFromProps(props, state) {
-        if (props.autoPlay !== state.autoPlay) {
-            return { autoPlay: props.autoPlay };
-        }
-    }
-
     componentDidUpdate(prevProps, prevState) {
         if (!prevProps.children && this.props.children && !this.state.initialized) {
             this.setupCarousel();
@@ -125,15 +119,17 @@ class Carousel extends Component {
 
         if (prevProps.selectedItem !== this.props.selectedItem) {
             this.updateSizes();
-            this.moveTo(prevProps.selectedItem);
+            this.moveTo(this.props.selectedItem);
         }
 
-        if (prevProps.autoPlay !== prevState.autoPlay) {
-            if (state.autoPlay) {
+        if (prevProps.autoPlay !== this.props.autoPlay) {
+            if (this.props.autoPlay) {
                 this.setupAutoPlay();
             } else {
                 this.destroyAutoPlay();
             }
+
+            this.setState({ autoPlay: this.props.autoPlay });
         }
     }
 
