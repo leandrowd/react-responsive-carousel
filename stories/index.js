@@ -52,7 +52,7 @@ export class ExternalControlledCarousel extends Component {
 
         this.state = {
             currentSlide: 0,
-            autoPlay: true
+            autoPlay: true,
         };
     }
 
@@ -70,7 +70,7 @@ export class ExternalControlledCarousel extends Component {
 
     changeAutoPlay = () => {
         this.setState((state) => ({
-            autoPlay: !state.autoPlay
+            autoPlay: !state.autoPlay,
         }));
     };
 
@@ -108,10 +108,15 @@ export class ExternalControlledCarousel extends Component {
                         Next
                     </button>
                     <button onClick={this.changeAutoPlay} style={buttonStyle}>
-                        Toggle Autoplay ({this.state.autoPlay ? "true" : "false"})
+                        Toggle Autoplay ({this.state.autoPlay ? 'true' : 'false'})
                     </button>
                 </div>
-                <Carousel autoPlay={this.state.autoPlay} selectedItem={this.state.currentSlide} onChange={this.updateCurrentSlide} {...this.props}>
+                <Carousel
+                    autoPlay={this.state.autoPlay}
+                    selectedItem={this.state.currentSlide}
+                    onChange={this.updateCurrentSlide}
+                    {...this.props}
+                >
                     {baseChildren.props.children}
                 </Carousel>
             </div>
