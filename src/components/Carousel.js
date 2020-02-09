@@ -107,25 +107,9 @@ class Carousel extends Component {
         this.setupCarousel();
     }
 
-    static getDerivedStateFromProps(state, props) {
-        if (props.selectedItem !== state.selectedItem) {
-            this.updateSizes();
-            this.moveTo(props.selectedItem);
-        }
-
+    static getDerivedStateFromProps(props, state) {
         if (props.autoPlay !== state.autoPlay) {
-            this.setState(
-                {
-                    autoPlay: props.autoPlay,
-                },
-                () => {
-                    if (state.autoPlay) {
-                        this.setupAutoPlay();
-                    } else {
-                        this.destroyAutoPlay();
-                    }
-                }
-            );
+            return { autoPlay: props.autoPlay };
         }
     }
 
@@ -133,9 +117,23 @@ class Carousel extends Component {
         if (!prevProps.children && this.props.children && !this.state.initialized) {
             this.setupCarousel();
         }
+
         if (prevState.swiping && !this.state.swiping) {
             // We stopped swiping, ensure we are heading to the new/current slide and not stuck
             this.resetPosition();
+        }
+
+        if (prevProps.selectedItem !== this.props.selectedItem) {
+            this.updateSizes();
+            this.moveTo(prevProps.selectedItem);
+        }
+
+        if (prevProps.autoPlay !== prevState.autoPlay) {
+            if (state.autoPlay) {
+                this.setupAutoPlay();
+            } else {
+                this.destroyAutoPlay();
+            }
         }
     }
 
