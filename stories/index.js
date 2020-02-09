@@ -52,6 +52,7 @@ export class ExternalControlledCarousel extends Component {
 
         this.state = {
             currentSlide: 0,
+            autoPlay: true
         };
     }
 
@@ -64,6 +65,12 @@ export class ExternalControlledCarousel extends Component {
     prev = () => {
         this.setState((state) => ({
             currentSlide: state.currentSlide - 1,
+        }));
+    };
+
+    changeAutoPlay = () => {
+        this.setState((state) => ({
+            autoPlay: !state.autoPlay
         }));
     };
 
@@ -100,8 +107,11 @@ export class ExternalControlledCarousel extends Component {
                     <button onClick={this.next} style={buttonStyle}>
                         Next
                     </button>
+                    <button onClick={this.changeAutoPlay} style={buttonStyle}>
+                        Toggle Autoplay ({this.state.autoPlay ? "true" : "false"})
+                    </button>
                 </div>
-                <Carousel selectedItem={this.state.currentSlide} onChange={this.updateCurrentSlide} {...this.props}>
+                <Carousel autoPlay={this.state.autoPlay} selectedItem={this.state.currentSlide} onChange={this.updateCurrentSlide} {...this.props}>
                     {baseChildren.props.children}
                 </Carousel>
             </div>
@@ -375,7 +385,7 @@ storiesOf('Carousel')
     )
     .addWithInfo(
         'with external controls + auto play + inifinite loop',
-        () => <ExternalControlledCarousel infiniteLoop autoPlay />,
+        () => <ExternalControlledCarousel infiniteLoop />,
         { source: true, inline: true, propTables: false }
     )
     .addWithInfo(
