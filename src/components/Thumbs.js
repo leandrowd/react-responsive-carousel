@@ -203,7 +203,7 @@ class Thumbs extends Component {
         if (this.itemsListRef) {
             ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach(
                 (prop) => {
-                    this.itemsListRef.style[prop] = CSSTranslate(position, this.props.axis);
+                    this.itemsListRef.swiper.style[prop] = CSSTranslate(position, this.props.axis);
                 }
             );
         }
