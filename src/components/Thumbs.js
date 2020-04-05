@@ -107,7 +107,7 @@ class Thumbs extends Component {
     }
 
     updateSizes = () => {
-        if (!this.props.children || !this.itemsWrapperRef) {
+        if (!this.props.children || !this.itemsWrapperRef || this.state.images.length === 0) {
             return;
         }
 
@@ -142,12 +142,12 @@ class Thumbs extends Component {
             return img;
         });
 
-        if (images.filter((image) => image !== null).length === 0) {
+        if (images.filter((image) => image).length === 0) {
             console.warn(
                 `No images found! Can't build the thumb list without images. If you don't need thumbs, set showThumbs={false} in the Carousel. Note that it's not possible to get images rendered inside custom components. More info at https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md`
             );
 
-            return null;
+            return [];
         }
 
         return images;

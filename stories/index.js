@@ -293,6 +293,17 @@ storiesOf('Carousel')
         inline: true,
         propTables: false,
     })
+    .addWithInfo('no children', () => <Carousel />, { source: true, inline: true, propTables: false })
+    .addWithInfo(
+        'no images',
+        () => (
+            <Carousel>
+                <div>Text 01</div>
+                <div>Text 02</div>
+            </Carousel>
+        ),
+        { source: true, inline: true, propTables: false }
+    )
     .addWithInfo(
         'dynamic height images',
         () => (
