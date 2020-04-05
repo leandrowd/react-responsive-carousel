@@ -50,6 +50,9 @@ class Carousel extends Component {
         onSwipeStart: PropTypes.func,
         onSwipeEnd: PropTypes.func,
         onSwipeMove: PropTypes.func,
+        renderArrowPrev: PropTypes.func,
+        renderArrowNext: PropTypes.func,
+        renderIndicator: PropTypes.func,
     };
 
     static defaultProps = {
@@ -85,6 +88,26 @@ class Carousel extends Component {
         onSwipeStart: () => {},
         onSwipeEnd: () => {},
         onSwipeMove: () => {},
+        renderArrowPrev: (onClickHandler, hasPrev, label) => (
+            <button type="button" aria-label={label} className={klass.ARROW_PREV(!hasPrev)} onClick={onClickHandler} />
+        ),
+        renderArrowNext: (onClickHandler, hasNext, label) => (
+            <button type="button" aria-label={label} className={klass.ARROW_NEXT(!hasNext)} onClick={onClickHandler} />
+        ),
+        renderIndicator: (onClickHandler, isSelected, index, label) => {
+            return (
+                <li
+                    className={klass.DOT(isSelected)}
+                    onClick={onClickHandler}
+                    onKeyDown={onClickHandler}
+                    value={index}
+                    key={index}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`${label} ${index + 1}`}
+                />
+            );
+        },
     };
 
     constructor(props) {
@@ -619,17 +642,11 @@ class Carousel extends Component {
         return (
             <ul className="control-dots">
                 {Children.map(this.props.children, (item, index) => {
-                    return (
-                        <li
-                            className={klass.DOT(index === this.state.selectedItem)}
-                            onClick={this.changeItem}
-                            onKeyDown={this.changeItem}
-                            value={index}
-                            key={index}
-                            role="button"
-                            tabIndex={0}
-                            aria-label={`${this.props.labels.item} ${index + 1}`}
-                        />
+                    return this.props.renderIndicator(
+                        this.changeItem,
+                        index === this.state.selectedItem,
+                        index,
+                        this.props.labels.item
                     );
                 })}
             </ul>
@@ -748,12 +765,7 @@ class Carousel extends Component {
         return (
             <div className={this.props.className} ref={this.setCarouselWrapperRef} tabIndex="0">
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
-                    <button
-                        type="button"
-                        aria-label={this.props.labels.leftArrow}
-                        className={klass.ARROW_PREV(!hasPrev)}
-                        onClick={this.onClickPrev}
-                    />
+                    {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
                     <div
                         className={klass.WRAPPER(true, this.props.axis)}
                         style={containerStyles}
@@ -782,13 +794,7 @@ class Carousel extends Component {
                             </ul>
                         )}
                     </div>
-                    <button
-                        type="button"
-                        aria-label={this.props.labels.rightArrow}
-                        className={klass.ARROW_NEXT(!hasNext)}
-                        onClick={this.onClickNext}
-                    />
-
+                    {this.props.renderArrowNext(this.onClickNext, hasNext, this.props.labels.rightArrow)}
                     {this.renderControls()}
                     {this.renderStatus()}
                 </div>
