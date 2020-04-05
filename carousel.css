@@ -45,6 +45,9 @@
     .carousel .control-next.control-arrow:before {
       border-left: 8px solid #fff; }
 
+.carousel-root {
+  outline: none; }
+
 .carousel {
   position: relative;
   width: 100%; }
