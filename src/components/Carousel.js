@@ -107,35 +107,29 @@ class Carousel extends Component {
         this.setupCarousel();
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.selectedItem !== this.state.selectedItem) {
-            this.updateSizes();
-            this.moveTo(nextProps.selectedItem);
-        }
-
-        if (nextProps.autoPlay !== this.state.autoPlay) {
-            this.setState(
-                {
-                    autoPlay: nextProps.autoPlay,
-                },
-                () => {
-                    if (this.state.autoPlay) {
-                        this.setupAutoPlay();
-                    } else {
-                        this.destroyAutoPlay();
-                    }
-                }
-            );
-        }
-    }
-
     componentDidUpdate(prevProps, prevState) {
         if (!prevProps.children && this.props.children && !this.state.initialized) {
             this.setupCarousel();
         }
+
         if (prevState.swiping && !this.state.swiping) {
             // We stopped swiping, ensure we are heading to the new/current slide and not stuck
             this.resetPosition();
+        }
+
+        if (prevProps.selectedItem !== this.props.selectedItem) {
+            this.updateSizes();
+            this.moveTo(this.props.selectedItem);
+        }
+
+        if (prevProps.autoPlay !== this.props.autoPlay) {
+            if (this.props.autoPlay) {
+                this.setupAutoPlay();
+            } else {
+                this.destroyAutoPlay();
+            }
+
+            this.setState({ autoPlay: this.props.autoPlay });
         }
     }
 
