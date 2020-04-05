@@ -198,7 +198,6 @@ class Thumbs extends Component {
 
         const wrapperSize = this.itemsWrapperRef.clientWidth;
         const position = currentPosition + 100 / (wrapperSize / deltaX) + '%';
-
         // if 3d isn't available we will use left to move
         if (this.itemsListRef) {
             ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach(
@@ -317,7 +316,6 @@ class Thumbs extends Component {
                     />
                     <Swipe
                         tagName="ul"
-                        selectedItem={this.state.selectedItem}
                         className={klass.SLIDER(false, this.state.swiping)}
                         onSwipeLeft={this.slideLeft}
                         onSwipeRight={this.slideRight}
@@ -325,7 +323,7 @@ class Thumbs extends Component {
                         onSwipeStart={this.onSwipeStart}
                         onSwipeEnd={this.onSwipeEnd}
                         style={itemListStyles}
-                        ref={this.setItemsListRef}
+                        innerRef={this.setItemsListRef}
                     >
                         {this.renderItems()}
                     </Swipe>

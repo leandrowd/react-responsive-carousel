@@ -709,7 +709,6 @@ class Carousel extends Component {
         const lastClone = itemsClone.pop();
 
         let swiperProps = {
-            selectedItem: this.state.selectedItem,
             className: klass.SLIDER(true, this.state.swiping),
             onSwipeMove: this.onSwipeMove,
             onSwipeStart: this.onSwipeStart,
