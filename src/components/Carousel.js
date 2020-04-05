@@ -763,7 +763,7 @@ class Carousel extends Component {
             containerStyles.height = this.state.itemSize;
         }
         return (
-            <div className={this.props.className} ref={this.setCarouselWrapperRef} tabIndex="0">
+            <div className={klass.ROOT(this.props.className)} ref={this.setCarouselWrapperRef} tabIndex="0">
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
                     {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
                     <div

@@ -1,6 +1,12 @@
 import classNames from 'classnames';
 
 export default {
+    ROOT: (customClassName) =>
+        classNames({
+            'carousel-root': true,
+            [customClassName]: !!customClassName,
+        }),
+
     CAROUSEL: (isSlider) =>
         classNames({
             carousel: true,
