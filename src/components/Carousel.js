@@ -50,6 +50,8 @@ class Carousel extends Component {
         onSwipeStart: PropTypes.func,
         onSwipeEnd: PropTypes.func,
         onSwipeMove: PropTypes.func,
+        renderArrowPrev: PropTypes.func,
+        renderArrowNext: PropTypes.func,
     };
 
     static defaultProps = {
@@ -85,6 +87,12 @@ class Carousel extends Component {
         onSwipeStart: () => {},
         onSwipeEnd: () => {},
         onSwipeMove: () => {},
+        renderArrowPrev: (onClickHandler, hasPrev, label) => (
+            <button type="button" aria-label={label} className={klass.ARROW_PREV(!hasPrev)} onClick={onClickHandler} />
+        ),
+        renderArrowNext: (onClickHandler, hasNext, label) => (
+            <button type="button" aria-label={label} className={klass.ARROW_NEXT(!hasNext)} onClick={onClickHandler} />
+        ),
     };
 
     constructor(props) {
@@ -748,12 +756,7 @@ class Carousel extends Component {
         return (
             <div className={this.props.className} ref={this.setCarouselWrapperRef} tabIndex="0">
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
-                    <button
-                        type="button"
-                        aria-label={this.props.labels.leftArrow}
-                        className={klass.ARROW_PREV(!hasPrev)}
-                        onClick={this.onClickPrev}
-                    />
+                    {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
                     <div
                         className={klass.WRAPPER(true, this.props.axis)}
                         style={containerStyles}
@@ -782,13 +785,7 @@ class Carousel extends Component {
                             </ul>
                         )}
                     </div>
-                    <button
-                        type="button"
-                        aria-label={this.props.labels.rightArrow}
-                        className={klass.ARROW_NEXT(!hasNext)}
-                        onClick={this.onClickNext}
-                    />
-
+                    {this.props.renderArrowNext(this.onClickNext, hasNext, this.props.labels.rightArrow)}
                     {this.renderControls()}
                     {this.renderStatus()}
                 </div>
