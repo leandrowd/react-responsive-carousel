@@ -268,7 +268,22 @@ class Carousel extends Component {
         this.autoPlay();
     };
 
+    isFocusWithinTheCarousel = () => {
+        if (
+            document.activeElement === this.carouselWrapperRef ||
+            this.carouselWrapperRef.contains(document.activeElement)
+        ) {
+            return true;
+        }
+
+        return false;
+    };
+
     navigateWithKeyboard = (e) => {
+        if (!this.isFocusWithinTheCarousel()) {
+            return;
+        }
+
         const { axis } = this.props;
         const isHorizontal = axis === 'horizontal';
         const keyNames = {
@@ -731,7 +746,7 @@ class Carousel extends Component {
             containerStyles.height = this.state.itemSize;
         }
         return (
-            <div className={this.props.className} ref={this.setCarouselWrapperRef}>
+            <div className={this.props.className} ref={this.setCarouselWrapperRef} tabIndex="0">
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
                     <button
                         type="button"
