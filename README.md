@@ -118,6 +118,10 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | onSwipeStart          | `function`    | - | Fired when a swiping gesture has started |
 | onSwipeEnd            | `function`    | - | Fired when a swiping gesture has ended |
 | onSwipeMove           | `function`    | - | Fired when a swiping gesture is happening |
+| renderArrowPrev       | `(onClickHandler: () => void, hasPrev: boolean, label: string): React.ReactNode` | `default arrow` | Allows replacement of arrow button previous.  |
+| renderArrowNext       | `(onClickHandler: () => void, hasNext: boolean, label: string): React.ReactNode` | `default arrow` | Allows replacement of arrow button next. |
+| renderIndicator       | `(onClickHandler: () => void, isSelected: boolean, index: number, label: string): React.ReactNode` | `default indicator` | Allows replacement of default indicators |
+
 
 
 =======================

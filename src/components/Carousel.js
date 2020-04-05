@@ -52,6 +52,7 @@ class Carousel extends Component {
         onSwipeMove: PropTypes.func,
         renderArrowPrev: PropTypes.func,
         renderArrowNext: PropTypes.func,
+        renderIndicator: PropTypes.func,
     };
 
     static defaultProps = {
@@ -93,6 +94,20 @@ class Carousel extends Component {
         renderArrowNext: (onClickHandler, hasNext, label) => (
             <button type="button" aria-label={label} className={klass.ARROW_NEXT(!hasNext)} onClick={onClickHandler} />
         ),
+        renderIndicator: (onClickHandler, isSelected, index, label) => {
+            return (
+                <li
+                    className={klass.DOT(isSelected)}
+                    onClick={onClickHandler}
+                    onKeyDown={onClickHandler}
+                    value={index}
+                    key={index}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`${label} ${index + 1}`}
+                />
+            );
+        },
     };
 
     constructor(props) {
@@ -627,17 +642,11 @@ class Carousel extends Component {
         return (
             <ul className="control-dots">
                 {Children.map(this.props.children, (item, index) => {
-                    return (
-                        <li
-                            className={klass.DOT(index === this.state.selectedItem)}
-                            onClick={this.changeItem}
-                            onKeyDown={this.changeItem}
-                            value={index}
-                            key={index}
-                            role="button"
-                            tabIndex={0}
-                            aria-label={`${this.props.labels.item} ${index + 1}`}
-                        />
+                    return this.props.renderIndicator(
+                        this.changeItem,
+                        index === this.state.selectedItem,
+                        index,
+                        this.props.labels.item
                     );
                 })}
             </ul>

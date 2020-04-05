@@ -195,6 +195,83 @@ storiesOf('Carousel')
         () => <Carousel transitionTime={1000}>{baseChildren.props.children}</Carousel>,
         { source: true, inline: true, propTables: false }
     )
+    .addWithInfo(
+        'custom arrows and indicators',
+        () => {
+            const arrowStyles = {
+                position: 'absolute',
+                zIndex: 2,
+                top: 'calc(50% - 15px)',
+                width: 30,
+                height: 30,
+                cursor: 'pointer',
+            };
+
+            const indicatorStyles = {
+                background: '#fff',
+                width: 8,
+                height: 8,
+                display: 'inline-block',
+                margin: '0 8px',
+            };
+
+            return (
+                <Carousel
+                    renderArrowPrev={(onClickHandler, hasPrev, label) =>
+                        hasPrev && (
+                            <button
+                                type="button"
+                                onClick={onClickHandler}
+                                title={label}
+                                style={{ ...arrowStyles, left: 15 }}
+                            >
+                                -
+                            </button>
+                        )
+                    }
+                    renderArrowNext={(onClickHandler, hasNext, label) =>
+                        hasNext && (
+                            <button
+                                type="button"
+                                onClick={onClickHandler}
+                                title={label}
+                                style={{ ...arrowStyles, right: 15 }}
+                            >
+                                +
+                            </button>
+                        )
+                    }
+                    renderIndicator={(onClickHandler, isSelected, index, label) => {
+                        if (isSelected) {
+                            return (
+                                <li
+                                    style={{ ...indicatorStyles, background: '#000' }}
+                                    aria-label={`Selected: ${label} ${index + 1}`}
+                                    title={`Selected: ${label} ${index + 1}`}
+                                />
+                            );
+                        }
+                        return (
+                            <li
+                                style={indicatorStyles}
+                                onClick={onClickHandler}
+                                onKeyDown={onClickHandler}
+                                value={index}
+                                key={index}
+                                role="button"
+                                tabIndex={0}
+                                title={`${label} ${index + 1}`}
+                                aria-label={`${label} ${index + 1}`}
+                            />
+                        );
+                    }}
+                >
+                    {baseChildren.props.children}
+                </Carousel>
+            );
+        },
+        { source: true, inline: true, propTables: false }
+    )
     .addWithInfo('emulate touch', () => <Carousel emulateTouch>{baseChildren.props.children}</Carousel>, {
         source: true,
         inline: true,
