@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { storiesOf, action } from '@kadira/storybook';
+import ReactPlayer from 'react-player';
 import { Carousel } from '../src/index';
 
 // carousel styles
@@ -454,26 +455,31 @@ storiesOf('Carousel')
         { source: true, inline: true, propTables: false }
     )
     .addWithInfo(
-        'youtube',
-        () => (
-            <Carousel showThumbs={false}>
-                <div key="youtube-1">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/n0F6hSpxaFc" />
-                </div>
+        'youtube autoplay with custom thumbs',
+        () => {
+            const YoutubeSlide = ({ url, isSelected }) => <ReactPlayer width="100%" url={url} playing={isSelected} />;
 
-                <div key="youtube-2">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/C-y70ZOSzE0" />
-                </div>
+            const customRenderItem = (item, props) => <item.type {...item.props} {...props} />;
 
-                <div key="youtube-3">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/IyTv_SR2uUo" />
-                </div>
+            const getVideoThumb = (videoId) => `https://img.youtube.com/vi/${videoId}/default.jpg`;
 
-                <div key="youtube-4">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/3zrfGHQd4Bo" />
-                </div>
-            </Carousel>
-        ),
+            const getVideoId = (url) => url.substr('https://www.youtube.com/embed/'.length, url.length);
+
+            const customRenderThumb = (children) =>
+                children.map((item) => {
+                    const videoId = getVideoId(item.props.url);
+                    return <img src={getVideoThumb(videoId)} />;
+                });
+
+            return (
+                <Carousel renderItem={customRenderItem} renderThumbs={customRenderThumb}>
+                    <YoutubeSlide key="youtube-1" url="https://www.youtube.com/embed/AVn-Yjr7kDc" />
+                    <YoutubeSlide key="youtube-2" url="https://www.youtube.com/embed/mOdmi9SVeWY" />
+                    <YoutubeSlide key="youtube-3" url="https://www.youtube.com/embed/n0F6hSpxaFc" />
+                    <YoutubeSlide key="youtube-4" url="https://www.youtube.com/embed/0uGETVnkujA" />
+                </Carousel>
+            );
+        },
         { source: true, inline: true, propTables: false }
     )
     .addWithInfo(

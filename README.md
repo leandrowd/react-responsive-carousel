@@ -121,7 +121,8 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | renderArrowPrev       | `(onClickHandler: () => void, hasPrev: boolean, label: string): React.ReactNode` | `default arrow` | Allows replacement of arrow button previous.  |
 | renderArrowNext       | `(onClickHandler: () => void, hasNext: boolean, label: string): React.ReactNode` | `default arrow` | Allows replacement of arrow button next. |
 | renderIndicator       | `(onClickHandler: () => void, isSelected: boolean, index: number, label: string): React.ReactNode` | `default indicator` | Allows replacement of default indicators |
-
+| renderItem       | `(item: React.ReactNode, props: {isSelected: boolean}): React.ReactNode` | `item` | Allows consumers to intercept the item before rendering for manipulating as needed |
+| renderThumbs       | `(children: React.ReactChildren): React.ReactChildren` | `children` | Allows consumers to intercept the children before they are rendered as thumbs, giving the chance to handle them. Useful for finding thumbnails for videos for instance |
 
 
 =======================
