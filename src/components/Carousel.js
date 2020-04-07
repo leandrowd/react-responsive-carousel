@@ -53,6 +53,8 @@ class Carousel extends Component {
         renderArrowPrev: PropTypes.func,
         renderArrowNext: PropTypes.func,
         renderIndicator: PropTypes.func,
+        renderItem: PropTypes.func,
+        renderThumbs: PropTypes.func,
     };
 
     static defaultProps = {
@@ -108,6 +110,10 @@ class Carousel extends Component {
                 />
             );
         },
+        renderItem: (item, { isSelected }) => {
+            return item;
+        },
+        renderThumbs: (children) => children,
     };
 
     constructor(props) {
@@ -630,7 +636,11 @@ class Carousel extends Component {
                 };
             }
 
-            return <li {...slideProps}>{item}</li>;
+            return (
+                <li {...slideProps}>
+                    {this.props.renderItem(item, { isSelected: index === this.state.selectedItem })}
+                </li>
+            );
         });
     }
 
@@ -679,7 +689,7 @@ class Carousel extends Component {
                 thumbWidth={this.props.thumbWidth}
                 labels={this.props.labels}
             >
-                {this.props.children}
+                {this.props.renderThumbs(this.props.children)}
             </Thumbs>
         );
     }
