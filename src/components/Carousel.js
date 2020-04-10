@@ -638,7 +638,10 @@ class Carousel extends Component {
 
             return (
                 <li {...slideProps}>
-                    {this.props.renderItem(item, { isSelected: index === this.state.selectedItem })}
+                    {this.props.renderItem(item, {
+                        isSelected: index === this.state.selectedItem,
+                        isClone: isClone ? true : false,
+                    })}
                 </li>
             );
         });
