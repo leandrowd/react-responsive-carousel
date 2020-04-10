@@ -4,6 +4,11 @@ import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import * as index from '../index';
 import Swipe from 'react-easy-swipe';
+import document from '../shims/document';
+
+const findDOMNodeWithinWrapper = (wrapper, domNode) => {
+    return wrapper.findWhere((n) => n.getDOMNode() === domNode).simulate('click');
+}
 
 describe('Slider', function() {
     jest.autoMockOff();
@@ -105,21 +110,21 @@ describe('Slider', function() {
 
     describe('componentDidMount', () => {
         it('should bind the events', () => {
-            componentInstance.bindEvents = jest.genMockFunction();
+            componentInstance.bindEvents = jest.fn();
             componentInstance.componentDidMount();
             expect(componentInstance.bindEvents.mock.calls.length).toBe(1);
         });
 
         it('should not bind the events if there are no children', () => {
             bootstrap({}, null);
-            componentInstance.bindEvents = jest.genMockFunction();
+            componentInstance.bindEvents = jest.fn();
             componentInstance.componentDidMount();
             expect(componentInstance.bindEvents.mock.calls.length).toBe(0);
         });
 
         it('should bind the events if children were lazy loaded (through componentDidUpdate)', () => {
             bootstrap({}, null);
-            componentInstance.bindEvents = jest.genMockFunction();
+            componentInstance.bindEvents = jest.fn();
             expect(componentInstance.bindEvents.mock.calls.length).toBe(0);
 
             component.setProps({
@@ -132,7 +137,7 @@ describe('Slider', function() {
 
     describe('componentDidUpdate', () => {
         it('should unbind the events', () => {
-            componentInstance.resetPosition = jest.genMockFunction();
+            componentInstance.resetPosition = jest.fn();
             componentInstance.setState({ swiping: false });
             componentInstance.componentDidUpdate({}, { swiping: true });
             expect(componentInstance.resetPosition.mock.calls.length).toBe(1);
@@ -141,7 +146,7 @@ describe('Slider', function() {
 
     describe('componentWillUnmount', () => {
         beforeEach(() => {
-            componentInstance.unbindEvents = jest.genMockFunction();
+            componentInstance.unbindEvents = jest.fn();
             componentInstance.componentWillUnmount();
         });
         it('should unbind the events', () => {
@@ -152,8 +157,8 @@ describe('Slider', function() {
     describe('bindEvents', () => {
         describe('when useKeyboardArrows is false', () => {
             beforeEach(() => {
-                window.addEventListener = jest.genMockFunction();
-                document.addEventListener = jest.genMockFunction();
+                window.addEventListener = jest.fn();
+                document.addEventListener = jest.fn();
                 componentInstance.bindEvents();
             });
 
@@ -179,8 +184,8 @@ describe('Slider', function() {
                     useKeyboardArrows: true,
                 });
 
-                window.addEventListener = jest.genMockFunction();
-                document.addEventListener = jest.genMockFunction();
+                window.addEventListener = jest.fn();
+                document.addEventListener = jest.fn();
                 componentInstance.bindEvents();
             });
 
@@ -207,8 +212,8 @@ describe('Slider', function() {
     describe('unbindEvents', () => {
         describe('when useKeyboardArrows is false', () => {
             beforeEach(() => {
-                window.removeEventListener = jest.genMockFunction();
-                document.removeEventListener = jest.genMockFunction();
+                window.removeEventListener = jest.fn();
+                document.removeEventListener = jest.fn();
                 componentInstance.unbindEvents();
             });
 
@@ -234,8 +239,8 @@ describe('Slider', function() {
                     useKeyboardArrows: true,
                 });
 
-                window.removeEventListener = jest.genMockFunction();
-                document.removeEventListener = jest.genMockFunction();
+                window.removeEventListener = jest.fn();
+                document.removeEventListener = jest.fn();
                 componentInstance.unbindEvents();
             });
 
@@ -267,8 +272,13 @@ describe('Slider', function() {
                     useKeyboardArrows: true,
                 });
 
-                componentInstance.increment = jest.genMockFunction();
-                componentInstance.decrement = jest.genMockFunction();
+                componentInstance.increment = jest.fn();
+                componentInstance.decrement = jest.fn();
+
+                // jsdom has issues with activeElement so we are hacking it for this specific scenario
+                Object.defineProperty(document, 'activeElement', { 
+                    writable: true
+                });
             });
 
             it('should not navigate if the focus is outside of the carousel', () => {
@@ -280,7 +290,8 @@ describe('Slider', function() {
             });
 
             it('should call only increment on ArrowRight (39)', () => {
-                componentInstance.carouselWrapperRef.focus();
+                document.activeElement = componentInstance.carouselWrapperRef;
+                
                 componentInstance.navigateWithKeyboard({ keyCode: 39 });
 
                 expect(componentInstance.increment.mock.calls.length).toBe(1);
@@ -288,7 +299,8 @@ describe('Slider', function() {
             });
 
             it('should call only decrement on ArrowLeft (37)', () => {
-                componentInstance.carouselWrapperRef.focus();
+                document.activeElement = componentInstance.carouselWrapperRef;
+
                 componentInstance.navigateWithKeyboard({ keyCode: 37 });
 
                 expect(componentInstance.decrement.mock.calls.length).toBe(1);
@@ -296,7 +308,8 @@ describe('Slider', function() {
             });
 
             it('should not call increment on ArrowDown (40)', () => {
-                componentInstance.carouselWrapperRef.focus();
+                document.activeElement = componentInstance.carouselWrapperRef;
+
                 componentInstance.navigateWithKeyboard({ keyCode: 40 });
 
                 expect(componentInstance.increment.mock.calls.length).toBe(0);
@@ -304,7 +317,8 @@ describe('Slider', function() {
             });
 
             it('should not call decrement on ArrowUp (38)', () => {
-                componentInstance.carouselWrapperRef.focus();
+                document.activeElement = componentInstance.carouselWrapperRef;
+
                 componentInstance.navigateWithKeyboard({ keyCode: 38 });
 
                 expect(componentInstance.decrement.mock.calls.length).toBe(0);
@@ -319,8 +333,8 @@ describe('Slider', function() {
                     useKeyboardArrows: true,
                 });
 
-                componentInstance.increment = jest.genMockFunction();
-                componentInstance.decrement = jest.genMockFunction();
+                componentInstance.increment = jest.fn();
+                componentInstance.decrement = jest.fn();
             });
 
             it('should not navigate if the focus is outside of the carousel', () => {
@@ -332,7 +346,7 @@ describe('Slider', function() {
             });
 
             it('should call only increment on ArrowDown (40)', () => {
-                componentInstance.carouselWrapperRef.focus();
+                document.activeElement = componentInstance.carouselWrapperRef;
                 componentInstance.navigateWithKeyboard({ keyCode: 40 });
 
                 expect(componentInstance.increment.mock.calls.length).toBe(1);
@@ -340,7 +354,7 @@ describe('Slider', function() {
             });
 
             it('should call only decrement on ArrowUp (38)', () => {
-                componentInstance.carouselWrapperRef.focus();
+                document.activeElement = componentInstance.carouselWrapperRef;
                 componentInstance.navigateWithKeyboard({ keyCode: 38 });
 
                 expect(componentInstance.decrement.mock.calls.length).toBe(1);
@@ -348,7 +362,7 @@ describe('Slider', function() {
             });
 
             it('should not call increment on ArrowRight (39)', () => {
-                componentInstance.carouselWrapperRef.focus();
+                document.activeElement = componentInstance.carouselWrapperRef;
                 componentInstance.navigateWithKeyboard({ keyCode: 39 });
 
                 expect(componentInstance.increment.mock.calls.length).toBe(0);
@@ -356,7 +370,7 @@ describe('Slider', function() {
             });
 
             it('should not call decrement on ArrowLeft (37)', () => {
-                componentInstance.carouselWrapperRef.focus();
+                document.activeElement = componentInstance.carouselWrapperRef;
                 componentInstance.navigateWithKeyboard({ keyCode: 37 });
 
                 expect(componentInstance.decrement.mock.calls.length).toBe(0);
@@ -367,8 +381,8 @@ describe('Slider', function() {
 
     describe('changeItem', () => {
         beforeEach(() => {
-            componentInstance.selectItem = jest.genMockFunction();
-            componentInstance.getFirstItem = jest.genMockFunction().mockReturnValue(2);
+            componentInstance.selectItem = jest.fn();
+            componentInstance.getFirstItem = jest.fn().mockReturnValue(2);
             componentInstance.changeItem({
                 target: {
                     value: 1,
@@ -385,8 +399,8 @@ describe('Slider', function() {
 
     describe('selectItem', () => {
         beforeEach(() => {
-            componentInstance.setState = jest.genMockFunction();
-            componentInstance.handleOnChange = jest.genMockFunction();
+            componentInstance.setState = jest.fn();
+            componentInstance.handleOnChange = jest.fn();
             componentInstance.selectItem({
                 selectedItem: 1,
                 ramdomNumber: 2,
@@ -421,11 +435,11 @@ describe('Slider', function() {
             expect(componentInstance.state.selectedItem).toBe(3);
         });
 
-        it('should update the position of the Carousel if selectedItem is changed', () => {
-            component.findWhere((n) => n.node === componentInstance.itemsRef[2]).simulate('click');
+        it('should update the position of the Carousel if selectedItem is changed', () => {            
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[2]).simulate('click');
             expect(componentInstance.state.selectedItem).toBe(2);
 
-            component.findWhere((n) => n.node === componentInstance.itemsRef[3]).simulate('click');
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[3]).simulate('click');
             expect(componentInstance.state.selectedItem).toBe(3);
         });
     });
@@ -434,27 +448,27 @@ describe('Slider', function() {
         it('should set the index as selectedItem when clicked', () => {
             expect(componentInstance.state.selectedItem).toBe(0);
 
-            component.findWhere((n) => n.node === componentInstance.itemsRef[1]).simulate('click');
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[1]).simulate('click');
             expect(componentInstance.state.selectedItem).toBe(1);
 
-            component.findWhere((n) => n.node === componentInstance.itemsRef[3]).simulate('click');
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[3]).simulate('click');
             expect(componentInstance.state.selectedItem).toBe(3);
         });
 
         it('should call a given onSelectItem function when an item is clicked', () => {
-            var mockedFunction = jest.genMockFunction();
+            var mockedFunction = jest.fn();
 
             renderDefaultComponent({ onClickItem: mockedFunction });
 
-            component.findWhere((n) => n.node === componentInstance.itemsRef[1]).simulate('click');
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[1]).simulate('click');
             expect(mockedFunction).toBeCalled();
 
-            component.findWhere((n) => n.node === componentInstance.itemsRef[0]).simulate('click');
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[0]).simulate('click');
             expect(componentInstance.state.selectedItem).toBe(0);
         });
 
         it('should call onSelectItem function when exactly 1 child is present', () => {
-            var mockedFunction = jest.genMockFunction();
+            var mockedFunction = jest.fn();
 
             renderDefaultComponent({
                 children: <img src="assets/1.jpeg" key="1" />,
@@ -462,7 +476,7 @@ describe('Slider', function() {
             });
             expect(componentInstance.state.selectedItem).toBe(0);
 
-            component.findWhere((n) => n.node === componentInstance.itemsRef[0]).simulate('click');
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[0]).simulate('click');
             expect(componentInstance.state.selectedItem).toBe(0);
             expect(mockedFunction).toBeCalled();
         });
@@ -474,7 +488,7 @@ describe('Slider', function() {
         });
 
         it('should disable the left arrow if we are showing the first item', () => {
-            component.findWhere((n) => n.node === componentInstance.itemsRef[0]).simulate('click');
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[0]).simulate('click');
             expect(
                 ReactDOM.findDOMNode(componentInstance).querySelectorAll(
                     '.carousel-slider .control-prev.control-disabled'
@@ -483,7 +497,7 @@ describe('Slider', function() {
         });
 
         it('should enable the left arrow if we are showing other than the first item', () => {
-            component.findWhere((n) => n.node === componentInstance.itemsRef[1]).simulate('click');
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[1]).simulate('click');
             expect(
                 ReactDOM.findDOMNode(componentInstance).querySelectorAll(
                     '.carousel-slider .control-prev.control-disabled'
@@ -492,14 +506,14 @@ describe('Slider', function() {
         });
 
         it('should disable the right arrow if we reach the lastPosition', () => {
-            component.findWhere((n) => n.node === componentInstance.itemsRef[1]).simulate('click');
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[1]).simulate('click');
             expect(
                 ReactDOM.findDOMNode(componentInstance).querySelectorAll(
                     '.carousel-slider .control-next.control-disabled'
                 ).length
             ).toBe(0);
 
-            component.findWhere((n) => n.node === componentInstance.itemsRef[6]).simulate('click');
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[6]).simulate('click');
             expect(
                 ReactDOM.findDOMNode(componentInstance).querySelectorAll(
                     '.carousel-slider .control-next.control-disabled'
@@ -516,7 +530,7 @@ describe('Slider', function() {
         });
 
         it('should enable the prev arrow if we are showing the first item', () => {
-            component.findWhere((n) => n.node === componentInstance.itemsRef[0]).simulate('click');
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[0]).simulate('click');
             expect(
                 ReactDOM.findDOMNode(componentInstance).querySelectorAll(
                     '.carousel-slider .control-prev.control-disabled'
@@ -525,7 +539,7 @@ describe('Slider', function() {
         });
 
         it('should enable the right arrow if we reach the lastPosition', () => {
-            component.findWhere((n) => n.node === componentInstance.itemsRef[6]).simulate('click');
+            findDOMNodeWithinWrapper(component, componentInstance.itemsRef[6]).simulate('click');
             expect(
                 ReactDOM.findDOMNode(componentInstance).querySelectorAll(
                     '.carousel-slider .control-next.control-disabled'
@@ -569,7 +583,7 @@ describe('Slider', function() {
         });
 
         it('should set slide position directly and trigger a reflow when doing first to last transition', () => {
-            componentInstance.setPosition = jest.genMockFunction();
+            componentInstance.setPosition = jest.fn();
             componentInstance.decrement();
             expect(componentInstance.setPosition).toBeCalledWith('-800%', true);
             componentInstance.setPosition.mockClear();
@@ -581,13 +595,13 @@ describe('Slider', function() {
                 selectedItem: 7,
             });
 
-            componentInstance.setPosition = jest.genMockFunction();
+            componentInstance.setPosition = jest.fn();
             componentInstance.increment();
             expect(componentInstance.setPosition).toHaveBeenCalled();
         });
 
         it('should not call setPosition if swiping with inifinite scrolling', () => {
-            componentInstance.setPosition = jest.genMockFunction();
+            componentInstance.setPosition = jest.fn();
             componentInstance.decrement(1, true);
             expect(componentInstance.setPosition).not.toHaveBeenCalled();
         });
@@ -612,7 +626,7 @@ describe('Slider', function() {
     describe('Auto Play', () => {
         beforeEach(() => {
             jest.useFakeTimers();
-            window.addEventListener = jest.genMockFunction();
+            window.addEventListener = jest.fn();
 
             renderDefaultComponent({
                 autoPlay: true,
@@ -673,7 +687,7 @@ describe('Slider', function() {
             });
 
             it('should stop auto play when hovering', () => {
-                componentInstance.clearAutoPlay = jest.genMockFunction();
+                componentInstance.clearAutoPlay = jest.fn();
                 componentInstance.stopOnHover();
                 expect(componentInstance.clearAutoPlay.mock.calls.length).toBe(1);
             });
@@ -686,7 +700,7 @@ describe('Slider', function() {
             });
 
             it('should start auto play again after hovering', () => {
-                componentInstance.autoPlay = jest.genMockFunction();
+                componentInstance.autoPlay = jest.fn();
                 componentInstance.startOnLeave();
                 expect(componentInstance.autoPlay.mock.calls.length).toBe(1);
             });
@@ -701,13 +715,13 @@ describe('Slider', function() {
             });
 
             it('should stop autoplay', () => {
-                componentInstance.clearAutoPlay = jest.genMockFunction();
+                componentInstance.clearAutoPlay = jest.fn();
                 componentInstance.onSwipeStart();
                 expect(componentInstance.clearAutoPlay.mock.calls.length).toBe(1);
             });
 
             it('should call onSwipeStart callback', () => {
-                var onSwipeStartFunction = jest.genMockFunction();
+                var onSwipeStartFunction = jest.fn();
                 renderDefaultComponent({ onSwipeStart: onSwipeStartFunction });
 
                 componentInstance.onSwipeStart();
@@ -735,7 +749,7 @@ describe('Slider', function() {
             });
 
             it('should call onSwipeMove callback', () => {
-                var onSwipeMoveFunction = jest.genMockFunction();
+                var onSwipeMoveFunction = jest.fn();
                 renderDefaultComponent({ onSwipeMove: onSwipeMoveFunction });
 
                 componentInstance.onSwipeMove({ x: 0, y: 10 });
@@ -749,13 +763,13 @@ describe('Slider', function() {
                 expect(componentInstance.state.swiping).toBe(false);
             });
             it('should start autoplay again', () => {
-                componentInstance.autoPlay = jest.genMockFunction();
+                componentInstance.autoPlay = jest.fn();
                 componentInstance.onSwipeEnd();
                 expect(componentInstance.autoPlay.mock.calls.length).toBe(1);
             });
 
             it('should call onSwipeEnd callback', () => {
-                var onSwipeEndFunction = jest.genMockFunction();
+                var onSwipeEndFunction = jest.fn();
                 renderDefaultComponent({ onSwipeEnd: onSwipeEndFunction });
 
                 componentInstance.onSwipeEnd();

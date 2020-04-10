@@ -8,7 +8,7 @@ var jestConfig = {
 };
 
 module.exports = function(callback) {
-    jest.runCLI({ config: jestConfig }, configs.paths.source, function(result) {
+    jest.run({ config: jestConfig }, configs.paths.source, function(result) {
         if (!result || !result.success) {
             callback('Jest tests failed');
         } else {

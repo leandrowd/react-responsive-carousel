@@ -6,6 +6,7 @@ import CSSTranslate from '../CSSTranslate';
 import Swipe from 'react-easy-swipe';
 import Thumbs from './Thumbs';
 import * as customPropTypes from '../customPropTypes';
+import document from '../shims/document';
 
 const noop = () => {};
 
@@ -297,7 +298,7 @@ class Carousel extends Component {
         this.autoPlay();
     };
 
-    isFocusWithinTheCarousel = () => {
+    isFocusWithinTheCarousel = () => {        
         if (
             document.activeElement === this.carouselWrapperRef ||
             this.carouselWrapperRef.contains(document.activeElement)
@@ -308,11 +309,11 @@ class Carousel extends Component {
         return false;
     };
 
-    navigateWithKeyboard = (e) => {
+    navigateWithKeyboard = (e) => {        
         if (!this.isFocusWithinTheCarousel()) {
             return;
         }
-
+        
         const { axis } = this.props;
         const isHorizontal = axis === 'horizontal';
         const keyNames = {
@@ -465,6 +466,11 @@ class Carousel extends Component {
             // index has to be added by 1 because of the first cloned slide
             ++index;
         }
+        
+        if (index === 0) {
+            return 0;
+        }
+
         const childrenLength = Children.count(this.props.children);
         if (this.props.centerMode && this.props.axis === 'horizontal') {
             let currentPosition = -index * this.props.centerSlidePercentage;
