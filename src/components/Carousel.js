@@ -102,7 +102,6 @@ class Carousel extends Component {
                     className={klass.DOT(isSelected)}
                     onClick={onClickHandler}
                     onKeyDown={onClickHandler}
-                    value={index}
                     key={index}
                     role="button"
                     tabIndex={0}
