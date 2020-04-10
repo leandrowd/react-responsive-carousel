@@ -371,9 +371,15 @@ class Carousel extends Component {
         this.props.onClickItem(index, item);
 
         if (index !== this.state.selectedItem) {
-            this.setState({
-                selectedItem: index,
-            });
+            const itemCount = React.Children.count(this.props.children) - 1;
+
+            if (index === 0 && itemCount === this.state.selectedItem) {
+                index = this.state.selectedItem + 1;
+            } else if (index === itemCount && this.state.selectedItem === 0) {
+                index = -1;
+            }
+
+            this.moveTo(index, false);
         }
     };
 
