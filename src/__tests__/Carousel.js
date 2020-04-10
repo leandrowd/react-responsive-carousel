@@ -8,7 +8,7 @@ import document from '../shims/document';
 
 const findDOMNodeWithinWrapper = (wrapper, domNode) => {
     return wrapper.findWhere((n) => n.getDOMNode() === domNode).simulate('click');
-}
+};
 
 describe('Slider', function() {
     jest.autoMockOff();
@@ -276,8 +276,8 @@ describe('Slider', function() {
                 componentInstance.decrement = jest.fn();
 
                 // jsdom has issues with activeElement so we are hacking it for this specific scenario
-                Object.defineProperty(document, 'activeElement', { 
-                    writable: true
+                Object.defineProperty(document, 'activeElement', {
+                    writable: true,
                 });
             });
 
@@ -291,7 +291,7 @@ describe('Slider', function() {
 
             it('should call only increment on ArrowRight (39)', () => {
                 document.activeElement = componentInstance.carouselWrapperRef;
-                
+
                 componentInstance.navigateWithKeyboard({ keyCode: 39 });
 
                 expect(componentInstance.increment.mock.calls.length).toBe(1);
@@ -435,7 +435,7 @@ describe('Slider', function() {
             expect(componentInstance.state.selectedItem).toBe(3);
         });
 
-        it('should update the position of the Carousel if selectedItem is changed', () => {            
+        it('should update the position of the Carousel if selectedItem is changed', () => {
             findDOMNodeWithinWrapper(component, componentInstance.itemsRef[2]).simulate('click');
             expect(componentInstance.state.selectedItem).toBe(2);
 

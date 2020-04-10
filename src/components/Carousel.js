@@ -298,7 +298,7 @@ class Carousel extends Component {
         this.autoPlay();
     };
 
-    isFocusWithinTheCarousel = () => {        
+    isFocusWithinTheCarousel = () => {
         if (
             document.activeElement === this.carouselWrapperRef ||
             this.carouselWrapperRef.contains(document.activeElement)
@@ -309,11 +309,11 @@ class Carousel extends Component {
         return false;
     };
 
-    navigateWithKeyboard = (e) => {        
+    navigateWithKeyboard = (e) => {
         if (!this.isFocusWithinTheCarousel()) {
             return;
         }
-        
+
         const { axis } = this.props;
         const isHorizontal = axis === 'horizontal';
         const keyNames = {
@@ -466,7 +466,7 @@ class Carousel extends Component {
             // index has to be added by 1 because of the first cloned slide
             ++index;
         }
-        
+
         if (index === 0) {
             return 0;
         }
