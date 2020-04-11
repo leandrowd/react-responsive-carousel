@@ -1,5 +1,3 @@
-var configs = require('./tasks/configs');
-
 var gulp = require('gulp');
 
 var runShellCommand = require('./tasks/runShellCommand');
@@ -21,8 +19,6 @@ gulp.task('build-storybook', function(done) {
 gulp.task('build-styles', function(done) {
     return cssTask(done);
 });
-
-// gulp.task('prepublish-gh-pages', ['test', 'build-website', 'build-storybook']);
 
 gulp.task('publish-gh-pages', ['test', 'build-website', 'build-storybook'], function(done) {
     return ghPagesTask(done);

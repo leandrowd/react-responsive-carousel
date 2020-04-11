@@ -9,12 +9,12 @@ var rename = require('gulp-rename');
 
 var configs = require('./configs');
 
-module.exports = function (options) {
+module.exports = function() {
     var start = new Date();
-    var destFolder = configs.paths.package + '/styles';
+    var destFolder = `${configs.npmPackage}/styles`;
 
     gutil.log('Building CSS bundle');
-    gulp.src([configs.paths.source + '/**/*.scss'])
+    gulp.src([`./${configs.source}/carousel.scss`])
         .pipe(
             sass({
                 errLogToConsole: true,
@@ -23,10 +23,10 @@ module.exports = function (options) {
         // minify only in production
         .pipe(gulp.dest(destFolder))
         .pipe(streamify(minifyCSS()))
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(destFolder))
         .pipe(
-            notify(function () {
+            notify(function() {
                 gutil.log('CSS bundle built in ' + (Date.now() - start) + 'ms');
             })
         )

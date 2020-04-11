@@ -6,7 +6,8 @@
         "name": "Leandro Augusto Lemos",
         "url": "http://leandrowd.github.io/"
     },
-    "main": "./lib/index.js",
+    "main": "lib/cjs/index.js",
+    "module": "lib/es/index.js",
     "license": "MIT",
     "keywords": [
         "react",
@@ -20,7 +21,7 @@
         "react-component",
         "view"
     ],
-    "types": "./index.d.ts",
+    "types": "index.d.ts",
     "scripts": {
         "start": "parcel ./src/index.html",
         "storybook": "start-storybook -p 9001 -s ./src -c .storybook",
@@ -32,7 +33,9 @@
         "jest": "jest",
         "update-snapshots": "jest --updateSnapshot",
         "prebuild": "yarn test",
-        "build": "babel ./src -d lib --ignore '__tests__' && yarn build-styles",
+        "build": "yarn build-cjs && yarn build-es && yarn build-styles",
+        "build-cjs": "babel ./src -d lib/cjs --ignore './src/__tests__'",
+        "build-es": "MODULE=true babel ./src -d lib/es --ignore './src/__tests__'",
         "build-website": "yarn jest && parcel build ./src/index.html --out-dir temp/website && cp -r ./src/assets temp/website/assets && cp -r ./CNAME temp/website/CNAME",
         "build-storybook": "build-storybook -s ./src -o ./temp/website/storybook",
         "build-styles": "node --harmony ./node_modules/gulp/bin/gulp build-styles",
