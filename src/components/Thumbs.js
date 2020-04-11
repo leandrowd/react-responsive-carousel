@@ -22,6 +22,7 @@ class Thumbs extends Component {
 
     static defaultProps = {
         selectedItem: 0,
+        thumbWidth: 80,
         transitionTime: 350,
         axis: 'horizontal',
     };
@@ -256,6 +257,7 @@ class Thumbs extends Component {
                 onClick: this.handleClickItem.bind(this, index, this.props.children[index]),
                 onKeyDown: this.handleClickItem.bind(this, index, this.props.children[index]),
                 'aria-label': `${this.props.labels.item} ${index + 1}`,
+                style: { width: this.props.thumbWidth },
             };
 
             if (index === 0) {

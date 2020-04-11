@@ -147,7 +147,7 @@ class Carousel extends Component {
             this.resetPosition();
         }
 
-        if (prevProps.selectedItem !== this.props.selectedItem) {
+        if (prevProps.selectedItem !== this.props.selectedItem || prevProps.centerMode !== this.props.centerMode) {
             this.updateSizes();
             this.moveTo(this.props.selectedItem);
         }

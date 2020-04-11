@@ -5,15 +5,15 @@ var cssTask = require('./tasks/css');
 var ghPagesTask = require('./tasks/gh-pages');
 
 gulp.task('test', function(done) {
-    return runShellCommand('yarn jest', done);
+    return runShellCommand('yarn', ['jest'], done);
 });
 
 gulp.task('build-website', function(done) {
-    return runShellCommand('yarn build-website', done);
+    return runShellCommand('yarn', ['build-website'], done);
 });
 
 gulp.task('build-storybook', function(done) {
-    return runShellCommand('yarn build-storybook', done);
+    return runShellCommand('yarn', ['build-storybook'], done);
 });
 
 gulp.task('build-styles', function(done) {
