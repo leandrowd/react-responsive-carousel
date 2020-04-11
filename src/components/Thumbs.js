@@ -45,7 +45,7 @@ class Thumbs extends Component {
         this.setupThumbs();
     }
 
-    componentWillReceiveProps(props, state) {
+    UNSAFE_componentWillReceiveProps(props, state) {
         if (props.selectedItem !== this.state.selectedItem) {
             this.setState({
                 selectedItem: props.selectedItem,
