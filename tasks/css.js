@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var gulpif = require('gulp-if');
 var minifyCSS = require('gulp-clean-css');
 var notify = require('gulp-notify');
 var streamify = require('gulp-streamify');
@@ -10,19 +9,9 @@ var rename = require('gulp-rename');
 
 var configs = require('./configs');
 
-module.exports = function(options) {
-    if (!options || !options.environment) {
-        options.environment = 'development';
-    }
-
-    var isDevelopment = options.environment === 'development';
-    var isPackage = options.environment === 'package';
-
-    var destFolder = configs.paths[options.environment];
-
-    if (isPackage) destFolder += '/styles/';
-
+module.exports = function (options) {
     var start = new Date();
+    var destFolder = configs.paths.package + '/styles';
 
     gutil.log('Building CSS bundle');
     gulp.src([configs.paths.source + '/**/*.scss'])
@@ -33,18 +22,11 @@ module.exports = function(options) {
         )
         // minify only in production
         .pipe(gulp.dest(destFolder))
-        .pipe(gulpif(!isDevelopment, streamify(minifyCSS())))
+        .pipe(streamify(minifyCSS()))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest(destFolder))
         .pipe(
-            gulpif(
-                !isDevelopment,
-                rename({
-                    suffix: '.min',
-                })
-            )
-        )
-        .pipe(gulpif(!isDevelopment, gulp.dest(destFolder)))
-        .pipe(
-            notify(function() {
+            notify(function () {
                 gutil.log('CSS bundle built in ' + (Date.now() - start) + 'ms');
             })
         )
