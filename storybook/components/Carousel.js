@@ -6,6 +6,7 @@ import CSSTranslate from '../CSSTranslate';
 import Swipe from 'react-easy-swipe';
 import Thumbs from './Thumbs';
 import * as customPropTypes from '../customPropTypes';
+import document from '../shims/document';
 
 const noop = () => {};
 
@@ -146,7 +147,7 @@ class Carousel extends Component {
             this.resetPosition();
         }
 
-        if (prevProps.selectedItem !== this.props.selectedItem) {
+        if (prevProps.selectedItem !== this.props.selectedItem || prevProps.centerMode !== this.props.centerMode) {
             this.updateSizes();
             this.moveTo(this.props.selectedItem);
         }
@@ -465,6 +466,11 @@ class Carousel extends Component {
             // index has to be added by 1 because of the first cloned slide
             ++index;
         }
+
+        if (index === 0) {
+            return 0;
+        }
+
         const childrenLength = Children.count(this.props.children);
         if (this.props.centerMode && this.props.axis === 'horizontal') {
             let currentPosition = -index * this.props.centerSlidePercentage;

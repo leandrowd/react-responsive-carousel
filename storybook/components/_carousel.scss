@@ -95,8 +95,7 @@
 
 	.thumb {
 		@include transition(border, .15s, ease-in);
-		display: inline-block;
-		width: 80px;
+		display: inline-block;		
 		margin-right: 6px;
 		white-space: nowrap;
 		overflow: hidden;

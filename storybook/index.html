@@ -1,44 +1,19 @@
-
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="storybook-version" content="2.35.3">
-        <title>React Storybook</title>
-        <style>
-          /*
-            When resizing panels, the drag event breaks if the cursor
-            moves over the iframe. Add the 'dragging' class to the body
-            at drag start and remove it when the drag ends.
-           */
-          .dragging iframe {
-            pointer-events: none;
-          }
-
-          /* Styling the fuzzy search box placeholders */
-          .searchBox::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-            color: #ddd;
-            font-size: 16px;
-          }
-
-          .searchBox::-moz-placeholder { /* Firefox 19+ */
-            color: #ddd;
-            font-size: 16px;
-          }
-
-          .searchBox:focus{
-            border-color: #EEE !important;
-          }
-
-          .btn:hover{
-            background-color: #eee
-          }
-        </style>
-      </head>
-      <body style="margin: 0;">
-        <div id="root"></div>
-        <script src="static/manager.e0180833bae45b48d447.bundle.js"></script>
-      </body>
-    </html>
-  
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>Storybook</title><meta name="viewport" content="width=device-width,initial-scale=1"/><style>html, body {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }</style><script>/* globals window */
+  /* eslint-disable no-underscore-dangle */
+  try {
+    if (window.top !== window) {
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.top.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn('unable to connect to top frame for connecting dev tools');
+  }</script><style>#root[hidden],
+      #docs-root[hidden] {
+        display: none !important;
+      }</style></head><body><div id="root"></div><div id="docs-root"></div><script>window['DOCS_MODE'] = false;</script><script src="runtime~main.ab7db0239d02e2e25577.bundle.js"></script><script src="vendors~main.668527a48927923039b1.bundle.js"></script><script src="main.ea8c8ef4e9e09f96bb37.bundle.js"></script></body></html>

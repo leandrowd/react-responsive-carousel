@@ -257,6 +257,11 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -270,6 +275,11 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -282,6 +292,11 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -294,6 +309,11 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -306,6 +326,11 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -318,6 +343,11 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -330,6 +360,11 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -570,6 +605,11 @@ exports[`Slider Snapshots custom class name 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -583,6 +623,11 @@ exports[`Slider Snapshots custom class name 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -595,6 +640,11 @@ exports[`Slider Snapshots custom class name 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -607,6 +657,11 @@ exports[`Slider Snapshots custom class name 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -619,6 +674,11 @@ exports[`Slider Snapshots custom class name 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -631,6 +691,11 @@ exports[`Slider Snapshots custom class name 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -643,6 +708,11 @@ exports[`Slider Snapshots custom class name 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -883,6 +953,11 @@ exports[`Slider Snapshots custom width 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -896,6 +971,11 @@ exports[`Slider Snapshots custom width 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -908,6 +988,11 @@ exports[`Slider Snapshots custom width 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -920,6 +1005,11 @@ exports[`Slider Snapshots custom width 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -932,6 +1022,11 @@ exports[`Slider Snapshots custom width 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -944,6 +1039,11 @@ exports[`Slider Snapshots custom width 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -956,6 +1056,11 @@ exports[`Slider Snapshots custom width 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1196,6 +1301,11 @@ exports[`Slider Snapshots default 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1209,6 +1319,11 @@ exports[`Slider Snapshots default 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1221,6 +1336,11 @@ exports[`Slider Snapshots default 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1233,6 +1353,11 @@ exports[`Slider Snapshots default 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1245,6 +1370,11 @@ exports[`Slider Snapshots default 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1257,6 +1387,11 @@ exports[`Slider Snapshots default 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1269,6 +1404,11 @@ exports[`Slider Snapshots default 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1525,6 +1665,11 @@ exports[`Slider Snapshots infinite loop 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1538,6 +1683,11 @@ exports[`Slider Snapshots infinite loop 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1550,6 +1700,11 @@ exports[`Slider Snapshots infinite loop 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1562,6 +1717,11 @@ exports[`Slider Snapshots infinite loop 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1574,6 +1734,11 @@ exports[`Slider Snapshots infinite loop 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1586,6 +1751,11 @@ exports[`Slider Snapshots infinite loop 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1598,6 +1768,11 @@ exports[`Slider Snapshots infinite loop 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1838,6 +2013,11 @@ exports[`Slider Snapshots no arrows 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1851,6 +2031,11 @@ exports[`Slider Snapshots no arrows 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1863,6 +2048,11 @@ exports[`Slider Snapshots no arrows 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1875,6 +2065,11 @@ exports[`Slider Snapshots no arrows 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1887,6 +2082,11 @@ exports[`Slider Snapshots no arrows 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1899,6 +2099,11 @@ exports[`Slider Snapshots no arrows 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -1911,6 +2116,11 @@ exports[`Slider Snapshots no arrows 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2086,6 +2296,11 @@ exports[`Slider Snapshots no indicators 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2099,6 +2314,11 @@ exports[`Slider Snapshots no indicators 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2111,6 +2331,11 @@ exports[`Slider Snapshots no indicators 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2123,6 +2348,11 @@ exports[`Slider Snapshots no indicators 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2135,6 +2365,11 @@ exports[`Slider Snapshots no indicators 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2147,6 +2382,11 @@ exports[`Slider Snapshots no indicators 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2159,6 +2399,11 @@ exports[`Slider Snapshots no indicators 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2394,6 +2639,11 @@ exports[`Slider Snapshots no indicators 2`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2407,6 +2657,11 @@ exports[`Slider Snapshots no indicators 2`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2419,6 +2674,11 @@ exports[`Slider Snapshots no indicators 2`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2431,6 +2691,11 @@ exports[`Slider Snapshots no indicators 2`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2443,6 +2708,11 @@ exports[`Slider Snapshots no indicators 2`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2455,6 +2725,11 @@ exports[`Slider Snapshots no indicators 2`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2467,6 +2742,11 @@ exports[`Slider Snapshots no indicators 2`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2889,6 +3169,11 @@ exports[`Slider Snapshots swipeable false 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2902,6 +3187,11 @@ exports[`Slider Snapshots swipeable false 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2914,6 +3204,11 @@ exports[`Slider Snapshots swipeable false 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2926,6 +3221,11 @@ exports[`Slider Snapshots swipeable false 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2938,6 +3238,11 @@ exports[`Slider Snapshots swipeable false 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2950,6 +3255,11 @@ exports[`Slider Snapshots swipeable false 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -2962,6 +3272,11 @@ exports[`Slider Snapshots swipeable false 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -3207,6 +3522,11 @@ exports[`Slider Snapshots vertical axis 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -3220,6 +3540,11 @@ exports[`Slider Snapshots vertical axis 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -3232,6 +3557,11 @@ exports[`Slider Snapshots vertical axis 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -3244,6 +3574,11 @@ exports[`Slider Snapshots vertical axis 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -3256,6 +3591,11 @@ exports[`Slider Snapshots vertical axis 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -3268,6 +3608,11 @@ exports[`Slider Snapshots vertical axis 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
@@ -3280,6 +3625,11 @@ exports[`Slider Snapshots vertical axis 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
           tabIndex={0}
         >
           <img
