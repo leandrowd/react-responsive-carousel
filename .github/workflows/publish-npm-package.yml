@@ -10,6 +10,7 @@ jobs:
               with:
                   node-version: '10.x'
                   registry-url: 'https://registry.npmjs.org'
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             - name: install
               uses: borales/actions-yarn@v2.0.0
@@ -27,6 +28,9 @@ jobs:
                   cmd: lib:build
 
             - run: npm version patch
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
             - run: npm publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

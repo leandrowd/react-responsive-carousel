@@ -23,7 +23,7 @@
     ],
     "types": "index.d.ts",
     "scripts": {
-        "start": "parcel ./src/index.html",
+        "start": "parcel src/index.html src/assets/**/*",
         "storybook": "start-storybook -p 9001 -s ./src -c .storybook",
         "changelog": "auto-changelog --ignore-commit-pattern=\"(Merge pull request|Merge branch|Updating changelog|Prepare for publishing)\"",
         "update-codesandbox": "cd codesandbox/default && yarn add react-responsive-carousel@latest",

@@ -21,7 +21,24 @@ jobs:
               with:
                   cmd: jest
 
-            - name: website
+            - name: website:build
               uses: borales/actions-yarn@v2.0.0
               with:
-                  cmd: website:create-and-publish
+                  cmd: website:build
+
+            - name: website:copy-assets
+              uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: website:copy-assets
+
+            - name: website:storybook
+              uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: website:storybook
+
+            - name: Deploy 🚀
+              uses: JamesIves/github-pages-deploy-action@releases/v3
+              with:
+                  ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+                  BRANCH: gh-pages
+                  FOLDER: temp/website
