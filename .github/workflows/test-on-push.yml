@@ -1,0 +1,27 @@
+name: CI
+on: [push]
+jobs:
+    build:
+        name: Test
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: '10.x'
+
+            - name: install
+              uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: install # will run `yarn install` command
+
+            - name: test
+              uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: test # will run `yarn test` command
+
+            - name: build
+              uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: build # will run `yarn build` command
+
