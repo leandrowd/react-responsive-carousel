@@ -26,6 +26,7 @@
         "start": "parcel ./src/index.html",
         "storybook": "start-storybook -p 9001 -s ./src -c .storybook",
         "changelog": "auto-changelog --ignore-commit-pattern=\"(Merge pull request|Merge branch|Updating changelog|Prepare for publishing)\"",
+        "update-codesandbox": "cd codesandbox/default && yarn add react-responsive-carousel@latest",
         "format": "prettier '**/*.{js,json}'",
         "format:check": "yarn format --check",
         "format:write": "yarn format --write",
@@ -41,9 +42,9 @@
         "build-styles": "node --harmony ./node_modules/gulp/bin/gulp build-styles",
         "prepublish-to-npm": "git pull && yarn build && git add . && git commit -m 'Prepare for publishing'",
         "publish-to-npm": "(git pull origin master && npm version patch && git push origin master && npm publish && git push --tags)",
-        "postpublish-to-npm": "yarn changelog && git add . && git commit -m 'Updating changelog' && git push origin master",
+        "postpublish-to-npm": "yarn changelog && yarn update-codesandbox && git add . && git commit -m 'Updating changelog and codesandbox' && git push origin master",
         "prepublish-prerelease-to-npm": "git pull && yarn build && git add . && git commit -m 'Prepare for publishing prerelease'",
-        "publish-prerelease-to-npm": "(git pull && npm version prerelease --preid=next && git push && npm publish)",
+        "publish-prerelease-to-npm": "(git pull && npm version prerelease --preid=next && npm publish)",
         "publish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp publish-gh-pages"
     },
     "repository": {
@@ -112,7 +113,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "pretty-quick --staged --pattern '**/*.(js|json)'"
+            "pre-commit": "pretty-quick --staged"
         }
     },
     "auto-changelog": {

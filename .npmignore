@@ -3,8 +3,17 @@ tasks
 dist
 dev
 build
+stories
+temp
+codesandbox
+setupTests.js
 gulpfile.js
 lib/main.js
+.babelrc.js
+.lgtm.yml
+.prettierignore
+.prettierrc.json
+.cache
 .storybook
 stories
 yarn.lock
@@ -12,5 +21,6 @@ yarn.lock
 .editorconfig
 .nvmrc
 .travis.yml
+.gitignore
 CNAME
 generate-changelog.js

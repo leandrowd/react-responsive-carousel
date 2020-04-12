@@ -6,3 +6,4 @@ dev
 dist
 temp
 lib/main.js
+codesandbox/default/yarn.lock
