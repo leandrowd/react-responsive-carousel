@@ -1,6 +1,6 @@
 {
     "name": "react-responsive-carousel",
-    "version": "3.1.57",
+    "version": "3.1.58-rc",
     "description": "React Responsive Carousel",
     "author": {
         "name": "Leandro Augusto Lemos",
@@ -39,9 +39,11 @@
         "build-website": "yarn jest && parcel build ./src/index.html --out-dir temp/website && cp -r ./src/assets temp/website/assets && cp -r ./CNAME temp/website/CNAME",
         "build-storybook": "build-storybook -s ./src -o ./temp/website/storybook",
         "build-styles": "node --harmony ./node_modules/gulp/bin/gulp build-styles",
-        "prepublish-to-npm": "git pull && npm run build && git add . && git commit -m 'Prepare for publishing'",
+        "prepublish-to-npm": "git pull && yarn build && git add . && git commit -m 'Prepare for publishing'",
         "publish-to-npm": "(git pull origin master && npm version patch && git push origin master && npm publish && git push --tags)",
-        "postpublish-to-npm": "npm run changelog && git add . && git commit -m 'Updating changelog' && git push origin master",
+        "postpublish-to-npm": "yarn changelog && git add . && git commit -m 'Updating changelog' && git push origin master",
+        "prepublish-prerelease-to-npm": "git pull && yarn build && git add . && git commit -m 'Prepare for publishing prerelease'",
+        "publish-prerelease-to-npm": "(git pull && npm version prerelease --preid=next && git push && npm publish)",
         "publish-to-gh-pages": "node --harmony ./node_modules/gulp/bin/gulp publish-gh-pages"
     },
     "repository": {
