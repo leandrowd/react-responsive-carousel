@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 
 var runShellCommand = require('./tasks/runShellCommand');
-var cssTask = require('./tasks/css');
 var ghPagesTask = require('./tasks/gh-pages');
 
 gulp.task('test', function(done) {
@@ -17,7 +16,7 @@ gulp.task('build-storybook', function(done) {
 });
 
 gulp.task('build-styles', function(done) {
-    return cssTask(done);
+    return runShellCommand('yarn', ['build-styles'], done);
 });
 
 gulp.task('publish-gh-pages', ['test', 'build-website', 'build-storybook'], function(done) {
