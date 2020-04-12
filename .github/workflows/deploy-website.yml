@@ -1,5 +1,7 @@
 name: Deploy website
-on: push
+on:
+    release:
+        types: [published]
 jobs:
     deploy:
         name: deploy
