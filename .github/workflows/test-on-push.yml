@@ -1,19 +1,17 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
-
-name: Run tests
-
+name: CI
 on: [push]
-
 jobs:
-    test:
+    build:
+        name: Test
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v1
+            - uses: actions/checkout@v1
+            - uses: borales/actions-yarn@v2.0.0
               with:
-                  node-version: 12
-                  registry-url: https://registry.npmjs.org/
-            - uses: skx/github-action-tester@master
+                  cmd: install # will run `yarn install` command
+            - uses: borales/actions-yarn@v2.0.0
               with:
-                  script: .github/fast-tests.sh
+                  cmd: build # will run `yarn build` command
+            - uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: test # will run `yarn test` command
