@@ -22,6 +22,8 @@ module.exports = {
             enforce: 'pre',
         });
 
+        config.performance.hints = false;
+
         return config;
     },
 };

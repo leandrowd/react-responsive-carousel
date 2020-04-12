@@ -1,0 +1,46 @@
+name: Deploy website
+on:
+    release:
+        types: [published]
+jobs:
+    deploy:
+        name: deploy
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: '10.x'
+                  registry-url: 'https://registry.npmjs.org'
+
+            - name: install
+              uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: install
+
+            - name: test
+              uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: jest
+
+            - name: website:build
+              uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: website:build
+
+            - name: website:copy-assets
+              uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: website:copy-assets
+
+            - name: website:storybook
+              uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: website:storybook
+
+            - name: Deploy 🚀
+              uses: JamesIves/github-pages-deploy-action@releases/v3
+              with:
+                  ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+                  BRANCH: gh-pages
+                  FOLDER: temp/website

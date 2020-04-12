@@ -9,6 +9,7 @@ codesandbox
 setupTests.js
 gulpfile.js
 lib/main.js
+.github
 .babelrc.js
 .lgtm.yml
 .prettierignore
