@@ -92,7 +92,6 @@
     -o-transition: border 0.15s ease-in;
     transition: border 0.15s ease-in;
     display: inline-block;
-    width: 80px;
     margin-right: 6px;
     white-space: nowrap;
     overflow: hidden;

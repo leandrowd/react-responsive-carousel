@@ -1,0 +1,23 @@
+{
+    "name": "react-responsive-carousel",
+    "version": "1.0.0",
+    "description": "Use this playground to play around or to create an example when reporting an issue for the package react-responsive-carousel.",
+    "keywords": [
+        "carousel",
+        "react",
+        "react-responsive-carousel"
+    ],
+    "homepage": "http://leandrowd.github.io/react-responsive-carousel/",
+    "main": "src/index.js",
+    "dependencies": {
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0",
+        "react-responsive-carousel": "^3.1.58-next.0",
+        "react-scripts": "1.1.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build"
+    }
+}

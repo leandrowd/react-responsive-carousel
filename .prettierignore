@@ -2,4 +2,6 @@ dev/
 dist/
 lib/
 node_modules/
+.cache/
+temp
 *.(jpeg|png|gif)
