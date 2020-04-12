@@ -37,7 +37,7 @@
         "lib:build": "yarn lib:build-cjs && yarn lib:build-es && yarn lib:build-styles",
         "lib:build-cjs": "babel ./src -d lib/cjs --ignore './src/__tests__'",
         "lib:build-es": "MODULE=true babel ./src -d lib/es --ignore './src/__tests__'",
-        "lib:build-styles": "node-sass src/carousel.scss > lib/styles/carousel.css && node-sass --output-style compressed src/carousel.scss > lib/styles/carousel.css",
+        "lib:build-styles": "mkdir -p lib/styles && node-sass src/carousel.scss > lib/styles/carousel.css && node-sass --output-style compressed src/carousel.scss > lib/styles/carousel.min.css",
         "lib:publish": "npm version patch && npm publish",
         "lib:build-and-publish": "yarn lib:build && yarn lib:publish",
         "website:build": "parcel build ./src/index.html --out-dir temp/website",

@@ -1,8 +1,8 @@
-name: CI
+name: Deploy website
 on: push
 jobs:
-    publish:
-        name: Publish
+    deploy:
+        name: deploy
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v1

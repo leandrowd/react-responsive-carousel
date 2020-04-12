@@ -1,8 +1,8 @@
-name: CI
+name: Publish npm package
 on: push
 jobs:
     publish:
-        name: Publish
+        name: publish
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v1

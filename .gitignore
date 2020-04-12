@@ -3,6 +3,7 @@ node_modules/
 npm-debug.log
 .cache/
 dev
+lib
 dist
 temp
 lib/main.js
