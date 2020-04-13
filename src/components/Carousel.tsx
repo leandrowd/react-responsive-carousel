@@ -1,63 +1,88 @@
 import React, { Component, Children } from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
+import Swipe from 'react-easy-swipe';
 import klass from '../cssClasses';
 import CSSTranslate from '../CSSTranslate';
-import Swipe from 'react-easy-swipe';
 import Thumbs from './Thumbs';
-import * as customPropTypes from '../customPropTypes';
 import getDocument from '../shims/document';
 import getWindow from '../shims/window';
 
 const noop = () => {};
 
-const defaultStatusFormatter = (current, total) => `${current} of ${total}`;
+const defaultStatusFormatter = (current: number, total: number) => `${current} of ${total}`;
 
-class Carousel extends Component {
-    static displayName = 'Carousel';
+const isKeyboardEvent = (e: React.MouseEvent | React.KeyboardEvent): e is React.KeyboardEvent =>
+    e.hasOwnProperty('key');
 
-    static propTypes = {
-        className: PropTypes.string,
-        children: PropTypes.node,
-        showArrows: PropTypes.bool,
-        showStatus: PropTypes.bool,
-        showIndicators: PropTypes.bool,
-        infiniteLoop: PropTypes.bool,
-        showThumbs: PropTypes.bool,
-        thumbWidth: PropTypes.number,
-        selectedItem: PropTypes.number,
-        onClickItem: PropTypes.func.isRequired,
-        onClickThumb: PropTypes.func.isRequired,
-        onChange: PropTypes.func.isRequired,
-        axis: PropTypes.oneOf(['horizontal', 'vertical']),
-        verticalSwipe: PropTypes.oneOf(['natural', 'standard']),
-        width: customPropTypes.unit,
-        useKeyboardArrows: PropTypes.bool,
-        autoPlay: PropTypes.bool,
-        stopOnHover: PropTypes.bool,
-        interval: PropTypes.number,
-        transitionTime: PropTypes.number,
-        swipeScrollTolerance: PropTypes.number,
-        swipeable: PropTypes.bool,
-        dynamicHeight: PropTypes.bool,
-        emulateTouch: PropTypes.bool,
-        statusFormatter: PropTypes.func.isRequired,
-        centerMode: PropTypes.bool,
-        centerSlidePercentage: PropTypes.number,
-        labels: PropTypes.shape({
-            leftArrow: PropTypes.string,
-            rightArrow: PropTypes.string,
-            item: PropTypes.string,
-        }),
-        onSwipeStart: PropTypes.func,
-        onSwipeEnd: PropTypes.func,
-        onSwipeMove: PropTypes.func,
-        renderArrowPrev: PropTypes.func,
-        renderArrowNext: PropTypes.func,
-        renderIndicator: PropTypes.func,
-        renderItem: PropTypes.func,
-        renderThumbs: PropTypes.func,
+type Props = {
+    className?: string;
+    children?: React.ReactChildren;
+    showArrows?: boolean;
+    showStatus?: boolean;
+    showIndicators?: boolean;
+    infiniteLoop?: boolean;
+    showThumbs?: boolean;
+    thumbWidth?: number;
+    selectedItem?: number;
+    onClickItem: (index: number, item: React.ReactNode) => void;
+    onClickThumb: (index: number, item: React.ReactNode) => void;
+    onChange: (index: number, item: React.ReactNode) => void;
+    axis: 'horizontal' | 'vertical';
+    verticalSwipe: 'natural' | 'standard';
+    width?: number;
+    useKeyboardArrows?: boolean;
+    autoPlay?: boolean;
+    stopOnHover?: boolean;
+    interval?: number;
+    transitionTime?: number;
+    swipeScrollTolerance?: number;
+    swipeable?: boolean;
+    dynamicHeight?: boolean;
+    emulateTouch?: boolean;
+    statusFormatter?: (currentItem: number, total: number) => string;
+    centerMode?: boolean;
+    centerSlidePercentage?: number;
+    labels?: {
+        leftArrow: string;
+        rightArrow: string;
+        item: string;
     };
+    onSwipeStart?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
+    onSwipeEnd?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
+    onSwipeMove?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
+    renderArrowPrev?: (clickHandler: () => void, hasPrev: boolean, label: string) => React.ReactNode;
+    renderArrowNext?: (clickHandler: () => void, hasNext: boolean, label: string) => React.ReactNode;
+    renderIndicator?: (
+        clickHandler: (e: React.MouseEvent | React.KeyboardEvent) => void,
+        isSelected: boolean,
+        index: number,
+        label: string
+    ) => React.ReactNode;
+    renderItem?: (item: React.ReactNode, options: { isSelected: boolean }) => React.ReactNode;
+    renderThumbs?: (children: React.ReactChildren) => React.ReactChildren;
+};
+
+type State = {
+    initialized: boolean;
+    selectedItem: number;
+    hasMount: boolean;
+    isMouseEntered: boolean;
+    autoPlay: boolean;
+    cancelClick: boolean;
+    swiping?: boolean;
+    itemSize?: number;
+};
+
+class Carousel extends Component<Props, State> {
+    private thumbsRef: Thumbs;
+    private carouselWrapperRef: HTMLElement;
+    private listRef: HTMLElement;
+    private itemsRef: HTMLElement[];
+    private itemsWrapperRef: React.ReactNode;
+
+    private timer: ReturnType<typeof setTimeout>;
+
+    static displayName = 'Carousel';
 
     static defaultProps = {
         showIndicators: true,
@@ -127,6 +152,8 @@ class Carousel extends Component {
             hasMount: false,
             isMouseEntered: false,
             autoPlay: props.autoPlay,
+            swiping: false,
+            cancelClick: false,
         };
     }
 
@@ -395,7 +422,7 @@ class Carousel extends Component {
         });
     };
 
-    onSwipeStart = (event) => {
+    onSwipeStart = (event: React.SyntheticEvent<any, TouchEvent>) => {
         this.setState({
             swiping: true,
         });
@@ -403,7 +430,7 @@ class Carousel extends Component {
         this.clearAutoPlay();
     };
 
-    onSwipeEnd = (event) => {
+    onSwipeEnd = (event: React.SyntheticEvent<any, TouchEvent>) => {
         this.setState({
             swiping: false,
             cancelClick: false,
@@ -412,7 +439,7 @@ class Carousel extends Component {
         this.autoPlay();
     };
 
-    onSwipeMove = (delta, event) => {
+    onSwipeMove = (delta: { x: number; y: number }, event: React.SyntheticEvent<any, TouchEvent>) => {
         this.props.onSwipeMove(event);
         const isHorizontal = this.props.axis === 'horizontal';
         const childrenLength = Children.count(this.props.children);
@@ -447,7 +474,6 @@ class Carousel extends Component {
                 position += childrenLength * 100;
             }
         }
-        position += '%';
         this.setPosition(position);
 
         // allows scroll if the swipe was within the tolerance
@@ -462,7 +488,7 @@ class Carousel extends Component {
         return hasMoved;
     };
 
-    getPosition(index) {
+    getPosition(index: number): number {
         if (this.props.infiniteLoop) {
             // index has to be added by 1 because of the first cloned slide
             ++index;
@@ -489,18 +515,23 @@ class Carousel extends Component {
         return -index * 100;
     }
 
-    setPosition = (position, forceReflow) => {
+    setPosition = (position: number, forceReflow?: boolean) => {
         const list = ReactDOM.findDOMNode(this.listRef);
-        ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach((prop) => {
-            list.style[prop] = CSSTranslate(position, this.props.axis);
-        });
-        if (forceReflow) {
-            list.offsetLeft;
+
+        if (list instanceof HTMLElement) {
+            ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach(
+                (prop) => {
+                    list.style[prop] = CSSTranslate(position, '%', this.props.axis);
+                }
+            );
+            if (forceReflow) {
+                list.offsetLeft;
+            }
         }
     };
 
     resetPosition = () => {
-        const currentPosition = this.getPosition(this.state.selectedItem) + '%';
+        const currentPosition = this.getPosition(this.state.selectedItem);
         this.setPosition(currentPosition);
     };
 
@@ -512,7 +543,7 @@ class Carousel extends Component {
         this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1), fromSwipe);
     };
 
-    moveTo = (position, fromSwipe) => {
+    moveTo = (position: number, fromSwipe?: boolean) => {
         const lastPosition = Children.count(this.props.children) - 1;
         const needClonedSlide = this.props.infiniteLoop && !fromSwipe && (position < 0 || position > lastPosition);
         const oldPosition = position;
@@ -536,12 +567,12 @@ class Carousel extends Component {
                     if (oldPosition < 0) {
                         if (this.props.centerMode && this.props.axis === 'horizontal') {
                             this.setPosition(
-                                `-${(lastPosition + 2) * this.props.centerSlidePercentage -
-                                    (100 - this.props.centerSlidePercentage) / 2}%`,
+                                -(lastPosition + 2) * this.props.centerSlidePercentage -
+                                    (100 - this.props.centerSlidePercentage) / 2,
                                 true
                             );
                         } else {
-                            this.setPosition(`-${(lastPosition + 2) * 100}%`, true);
+                            this.setPosition(-(lastPosition + 2) * 100, true);
                         }
                     } else if (oldPosition > lastPosition) {
                         this.setPosition(0, true);
@@ -583,17 +614,15 @@ class Carousel extends Component {
         this.decrement(1, true);
     };
 
-    changeItem = (e) => {
-        if (!e.key || e.key === 'Enter') {
-            const newIndex = e.target.value;
-
+    changeItem = (newIndex: number) => (e: React.MouseEvent | React.KeyboardEvent) => {
+        if (!isKeyboardEvent(e) || e.key === 'Enter') {
             this.selectItem({
                 selectedItem: newIndex,
             });
         }
     };
 
-    selectItem = (state, cb) => {
+    selectItem = (state: Pick<State, 'selectedItem' | 'swiping'>, cb?: () => void) => {
         this.setState(state, cb);
         this.handleOnChange(state.selectedItem, Children.toArray(this.props.children)[state.selectedItem]);
     };
@@ -628,7 +657,7 @@ class Carousel extends Component {
         return null;
     };
 
-    renderItems(isClone) {
+    renderItems(isClone?: boolean) {
         return Children.map(this.props.children, (item, index) => {
             const slideProps = {
                 ref: (e) => this.setItemsRef(e, index),
@@ -637,14 +666,18 @@ class Carousel extends Component {
                 onClick: this.handleClickItem.bind(this, index, item),
             };
 
+            let extraProps: {
+                style?: React.CSSProperties;
+            } = {};
+
             if (this.props.centerMode && this.props.axis === 'horizontal') {
-                slideProps.style = {
+                extraProps.style = {
                     minWidth: this.props.centerSlidePercentage + '%',
                 };
             }
 
             return (
-                <li {...slideProps}>
+                <li {...slideProps} {...extraProps}>
                     {this.props.renderItem(item, { isSelected: index === this.state.selectedItem })}
                 </li>
             );
@@ -660,7 +693,7 @@ class Carousel extends Component {
             <ul className="control-dots">
                 {Children.map(this.props.children, (item, index) => {
                     return this.props.renderIndicator(
-                        this.changeItem,
+                        this.changeItem(index),
                         index === this.state.selectedItem,
                         index,
                         this.props.labels.item
@@ -722,7 +755,7 @@ class Carousel extends Component {
         const currentPosition = this.getPosition(this.state.selectedItem);
 
         // if 3d is available, let's take advantage of the performance of transform
-        const transformProp = CSSTranslate(currentPosition + '%', this.props.axis);
+        const transformProp = CSSTranslate(currentPosition, '%', this.props.axis);
 
         const transitionTime = this.props.transitionTime + 'ms';
 
@@ -751,7 +784,18 @@ class Carousel extends Component {
         const firstClone = itemsClone.shift();
         const lastClone = itemsClone.pop();
 
-        let swiperProps = {
+        let swiperProps: {
+            className: string;
+            style: React.CSSProperties;
+            tolerance: number;
+            onSwipeMove: (delta: { x: number; y: number }, event: React.SyntheticEvent<any, TouchEvent>) => void;
+            onSwipeStart: (event: React.SyntheticEvent<any, TouchEvent>) => void;
+            onSwipeEnd: (event: React.SyntheticEvent<any, TouchEvent>) => void;
+            onSwipeLeft?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
+            onSwipeRight?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
+            onSwipeUp?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
+            onSwipeDown?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
+        } = {
             className: klass.SLIDER(true, this.state.swiping),
             onSwipeMove: this.onSwipeMove,
             onSwipeStart: this.onSwipeStart,
@@ -760,7 +804,7 @@ class Carousel extends Component {
             tolerance: this.props.swipeScrollTolerance,
         };
 
-        const containerStyles = {};
+        const containerStyles: React.CSSProperties = {};
 
         if (isHorizontal) {
             swiperProps.onSwipeLeft = this.onSwipeForward;
@@ -780,7 +824,7 @@ class Carousel extends Component {
             containerStyles.height = this.state.itemSize;
         }
         return (
-            <div className={klass.ROOT(this.props.className)} ref={this.setCarouselWrapperRef} tabIndex="0">
+            <div className={klass.ROOT(this.props.className)} ref={this.setCarouselWrapperRef} tabIndex={0}>
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
                     {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
                     <div

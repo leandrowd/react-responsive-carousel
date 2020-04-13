@@ -199,12 +199,12 @@ class Thumbs extends Component {
         }
 
         const wrapperSize = this.itemsWrapperRef.clientWidth;
-        const position = currentPosition + 100 / (wrapperSize / deltaX) + '%';
+        const position = currentPosition + 100 / (wrapperSize / deltaX);
         // if 3d isn't available we will use left to move
         if (this.itemsListRef) {
             ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach(
                 (prop) => {
-                    this.itemsListRef.style[prop] = CSSTranslate(position, this.props.axis);
+                    this.itemsListRef.style[prop] = CSSTranslate(position, '%', this.props.axis);
                 }
             );
         }
@@ -287,9 +287,9 @@ class Thumbs extends Component {
         // obj to hold the transformations and styles
         let itemListStyles = {};
 
-        const currentPosition = -this.state.firstItem * this.state.itemSize + 'px';
+        const currentPosition = -this.state.firstItem * this.state.itemSize;
 
-        const transformProp = CSSTranslate(currentPosition, this.props.axis);
+        const transformProp = CSSTranslate(currentPosition, 'px', this.props.axis);
 
         const transitionTime = this.props.transitionTime + 'ms';
 
