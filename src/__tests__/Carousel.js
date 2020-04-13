@@ -4,7 +4,8 @@ import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import * as index from '../index';
 import Swipe from 'react-easy-swipe';
-import document from '../shims/document';
+import getDocument from '../shims/document';
+import getWindow from '../shims/window';
 
 const findDOMNodeWithinWrapper = (wrapper, domNode) => {
     return wrapper.findWhere((n) => n.getDOMNode() === domNode).simulate('click');
@@ -16,9 +17,12 @@ describe('Slider', function() {
     const Carousel = require('../components/Carousel').default;
     const Thumbs = require('../components/Thumbs').default;
 
-    let component, componentInstance, totalChildren, lastItemIndex;
+    let window, document, component, componentInstance, totalChildren, lastItemIndex;
 
     const bootstrap = (props, children) => {
+        window = getWindow();
+        document = getDocument();
+
         component = mount(<Carousel {...props}>{children}</Carousel>);
 
         componentInstance = component.instance();
