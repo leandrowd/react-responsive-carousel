@@ -4,6 +4,7 @@ import klass from '../cssClasses';
 import { outerWidth } from '../dimensions';
 import CSSTranslate from '../CSSTranslate';
 import Swipe from 'react-easy-swipe';
+import getWindow from '../shims/window';
 
 class Thumbs extends Component {
     static displayName = 'Thumbs';
@@ -92,9 +93,9 @@ class Thumbs extends Component {
     setupThumbs() {
         // as the widths are calculated, we need to resize
         // the carousel when the window is resized
-        window.addEventListener('resize', this.updateSizes);
+        getWindow().addEventListener('resize', this.updateSizes);
         // issue #2 - image loading smaller
-        window.addEventListener('DOMContentLoaded', this.updateSizes);
+        getWindow().addEventListener('DOMContentLoaded', this.updateSizes);
 
         // when the component is rendered we need to calculate
         // the container size to adjust the responsive behaviour
@@ -103,8 +104,8 @@ class Thumbs extends Component {
 
     destroyThumbs() {
         // removing listeners
-        window.removeEventListener('resize', this.updateSizes);
-        window.removeEventListener('DOMContentLoaded', this.updateSizes);
+        getWindow().removeEventListener('resize', this.updateSizes);
+        getWindow().removeEventListener('DOMContentLoaded', this.updateSizes);
     }
 
     updateSizes = () => {
