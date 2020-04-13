@@ -6,7 +6,8 @@ import CSSTranslate from '../CSSTranslate';
 import Swipe from 'react-easy-swipe';
 import Thumbs from './Thumbs';
 import * as customPropTypes from '../customPropTypes';
-import document from '../shims/document';
+import getDocument from '../shims/document';
+import getWindow from '../shims/window';
 
 const noop = () => {};
 
@@ -240,19 +241,19 @@ class Carousel extends Component {
     bindEvents() {
         // as the widths are calculated, we need to resize
         // the carousel when the window is resized
-        window.addEventListener('resize', this.updateSizes);
+        getWindow().addEventListener('resize', this.updateSizes);
         // issue #2 - image loading smaller
-        window.addEventListener('DOMContentLoaded', this.updateSizes);
+        getWindow().addEventListener('DOMContentLoaded', this.updateSizes);
 
         if (this.props.useKeyboardArrows) {
-            document.addEventListener('keydown', this.navigateWithKeyboard);
+            getDocument().addEventListener('keydown', this.navigateWithKeyboard);
         }
     }
 
     unbindEvents() {
         // removing listeners
-        window.removeEventListener('resize', this.updateSizes);
-        window.removeEventListener('DOMContentLoaded', this.updateSizes);
+        getWindow().removeEventListener('resize', this.updateSizes);
+        getWindow().removeEventListener('DOMContentLoaded', this.updateSizes);
 
         const initialImage = this.getInitialImage();
         if (initialImage) {
@@ -260,7 +261,7 @@ class Carousel extends Component {
         }
 
         if (this.props.useKeyboardArrows) {
-            document.removeEventListener('keydown', this.navigateWithKeyboard);
+            getDocument().removeEventListener('keydown', this.navigateWithKeyboard);
         }
     }
 
@@ -300,8 +301,8 @@ class Carousel extends Component {
 
     isFocusWithinTheCarousel = () => {
         if (
-            document.activeElement === this.carouselWrapperRef ||
-            this.carouselWrapperRef.contains(document.activeElement)
+            getDocument().activeElement === this.carouselWrapperRef ||
+            this.carouselWrapperRef.contains(getDocument().activeElement)
         ) {
             return true;
         }
