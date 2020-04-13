@@ -22,6 +22,13 @@ module.exports = {
             enforce: 'pre',
         });
 
+        config.module.rules.push({
+            test: /\.(ts|tsx)$/,
+            loader: require.resolve('babel-loader'),
+        });
+
+        config.resolve.extensions.push('.ts', '.tsx');
+
         config.performance.hints = false;
 
         return config;

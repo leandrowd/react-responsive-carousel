@@ -1,4 +1,4 @@
-import React, { Component, Children } from 'react';
+import React, { Children } from 'react';
 import ReactDOM from 'react-dom';
 import Swipe from 'react-easy-swipe';
 import klass from '../cssClasses';
@@ -14,116 +14,102 @@ const defaultStatusFormatter = (current: number, total: number) => `${current} o
 const isKeyboardEvent = (e: React.MouseEvent | React.KeyboardEvent): e is React.KeyboardEvent =>
     e.hasOwnProperty('key');
 
-type Props = {
-    className?: string;
-    children?: React.ReactChildren;
-    showArrows?: boolean;
-    showStatus?: boolean;
-    showIndicators?: boolean;
-    infiniteLoop?: boolean;
-    showThumbs?: boolean;
-    thumbWidth?: number;
-    selectedItem?: number;
-    onClickItem: (index: number, item: React.ReactNode) => void;
-    onClickThumb: (index: number, item: React.ReactNode) => void;
-    onChange: (index: number, item: React.ReactNode) => void;
+interface Props {
     axis: 'horizontal' | 'vertical';
-    verticalSwipe: 'natural' | 'standard';
-    width?: number;
-    useKeyboardArrows?: boolean;
     autoPlay?: boolean;
-    stopOnHover?: boolean;
-    interval?: number;
-    transitionTime?: number;
-    swipeScrollTolerance?: number;
-    swipeable?: boolean;
+    centerMode?: boolean;
+    centerSlidePercentage: number;
+    children?: React.ReactChild[];
+    className?: string;
     dynamicHeight?: boolean;
     emulateTouch?: boolean;
-    statusFormatter?: (currentItem: number, total: number) => string;
-    centerMode?: boolean;
-    centerSlidePercentage?: number;
-    labels?: {
+    infiniteLoop?: boolean;
+    interval: number;
+    labels: {
         leftArrow: string;
         rightArrow: string;
         item: string;
     };
-    onSwipeStart?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
-    onSwipeEnd?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
-    onSwipeMove?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
-    renderArrowPrev?: (clickHandler: () => void, hasPrev: boolean, label: string) => React.ReactNode;
-    renderArrowNext?: (clickHandler: () => void, hasNext: boolean, label: string) => React.ReactNode;
-    renderIndicator?: (
+    onClickItem: (index: number, item: React.ReactNode) => void;
+    onClickThumb: (index: number, item: React.ReactNode) => void;
+    onChange: (index: number, item: React.ReactNode) => void;
+    onSwipeStart: (event: React.TouchEvent) => void;
+    onSwipeEnd: (event: React.TouchEvent) => void;
+    onSwipeMove: (event: React.TouchEvent) => void;
+    renderArrowPrev: (clickHandler: () => void, hasPrev: boolean, label: string) => React.ReactNode;
+    renderArrowNext: (clickHandler: () => void, hasNext: boolean, label: string) => React.ReactNode;
+    renderIndicator: (
         clickHandler: (e: React.MouseEvent | React.KeyboardEvent) => void,
         isSelected: boolean,
         index: number,
         label: string
     ) => React.ReactNode;
-    renderItem?: (item: React.ReactNode, options: { isSelected: boolean }) => React.ReactNode;
-    renderThumbs?: (children: React.ReactChildren) => React.ReactChildren;
-};
-
-type State = {
-    initialized: boolean;
+    renderItem: (item: React.ReactNode, options: { isSelected: boolean }) => React.ReactNode;
+    renderThumbs: (children: React.ReactChild[]) => React.ReactChild[];
     selectedItem: number;
-    hasMount: boolean;
-    isMouseEntered: boolean;
-    autoPlay: boolean;
+    showArrows: boolean;
+    showStatus: boolean;
+    showIndicators: boolean;
+    showThumbs: boolean;
+    statusFormatter: (currentItem: number, total: number) => string;
+    stopOnHover: boolean;
+    swipeable: boolean;
+    swipeScrollTolerance: number;
+    thumbWidth?: number;
+    transitionTime: number;
+    useKeyboardArrows?: boolean;
+    verticalSwipe: 'natural' | 'standard';
+    width: number | string;
+}
+
+interface State {
+    autoPlay?: boolean;
     cancelClick: boolean;
-    swiping?: boolean;
+    hasMount: boolean;
+    initialized: boolean;
+    isMouseEntered: boolean;
     itemSize?: number;
-};
+    selectedItem: number;
+    swiping?: boolean;
+}
 
-class Carousel extends Component<Props, State> {
-    private thumbsRef: Thumbs;
-    private carouselWrapperRef: HTMLElement;
-    private listRef: HTMLElement;
-    private itemsRef: HTMLElement[];
-    private itemsWrapperRef: React.ReactNode;
+class Carousel extends React.Component<Props, State> {
+    private thumbsRef?: Thumbs;
+    private carouselWrapperRef?: HTMLDivElement;
+    private listRef?: HTMLElement | HTMLUListElement;
+    private itemsRef?: HTMLElement[];
 
-    private timer: ReturnType<typeof setTimeout>;
+    private timer?: ReturnType<typeof setTimeout>;
 
     static displayName = 'Carousel';
 
     static defaultProps = {
-        showIndicators: true,
-        showArrows: true,
-        showStatus: true,
-        showThumbs: true,
-        infiniteLoop: false,
-        selectedItem: 0,
         axis: 'horizontal',
-        verticalSwipe: 'standard',
-        width: '100%',
-        useKeyboardArrows: false,
-        autoPlay: false,
-        stopOnHover: true,
-        interval: 3000,
-        transitionTime: 350,
-        swipeScrollTolerance: 5,
-        swipeable: true,
-        dynamicHeight: false,
-        emulateTouch: false,
-        onClickItem: noop,
-        onClickThumb: noop,
-        onChange: noop,
-        statusFormatter: defaultStatusFormatter,
-        centerMode: false,
         centerSlidePercentage: 80,
+        interval: 3000,
         labels: {
             leftArrow: 'previous slide / item',
             rightArrow: 'next slide / item',
             item: 'slide item',
         },
+        onClickItem: noop,
+        onClickThumb: noop,
+        onChange: noop,
         onSwipeStart: () => {},
         onSwipeEnd: () => {},
         onSwipeMove: () => {},
-        renderArrowPrev: (onClickHandler, hasPrev, label) => (
+        renderArrowPrev: (onClickHandler: () => void, hasPrev: boolean, label: string) => (
             <button type="button" aria-label={label} className={klass.ARROW_PREV(!hasPrev)} onClick={onClickHandler} />
         ),
-        renderArrowNext: (onClickHandler, hasNext, label) => (
+        renderArrowNext: (onClickHandler: () => void, hasNext: boolean, label: string) => (
             <button type="button" aria-label={label} className={klass.ARROW_NEXT(!hasNext)} onClick={onClickHandler} />
         ),
-        renderIndicator: (onClickHandler, isSelected, index, label) => {
+        renderIndicator: (
+            onClickHandler: (e: React.MouseEvent | React.KeyboardEvent) => void,
+            isSelected: boolean,
+            index: number,
+            label: string
+        ) => {
             return (
                 <li
                     className={klass.DOT(isSelected)}
@@ -137,13 +123,25 @@ class Carousel extends Component<Props, State> {
                 />
             );
         },
-        renderItem: (item, { isSelected }) => {
+        renderItem: (item: React.ReactNode) => {
             return item;
         },
-        renderThumbs: (children) => children,
+        renderThumbs: (children: React.ReactChild[]) => children,
+        selectedItem: 0,
+        showArrows: true,
+        showIndicators: true,
+        showStatus: true,
+        showThumbs: true,
+        statusFormatter: defaultStatusFormatter,
+        stopOnHover: true,
+        swipeScrollTolerance: 5,
+        swipeable: true,
+        transitionTime: 350,
+        verticalSwipe: 'standard',
+        width: '100%',
     };
 
-    constructor(props) {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -165,7 +163,7 @@ class Carousel extends Component<Props, State> {
         this.setupCarousel();
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps: Props, prevState: State) {
         if (!prevProps.children && this.props.children && !this.state.initialized) {
             this.setupCarousel();
         }
@@ -195,23 +193,19 @@ class Carousel extends Component<Props, State> {
         this.destroyCarousel();
     }
 
-    setThumbsRef = (node) => {
+    setThumbsRef = (node: Thumbs) => {
         this.thumbsRef = node;
     };
 
-    setCarouselWrapperRef = (node) => {
+    setCarouselWrapperRef = (node: HTMLDivElement) => {
         this.carouselWrapperRef = node;
     };
 
-    setListRef = (node) => {
+    setListRef = (node: HTMLElement | HTMLUListElement) => {
         this.listRef = node;
     };
 
-    setItemsWrapperRef = (node) => {
-        this.itemsWrapperRef = node;
-    };
-
-    setItemsRef = (node, index) => {
+    setItemsRef = (node: HTMLElement, index: number) => {
         if (!this.itemsRef) {
             this.itemsRef = [];
         }
@@ -297,7 +291,7 @@ class Carousel extends Component<Props, State> {
             return;
         }
 
-        clearTimeout(this.timer);
+        if (this.timer) clearTimeout(this.timer);
         this.timer = setTimeout(() => {
             this.increment();
         }, this.props.interval);
@@ -308,7 +302,7 @@ class Carousel extends Component<Props, State> {
             return;
         }
 
-        clearTimeout(this.timer);
+        if (this.timer) clearTimeout(this.timer);
     };
 
     resetAutoPlay = () => {
@@ -327,6 +321,10 @@ class Carousel extends Component<Props, State> {
     };
 
     isFocusWithinTheCarousel = () => {
+        if (!this.carouselWrapperRef) {
+            return false;
+        }
+
         if (
             getDocument().activeElement === this.carouselWrapperRef ||
             this.carouselWrapperRef.contains(getDocument().activeElement)
@@ -337,7 +335,7 @@ class Carousel extends Component<Props, State> {
         return false;
     };
 
-    navigateWithKeyboard = (e) => {
+    navigateWithKeyboard = (e: KeyboardEvent) => {
         if (!this.isFocusWithinTheCarousel()) {
             return;
         }
@@ -362,7 +360,7 @@ class Carousel extends Component<Props, State> {
     };
 
     updateSizes = () => {
-        if (!this.state.initialized) {
+        if (!this.state.initialized || !this.itemsRef || this.itemsRef.length === 0) {
             return;
         }
 
@@ -370,9 +368,9 @@ class Carousel extends Component<Props, State> {
         const firstItem = this.itemsRef[0];
         const itemSize = isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
 
-        this.setState((_state, props) => ({
+        this.setState({
             itemSize: itemSize,
-        }));
+        });
 
         if (this.thumbsRef) {
             this.thumbsRef.updateSizes();
@@ -384,7 +382,7 @@ class Carousel extends Component<Props, State> {
         this.updateSizes();
     };
 
-    handleClickItem = (index, item) => {
+    handleClickItem = (index: number, item: React.ReactNode) => {
         if (Children.count(this.props.children) === 0) {
             return;
         }
@@ -406,7 +404,7 @@ class Carousel extends Component<Props, State> {
         }
     };
 
-    handleOnChange = (index, item) => {
+    handleOnChange = (index: number, item: React.ReactNode) => {
         if (Children.count(this.props.children) <= 1) {
             return;
         }
@@ -414,7 +412,7 @@ class Carousel extends Component<Props, State> {
         this.props.onChange(index, item);
     };
 
-    handleClickThumb = (index, item) => {
+    handleClickThumb = (index: number, item: React.ReactNode) => {
         this.props.onClickThumb(index, item);
 
         this.selectItem({
@@ -422,7 +420,7 @@ class Carousel extends Component<Props, State> {
         });
     };
 
-    onSwipeStart = (event: React.SyntheticEvent<any, TouchEvent>) => {
+    onSwipeStart = (event: React.TouchEvent) => {
         this.setState({
             swiping: true,
         });
@@ -430,7 +428,7 @@ class Carousel extends Component<Props, State> {
         this.clearAutoPlay();
     };
 
-    onSwipeEnd = (event: React.SyntheticEvent<any, TouchEvent>) => {
+    onSwipeEnd = (event: React.TouchEvent) => {
         this.setState({
             swiping: false,
             cancelClick: false,
@@ -439,7 +437,10 @@ class Carousel extends Component<Props, State> {
         this.autoPlay();
     };
 
-    onSwipeMove = (delta: { x: number; y: number }, event: React.SyntheticEvent<any, TouchEvent>) => {
+    onSwipeMove = (delta: { x: number; y: number }, event: React.TouchEvent) => {
+        if (!this.state.itemSize) {
+            return;
+        }
         this.props.onSwipeMove(event);
         const isHorizontal = this.props.axis === 'horizontal';
         const childrenLength = Children.count(this.props.children);
@@ -521,9 +522,10 @@ class Carousel extends Component<Props, State> {
         if (list instanceof HTMLElement) {
             ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach(
                 (prop) => {
-                    list.style[prop] = CSSTranslate(position, '%', this.props.axis);
+                    list.style[prop as any] = CSSTranslate(position, '%', this.props.axis);
                 }
             );
+
             if (forceReflow) {
                 list.offsetLeft;
             }
@@ -543,7 +545,11 @@ class Carousel extends Component<Props, State> {
         this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1), fromSwipe);
     };
 
-    moveTo = (position: number, fromSwipe?: boolean) => {
+    moveTo = (position?: number, fromSwipe?: boolean) => {
+        if (!position) {
+            return;
+        }
+
         const lastPosition = Children.count(this.props.children) - 1;
         const needClonedSlide = this.props.infiniteLoop && !fromSwipe && (position < 0 || position > lastPosition);
         const oldPosition = position;
@@ -565,7 +571,11 @@ class Carousel extends Component<Props, State> {
                 },
                 () => {
                     if (oldPosition < 0) {
-                        if (this.props.centerMode && this.props.axis === 'horizontal') {
+                        if (
+                            this.props.centerMode &&
+                            this.props.centerSlidePercentage &&
+                            this.props.axis === 'horizontal'
+                        ) {
                             this.setPosition(
                                 -(lastPosition + 2) * this.props.centerSlidePercentage -
                                     (100 - this.props.centerSlidePercentage) / 2,
@@ -579,7 +589,7 @@ class Carousel extends Component<Props, State> {
                     }
 
                     this.selectItem({
-                        selectedItem: position,
+                        selectedItem: position!,
                         swiping: false,
                     });
                 }
@@ -634,9 +644,9 @@ class Carousel extends Component<Props, State> {
         return images && images[selectedItem];
     };
 
-    getVariableImageHeight = (position) => {
+    getVariableImageHeight = (position: number) => {
         const item = this.itemsRef && this.itemsRef[position];
-        const images = item && item.getElementsByTagName('img');
+        const images = (item && item.getElementsByTagName('img')) || [];
         if (this.state.hasMount && images.length > 0) {
             const image = images[0];
 
@@ -658,9 +668,13 @@ class Carousel extends Component<Props, State> {
     };
 
     renderItems(isClone?: boolean) {
+        if (!this.props.children) {
+            return [];
+        }
+
         return Children.map(this.props.children, (item, index) => {
             const slideProps = {
-                ref: (e) => this.setItemsRef(e, index),
+                ref: (e: HTMLLIElement) => this.setItemsRef(e, index),
                 key: 'itemKey' + index + (isClone ? 'clone' : ''),
                 className: klass.ITEM(true, index === this.state.selectedItem),
                 onClick: this.handleClickItem.bind(this, index, item),
@@ -685,18 +699,17 @@ class Carousel extends Component<Props, State> {
     }
 
     renderControls() {
-        if (!this.props.showIndicators) {
+        const { showIndicators, labels, renderIndicator, children } = this.props;
+        if (!showIndicators) {
             return null;
         }
 
         return (
             <ul className="control-dots">
-                {Children.map(this.props.children, (item, index) => {
-                    return this.props.renderIndicator(
-                        this.changeItem(index),
-                        index === this.state.selectedItem,
-                        index,
-                        this.props.labels.item
+                {Children.map(children, (item, index) => {
+                    return (
+                        renderIndicator &&
+                        renderIndicator(this.changeItem(index), index === this.state.selectedItem, index, labels.item)
                     );
                 })}
             </ul>
@@ -716,7 +729,7 @@ class Carousel extends Component<Props, State> {
     }
 
     renderThumbs() {
-        if (!this.props.showThumbs || Children.count(this.props.children) === 0) {
+        if (!this.props.showThumbs || !this.props.children || Children.count(this.props.children) === 0) {
             return null;
         }
 
@@ -744,11 +757,12 @@ class Carousel extends Component<Props, State> {
         const canShowArrows = this.props.showArrows && Children.count(this.props.children) > 1;
 
         // show left arrow?
-        const hasPrev = canShowArrows && (this.state.selectedItem > 0 || this.props.infiniteLoop);
+        const hasPrev = (canShowArrows && (this.state.selectedItem > 0 || this.props.infiniteLoop)) || false;
         // show right arrow
         const hasNext =
-            canShowArrows &&
-            (this.state.selectedItem < Children.count(this.props.children) - 1 || this.props.infiniteLoop);
+            (canShowArrows &&
+                (this.state.selectedItem < Children.count(this.props.children) - 1 || this.props.infiniteLoop)) ||
+            false;
         // obj to hold the transformations and styles
         let itemListStyles = {};
 
@@ -788,13 +802,13 @@ class Carousel extends Component<Props, State> {
             className: string;
             style: React.CSSProperties;
             tolerance: number;
-            onSwipeMove: (delta: { x: number; y: number }, event: React.SyntheticEvent<any, TouchEvent>) => void;
-            onSwipeStart: (event: React.SyntheticEvent<any, TouchEvent>) => void;
-            onSwipeEnd: (event: React.SyntheticEvent<any, TouchEvent>) => void;
-            onSwipeLeft?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
-            onSwipeRight?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
-            onSwipeUp?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
-            onSwipeDown?: (event: React.SyntheticEvent<any, TouchEvent>) => void;
+            onSwipeMove: (delta: { x: number; y: number }, event: React.TouchEvent) => void;
+            onSwipeStart: (event: React.TouchEvent) => void;
+            onSwipeEnd: (event: React.TouchEvent) => void;
+            onSwipeLeft?: (event: React.TouchEvent) => void;
+            onSwipeRight?: (event: React.TouchEvent) => void;
+            onSwipeUp?: (event: React.TouchEvent) => void;
+            onSwipeDown?: (event: React.TouchEvent) => void;
         } = {
             className: klass.SLIDER(true, this.state.swiping),
             onSwipeMove: this.onSwipeMove,
@@ -827,11 +841,7 @@ class Carousel extends Component<Props, State> {
             <div className={klass.ROOT(this.props.className)} ref={this.setCarouselWrapperRef} tabIndex={0}>
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
                     {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
-                    <div
-                        className={klass.WRAPPER(true, this.props.axis)}
-                        style={containerStyles}
-                        ref={this.setItemsWrapperRef}
-                    >
+                    <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles}>
                         {this.props.swipeable ? (
                             <Swipe
                                 tagName="ul"
@@ -846,7 +856,7 @@ class Carousel extends Component<Props, State> {
                         ) : (
                             <ul
                                 className={klass.SLIDER(true, this.state.swiping)}
-                                ref={this.setListRef}
+                                ref={(node: HTMLUListElement) => this.setListRef(node)}
                                 style={itemListStyles}
                             >
                                 {this.props.infiniteLoop && lastClone}

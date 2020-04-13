@@ -71,28 +71,46 @@ describe('Slider', function() {
 
         describe('Default Props', () => {
             const props = {
-                showIndicators: true,
+                axis: 'horizontal',
+                centerSlidePercentage: 80,
+                interval: 3000,
+                labels: {
+                    leftArrow: 'previous slide / item',
+                    rightArrow: 'next slide / item',
+                    item: 'slide item',
+                },
+                onClickItem: () => {},
+                onClickThumb: () => {},
+                onChange: () => {},
+                onSwipeStart: () => {},
+                onSwipeEnd: () => {},
+                onSwipeMove: () => {},
+                renderArrowPrev: (onClickHandler, hasPrev, label) => {},
+                renderArrowNext: (onClickHandler, hasNext, label) => {},
+                renderIndicator: (onClickHandler, isSelected, index, labelg) => {},
+                renderItem: (item) => {},
+                renderThumbs: (children) => children,
+                selectedItem: 0,
                 showArrows: true,
+                showIndicators: true,
                 showStatus: true,
                 showThumbs: true,
-                infiniteLoop: false,
-                selectedItem: 0,
-                axis: 'horizontal',
-                verticalSwipe: 'standard',
-                useKeyboardArrows: false,
-                autoPlay: false,
+                statusFormatter: () => {},
                 stopOnHover: true,
-                interval: 3000,
-                transitionTime: 350,
                 swipeScrollTolerance: 5,
-                dynamicHeight: false,
-                emulateTouch: false,
-                centerMode: false,
+                swipeable: true,
+                transitionTime: 350,
+                verticalSwipe: 'standard',
+                width: '100%',
             };
 
             Object.keys(props).forEach((prop) => {
                 it(`should have ${prop} as ${props[prop]}`, () => {
-                    expect(componentInstance.props[prop]).toBe(props[prop]);
+                    expect(componentInstance.props[prop]).toBeDefined();
+
+                    if (typeof componentInstance.props[prop] !== 'function') {
+                        expect(componentInstance.props[prop]).toBe(props[prop]);
+                    }
                 });
             });
         });
