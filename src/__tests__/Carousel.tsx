@@ -1,33 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme';
+import { shallow, mount, ReactWrapper } from 'enzyme';
 import renderer from 'react-test-renderer';
 import * as index from '../index';
-import Swipe from 'react-easy-swipe';
+// @ts-ignore
+import Swipe, { ReactEasySwipeProps } from 'react-easy-swipe';
+import Carousel, { Props } from '../components/Carousel';
+import Thumbs from '../components/Thumbs';
 import getDocument from '../shims/document';
 import getWindow from '../shims/window';
 
-const findDOMNodeWithinWrapper = (wrapper, domNode) => {
+const findDOMNodeWithinWrapper = (wrapper: ReactWrapper, domNode: HTMLElement) => {
     return wrapper.findWhere((n) => n.getDOMNode() === domNode).simulate('click');
 };
 
 describe('Slider', function() {
     jest.autoMockOff();
 
-    const Carousel = require('../components/Carousel').default;
-    const Thumbs = require('../components/Thumbs').default;
+    let window: Window;
+    let document: Document;
+    let component: ReactWrapper;
+    let componentInstance: any;
+    let totalChildren: number;
+    let lastItemIndex: number;
 
-    let window, document, component, componentInstance, totalChildren, lastItemIndex;
-
-    const bootstrap = (props, children) => {
+    const bootstrap = (props: Partial<Props>, children: Props['children']) => {
         window = getWindow();
         document = getDocument();
 
-        component = mount(<Carousel {...props}>{children}</Carousel>);
+        component = mount<Partial<Props>>(<Carousel {...props}>{children}</Carousel>);
 
         componentInstance = component.instance();
 
-        totalChildren = children && children.length ? componentInstance.props.children.length : 0;
+        totalChildren = children && children.length ? React.Children.count(componentInstance.props.children) : 0;
         lastItemIndex = totalChildren - 1;
     };
 
@@ -41,11 +46,11 @@ describe('Slider', function() {
         <img src="assets/7.jpeg" key="7" />,
     ];
 
-    const renderDefaultComponent = ({ children = baseChildren, ...props }) => {
+    const renderDefaultComponent = ({ children = baseChildren, ...props }: Partial<Props>) => {
         bootstrap(props, children);
     };
 
-    const renderForSnapshot = (props, children) => {
+    const renderForSnapshot = (props: Partial<Props>, children: Props['children']) => {
         return renderer.create(<Carousel {...props}>{children}</Carousel>).toJSON();
     };
 
@@ -70,47 +75,91 @@ describe('Slider', function() {
         });
 
         describe('Default Props', () => {
-            const props = {
-                axis: 'horizontal',
-                centerSlidePercentage: 80,
-                interval: 3000,
-                labels: {
-                    leftArrow: 'previous slide / item',
-                    rightArrow: 'next slide / item',
-                    item: 'slide item',
-                },
-                onClickItem: () => {},
-                onClickThumb: () => {},
-                onChange: () => {},
-                onSwipeStart: () => {},
-                onSwipeEnd: () => {},
-                onSwipeMove: () => {},
-                renderArrowPrev: (onClickHandler, hasPrev, label) => {},
-                renderArrowNext: (onClickHandler, hasNext, label) => {},
-                renderIndicator: (onClickHandler, isSelected, index, labelg) => {},
-                renderItem: (item) => {},
-                renderThumbs: (children) => children,
-                selectedItem: 0,
-                showArrows: true,
-                showIndicators: true,
-                showStatus: true,
-                showThumbs: true,
-                statusFormatter: () => {},
-                stopOnHover: true,
-                swipeScrollTolerance: 5,
-                swipeable: true,
-                transitionTime: 350,
-                verticalSwipe: 'standard',
-                width: '100%',
-            };
+            describe('values', () => {
+                const props: Partial<Props> = {
+                    axis: 'horizontal',
+                    centerSlidePercentage: 80,
+                    interval: 3000,
+                    labels: {
+                        leftArrow: 'previous slide / item',
+                        rightArrow: 'next slide / item',
+                        item: 'slide item',
+                    },
+                    selectedItem: 0,
+                    showArrows: true,
+                    showIndicators: true,
+                    showStatus: true,
+                    showThumbs: true,
+                    stopOnHover: true,
+                    swipeScrollTolerance: 5,
+                    swipeable: true,
+                    transitionTime: 350,
+                    verticalSwipe: 'standard',
+                    width: '100%',
+                };
 
-            Object.keys(props).forEach((prop) => {
-                it(`should have ${prop} as ${props[prop]}`, () => {
-                    expect(componentInstance.props[prop]).toBeDefined();
+                Object.keys(props).forEach((prop) => {
+                    it(`should have ${prop} as ${props[prop as keyof Props]}`, () => {
+                        expect(component.prop(prop)).toBeDefined();
+                        expect(component.prop(prop)).toEqual(props[prop as keyof Props]);
+                    });
+                });
+            });
 
-                    if (typeof componentInstance.props[prop] !== 'function') {
-                        expect(componentInstance.props[prop]).toBe(props[prop]);
-                    }
+            describe('methods', () => {
+                it('renderArrowPrev should return a button', () => {
+                    expect(componentInstance.props.renderArrowPrev!(jest.fn(), true, 'prev')).toMatchSnapshot();
+                });
+
+                it('renderArrowNext should return a button', () => {
+                    expect(componentInstance.props.renderArrowNext!(jest.fn(), true, 'next')).toMatchSnapshot();
+                });
+
+                it('renderIndicator should return a list item', () => {
+                    expect(componentInstance.props.renderIndicator!(jest.fn(), true, 0, 'slide')).toMatchSnapshot();
+                });
+
+                it('renderItem should pass through the item', () => {
+                    expect(componentInstance.props.renderItem!(<div>item</div>)).toMatchSnapshot();
+                });
+
+                it('renderThumbs should return a list of images extracted from the children', () => {
+                    expect(
+                        componentInstance.props.renderThumbs!([
+                            <li>
+                                <img src="assets/1.jpeg" key="1" />
+                                <p>Legend 1</p>
+                            </li>,
+                            <li>
+                                <img src="assets/2.jpeg" key="2" />
+                                <p>Legend 2</p>
+                            </li>,
+                            <li>
+                                <img src="assets/3.jpeg" key="3" />
+                                <p>Legend 3</p>
+                            </li>,
+                            <li>
+                                <img src="assets/4.jpeg" key="4" />
+                                <p>Legend 4</p>
+                            </li>,
+                            <li>
+                                <img src="assets/5.jpeg" key="5" />
+                                <p>Legend 5</p>
+                            </li>,
+                            <li>
+                                <img src="assets/6.jpeg" key="6" />
+                                <p>Legend 6</p>
+                            </li>,
+                            <li>
+                                <img src="assets/7.jpeg" key="7" />
+                                <p>Legend 7</p>
+                            </li>,
+                        ])
+                    ).toMatchSnapshot();
+                });
+
+                it('statusFormatter should return a string', () => {
+                    expect(componentInstance.props.statusFormatter!(1, 3)).toEqual('1 of 3');
                 });
             });
         });
@@ -121,10 +170,10 @@ describe('Slider', function() {
                 hasMount: false,
             };
 
-            Object.keys(props).forEach((prop) => {
-                it(`should have ${prop} as ${props[prop]}`, () => {
-                    expect(componentInstance.state.selectedItem).toBe(0);
-                    expect(componentInstance.state.hasMount).toBe(false);
+            Object.entries(props).forEach((key, value) => {
+                it(`should have ${key} as ${value}`, () => {
+                    expect(component.state('selectedItem')).toBe(0);
+                    expect(component.state('hasMount')).toBe(false);
                 });
             });
         });
@@ -134,26 +183,26 @@ describe('Slider', function() {
         it('should bind the events', () => {
             componentInstance.bindEvents = jest.fn();
             componentInstance.componentDidMount();
-            expect(componentInstance.bindEvents.mock.calls.length).toBe(1);
+            expect(componentInstance.bindEvents).toHaveBeenCalledTimes(1);
         });
 
         it('should not bind the events if there are no children', () => {
-            bootstrap({}, null);
+            bootstrap({}, undefined);
             componentInstance.bindEvents = jest.fn();
             componentInstance.componentDidMount();
-            expect(componentInstance.bindEvents.mock.calls.length).toBe(0);
+            expect(componentInstance.bindEvents).not.toHaveBeenCalled();
         });
 
         it('should bind the events if children were lazy loaded (through componentDidUpdate)', () => {
-            bootstrap({}, null);
+            bootstrap({}, undefined);
             componentInstance.bindEvents = jest.fn();
-            expect(componentInstance.bindEvents.mock.calls.length).toBe(0);
+            expect(componentInstance.bindEvents).not.toHaveBeenCalled();
 
             component.setProps({
                 children: [<img src="assets/1.jpeg" key="1" />],
             });
 
-            expect(componentInstance.bindEvents.mock.calls.length).toBe(1);
+            expect(componentInstance.bindEvents).toHaveBeenCalledTimes(1);
         });
     });
 
@@ -162,7 +211,7 @@ describe('Slider', function() {
             componentInstance.resetPosition = jest.fn();
             componentInstance.setState({ swiping: false });
             componentInstance.componentDidUpdate({}, { swiping: true });
-            expect(componentInstance.resetPosition.mock.calls.length).toBe(1);
+            expect(componentInstance.resetPosition).toHaveBeenCalledTimes(1);
         });
     });
 
@@ -172,7 +221,7 @@ describe('Slider', function() {
             componentInstance.componentWillUnmount();
         });
         it('should unbind the events', () => {
-            expect(componentInstance.unbindEvents.mock.calls.length).toBe(1);
+            expect(componentInstance.unbindEvents).toHaveBeenCalledTimes(1);
         });
     });
 
@@ -185,18 +234,18 @@ describe('Slider', function() {
             });
 
             it('should bind resize to updateSizes', () => {
-                expect(window.addEventListener.mock.calls[0]).toEqual(['resize', componentInstance.updateSizes]);
+                expect(window.addEventListener).toHaveBeenCalledWith('resize', componentInstance.updateSizes);
             });
 
             it('should bind DOMContentLoaded to updateSizes', () => {
-                expect(window.addEventListener.mock.calls[1]).toEqual([
-                    'DOMContentLoaded',
-                    componentInstance.updateSizes,
-                ]);
+                expect(window.addEventListener).toHaveBeenCalledWith('DOMContentLoaded', componentInstance.updateSizes);
             });
 
             it('should not bind keydown to navigateWithKeyboard', () => {
-                expect(document.addEventListener.mock.calls.length).toBe(0);
+                expect(document.addEventListener).not.toHaveBeenCalledWith(
+                    'keydown',
+                    componentInstance.navigateWithKeyboard
+                );
             });
         });
 
@@ -212,21 +261,18 @@ describe('Slider', function() {
             });
 
             it('should bind resize to updateSizes', () => {
-                expect(window.addEventListener.mock.calls[0]).toEqual(['resize', componentInstance.updateSizes]);
+                expect(window.addEventListener).toHaveBeenCalledWith('resize', componentInstance.updateSizes);
             });
 
             it('should bind DOMContentLoaded to updateSizes', () => {
-                expect(window.addEventListener.mock.calls[1]).toEqual([
-                    'DOMContentLoaded',
-                    componentInstance.updateSizes,
-                ]);
+                expect(window.addEventListener).toHaveBeenCalledWith('DOMContentLoaded', componentInstance.updateSizes);
             });
 
             it('should bind keydown to navigateWithKeyboard', () => {
-                expect(document.addEventListener.mock.calls[0]).toEqual([
+                expect(document.addEventListener).toHaveBeenCalledWith(
                     'keydown',
-                    componentInstance.navigateWithKeyboard,
-                ]);
+                    componentInstance.navigateWithKeyboard
+                );
             });
         });
     });
@@ -240,18 +286,21 @@ describe('Slider', function() {
             });
 
             it('should unbind resize to updateSizes', () => {
-                expect(window.removeEventListener.mock.calls[0]).toEqual(['resize', componentInstance.updateSizes]);
+                expect(window.removeEventListener).toHaveBeenCalledWith('resize', componentInstance.updateSizes);
             });
 
             it('should unbind DOMContentLoaded to updateSizes', () => {
-                expect(window.removeEventListener.mock.calls[1]).toEqual([
+                expect(window.removeEventListener).toHaveBeenCalledWith(
                     'DOMContentLoaded',
-                    componentInstance.updateSizes,
-                ]);
+                    componentInstance.updateSizes
+                );
             });
 
             it('should not unbind keydown to navigateWithKeyboard', () => {
-                expect(document.removeEventListener.mock.calls.length).toBe(0);
+                expect(document.removeEventListener).not.toHaveBeenCalledWith(
+                    'keydown',
+                    componentInstance.navigateWithKeyboard
+                );
             });
         });
 
@@ -267,26 +316,37 @@ describe('Slider', function() {
             });
 
             it('should unbind resize to updateSizes', () => {
-                expect(window.removeEventListener.mock.calls[0]).toEqual(['resize', componentInstance.updateSizes]);
+                expect(window.removeEventListener).toHaveBeenCalledWith('resize', componentInstance.updateSizes);
             });
 
             it('should unbind DOMContentLoaded to updateSizes', () => {
-                expect(window.removeEventListener.mock.calls[1]).toEqual([
+                expect(window.removeEventListener).toHaveBeenCalledWith(
                     'DOMContentLoaded',
-                    componentInstance.updateSizes,
-                ]);
+                    componentInstance.updateSizes
+                );
             });
 
             it('should unbind keydown to navigateWithKeyboard', () => {
-                expect(document.removeEventListener.mock.calls[0]).toEqual([
+                expect(document.removeEventListener).toHaveBeenCalledWith(
                     'keydown',
-                    componentInstance.navigateWithKeyboard,
-                ]);
+                    componentInstance.navigateWithKeyboard
+                );
             });
         });
     });
 
     describe('navigateWithKeyboard', () => {
+        const setActiveElement = (element: HTMLElement) => {
+            (document.activeElement as any) = element;
+        };
+
+        beforeEach(() => {
+            // jsdom has issues with activeElement so we are hacking it for this specific scenario
+            Object.defineProperty(document, 'activeElement', {
+                writable: true,
+            });
+        });
+
         describe('Axis === horizontal', () => {
             beforeEach(() => {
                 renderDefaultComponent({
@@ -296,55 +356,50 @@ describe('Slider', function() {
 
                 componentInstance.increment = jest.fn();
                 componentInstance.decrement = jest.fn();
-
-                // jsdom has issues with activeElement so we are hacking it for this specific scenario
-                Object.defineProperty(document, 'activeElement', {
-                    writable: true,
-                });
             });
 
             it('should not navigate if the focus is outside of the carousel', () => {
                 componentInstance.navigateWithKeyboard({ keyCode: 39 });
                 componentInstance.navigateWithKeyboard({ keyCode: 37 });
 
-                expect(componentInstance.increment.mock.calls.length).toBe(0);
-                expect(componentInstance.decrement.mock.calls.length).toBe(0);
+                expect(componentInstance.increment).not.toHaveBeenCalled();
+                expect(componentInstance.decrement).not.toHaveBeenCalled();
             });
 
             it('should call only increment on ArrowRight (39)', () => {
-                document.activeElement = componentInstance.carouselWrapperRef;
+                setActiveElement(componentInstance.carouselWrapperRef);
 
                 componentInstance.navigateWithKeyboard({ keyCode: 39 });
 
-                expect(componentInstance.increment.mock.calls.length).toBe(1);
-                expect(componentInstance.decrement.mock.calls.length).toBe(0);
+                expect(componentInstance.increment).toHaveBeenCalledTimes(1);
+                expect(componentInstance.decrement).not.toHaveBeenCalled();
             });
 
             it('should call only decrement on ArrowLeft (37)', () => {
-                document.activeElement = componentInstance.carouselWrapperRef;
+                setActiveElement(componentInstance.carouselWrapperRef);
 
                 componentInstance.navigateWithKeyboard({ keyCode: 37 });
 
-                expect(componentInstance.decrement.mock.calls.length).toBe(1);
-                expect(componentInstance.increment.mock.calls.length).toBe(0);
+                expect(componentInstance.decrement).toHaveBeenCalledTimes(1);
+                expect(componentInstance.increment).not.toHaveBeenCalled();
             });
 
             it('should not call increment on ArrowDown (40)', () => {
-                document.activeElement = componentInstance.carouselWrapperRef;
+                setActiveElement(componentInstance.carouselWrapperRef);
 
                 componentInstance.navigateWithKeyboard({ keyCode: 40 });
 
-                expect(componentInstance.increment.mock.calls.length).toBe(0);
-                expect(componentInstance.decrement.mock.calls.length).toBe(0);
+                expect(componentInstance.increment).not.toHaveBeenCalled();
+                expect(componentInstance.decrement).not.toHaveBeenCalled();
             });
 
             it('should not call decrement on ArrowUp (38)', () => {
-                document.activeElement = componentInstance.carouselWrapperRef;
+                setActiveElement(componentInstance.carouselWrapperRef);
 
                 componentInstance.navigateWithKeyboard({ keyCode: 38 });
 
-                expect(componentInstance.decrement.mock.calls.length).toBe(0);
-                expect(componentInstance.increment.mock.calls.length).toBe(0);
+                expect(componentInstance.decrement).not.toHaveBeenCalled();
+                expect(componentInstance.increment).not.toHaveBeenCalled();
             });
         });
 
@@ -363,40 +418,40 @@ describe('Slider', function() {
                 componentInstance.navigateWithKeyboard({ keyCode: 40 });
                 componentInstance.navigateWithKeyboard({ keyCode: 38 });
 
-                expect(componentInstance.increment.mock.calls.length).toBe(0);
-                expect(componentInstance.decrement.mock.calls.length).toBe(0);
+                expect(componentInstance.increment).not.toHaveBeenCalled();
+                expect(componentInstance.decrement).not.toHaveBeenCalled();
             });
 
             it('should call only increment on ArrowDown (40)', () => {
-                document.activeElement = componentInstance.carouselWrapperRef;
+                setActiveElement(componentInstance.carouselWrapperRef);
                 componentInstance.navigateWithKeyboard({ keyCode: 40 });
 
-                expect(componentInstance.increment.mock.calls.length).toBe(1);
-                expect(componentInstance.decrement.mock.calls.length).toBe(0);
+                expect(componentInstance.increment).toHaveBeenCalledTimes(1);
+                expect(componentInstance.decrement).not.toHaveBeenCalled();
             });
 
             it('should call only decrement on ArrowUp (38)', () => {
-                document.activeElement = componentInstance.carouselWrapperRef;
+                setActiveElement(componentInstance.carouselWrapperRef);
                 componentInstance.navigateWithKeyboard({ keyCode: 38 });
 
-                expect(componentInstance.decrement.mock.calls.length).toBe(1);
-                expect(componentInstance.increment.mock.calls.length).toBe(0);
+                expect(componentInstance.decrement).toHaveBeenCalledTimes(1);
+                expect(componentInstance.increment).not.toHaveBeenCalled();
             });
 
             it('should not call increment on ArrowRight (39)', () => {
-                document.activeElement = componentInstance.carouselWrapperRef;
+                setActiveElement(componentInstance.carouselWrapperRef);
                 componentInstance.navigateWithKeyboard({ keyCode: 39 });
 
-                expect(componentInstance.increment.mock.calls.length).toBe(0);
-                expect(componentInstance.decrement.mock.calls.length).toBe(0);
+                expect(componentInstance.increment).not.toHaveBeenCalled();
+                expect(componentInstance.decrement).not.toHaveBeenCalled();
             });
 
             it('should not call decrement on ArrowLeft (37)', () => {
-                document.activeElement = componentInstance.carouselWrapperRef;
+                setActiveElement(componentInstance.carouselWrapperRef);
                 componentInstance.navigateWithKeyboard({ keyCode: 37 });
 
-                expect(componentInstance.decrement.mock.calls.length).toBe(0);
-                expect(componentInstance.increment.mock.calls.length).toBe(0);
+                expect(componentInstance.decrement).not.toHaveBeenCalled();
+                expect(componentInstance.increment).not.toHaveBeenCalled();
             });
         });
     });
@@ -405,11 +460,7 @@ describe('Slider', function() {
         beforeEach(() => {
             componentInstance.selectItem = jest.fn();
             componentInstance.getFirstItem = jest.fn().mockReturnValue(2);
-            componentInstance.changeItem({
-                target: {
-                    value: 1,
-                },
-            });
+            componentInstance.changeItem(1)();
         });
 
         it('should call selectItem sending selectedItem as 1', () => {
@@ -493,7 +544,7 @@ describe('Slider', function() {
             var mockedFunction = jest.fn();
 
             renderDefaultComponent({
-                children: <img src="assets/1.jpeg" key="1" />,
+                children: [<img src="assets/1.jpeg" key="1" />],
                 onClickItem: mockedFunction,
             });
             expect(componentInstance.state.selectedItem).toBe(0);
@@ -504,6 +555,9 @@ describe('Slider', function() {
         });
     });
 
+    const findDOMNodeByClass = (instance: any, classNames: string) =>
+        (ReactDOM.findDOMNode(instance)! as HTMLElement).querySelectorAll(classNames);
+
     describe('Navigating', () => {
         beforeEach(() => {
             componentInstance.showArrows = true;
@@ -512,35 +566,27 @@ describe('Slider', function() {
         it('should disable the left arrow if we are showing the first item', () => {
             findDOMNodeWithinWrapper(component, componentInstance.itemsRef[0]).simulate('click');
             expect(
-                ReactDOM.findDOMNode(componentInstance).querySelectorAll(
-                    '.carousel-slider .control-prev.control-disabled'
-                ).length
-            ).toBe(1);
+                findDOMNodeByClass(componentInstance, '.carousel-slider .control-prev.control-disabled')
+            ).toHaveLength(1);
         });
 
         it('should enable the left arrow if we are showing other than the first item', () => {
             findDOMNodeWithinWrapper(component, componentInstance.itemsRef[1]).simulate('click');
             expect(
-                ReactDOM.findDOMNode(componentInstance).querySelectorAll(
-                    '.carousel-slider .control-prev.control-disabled'
-                ).length
-            ).toBe(0);
+                findDOMNodeByClass(componentInstance, '.carousel-slider .control-prev.control-disabled')
+            ).toHaveLength(0);
         });
 
         it('should disable the right arrow if we reach the lastPosition', () => {
             findDOMNodeWithinWrapper(component, componentInstance.itemsRef[1]).simulate('click');
             expect(
-                ReactDOM.findDOMNode(componentInstance).querySelectorAll(
-                    '.carousel-slider .control-next.control-disabled'
-                ).length
-            ).toBe(0);
+                findDOMNodeByClass(componentInstance, '.carousel-slider .control-next.control-disabled')
+            ).toHaveLength(0);
 
             findDOMNodeWithinWrapper(component, componentInstance.itemsRef[6]).simulate('click');
             expect(
-                ReactDOM.findDOMNode(componentInstance).querySelectorAll(
-                    '.carousel-slider .control-next.control-disabled'
-                ).length
-            ).toBe(1);
+                findDOMNodeByClass(componentInstance, '.carousel-slider .control-next.control-disabled')
+            ).toHaveLength(1);
         });
     });
 
@@ -554,19 +600,15 @@ describe('Slider', function() {
         it('should enable the prev arrow if we are showing the first item', () => {
             findDOMNodeWithinWrapper(component, componentInstance.itemsRef[0]).simulate('click');
             expect(
-                ReactDOM.findDOMNode(componentInstance).querySelectorAll(
-                    '.carousel-slider .control-prev.control-disabled'
-                ).length
-            ).toBe(0);
+                findDOMNodeByClass(componentInstance, '.carousel-slider .control-prev.control-disabled')
+            ).toHaveLength(0);
         });
 
         it('should enable the right arrow if we reach the lastPosition', () => {
             findDOMNodeWithinWrapper(component, componentInstance.itemsRef[6]).simulate('click');
             expect(
-                ReactDOM.findDOMNode(componentInstance).querySelectorAll(
-                    '.carousel-slider .control-next.control-disabled'
-                ).length
-            ).toBe(0);
+                findDOMNodeByClass(componentInstance, '.carousel-slider .control-next.control-disabled')
+            ).toHaveLength(0);
         });
 
         it('should move to the first one if increment was called in the last', () => {
@@ -607,7 +649,7 @@ describe('Slider', function() {
         it('should set slide position directly and trigger a reflow when doing first to last transition', () => {
             componentInstance.setPosition = jest.fn();
             componentInstance.decrement();
-            expect(componentInstance.setPosition).toBeCalledWith('-800%', true);
+            expect(componentInstance.setPosition).toBeCalledWith(-800, true);
             componentInstance.setPosition.mockClear();
         });
 
@@ -661,7 +703,7 @@ describe('Slider', function() {
 
         it('should disable when only 1 child is present', () => {
             renderDefaultComponent({
-                children: <img src="assets/1.jpeg" key="1" />,
+                children: [<img src="assets/1.jpeg" key="1" />],
                 autoPlay: true,
             });
 
@@ -711,7 +753,7 @@ describe('Slider', function() {
             it('should stop auto play when hovering', () => {
                 componentInstance.clearAutoPlay = jest.fn();
                 componentInstance.stopOnHover();
-                expect(componentInstance.clearAutoPlay.mock.calls.length).toBe(1);
+                expect(componentInstance.clearAutoPlay).toHaveBeenCalledTimes(1);
             });
         });
 
@@ -724,7 +766,7 @@ describe('Slider', function() {
             it('should start auto play again after hovering', () => {
                 componentInstance.autoPlay = jest.fn();
                 componentInstance.startOnLeave();
-                expect(componentInstance.autoPlay.mock.calls.length).toBe(1);
+                expect(componentInstance.autoPlay).toHaveBeenCalledTimes(1);
             });
         });
     });
@@ -739,7 +781,7 @@ describe('Slider', function() {
             it('should stop autoplay', () => {
                 componentInstance.clearAutoPlay = jest.fn();
                 componentInstance.onSwipeStart();
-                expect(componentInstance.clearAutoPlay.mock.calls.length).toBe(1);
+                expect(componentInstance.clearAutoPlay).toHaveBeenCalledTimes(1);
             });
 
             it('should call onSwipeStart callback', () => {
@@ -775,7 +817,7 @@ describe('Slider', function() {
                 renderDefaultComponent({ onSwipeMove: onSwipeMoveFunction });
 
                 componentInstance.onSwipeMove({ x: 0, y: 10 });
-                expect(onSwipeMoveFunction).toBeCalled();
+                expect(onSwipeMoveFunction).toHaveBeenCalled();
             });
         });
 
@@ -787,7 +829,7 @@ describe('Slider', function() {
             it('should start autoplay again', () => {
                 componentInstance.autoPlay = jest.fn();
                 componentInstance.onSwipeEnd();
-                expect(componentInstance.autoPlay.mock.calls.length).toBe(1);
+                expect(componentInstance.autoPlay).toHaveBeenCalledTimes(1);
             });
 
             it('should call onSwipeEnd callback', () => {
@@ -805,7 +847,7 @@ describe('Slider', function() {
                     axis: 'vertical',
                 });
 
-                const swipeProps = component
+                const swipeProps: ReactEasySwipeProps = component
                     .find(Swipe)
                     .first()
                     .props();
@@ -822,7 +864,7 @@ describe('Slider', function() {
                     verticalSwipe: 'natural',
                 });
 
-                const swipeProps = component
+                const swipeProps: ReactEasySwipeProps = component
                     .find(Swipe)
                     .first()
                     .props();
@@ -990,7 +1032,7 @@ describe('Slider', function() {
         });
 
         it('no children at mount', () => {
-            expect(renderForSnapshot({}, null)).toMatchSnapshot();
+            expect(renderForSnapshot({}, undefined)).toMatchSnapshot();
         });
 
         it('center mode', () => {

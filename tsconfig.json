@@ -8,7 +8,14 @@
         "noUnusedLocals": true,
         "strict": true,
         "target": "es5",
-        "jsx": "react"
+        "jsx": "react",
+        "outDir": "./ts-output",
+        "baseUrl": "./src",
+        "typeRoots": ["./node_modules/@types", "./types"],
+        "paths": {
+            "~*": ["./*"],
+            "react-easy-swipe": ["./types/react-easy-swipe.d.ts"]
+        }
     },
     "include": ["./src/**/*.ts", "./src/**/*.tsx"]
 }

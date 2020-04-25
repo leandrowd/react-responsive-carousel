@@ -1,6 +1,7 @@
 import React, { Children } from 'react';
 import ReactDOM from 'react-dom';
-import Swipe from 'react-easy-swipe';
+// @ts-ignore
+import Swipe, { ReactEasySwipeProps } from 'react-easy-swipe';
 import klass from '../cssClasses';
 import CSSTranslate from '../CSSTranslate';
 import Thumbs from './Thumbs';
@@ -11,10 +12,10 @@ const noop = () => {};
 
 const defaultStatusFormatter = (current: number, total: number) => `${current} of ${total}`;
 
-const isKeyboardEvent = (e: React.MouseEvent | React.KeyboardEvent): e is React.KeyboardEvent =>
-    e.hasOwnProperty('key');
+const isKeyboardEvent = (e?: React.MouseEvent | React.KeyboardEvent): e is React.KeyboardEvent =>
+    e ? e.hasOwnProperty('key') : false;
 
-interface Props {
+export interface Props {
     axis: 'horizontal' | 'vertical';
     autoPlay?: boolean;
     centerMode?: boolean;
@@ -35,7 +36,7 @@ interface Props {
     onChange: (index: number, item: React.ReactNode) => void;
     onSwipeStart: (event: React.TouchEvent) => void;
     onSwipeEnd: (event: React.TouchEvent) => void;
-    onSwipeMove: (event: React.TouchEvent) => void;
+    onSwipeMove: (event: React.TouchEvent) => boolean;
     renderArrowPrev: (clickHandler: () => void, hasPrev: boolean, label: string) => React.ReactNode;
     renderArrowNext: (clickHandler: () => void, hasNext: boolean, label: string) => React.ReactNode;
     renderIndicator: (
@@ -44,7 +45,7 @@ interface Props {
         index: number,
         label: string
     ) => React.ReactNode;
-    renderItem: (item: React.ReactNode, options: { isSelected: boolean }) => React.ReactNode;
+    renderItem: (item: React.ReactNode, options?: { isSelected: boolean }) => React.ReactNode;
     renderThumbs: (children: React.ReactChild[]) => React.ReactChild[];
     selectedItem: number;
     showArrows: boolean;
@@ -68,12 +69,12 @@ interface State {
     hasMount: boolean;
     initialized: boolean;
     isMouseEntered: boolean;
-    itemSize?: number;
+    itemSize: number;
     selectedItem: number;
     swiping?: boolean;
 }
 
-class Carousel extends React.Component<Props, State> {
+export default class Carousel extends React.Component<Props, State> {
     private thumbsRef?: Thumbs;
     private carouselWrapperRef?: HTMLDivElement;
     private listRef?: HTMLElement | HTMLUListElement;
@@ -126,13 +127,40 @@ class Carousel extends React.Component<Props, State> {
         renderItem: (item: React.ReactNode) => {
             return item;
         },
-        renderThumbs: (children: React.ReactChild[]) => children,
+        renderThumbs: (children: React.ReactChild[]) => {
+            const images = Children.map(children, (item) => {
+                let img: React.ReactNode = item;
+
+                // if the item is not an image, try to find the first image in the item's children.
+                if ((item as React.ReactElement<{ children: React.ReactChild[] }>).type !== 'img') {
+                    img = Children.toArray(
+                        (item as React.ReactElement<{ children: React.ReactChild[] }>).props.children
+                    ).find((children) => (children as React.ReactElement).type === 'img');
+                }
+
+                if (!img) {
+                    return undefined;
+                }
+
+                return img;
+            });
+
+            if (images.filter((image) => image).length === 0) {
+                console.warn(
+                    `No images found! Can't build the thumb list without images. If you don't need thumbs, set showThumbs={false} in the Carousel. Note that it's not possible to get images rendered inside custom components. More info at https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md`
+                );
+
+                return [];
+            }
+
+            return images;
+        },
+        statusFormatter: defaultStatusFormatter,
         selectedItem: 0,
         showArrows: true,
         showIndicators: true,
         showStatus: true,
         showThumbs: true,
-        statusFormatter: defaultStatusFormatter,
         stopOnHover: true,
         swipeScrollTolerance: 5,
         swipeable: true,
@@ -152,6 +180,7 @@ class Carousel extends React.Component<Props, State> {
             autoPlay: props.autoPlay,
             swiping: false,
             cancelClick: false,
+            itemSize: 1,
         };
     }
 
@@ -277,6 +306,7 @@ class Carousel extends React.Component<Props, State> {
         getWindow().removeEventListener('DOMContentLoaded', this.updateSizes);
 
         const initialImage = this.getInitialImage();
+
         if (initialImage) {
             initialImage.removeEventListener('load', this.setMountState);
         }
@@ -311,13 +341,11 @@ class Carousel extends React.Component<Props, State> {
     };
 
     stopOnHover = () => {
-        this.setState({ isMouseEntered: true });
-        this.clearAutoPlay();
+        this.setState({ isMouseEntered: true }, this.clearAutoPlay);
     };
 
     startOnLeave = () => {
-        this.setState({ isMouseEntered: false });
-        this.autoPlay();
+        this.setState({ isMouseEntered: false }, this.autoPlay);
     };
 
     isFocusWithinTheCarousel = () => {
@@ -369,7 +397,7 @@ class Carousel extends React.Component<Props, State> {
         const itemSize = isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
 
         this.setState({
-            itemSize: itemSize,
+            itemSize,
         });
 
         if (this.thumbsRef) {
@@ -438,9 +466,6 @@ class Carousel extends React.Component<Props, State> {
     };
 
     onSwipeMove = (delta: { x: number; y: number }, event: React.TouchEvent) => {
-        if (!this.state.itemSize) {
-            return;
-        }
         this.props.onSwipeMove(event);
         const isHorizontal = this.props.axis === 'horizontal';
         const childrenLength = Children.count(this.props.children);
@@ -546,7 +571,7 @@ class Carousel extends React.Component<Props, State> {
     };
 
     moveTo = (position?: number, fromSwipe?: boolean) => {
-        if (!position) {
+        if (typeof position !== 'number') {
             return;
         }
 
@@ -706,7 +731,7 @@ class Carousel extends React.Component<Props, State> {
 
         return (
             <ul className="control-dots">
-                {Children.map(children, (item, index) => {
+                {Children.map(children, (_, index) => {
                     return (
                         renderIndicator &&
                         renderIndicator(this.changeItem(index), index === this.state.selectedItem, index, labels.item)
@@ -798,18 +823,7 @@ class Carousel extends React.Component<Props, State> {
         const firstClone = itemsClone.shift();
         const lastClone = itemsClone.pop();
 
-        let swiperProps: {
-            className: string;
-            style: React.CSSProperties;
-            tolerance: number;
-            onSwipeMove: (delta: { x: number; y: number }, event: React.TouchEvent) => void;
-            onSwipeStart: (event: React.TouchEvent) => void;
-            onSwipeEnd: (event: React.TouchEvent) => void;
-            onSwipeLeft?: (event: React.TouchEvent) => void;
-            onSwipeRight?: (event: React.TouchEvent) => void;
-            onSwipeUp?: (event: React.TouchEvent) => void;
-            onSwipeDown?: (event: React.TouchEvent) => void;
-        } = {
+        let swiperProps: ReactEasySwipeProps = {
             className: klass.SLIDER(true, this.state.swiping),
             onSwipeMove: this.onSwipeMove,
             onSwipeStart: this.onSwipeStart,
@@ -845,7 +859,7 @@ class Carousel extends React.Component<Props, State> {
                         {this.props.swipeable ? (
                             <Swipe
                                 tagName="ul"
-                                ref={this.setListRef}
+                                innerRef={this.setListRef}
                                 {...swiperProps}
                                 allowMouseEvents={this.props.emulateTouch}
                             >
@@ -874,5 +888,3 @@ class Carousel extends React.Component<Props, State> {
         );
     }
 }
-
-export default Carousel;

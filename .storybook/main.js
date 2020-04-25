@@ -2,7 +2,7 @@ const path = require('path');
 
 // Export a function. Accept the base config as the only param.
 module.exports = {
-    stories: ['../stories/*.js'],
+    stories: ['../stories/*.tsx'],
     addons: [
         '@storybook/addon-actions',
         '@storybook/addon-viewport/register',
@@ -17,14 +17,12 @@ module.exports = {
         });
 
         config.module.rules.push({
-            test: /stories\/(.+).js?$/,
-            loaders: [require.resolve('@storybook/addon-storysource/loader')],
-            enforce: 'pre',
-        });
-
-        config.module.rules.push({
             test: /\.(ts|tsx)$/,
-            loader: require.resolve('babel-loader'),
+            use: [
+                {
+                    loader: require.resolve('babel-loader'),
+                },
+            ],
         });
 
         config.resolve.extensions.push('.ts', '.tsx');
