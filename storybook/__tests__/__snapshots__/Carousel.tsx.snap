@@ -1,0 +1,3701 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider Basics Default Props methods renderArrowNext should return a button 1`] = `
+<button
+  aria-label="next"
+  className="control-arrow control-next"
+  onClick={[MockFunction]}
+  type="button"
+/>
+`;
+
+exports[`Slider Basics Default Props methods renderArrowPrev should return a button 1`] = `
+<button
+  aria-label="prev"
+  className="control-arrow control-prev"
+  onClick={[MockFunction]}
+  type="button"
+/>
+`;
+
+exports[`Slider Basics Default Props methods renderIndicator should return a list item 1`] = `
+<li
+  aria-label="slide 1"
+  className="dot selected"
+  onClick={[MockFunction]}
+  onKeyDown={[MockFunction]}
+  role="button"
+  tabIndex={0}
+  value={0}
+/>
+`;
+
+exports[`Slider Basics Default Props methods renderItem should pass through the item 1`] = `
+<div>
+  item
+</div>
+`;
+
+exports[`Slider Basics Default Props methods renderThumbs should return a list of images extracted from the children 1`] = `
+Array [
+  <img
+    src="assets/1.jpeg"
+  />,
+  <img
+    src="assets/2.jpeg"
+  />,
+  <img
+    src="assets/3.jpeg"
+  />,
+  <img
+    src="assets/4.jpeg"
+  />,
+  <img
+    src="assets/5.jpeg"
+  />,
+  <img
+    src="assets/6.jpeg"
+  />,
+  <img
+    src="assets/7.jpeg"
+  />,
+]
+`;
+
+exports[`Slider Snapshots center mode 1`] = `
+<div
+  className="carousel-root"
+  tabIndex={0}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <button
+      aria-label="previous slide / item"
+      className="control-arrow control-prev control-disabled"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-horizontal"
+      style={Object {}}
+    >
+      <ul
+        className="slider animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide selected"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+          style={
+            Object {
+              "minWidth": "80%",
+            }
+          }
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-label="next slide / item"
+      className="control-arrow control-next"
+      onClick={[Function]}
+      type="button"
+    />
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
+    <p
+      className="carousel-status"
+    >
+      1 of 7
+    </p>
+  </div>
+  <div
+    className="carousel"
+  >
+    <div
+      className="thumbs-wrapper axis-vertical"
+    >
+      <button
+        aria-label="previous slide / item"
+        className="control-arrow control-prev control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+      <ul
+        className="thumbs animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          aria-label="slide item 1"
+          className="thumb selected"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 2"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 3"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 4"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 5"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 6"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 7"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+      <button
+        aria-label="next slide / item"
+        className="control-arrow control-next control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Slider Snapshots custom class name 1`] = `
+<div
+  className="carousel-root my-custom-carousel"
+  tabIndex={0}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <button
+      aria-label="previous slide / item"
+      className="control-arrow control-prev control-disabled"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-horizontal"
+      style={Object {}}
+    >
+      <ul
+        className="slider animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide selected"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-label="next slide / item"
+      className="control-arrow control-next"
+      onClick={[Function]}
+      type="button"
+    />
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
+    <p
+      className="carousel-status"
+    >
+      1 of 7
+    </p>
+  </div>
+  <div
+    className="carousel"
+  >
+    <div
+      className="thumbs-wrapper axis-vertical"
+    >
+      <button
+        aria-label="previous slide / item"
+        className="control-arrow control-prev control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+      <ul
+        className="thumbs animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          aria-label="slide item 1"
+          className="thumb selected"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 2"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 3"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 4"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 5"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 6"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 7"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+      <button
+        aria-label="next slide / item"
+        className="control-arrow control-next control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Slider Snapshots custom width 1`] = `
+<div
+  className="carousel-root"
+  tabIndex={0}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "700px",
+      }
+    }
+  >
+    <button
+      aria-label="previous slide / item"
+      className="control-arrow control-prev control-disabled"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-horizontal"
+      style={Object {}}
+    >
+      <ul
+        className="slider animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide selected"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-label="next slide / item"
+      className="control-arrow control-next"
+      onClick={[Function]}
+      type="button"
+    />
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
+    <p
+      className="carousel-status"
+    >
+      1 of 7
+    </p>
+  </div>
+  <div
+    className="carousel"
+  >
+    <div
+      className="thumbs-wrapper axis-vertical"
+    >
+      <button
+        aria-label="previous slide / item"
+        className="control-arrow control-prev control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+      <ul
+        className="thumbs animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          aria-label="slide item 1"
+          className="thumb selected"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 2"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 3"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 4"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 5"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 6"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 7"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+      <button
+        aria-label="next slide / item"
+        className="control-arrow control-next control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Slider Snapshots default 1`] = `
+<div
+  className="carousel-root"
+  tabIndex={0}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <button
+      aria-label="previous slide / item"
+      className="control-arrow control-prev control-disabled"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-horizontal"
+      style={Object {}}
+    >
+      <ul
+        className="slider animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide selected"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-label="next slide / item"
+      className="control-arrow control-next"
+      onClick={[Function]}
+      type="button"
+    />
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
+    <p
+      className="carousel-status"
+    >
+      1 of 7
+    </p>
+  </div>
+  <div
+    className="carousel"
+  >
+    <div
+      className="thumbs-wrapper axis-vertical"
+    >
+      <button
+        aria-label="previous slide / item"
+        className="control-arrow control-prev control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+      <ul
+        className="thumbs animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          aria-label="slide item 1"
+          className="thumb selected"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 2"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 3"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 4"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 5"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 6"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 7"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+      <button
+        aria-label="next slide / item"
+        className="control-arrow control-next control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Slider Snapshots infinite loop 1`] = `
+<div
+  className="carousel-root"
+  tabIndex={0}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <button
+      aria-label="previous slide / item"
+      className="control-arrow control-prev"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-horizontal"
+      style={Object {}}
+    >
+      <ul
+        className="slider animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(-100%,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(-100%,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(-100%,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(-100%,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(-100%,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(-100%,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+        <li
+          className="slide selected"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+        <li
+          className="slide selected"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-label="next slide / item"
+      className="control-arrow control-next"
+      onClick={[Function]}
+      type="button"
+    />
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
+    <p
+      className="carousel-status"
+    >
+      1 of 7
+    </p>
+  </div>
+  <div
+    className="carousel"
+  >
+    <div
+      className="thumbs-wrapper axis-vertical"
+    >
+      <button
+        aria-label="previous slide / item"
+        className="control-arrow control-prev control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+      <ul
+        className="thumbs animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          aria-label="slide item 1"
+          className="thumb selected"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 2"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 3"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 4"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 5"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 6"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 7"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+      <button
+        aria-label="next slide / item"
+        className="control-arrow control-next control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Slider Snapshots no arrows 1`] = `
+<div
+  className="carousel-root"
+  tabIndex={0}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <button
+      aria-label="previous slide / item"
+      className="control-arrow control-prev control-disabled"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-horizontal"
+      style={Object {}}
+    >
+      <ul
+        className="slider animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide selected"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-label="next slide / item"
+      className="control-arrow control-next control-disabled"
+      onClick={[Function]}
+      type="button"
+    />
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
+    <p
+      className="carousel-status"
+    >
+      1 of 7
+    </p>
+  </div>
+  <div
+    className="carousel"
+  >
+    <div
+      className="thumbs-wrapper axis-vertical"
+    >
+      <button
+        aria-label="previous slide / item"
+        className="control-arrow control-prev control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+      <ul
+        className="thumbs animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          aria-label="slide item 1"
+          className="thumb selected"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 2"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 3"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 4"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 5"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 6"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 7"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+      <button
+        aria-label="next slide / item"
+        className="control-arrow control-next control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Slider Snapshots no children at mount 1`] = `null`;
+
+exports[`Slider Snapshots no indicators 1`] = `
+<div
+  className="carousel-root"
+  tabIndex={0}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <button
+      aria-label="previous slide / item"
+      className="control-arrow control-prev control-disabled"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-horizontal"
+      style={Object {}}
+    >
+      <ul
+        className="slider animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide selected"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-label="next slide / item"
+      className="control-arrow control-next"
+      onClick={[Function]}
+      type="button"
+    />
+    <p
+      className="carousel-status"
+    >
+      1 of 7
+    </p>
+  </div>
+  <div
+    className="carousel"
+  >
+    <div
+      className="thumbs-wrapper axis-vertical"
+    >
+      <button
+        aria-label="previous slide / item"
+        className="control-arrow control-prev control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+      <ul
+        className="thumbs animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          aria-label="slide item 1"
+          className="thumb selected"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 2"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 3"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 4"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 5"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 6"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 7"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+      <button
+        aria-label="next slide / item"
+        className="control-arrow control-next control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Slider Snapshots no indicators 2`] = `
+<div
+  className="carousel-root"
+  tabIndex={0}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <button
+      aria-label="previous slide / item"
+      className="control-arrow control-prev control-disabled"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-horizontal"
+      style={Object {}}
+    >
+      <ul
+        className="slider animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide selected"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-label="next slide / item"
+      className="control-arrow control-next"
+      onClick={[Function]}
+      type="button"
+    />
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
+  </div>
+  <div
+    className="carousel"
+  >
+    <div
+      className="thumbs-wrapper axis-vertical"
+    >
+      <button
+        aria-label="previous slide / item"
+        className="control-arrow control-prev control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+      <ul
+        className="thumbs animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          aria-label="slide item 1"
+          className="thumb selected"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 2"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 3"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 4"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 5"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 6"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 7"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+      <button
+        aria-label="next slide / item"
+        className="control-arrow control-next control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Slider Snapshots no thumbs 1`] = `
+<div
+  className="carousel-root"
+  tabIndex={0}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <button
+      aria-label="previous slide / item"
+      className="control-arrow control-prev control-disabled"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-horizontal"
+      style={Object {}}
+    >
+      <ul
+        className="slider animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide selected"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-label="next slide / item"
+      className="control-arrow control-next"
+      onClick={[Function]}
+      type="button"
+    />
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
+    <p
+      className="carousel-status"
+    >
+      1 of 7
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Slider Snapshots swipeable false 1`] = `
+<div
+  className="carousel-root"
+  tabIndex={0}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <button
+      aria-label="previous slide / item"
+      className="control-arrow control-prev control-disabled"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-horizontal"
+      style={Object {}}
+    >
+      <ul
+        className="slider animated"
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide selected"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-label="next slide / item"
+      className="control-arrow control-next"
+      onClick={[Function]}
+      type="button"
+    />
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
+    <p
+      className="carousel-status"
+    >
+      1 of 7
+    </p>
+  </div>
+  <div
+    className="carousel"
+  >
+    <div
+      className="thumbs-wrapper axis-vertical"
+    >
+      <button
+        aria-label="previous slide / item"
+        className="control-arrow control-prev control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+      <ul
+        className="thumbs animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          aria-label="slide item 1"
+          className="thumb selected"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 2"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 3"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 4"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 5"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 6"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 7"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+      <button
+        aria-label="next slide / item"
+        className="control-arrow control-next control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Slider Snapshots vertical axis 1`] = `
+<div
+  className="carousel-root"
+  tabIndex={0}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <button
+      aria-label="previous slide / item"
+      className="control-arrow control-prev control-disabled"
+      onClick={[Function]}
+      type="button"
+    />
+    <div
+      className="slider-wrapper axis-vertical"
+      style={
+        Object {
+          "height": 1,
+        }
+      }
+    >
+      <ul
+        className="slider animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "height": 1,
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          className="slide selected"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          className="slide"
+          onClick={[Function]}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-label="next slide / item"
+      className="control-arrow control-next"
+      onClick={[Function]}
+      type="button"
+    />
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
+    <p
+      className="carousel-status"
+    >
+      1 of 7
+    </p>
+  </div>
+  <div
+    className="carousel"
+  >
+    <div
+      className="thumbs-wrapper axis-vertical"
+    >
+      <button
+        aria-label="previous slide / item"
+        className="control-arrow control-prev control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+      <ul
+        className="thumbs animated"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransform": "translate3d(0,0,0)",
+            "MozTransitionDuration": "350ms",
+            "MsTransform": "translate3d(0,0,0)",
+            "MsTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
+      >
+        <li
+          aria-label="slide item 1"
+          className="thumb selected"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/1.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 2"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/2.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 3"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/3.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 4"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/4.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 5"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/5.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 6"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/6.jpeg"
+          />
+        </li>
+        <li
+          aria-label="slide item 7"
+          className="thumb"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          style={
+            Object {
+              "width": 80,
+            }
+          }
+          tabIndex={0}
+        >
+          <img
+            src="assets/7.jpeg"
+          />
+        </li>
+      </ul>
+      <button
+        aria-label="next slide / item"
+        className="control-arrow control-next control-disabled"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;
