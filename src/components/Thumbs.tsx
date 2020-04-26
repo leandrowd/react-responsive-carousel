@@ -1,67 +1,85 @@
 import React, { Component, Children } from 'react';
-import PropTypes from 'prop-types';
 import klass from '../cssClasses';
 import { outerWidth } from '../dimensions';
 import CSSTranslate from '../CSSTranslate';
+// @ts-ignore
 import Swipe from 'react-easy-swipe';
 import getWindow from '../shims/window';
 
-class Thumbs extends Component {
+const isKeyboardEvent = (e: React.MouseEvent | React.KeyboardEvent): e is React.KeyboardEvent =>
+    e.hasOwnProperty('key');
+
+export interface Props {
+    axis: 'horizontal' | 'vertical';
+    children: React.ReactChild[];
+    labels: {
+        leftArrow: string;
+        rightArrow: string;
+        item: string;
+    };
+    onSelectItem: (index: number, item: React.ReactNode) => void;
+    selectedItem: number;
+    thumbWidth: number;
+    transitionTime: number;
+}
+
+interface State {
+    selectedItem: number;
+    firstItem: number;
+    itemSize?: number;
+    visibleItems: number;
+    lastPosition: number;
+    showArrows: boolean;
+    swiping: boolean;
+}
+
+export default class Thumbs extends Component<Props, State> {
+    private itemsWrapperRef?: HTMLDivElement;
+    private itemsListRef?: HTMLUListElement;
+    private thumbsRef?: HTMLLIElement[];
+    private lastPosition: number = 0;
+
     static displayName = 'Thumbs';
 
-    static propsTypes = {
-        children: PropTypes.element.isRequired,
-        transitionTime: PropTypes.number,
-        selectedItem: PropTypes.number,
-        thumbWidth: PropTypes.number,
-        labels: PropTypes.shape({
-            leftArrow: PropTypes.string,
-            rightArrow: PropTypes.string,
-            item: PropTypes.string,
-        }),
-    };
-
     static defaultProps = {
+        axis: 'horizontal',
+        labels: {
+            leftArrow: 'previous slide / item',
+            rightArrow: 'next slide / item',
+            item: 'slide item',
+        },
         selectedItem: 0,
         thumbWidth: 80,
         transitionTime: 350,
-        axis: 'horizontal',
     };
 
-    constructor(props) {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
             selectedItem: props.selectedItem,
-            hasMount: false,
+            swiping: false,
+            showArrows: false,
             firstItem: 0,
-            itemSize: null,
             visibleItems: 0,
             lastPosition: 0,
-            showArrows: false,
-            images: this.getImages(),
         };
     }
 
-    componentDidMount(nextProps) {
+    componentDidMount() {
         this.setupThumbs();
     }
 
-    UNSAFE_componentWillReceiveProps(props, state) {
+    UNSAFE_componentWillReceiveProps(props: Props) {
         if (props.selectedItem !== this.state.selectedItem) {
             this.setState({
                 selectedItem: props.selectedItem,
                 firstItem: this.getFirstItem(props.selectedItem),
             });
         }
-        if (props.children !== this.props.children) {
-            this.setState({
-                images: this.getImages(),
-            });
-        }
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps: Props) {
         if (this.props.children === prevProps.children) {
             return;
         }
@@ -75,15 +93,15 @@ class Thumbs extends Component {
         this.destroyThumbs();
     }
 
-    setItemsWrapperRef = (node) => {
+    setItemsWrapperRef = (node: HTMLDivElement) => {
         this.itemsWrapperRef = node;
     };
 
-    setItemsListRef = (node) => {
+    setItemsListRef = (node: HTMLUListElement) => {
         this.itemsListRef = node;
     };
 
-    setThumbsRef = (node, index) => {
+    setThumbsRef = (node: HTMLLIElement, index: number) => {
         if (!this.thumbsRef) {
             this.thumbsRef = [];
         }
@@ -109,11 +127,11 @@ class Thumbs extends Component {
     }
 
     updateSizes = () => {
-        if (!this.props.children || !this.itemsWrapperRef || this.state.images.length === 0) {
+        if (!this.props.children || !this.itemsWrapperRef || !this.thumbsRef) {
             return;
         }
 
-        const total = this.props.children.length;
+        const total = Children.count(this.props.children);
         const wrapperSize = this.itemsWrapperRef.clientWidth;
         const itemSize = this.props.thumbWidth ? this.props.thumbWidth : outerWidth(this.thumbsRef[0]);
         const visibleItems = Math.floor(wrapperSize / itemSize);
@@ -128,40 +146,8 @@ class Thumbs extends Component {
         }));
     };
 
-    getImages() {
-        const images = Children.map(this.props.children, (item, index) => {
-            let img = item;
-
-            // if the item is not an image, try to find the first image in the item's children.
-            if (item.type !== 'img') {
-                img = Children.toArray(item.props.children).filter((children) => children.type === 'img')[0];
-            }
-
-            if (!img || img.length === 0) {
-                return null;
-            }
-
-            return img;
-        });
-
-        if (images.filter((image) => image).length === 0) {
-            console.warn(
-                `No images found! Can't build the thumb list without images. If you don't need thumbs, set showThumbs={false} in the Carousel. Note that it's not possible to get images rendered inside custom components. More info at https://github.com/leandrowd/react-responsive-carousel/blob/master/TROUBLESHOOTING.md`
-            );
-
-            return [];
-        }
-
-        return images;
-    }
-
-    setMountState = () => {
-        this.setState({ hasMount: true });
-        this.updateSizes();
-    };
-
-    handleClickItem = (index, item, e) => {
-        if (!e.keyCode || e.key === 'Enter') {
+    handleClickItem = (index: number, item: React.ReactNode, e: React.MouseEvent | React.KeyboardEvent) => {
+        if (!isKeyboardEvent(e) || e.key === 'Enter') {
             const handler = this.props.onSelectItem;
 
             if (typeof handler === 'function') {
@@ -182,7 +168,11 @@ class Thumbs extends Component {
         });
     };
 
-    onSwipeMove = (deltaX) => {
+    onSwipeMove = (delta: { x: number; y: number }) => {
+        let deltaX = delta.x;
+        if (!this.state.itemSize || !this.itemsWrapperRef) {
+            return false;
+        }
         const leftBoundary = 0;
 
         const currentPosition = -this.state.firstItem * this.state.itemSize;
@@ -199,26 +189,28 @@ class Thumbs extends Component {
         }
 
         const wrapperSize = this.itemsWrapperRef.clientWidth;
-        const position = currentPosition + 100 / (wrapperSize / deltaX) + '%';
+        const position = currentPosition + 100 / (wrapperSize / deltaX);
         // if 3d isn't available we will use left to move
         if (this.itemsListRef) {
             ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach(
                 (prop) => {
-                    this.itemsListRef.style[prop] = CSSTranslate(position, this.props.axis);
+                    this.itemsListRef!.style[prop as any] = CSSTranslate(position, '%', this.props.axis);
                 }
             );
         }
+
+        return true;
     };
 
-    slideRight = (positions) => {
+    slideRight = (positions?: number) => {
         this.moveTo(this.state.firstItem - (typeof positions === 'number' ? positions : 1));
     };
 
-    slideLeft = (positions) => {
+    slideLeft = (positions?: number) => {
         this.moveTo(this.state.firstItem + (typeof positions === 'number' ? positions : 1));
     };
 
-    moveTo = (position) => {
+    moveTo = (position: number) => {
         // position can't be lower than 0
         position = position < 0 ? 0 : position;
         // position can't be higher than last postion
@@ -229,7 +221,7 @@ class Thumbs extends Component {
         });
     };
 
-    getFirstItem(selectedItem) {
+    getFirstItem(selectedItem: number) {
         let firstItem = selectedItem;
 
         if (selectedItem >= this.state.lastPosition) {
@@ -248,24 +240,18 @@ class Thumbs extends Component {
     }
 
     renderItems() {
-        return this.state.images.map((img, index) => {
-            const itemClass = klass.ITEM(false, index === this.state.selectedItem && this.state.hasMount);
+        return this.props.children.map((img, index) => {
+            const itemClass = klass.ITEM(false, index === this.state.selectedItem);
 
             const thumbProps = {
                 key: index,
-                ref: (e) => this.setThumbsRef(e, index),
+                ref: (e: HTMLLIElement) => this.setThumbsRef(e, index),
                 className: itemClass,
                 onClick: this.handleClickItem.bind(this, index, this.props.children[index]),
                 onKeyDown: this.handleClickItem.bind(this, index, this.props.children[index]),
                 'aria-label': `${this.props.labels.item} ${index + 1}`,
                 style: { width: this.props.thumbWidth },
             };
-
-            if (index === 0) {
-                img = React.cloneElement(img, {
-                    onLoad: this.setMountState,
-                });
-            }
 
             return (
                 <li {...thumbProps} role="button" tabIndex={0}>
@@ -287,9 +273,9 @@ class Thumbs extends Component {
         // obj to hold the transformations and styles
         let itemListStyles = {};
 
-        const currentPosition = -this.state.firstItem * this.state.itemSize + 'px';
+        const currentPosition = -this.state.firstItem * (this.state.itemSize || 0);
 
-        const transformProp = CSSTranslate(currentPosition, this.props.axis);
+        const transformProp = CSSTranslate(currentPosition, 'px', this.props.axis);
 
         const transitionTime = this.props.transitionTime + 'ms';
 
@@ -314,7 +300,7 @@ class Thumbs extends Component {
                     <button
                         type="button"
                         className={klass.ARROW_PREV(!hasPrev)}
-                        onClick={this.slideRight}
+                        onClick={() => this.slideRight()}
                         aria-label={this.props.labels.leftArrow}
                     />
                     <Swipe
@@ -333,7 +319,7 @@ class Thumbs extends Component {
                     <button
                         type="button"
                         className={klass.ARROW_NEXT(!hasNext)}
-                        onClick={this.slideLeft}
+                        onClick={() => this.slideLeft()}
                         aria-label={this.props.labels.rightArrow}
                     />
                 </div>
@@ -341,5 +327,3 @@ class Thumbs extends Component {
         );
     }
 }
-
-export default Thumbs;

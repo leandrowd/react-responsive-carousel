@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
-import { Carousel } from '../src/index';
+import Carousel, { Props } from '../src/components/Carousel';
 
 // carousel styles
 import '../src/main.scss';
@@ -22,7 +22,7 @@ export default {
 };
 
 export const lazyLoaded = () => {
-    class LazyLoadedCarousel extends Component {
+    class LazyLoadedCarousel extends Component<{}, { slides: Props['children'] }> {
         constructor(props) {
             super(props);
 
@@ -55,9 +55,11 @@ export const lazyLoaded = () => {
     return <LazyLoadedCarousel />;
 };
 
-export const youtubeAutoplayWithCustomThumbs = () => {
-    const YoutubeSlide = ({ url, isSelected }) => <ReactPlayer width="100%" url={url} playing={isSelected} />;
+const YoutubeSlide = ({ url, isSelected }: { url: string; isSelected?: boolean }) => (
+    <ReactPlayer width="100%" url={url} playing={isSelected} />
+);
 
+export const youtubeAutoplayWithCustomThumbs = () => {
     const customRenderItem = (item, props) => <item.type {...item.props} {...props} />;
 
     const getVideoThumb = (videoId) => `https://img.youtube.com/vi/${videoId}/default.jpg`;
@@ -81,7 +83,7 @@ export const youtubeAutoplayWithCustomThumbs = () => {
 };
 
 export const withExternalControls = () => {
-    class ExternalControlledCarousel extends Component {
+    class ExternalControlledCarousel extends Component<{}, { currentSlide: number; autoPlay: boolean }> {
         constructor(props) {
             super(props);
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Carousel } from '../src/index';
 
@@ -34,12 +34,11 @@ const getConfigurableProps = () => ({
     swipeable: boolean('swipeable', true, tooglesGroupId),
     dynamicHeight: boolean('dynamicHeight', true, tooglesGroupId),
     emulateTouch: boolean('emulateTouch', true, tooglesGroupId),
-    transitionTime: number('transitionTime', 1000, valuesGroupId),
-    thumbWidth: number('thumbWidth', 100, valuesGroupId),
-    selectedItem: number('selectedItem', 0, valuesGroupId),
-    interval: number('interval', 3000, valuesGroupId),
-    transitionTime: number('transitionTime', 350, valuesGroupId),
-    swipeScrollTolerance: number('swipeScrollTolerance', 5, valuesGroupId),
+    thumbWidth: number('thumbWidth', 100, {}, valuesGroupId),
+    selectedItem: number('selectedItem', 0, {}, valuesGroupId),
+    interval: number('interval', 3000, {}, valuesGroupId),
+    transitionTime: number('transitionTime', 150, {}, valuesGroupId),
+    swipeScrollTolerance: number('swipeScrollTolerance', 5, {}, valuesGroupId),
 });
 
 export default {
@@ -60,7 +59,7 @@ export const centerMode = () => (
     <Carousel
         infiniteLoop
         centerMode
-        centerSlidePercentage={number('centerSlidePercentage', 80, mainGroupId)}
+        centerSlidePercentage={number('centerSlidePercentage', 80, {}, mainGroupId)}
         {...getConfigurableProps()}
     >
         {baseChildren.props.children}
@@ -74,7 +73,7 @@ export const handlers = () => (
 );
 
 export const withCustomStatusArrowsAndIndicators = () => {
-    const arrowStyles = {
+    const arrowStyles: CSSProperties = {
         position: 'absolute',
         zIndex: 2,
         top: 'calc(50% - 15px)',
@@ -83,7 +82,7 @@ export const withCustomStatusArrowsAndIndicators = () => {
         cursor: 'pointer',
     };
 
-    const indicatorStyles = {
+    const indicatorStyles: CSSProperties = {
         background: '#fff',
         width: 8,
         height: 8,

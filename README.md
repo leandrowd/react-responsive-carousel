@@ -1,9 +1,5 @@
 # React Responsive Carousel
 
-# Help wanted
-
-Things here are running very slowly as I have a lot of other stuff to take care at the moment so please don't be upset if I don't answer your question or if a PR sits unreviewed for a few days or weeks. Anyone interested in helping it move faster can help by submitting or reviewing PR's and answering each other's questions. (https://github.com/leandrowd/react-responsive-carousel/issues/160)
-
 [![npm version](https://badge.fury.io/js/react-responsive-carousel.svg)](https://badge.fury.io/js/react-responsive-carousel)
 [![Build Status](https://travis-ci.org/leandrowd/react-responsive-carousel.svg?branch=master)](https://travis-ci.org/leandrowd/react-responsive-carousel)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel?ref=badge_shield)
@@ -16,16 +12,19 @@ Powerful, lightweight and fully customizable carousel component for React apps.
 -   Mobile friendly
 -   Swipe to slide
 -   Mouse emulating touch
--   Server side rendering
+-   Server side rendering compatible
 -   Keyboard navigation
 -   Custom animation duration
--   Auto play
--   Custom auto play interval
+-   Auto play w/ custom interval
 -   Infinite loop
 -   Horizontal or Vertical directions
 -   Supports images, videos, text content or anything you want. Each direct child represents one slide!
--   Supports any flux library (use `selectedItem` prop to set from the app state, and `onChange` callback to get the new position)
--   Show/hide anything (thumbs, indicators, arrows, status)
+-   Supports external controls
+-   Highly customizable:
+    -   Custom thumbs
+    -   Custom arrows
+    -   Custom indicators
+    -   Custom status
 
 ### Important links:
 
@@ -54,7 +53,7 @@ Customize it yourself:
 ```javascript
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
 class DemoCarousel extends Component {
@@ -82,50 +81,60 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 
 // Don't forget to include the css in your page
 
-// Using webpack
+// Using webpack or parcel with a style loader
 // import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 // Using html tag:
 // <link rel="stylesheet" href="<NODE_MODULES_FOLDER>/react-responsive-carousel/lib/styles/carousel.min.css"/>
-
 ```
 
-| Attributes            |                                                Type                                                |                   Default                    | Description                                                                                                                                                             |
-| :-------------------- | :------------------------------------------------------------------------------------------------: | :------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| showArrows            |                                             `boolean`                                              |                    `true`                    | show prev and next arrows                                                                                                                                               |
-| showStatus            |                                             `boolean`                                              |                    `true`                    | show index of the current item. i.e: (1/8)                                                                                                                              |
-| showIndicators        |                                             `boolean`                                              |                    `true`                    | show little dots at the bottom with links for changing the item                                                                                                         |
-| showThumbs            |                                             `boolean`                                              |                    `true`                    | show thumbnails of the images                                                                                                                                           |
-| thumbWidth            |                                              `number`                                              |                 `undefined`                  | optionally specify pixel width (as an integer) of a thumbnail (including any padding) to avoid calculating values (helps with server-side renders or page cache issues) |
-| infiniteLoop          |                                             `boolean`                                              |                   `false`                    | infinite loop sliding                                                                                                                                                   |
-| selectedItem          |                                              `number`                                              |                     `0`                      | selects an item though props / defines the initial selected item                                                                                                        |
-| axis                  |                                              `string`                                              |                 `horizontal`                 | changes orientation - accepts `horizontal` and `vertical`                                                                                                               |
-| verticalSwipe         |                                              `string`                                              |                  `standard`                  | changes vertical swipe scroll direction - accepts `standard` and `natural`                                                                                              |
-| onChange              |                                             `function`                                             |                      -                       | Fired when changing positions                                                                                                                                           |
-| onClickItem           |                                             `function`                                             |                      -                       | Fired when an item is clicked                                                                                                                                           |
-| onClickThumb          |                                             `function`                                             |                      -                       | Fired when a thumb it clicked                                                                                                                                           |
-| width                 |                                              `string`                                              |                      -                       | Allows to set a fixed width                                                                                                                                             |
-| useKeyboardArrows     |                                             `boolean`                                              |                   `false`                    | Adds support to next and prev through keyboard arrows                                                                                                                   |
-| autoPlay              |                                             `boolean`                                              |                   `false`                    | Auto play                                                                                                                                                               |
-| stopOnHover           |                                             `boolean`                                              |                    `true`                    | Stop auto play while mouse is over the carousel                                                                                                                         |
-| interval              |                                              `number`                                              |                    `3000`                    | Interval of auto play                                                                                                                                                   |
-| transitionTime        |                                              `number`                                              |                    `350`                     | Duration of slide transitions (in miliseconds)                                                                                                                          |
-| swipeScrollTolerance  |                                              `number`                                              |                     `5`                      | Allows scroll when the swipe movement occurs in a different direction than the carousel axis and within the tolerance - Increase for loose - Decrease for strict        |
-| swipeable             |                                             `boolean`                                              |                    `true`                    | Enables swiping gestures                                                                                                                                                |
-| dynamicHeight         |                                             `boolean`                                              |                   `false`                    | Adjusts the carousel height if required. -- Do not work with vertical axis --                                                                                           |
-| emulateTouch          |                                             `boolean`                                              |                   `false`                    | Allows mouse to simulate swipe                                                                                                                                          |
-| statusFormatter       |                                               `func`                                               | (current, total) => `${current} of ${total}` | Allows custom formatting of the status indicator                                                                                                                        |
-| centerMode            |                                             `boolean`                                              |                   `false`                    | Enables centered view with partial prev/next slides. Only works with horizontal axis.                                                                                   |
-| centerSlidePercentage |                                              `number`                                              |                     `80`                     | optionally specify percentage width (as an integer) of the slides in `centerMode`                                                                                       |
-| labels                |                                   `object [key: string]: string`                                   |      `{ leftArrow, rightArrow, item }`       | optionally specify labels to be applied to controls                                                                                                                     |
-| onSwipeStart          |                                             `function`                                             |                      -                       | Fired when a swiping gesture has started                                                                                                                                |
-| onSwipeEnd            |                                             `function`                                             |                      -                       | Fired when a swiping gesture has ended                                                                                                                                  |
-| onSwipeMove           |                                             `function`                                             |                      -                       | Fired when a swiping gesture is happening                                                                                                                               |
-| renderArrowPrev       |          `(onClickHandler: () => void, hasPrev: boolean, label: string): React.ReactNode`          |               `default arrow`                | Allows replacement of arrow button previous.                                                                                                                            |
-| renderArrowNext       |          `(onClickHandler: () => void, hasNext: boolean, label: string): React.ReactNode`          |               `default arrow`                | Allows replacement of arrow button next.                                                                                                                                |
-| renderIndicator       | `(onClickHandler: () => void, isSelected: boolean, index: number, label: string): React.ReactNode` |             `default indicator`              | Allows replacement of default indicators                                                                                                                                |
-| renderItem            |              `(item: React.ReactNode, props: {isSelected: boolean}): React.ReactNode`              |                    `item`                    | Allows consumers to intercept the item before rendering for manipulating as needed                                                                                      |
-| renderThumbs          |                       `(children: React.ReactChildren): React.ReactChildren`                       |                  `children`                  | Allows consumers to intercept the children before they are rendered as thumbs, giving the chance to handle them. Useful for finding thumbnails for videos for instance  |
+### Customizing
+
+#### Items (Slides)
+
+By default, each slide will be rendered as passed as children. If you need to customize them, use the prop `renderItem`.
+
+```
+renderItem: (item: React.ReactNode, options?: { isSelected: boolean }) => React.ReactNode;
+```
+
+#### Thumbs
+
+By default, thumbs are generated extracting the images in each slide. If you don't have images on your slides or if you prefer a different thumbnail, use the method `renderThumbs` to return a new list of images to be used as thumbs.
+
+```
+renderThumbs: (children: React.ReactChild[]) => React.ReactChild[]
+```
+
+#### Arrows
+
+By default, simple arrows are rendered on each side. If you need to customize them and the css is not enough, use the `renderArrowPrev` and `renderArrowNext`. The click handler is passed as argument to the prop and needs to be added as click handler in the custom arrow.
+
+```
+renderArrowPrev: (clickHandler: () => void, hasPrev: boolean, label: string) => React.ReactNode;
+renderArrowNext: (clickHandler: () => void, hasNext: boolean, label: string) => React.ReactNode;
+```
+
+#### Indicators
+
+By default, indicators will be rendered as those small little dots in the bottom part of the carousel. To customize them, use the `renderIndicator` prop.
+
+```
+renderIndicator: (
+    clickHandler: (e: React.MouseEvent | React.KeyboardEvent) => void,
+    isSelected: boolean,
+    index: number,
+    label: string
+) => React.ReactNode;
+```
+
+#### Take full control of the carousel
+
+If none of the previous options are enough, you can build your own controls for the carousel. Check an example at http://react-responsive-carousel.js.org/storybook/?path=/story/02-advanced--with-external-controls
+
+### Videos
+
+If your carousel is about videos, keep in mind that it's up to you to control which videos will play. Using the `renderItem` prop, you will get information saying if the slide is selected or not and can use that to change the video state. Only play videos on selected slides to avoid issues. Check an example at http://react-responsive-carousel.js.org/storybook/?path=/story/02-advanced--youtube-autoplay-with-custom-thumbs
 
 =======================
 
@@ -146,3 +155,7 @@ When raising an issue, please add as much details as possible. Screenshots, vide
 ## License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fleandrowd%2Freact-responsive-carousel?ref=badge_large)
+
+```
+
+```

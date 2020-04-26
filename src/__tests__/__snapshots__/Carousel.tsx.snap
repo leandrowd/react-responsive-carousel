@@ -1,9 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Slider Basics Default Props methods renderArrowNext should return a button 1`] = `
+<button
+  aria-label="next"
+  className="control-arrow control-next"
+  onClick={[MockFunction]}
+  type="button"
+/>
+`;
+
+exports[`Slider Basics Default Props methods renderArrowPrev should return a button 1`] = `
+<button
+  aria-label="prev"
+  className="control-arrow control-prev"
+  onClick={[MockFunction]}
+  type="button"
+/>
+`;
+
+exports[`Slider Basics Default Props methods renderIndicator should return a list item 1`] = `
+<li
+  aria-label="slide 1"
+  className="dot selected"
+  onClick={[MockFunction]}
+  onKeyDown={[MockFunction]}
+  role="button"
+  tabIndex={0}
+  value={0}
+/>
+`;
+
+exports[`Slider Basics Default Props methods renderItem should pass through the item 1`] = `
+<div>
+  item
+</div>
+`;
+
+exports[`Slider Basics Default Props methods renderThumbs should return a list of images extracted from the children 1`] = `
+Array [
+  <img
+    src="assets/1.jpeg"
+  />,
+  <img
+    src="assets/2.jpeg"
+  />,
+  <img
+    src="assets/3.jpeg"
+  />,
+  <img
+    src="assets/4.jpeg"
+  />,
+  <img
+    src="assets/5.jpeg"
+  />,
+  <img
+    src="assets/6.jpeg"
+  />,
+  <img
+    src="assets/7.jpeg"
+  />,
+]
+`;
+
 exports[`Slider Snapshots center mode 1`] = `
 <div
   className="carousel-root"
-  tabIndex="0"
+  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -30,17 +92,17 @@ exports[`Slider Snapshots center mode 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0%,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0%,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0%,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0%,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0%,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0%,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -236,24 +298,24 @@ exports[`Slider Snapshots center mode 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0px,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0px,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0px,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0px,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0px,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0px,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
       >
         <li
           aria-label="slide item 1"
-          className="thumb"
+          className="thumb selected"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
@@ -265,7 +327,6 @@ exports[`Slider Snapshots center mode 1`] = `
           tabIndex={0}
         >
           <img
-            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -386,7 +447,7 @@ exports[`Slider Snapshots center mode 1`] = `
 exports[`Slider Snapshots custom class name 1`] = `
 <div
   className="carousel-root my-custom-carousel"
-  tabIndex="0"
+  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -413,17 +474,17 @@ exports[`Slider Snapshots custom class name 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0%,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0%,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0%,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0%,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0%,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0%,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -584,24 +645,24 @@ exports[`Slider Snapshots custom class name 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0px,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0px,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0px,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0px,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0px,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0px,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
       >
         <li
           aria-label="slide item 1"
-          className="thumb"
+          className="thumb selected"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
@@ -613,7 +674,6 @@ exports[`Slider Snapshots custom class name 1`] = `
           tabIndex={0}
         >
           <img
-            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -734,7 +794,7 @@ exports[`Slider Snapshots custom class name 1`] = `
 exports[`Slider Snapshots custom width 1`] = `
 <div
   className="carousel-root"
-  tabIndex="0"
+  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -761,17 +821,17 @@ exports[`Slider Snapshots custom width 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0%,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0%,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0%,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0%,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0%,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0%,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -932,24 +992,24 @@ exports[`Slider Snapshots custom width 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0px,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0px,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0px,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0px,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0px,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0px,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
       >
         <li
           aria-label="slide item 1"
-          className="thumb"
+          className="thumb selected"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
@@ -961,7 +1021,6 @@ exports[`Slider Snapshots custom width 1`] = `
           tabIndex={0}
         >
           <img
-            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -1082,7 +1141,7 @@ exports[`Slider Snapshots custom width 1`] = `
 exports[`Slider Snapshots default 1`] = `
 <div
   className="carousel-root"
-  tabIndex="0"
+  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -1109,17 +1168,17 @@ exports[`Slider Snapshots default 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0%,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0%,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0%,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0%,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0%,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0%,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -1280,24 +1339,24 @@ exports[`Slider Snapshots default 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0px,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0px,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0px,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0px,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0px,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0px,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
       >
         <li
           aria-label="slide item 1"
-          className="thumb"
+          className="thumb selected"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
@@ -1309,7 +1368,6 @@ exports[`Slider Snapshots default 1`] = `
           tabIndex={0}
         >
           <img
-            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -1430,7 +1488,7 @@ exports[`Slider Snapshots default 1`] = `
 exports[`Slider Snapshots infinite loop 1`] = `
 <div
   className="carousel-root"
-  tabIndex="0"
+  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -1644,24 +1702,24 @@ exports[`Slider Snapshots infinite loop 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0px,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0px,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0px,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0px,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0px,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0px,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
       >
         <li
           aria-label="slide item 1"
-          className="thumb"
+          className="thumb selected"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
@@ -1673,7 +1731,6 @@ exports[`Slider Snapshots infinite loop 1`] = `
           tabIndex={0}
         >
           <img
-            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -1794,7 +1851,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
 exports[`Slider Snapshots no arrows 1`] = `
 <div
   className="carousel-root"
-  tabIndex="0"
+  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -1821,17 +1878,17 @@ exports[`Slider Snapshots no arrows 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0%,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0%,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0%,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0%,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0%,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0%,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -1992,24 +2049,24 @@ exports[`Slider Snapshots no arrows 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0px,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0px,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0px,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0px,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0px,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0px,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
       >
         <li
           aria-label="slide item 1"
-          className="thumb"
+          className="thumb selected"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
@@ -2021,7 +2078,6 @@ exports[`Slider Snapshots no arrows 1`] = `
           tabIndex={0}
         >
           <img
-            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -2144,7 +2200,7 @@ exports[`Slider Snapshots no children at mount 1`] = `null`;
 exports[`Slider Snapshots no indicators 1`] = `
 <div
   className="carousel-root"
-  tabIndex="0"
+  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -2171,17 +2227,17 @@ exports[`Slider Snapshots no indicators 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0%,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0%,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0%,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0%,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0%,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0%,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -2275,24 +2331,24 @@ exports[`Slider Snapshots no indicators 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0px,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0px,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0px,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0px,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0px,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0px,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
       >
         <li
           aria-label="slide item 1"
-          className="thumb"
+          className="thumb selected"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
@@ -2304,7 +2360,6 @@ exports[`Slider Snapshots no indicators 1`] = `
           tabIndex={0}
         >
           <img
-            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -2425,7 +2480,7 @@ exports[`Slider Snapshots no indicators 1`] = `
 exports[`Slider Snapshots no indicators 2`] = `
 <div
   className="carousel-root"
-  tabIndex="0"
+  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -2452,17 +2507,17 @@ exports[`Slider Snapshots no indicators 2`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0%,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0%,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0%,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0%,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0%,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0%,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -2618,24 +2673,24 @@ exports[`Slider Snapshots no indicators 2`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0px,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0px,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0px,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0px,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0px,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0px,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
       >
         <li
           aria-label="slide item 1"
-          className="thumb"
+          className="thumb selected"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
@@ -2647,7 +2702,6 @@ exports[`Slider Snapshots no indicators 2`] = `
           tabIndex={0}
         >
           <img
-            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -2768,7 +2822,7 @@ exports[`Slider Snapshots no indicators 2`] = `
 exports[`Slider Snapshots no thumbs 1`] = `
 <div
   className="carousel-root"
-  tabIndex="0"
+  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -2795,17 +2849,17 @@ exports[`Slider Snapshots no thumbs 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0%,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0%,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0%,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0%,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0%,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0%,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -2953,7 +3007,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
 exports[`Slider Snapshots swipeable false 1`] = `
 <div
   className="carousel-root"
-  tabIndex="0"
+  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -2977,17 +3031,17 @@ exports[`Slider Snapshots swipeable false 1`] = `
         className="slider animated"
         style={
           Object {
-            "MozTransform": "translate3d(0%,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0%,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0%,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0%,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0%,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0%,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -3148,24 +3202,24 @@ exports[`Slider Snapshots swipeable false 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0px,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0px,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0px,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0px,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0px,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0px,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
       >
         <li
           aria-label="slide item 1"
-          className="thumb"
+          className="thumb selected"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
@@ -3177,7 +3231,6 @@ exports[`Slider Snapshots swipeable false 1`] = `
           tabIndex={0}
         >
           <img
-            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
@@ -3298,7 +3351,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
 exports[`Slider Snapshots vertical axis 1`] = `
 <div
   className="carousel-root"
-  tabIndex="0"
+  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -3318,7 +3371,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
       className="slider-wrapper axis-vertical"
       style={
         Object {
-          "height": undefined,
+          "height": 1,
         }
       }
     >
@@ -3329,18 +3382,18 @@ exports[`Slider Snapshots vertical axis 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0,0%,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0,0%,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0,0%,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0,0%,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "height": undefined,
-            "msTransform": "translate3d(0,0%,0)",
+            "height": 1,
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0,0%,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
@@ -3501,24 +3554,24 @@ exports[`Slider Snapshots vertical axis 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0px,0,0)",
+            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0px,0,0)",
+            "MsTransform": "translate3d(0,0,0)",
             "MsTransitionDuration": "350ms",
-            "OTransform": "translate3d(0px,0,0)",
+            "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
-            "WebkitTransform": "translate3d(0px,0,0)",
+            "WebkitTransform": "translate3d(0,0,0)",
             "WebkitTransitionDuration": "350ms",
-            "msTransform": "translate3d(0px,0,0)",
+            "msTransform": "translate3d(0,0,0)",
             "msTransitionDuration": "350ms",
-            "transform": "translate3d(0px,0,0)",
+            "transform": "translate3d(0,0,0)",
             "transitionDuration": "350ms",
           }
         }
       >
         <li
           aria-label="slide item 1"
-          className="thumb"
+          className="thumb selected"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
@@ -3530,7 +3583,6 @@ exports[`Slider Snapshots vertical axis 1`] = `
           tabIndex={0}
         >
           <img
-            onLoad={[Function]}
             src="assets/1.jpeg"
           />
         </li>
