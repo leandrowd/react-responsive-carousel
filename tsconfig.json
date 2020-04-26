@@ -9,7 +9,6 @@
         "strict": true,
         "target": "es5",
         "jsx": "react",
-        "outDir": "./ts-output",
         "baseUrl": "./src",
         "typeRoots": ["./node_modules/@types", "./types"],
         "paths": {
