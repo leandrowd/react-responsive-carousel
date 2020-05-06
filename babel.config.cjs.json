@@ -1,0 +1,12 @@
+{
+    "extends": "./babel.config.json",
+    "presets": [
+        [
+            "@babel/env",
+            {
+                "modules": "commonjs",
+                "targets": ["last 2 versions", "not dead"]
+            }
+        ]
+    ]
+}
