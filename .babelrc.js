@@ -4,7 +4,7 @@ module.exports = {
             '@babel/env',
             {
                 modules: process.env.MODULE ? false : 'commonjs',
-                targets: ['>0.25%', 'not ie 11', 'not op_mini all'],
+                targets: ['last 2 versions', 'not dead'],
             },
         ],
         '@babel/preset-react',
