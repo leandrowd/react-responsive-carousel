@@ -491,7 +491,9 @@ export default class Carousel extends React.Component<Props, State> {
         }
 
         let position = currentPosition + 100 / (this.state.itemSize / handledDelta);
-        if (this.props.infiniteLoop) {
+        const hasMoved = Math.abs(axisDelta) > this.props.swipeScrollTolerance;
+
+        if (this.props.infiniteLoop && hasMoved) {
             // When allowing infinite loop, if we slide left from position 0 we reveal the cloned last slide that appears before it
             // if we slide even further we need to jump to other side so it can continue - and vice versa for the last slide
             if (this.state.selectedItem === 0 && position > -100) {
@@ -503,8 +505,6 @@ export default class Carousel extends React.Component<Props, State> {
         this.setPosition(position);
 
         // allows scroll if the swipe was within the tolerance
-        const hasMoved = Math.abs(axisDelta) > this.props.swipeScrollTolerance;
-
         if (hasMoved && !this.state.cancelClick) {
             this.setState({
                 cancelClick: true,
