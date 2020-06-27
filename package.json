@@ -35,7 +35,7 @@
         "storybook": "start-storybook -p 9001 -s ./src -c .storybook",
         "changelog": "auto-changelog --ignore-commit-pattern=\"(Merge pull request|Merge branch|Updating changelog|Prepare for publishing)\"",
         "update-codesandbox": "cd codesandbox/default && yarn add react-responsive-carousel@latest",
-        "format": "prettier '**/*.{js,json}'",
+        "format": "prettier '**/*.{js,ts,tsx,json}'",
         "format:check": "yarn format --check",
         "format:write": "yarn format --write",
         "test": "yarn format:check && yarn typecheck && yarn jest && yarn jest-ssr",

@@ -1,3 +1,14 @@
 module.exports = {
-    extends: './babel.config.cjs.json',
+    presets: [
+        [
+            '@babel/env',
+            {
+                modules: 'commonjs',
+                targets: ['last 2 versions', 'not dead'],
+            },
+        ],
+        '@babel/preset-react',
+        '@babel/preset-typescript',
+    ],
+    plugins: ['@babel/plugin-proposal-class-properties'],
 };
