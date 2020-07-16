@@ -79,7 +79,7 @@ export default class Carousel extends React.Component<Props, State> {
     private carouselWrapperRef?: HTMLDivElement;
     private listRef?: HTMLElement | HTMLUListElement;
     private itemsRef?: HTMLElement[];
-
+    private removeInitialImageLoadListener?: Function | null;
     private timer?: ReturnType<typeof setTimeout>;
 
     static displayName = 'Carousel';
@@ -182,6 +182,8 @@ export default class Carousel extends React.Component<Props, State> {
             cancelClick: false,
             itemSize: 1,
         };
+
+        this.removeInitialImageLoadListener = null;
     }
 
     componentDidMount() {
@@ -256,6 +258,10 @@ export default class Carousel extends React.Component<Props, State> {
         if (initialImage) {
             // if it's a carousel of images, we set the mount state after the first image is loaded
             initialImage.addEventListener('load', this.setMountState);
+
+            this.removeInitialImageLoadListener = () => {
+                initialImage.removeEventListener('load', this.setMountState);
+            };
         } else {
             this.setMountState();
         }
@@ -305,10 +311,9 @@ export default class Carousel extends React.Component<Props, State> {
         getWindow().removeEventListener('resize', this.updateSizes);
         getWindow().removeEventListener('DOMContentLoaded', this.updateSizes);
 
-        const initialImage = this.getInitialImage();
-
-        if (initialImage) {
-            initialImage.removeEventListener('load', this.setMountState);
+        if (this.removeInitialImageLoadListener) {
+            this.removeInitialImageLoadListener();
+            this.removeInitialImageLoadListener = null;
         }
 
         if (this.props.useKeyboardArrows) {
