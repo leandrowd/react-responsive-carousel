@@ -665,8 +665,8 @@ export default class Carousel extends React.Component<Props, State> {
     getInitialImage = () => {
         const selectedItem = this.props.selectedItem;
         const item = this.itemsRef && this.itemsRef[selectedItem];
-        const images = item && item.getElementsByTagName('img');
-        return images && images[selectedItem];
+        const images = (item && item.getElementsByTagName('img')) || [];
+        return images[0];
     };
 
     getVariableImageHeight = (position: number) => {

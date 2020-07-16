@@ -335,6 +335,19 @@ describe('Slider', function() {
         });
     });
 
+    describe('getInitialImage', () => {
+        it('Returns the first image within the declared selected item', () => {
+            renderDefaultComponent({
+                selectedItem: 2,
+            });
+
+            const initialImage = componentInstance.getInitialImage();
+            const expectedMatchingImageComponent = baseChildren[2];
+
+            expect(initialImage.src.endsWith(expectedMatchingImageComponent.props.src)).toEqual(true);
+        });
+    });
+
     describe('navigateWithKeyboard', () => {
         const setActiveElement = (element: HTMLElement) => {
             (document.activeElement as any) = element;
