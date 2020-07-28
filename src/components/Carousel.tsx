@@ -209,12 +209,16 @@ export default class Carousel extends React.Component<Props, State> {
 
         if (prevProps.autoPlay !== this.props.autoPlay) {
             if (this.props.autoPlay) {
-                this.setupAutoPlay();
+                this.setState({
+                    autoPlay: this.props.autoPlay,
+                    isMouseEntered: false
+                }, () => {
+                    this.setupAutoPlay();
+                });
             } else {
                 this.destroyAutoPlay();
+                this.setState({ autoPlay: this.props.autoPlay });
             }
-
-            this.setState({ autoPlay: this.props.autoPlay });
         }
     }
 
