@@ -669,23 +669,27 @@ export default class Carousel extends React.Component<Props, State> {
         return images && images[selectedItem];
     };
 
-    getVariableImageHeight = (position: number) => {
+    getVariableItemHeight = (position: number) => {
         const item = this.itemsRef && this.itemsRef[position];
-        const images = (item && item.getElementsByTagName('img')) || [];
-        if (this.state.hasMount && images.length > 0) {
-            const image = images[0];
 
-            if (!image.complete) {
-                // if the image is still loading, the size won't be available so we trigger a new render after it's done
-                const onImageLoad = () => {
-                    this.forceUpdate();
-                    image.removeEventListener('load', onImageLoad);
-                };
+        if (this.state.hasMount && item && item.children.length) {
+            const slideImages = item.children[0].getElementsByTagName('img') || [];
 
-                image.addEventListener('load', onImageLoad);
+            if (slideImages.length > 0) {
+                const image = slideImages[0];
+
+                if (!image.complete) {
+                    // if the image is still loading, the size won't be available so we trigger a new render after it's done
+                    const onImageLoad = () => {
+                        this.forceUpdate();
+                        image.removeEventListener('load', onImageLoad);
+                    };
+
+                    image.addEventListener('load', onImageLoad);
+                }
             }
 
-            const height = image.clientHeight;
+            const height = item.children[0].clientHeight;
             return height > 0 ? height : null;
         }
 
@@ -839,7 +843,7 @@ export default class Carousel extends React.Component<Props, State> {
             swiperProps.onSwipeRight = this.onSwipeBackwards;
 
             if (this.props.dynamicHeight) {
-                const itemHeight = this.getVariableImageHeight(this.state.selectedItem);
+                const itemHeight = this.getVariableItemHeight(this.state.selectedItem);
                 swiperProps.style.height = itemHeight || 'auto';
                 containerStyles.height = itemHeight || 'auto';
             }
