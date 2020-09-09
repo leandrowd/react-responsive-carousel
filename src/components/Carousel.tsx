@@ -248,17 +248,20 @@ export default class Carousel extends React.Component<Props, State> {
             this.setupAutoPlay();
         }
 
-        this.setState({
-            initialized: true,
-        });
-
-        const initialImage = this.getInitialImage();
-        if (initialImage) {
-            // if it's a carousel of images, we set the mount state after the first image is loaded
-            initialImage.addEventListener('load', this.setMountState);
-        } else {
-            this.setMountState();
-        }
+        this.setState(
+            {
+                initialized: true,
+            },
+            () => {
+                const initialImage = this.getInitialImage();
+                if (initialImage && !initialImage.complete) {
+                    // if it's a carousel of images, we set the mount state after the first image is loaded
+                    initialImage.addEventListener('load', this.setMountState);
+                } else {
+                    this.setMountState();
+                }
+            }
+        );
     }
 
     destroyCarousel() {
