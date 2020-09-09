@@ -394,9 +394,11 @@ export default class Carousel extends React.Component<Props, State> {
         if (!this.state.initialized || !this.itemsRef || this.itemsRef.length === 0) {
             return;
         }
-
         const isHorizontal = this.props.axis === 'horizontal';
         const firstItem = this.itemsRef[0];
+        if (!firstItem) {
+            return;
+        }
         const itemSize = isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
 
         this.setState({
