@@ -37,6 +37,7 @@ export interface Props {
     onSwipeStart: (event: React.TouchEvent) => void;
     onSwipeEnd: (event: React.TouchEvent) => void;
     onSwipeMove: (event: React.TouchEvent) => boolean;
+    preventMovementUntilSwipeScrollTolerance: boolean;
     renderArrowPrev: (clickHandler: () => void, hasPrev: boolean, label: string) => React.ReactNode;
     renderArrowNext: (clickHandler: () => void, hasNext: boolean, label: string) => React.ReactNode;
     renderIndicator: (
@@ -99,6 +100,7 @@ export default class Carousel extends React.Component<Props, State> {
         onSwipeStart: () => {},
         onSwipeEnd: () => {},
         onSwipeMove: () => {},
+        preventMovementUntilSwipeScrollTolerance: false,
         renderArrowPrev: (onClickHandler: () => void, hasPrev: boolean, label: string) => (
             <button type="button" aria-label={label} className={klass.ARROW_PREV(!hasPrev)} onClick={onClickHandler} />
         ),
@@ -502,7 +504,9 @@ export default class Carousel extends React.Component<Props, State> {
                 position += childrenLength * 100;
             }
         }
-        this.setPosition(position);
+        if (!this.props.preventMovementUntilSwipeScrollTolerance || hasMoved) {
+            this.setPosition(position);
+        }
 
         // allows scroll if the swipe was within the tolerance
         if (hasMoved && !this.state.cancelClick) {
