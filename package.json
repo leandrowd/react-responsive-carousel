@@ -6,8 +6,7 @@
         "name": "Leandro Augusto Lemos",
         "url": "http://leandrowd.github.io/"
     },
-    "main": "lib/cjs/index.js",
-    "module": "lib/es/index.js",
+    "main": "lib/js/index.js",
     "types": "lib/ts/index.d.ts",
     "license": "MIT",
     "keywords": [
@@ -44,9 +43,8 @@
         "typecheck": "tsc -p tsconfig.json --noEmit",
         "update-snapshots": "jest --updateSnapshot",
         "build": "yarn lib:build",
-        "lib:build": "yarn lib:build-cjs && yarn lib:build-es && yarn lib:build-styles && yarn lib:build-types",
-        "lib:build-cjs": "babel ./src -d lib/cjs --ignore './src/__tests__' --extensions .ts,.tsx --config-file ./babel.config.cjs.json",
-        "lib:build-es": "babel ./src -d lib/es --ignore './src/__tests__' --extensions .ts,.tsx --config-file ./babel.config.json",
+        "lib:build": "yarn lib:build-js && yarn lib:build-styles && yarn lib:build-types",
+        "lib:build-js": "babel ./src -d lib/js --ignore './src/__tests__' --extensions .ts,.tsx --config-file ./babel.config.json",
         "lib:build-styles": "mkdirp lib/styles && node-sass src/carousel.scss > lib/styles/carousel.css && node-sass --output-style compressed src/carousel.scss > lib/styles/carousel.min.css",
         "lib:build-types": "tsc -p tsconfig.types.json",
         "lib:pre-publish": "npm version patch && git push origin master",

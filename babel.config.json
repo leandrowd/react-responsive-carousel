@@ -3,7 +3,7 @@
         [
             "@babel/env",
             {
-                "modules": false,
+                "modules": "commonjs",
                 "targets": ["last 2 versions", "not dead"]
             }
         ],
