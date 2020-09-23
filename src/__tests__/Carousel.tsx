@@ -812,6 +812,48 @@ describe('Slider', function() {
                 ).toBe(false);
             });
 
+            it('should not call setPosition if preventMovementUntilSwipeScrollTolerance is true and the tolerance has not been reached', () => {
+                renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: true });
+                componentInstance.setPosition = jest.fn();
+
+                expect(
+                    componentInstance.onSwipeMove({
+                        x: 5,
+                        y: 10,
+                    })
+                ).toBe(false);
+
+                expect(componentInstance.setPosition).not.toHaveBeenCalled();
+            });
+
+            it('should call setPosition if preventMovementUntilSwipeScrollTolerance is true and the tolerance has been reached', () => {
+                renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: true });
+                componentInstance.setPosition = jest.fn();
+
+                expect(
+                    componentInstance.onSwipeMove({
+                        x: 30,
+                        y: 10,
+                    })
+                ).toBe(true);
+
+                expect(componentInstance.setPosition).toHaveBeenCalled();
+            });
+
+            it('should still call setPosition if preventMovementUntilSwipeScrollTolerance is false and the tolerance has not been reached', () => {
+                renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: false });
+                componentInstance.setPosition = jest.fn();
+
+                expect(
+                    componentInstance.onSwipeMove({
+                        x: 5,
+                        y: 10,
+                    })
+                ).toBe(false);
+
+                expect(componentInstance.setPosition).toHaveBeenCalled();
+            });
+
             it('should call onSwipeMove callback', () => {
                 var onSwipeMoveFunction = jest.fn();
                 renderDefaultComponent({ onSwipeMove: onSwipeMoveFunction });
