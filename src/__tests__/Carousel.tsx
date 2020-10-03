@@ -754,6 +754,30 @@ describe('Slider', function() {
 
             expect(componentInstance.state.selectedItem).toBe(1);
         });
+
+        it('should restart auto-play after disabling it via props', () => {
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+
+            component.setProps({
+                autoPlay: false,
+            });
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+
+            component.setProps({
+                autoPlay: true,
+            });
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(2);
+        });
     });
 
     describe('Mouse enter/leave', () => {
