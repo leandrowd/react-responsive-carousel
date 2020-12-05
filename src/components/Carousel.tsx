@@ -17,6 +17,7 @@ const isKeyboardEvent = (e?: React.MouseEvent | React.KeyboardEvent): e is React
 
 export interface Props {
     axis: 'horizontal' | 'vertical';
+    autoFocus?: boolean;
     autoPlay?: boolean;
     centerMode?: boolean;
     centerSlidePercentage: number;
@@ -199,6 +200,10 @@ export default class Carousel extends React.Component<Props, State> {
             this.setupCarousel();
         }
 
+        if (!prevProps.autoFocus && this.props.autoFocus) {
+            this.forceFocus();
+        }
+
         if (prevState.swiping && !this.state.swiping) {
             // We stopped swiping, ensure we are heading to the new/current slide and not stuck
             this.resetPosition();
@@ -248,6 +253,10 @@ export default class Carousel extends React.Component<Props, State> {
 
         if (this.state.autoPlay && Children.count(this.props.children) > 1) {
             this.setupAutoPlay();
+        }
+
+        if (this.props.autoFocus) {
+            this.forceFocus();
         }
 
         this.setState(
@@ -352,6 +361,10 @@ export default class Carousel extends React.Component<Props, State> {
     startOnLeave = () => {
         this.setState({ isMouseEntered: false }, this.autoPlay);
     };
+
+    forceFocus() {
+        this.carouselWrapperRef?.focus();
+    }
 
     isFocusWithinTheCarousel = () => {
         if (!this.carouselWrapperRef) {

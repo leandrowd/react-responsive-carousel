@@ -34,6 +34,7 @@ const getConfigurableProps = () => ({
     swipeable: boolean('swipeable', true, tooglesGroupId),
     dynamicHeight: boolean('dynamicHeight', true, tooglesGroupId),
     emulateTouch: boolean('emulateTouch', true, tooglesGroupId),
+    autoFocus: boolean('autoFocus', false, tooglesGroupId),
     thumbWidth: number('thumbWidth', 100, {}, valuesGroupId),
     selectedItem: number('selectedItem', 0, {}, valuesGroupId),
     interval: number('interval', 3000, {}, valuesGroupId),

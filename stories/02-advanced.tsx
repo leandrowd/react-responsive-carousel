@@ -165,7 +165,7 @@ export const withExternalControls = () => {
 };
 
 export const presentationMode = () => (
-    <Carousel showThumbs={false} showStatus={false} useKeyboardArrows className="presentation-mode">
+    <Carousel autoFocus={true} showThumbs={false} showStatus={false} useKeyboardArrows className="presentation-mode">
         <div key="content-0" className="my-slide primary">
             <h1>Presentation mode</h1>
         </div>
