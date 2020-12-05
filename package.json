@@ -56,8 +56,8 @@
         "website:storybook": "build-storybook -s ./src -o ./temp/website/storybook",
         "website:deploy": "gh-pages -d temp/website",
         "website:create-and-publish": "yarn website:build && yarn website:copy-assets && yarn website:storybook && yarn website:deploy",
-        "prepublish-to-npm": "git pull && yarn build && git add . && git commit -m 'Prepare for publishing'",
-        "publish-to-npm": "(git pull origin master && npm version patch && git push origin master && npm publish && git push --tags)",
+        "prepublish-to-npm": "git pull && yarn build",
+        "publish-to-npm": "npm version patch && npm publish && git push --tags",
         "postpublish-to-npm": "yarn changelog && yarn update-codesandbox && git add . && git commit -m 'Updating changelog and codesandbox' && git push origin master",
         "prepublish-prerelease-to-npm": "git pull && yarn build && git add . && git commit -m 'Prepare for publishing prerelease'",
         "publish-prerelease-to-npm": "(git pull && npm version prerelease --preid=next && npm publish)"
