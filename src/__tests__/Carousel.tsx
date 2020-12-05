@@ -784,6 +784,36 @@ describe('Slider', function() {
         });
     });
 
+    describe('Focus', () => {
+        describe('calling forceFocus', () => {
+            it('should call carousel wrapper focus', () => {
+                componentInstance.carouselWrapperRef.focus = jest.fn();
+                componentInstance.forceFocus();
+                expect(componentInstance.carouselWrapperRef.focus).toHaveBeenCalledTimes(1);
+            });
+        });
+
+        describe('AutoFocus === true', () => {
+            it('should call forceFocus on componentDidMount', () => {
+                const forceFocusSpy = jest.spyOn(Carousel.prototype, 'forceFocus');
+                renderDefaultComponent({ autoFocus: true });
+                expect(forceFocusSpy).toHaveBeenCalledTimes(1);
+                forceFocusSpy.mockReset();
+                forceFocusSpy.mockRestore();
+            });
+
+            it('should call forceFocus conditionally on componentDidUpdate', () => {
+                componentInstance.forceFocus = jest.fn();
+
+                component.setProps({ autoFocus: false });
+                expect(componentInstance.forceFocus).toHaveBeenCalledTimes(0);
+
+                component.setProps({ autoFocus: true });
+                expect(componentInstance.forceFocus).toHaveBeenCalledTimes(1);
+            });
+        });
+    });
+
     describe('Swiping', () => {
         describe('onSwipeStart', () => {
             it('should set swiping to true', () => {
