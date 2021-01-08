@@ -712,7 +712,7 @@ export default class Carousel extends React.Component<Props, State> {
             }
 
             // try to get img first, if img not there find first display tag
-            const displayItem = slideImages[0] || item.children[0]
+            const displayItem = slideImages[0] || item.children[0];
             const height = displayItem.clientHeight;
             return height > 0 ? height : null;
         }
