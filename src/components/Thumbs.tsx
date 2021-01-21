@@ -177,7 +177,7 @@ export default class Thumbs extends Component<Props, State> {
 
         const currentPosition = -(this.state.firstItem * 100) / this.state.visibleItems;
         const lastLeftItem = Math.max(childrenLength - this.state.visibleItems, 0);
-        const lastLeftBoundary = -lastLeftItem * 100 / this.state.visibleItems;
+        const lastLeftBoundary = (-lastLeftItem * 100) / this.state.visibleItems;
 
         // prevent user from swiping left out of boundaries
         if (currentPosition === leftBoundary && deltaX > 0) {
