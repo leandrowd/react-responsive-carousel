@@ -169,13 +169,15 @@ export default class Thumbs extends Component<Props, State> {
 
     onSwipeMove = (delta: { x: number; y: number }) => {
         let deltaX = delta.x;
-        if (!this.state.itemSize || !this.itemsWrapperRef) {
+        if (!this.state.itemSize || !this.itemsWrapperRef || !this.state.visibleItems) {
             return false;
         }
         const leftBoundary = 0;
+        const childrenLength = Children.count(this.props.children);
 
-        const currentPosition = -this.state.firstItem * this.state.itemSize;
-        const lastLeftBoundary = -this.state.visibleItems * this.state.itemSize;
+        const currentPosition = -(this.state.firstItem * 100) / this.state.visibleItems;
+        const lastLeftItem = Math.max(childrenLength - this.state.visibleItems, 0);
+        const lastLeftBoundary = -lastLeftItem * 100 / this.state.visibleItems;
 
         // prevent user from swiping left out of boundaries
         if (currentPosition === leftBoundary && deltaX > 0) {
