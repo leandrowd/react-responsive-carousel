@@ -249,12 +249,6 @@ export default class Carousel extends React.Component<Props, State> {
     };
 
     setupCarousel() {
-        this.bindEvents();
-
-        if (this.state.autoPlay && Children.count(this.props.children) > 1) {
-            this.setupAutoPlay();
-        }
-
         if (this.props.autoFocus) {
             this.forceFocus();
         }
@@ -265,6 +259,12 @@ export default class Carousel extends React.Component<Props, State> {
             },
             () => {
                 const initialImage = this.getInitialImage();
+
+                this.bindEvents();
+
+                if (this.state.autoPlay && Children.count(this.props.children) > 1) {
+                    this.setupAutoPlay();
+                }
                 if (initialImage && !initialImage.complete) {
                     // if it's a carousel of images, we set the mount state after the first image is loaded
                     initialImage.addEventListener('load', this.setMountState);
