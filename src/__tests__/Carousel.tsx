@@ -698,6 +698,15 @@ describe('Slider', function() {
             componentInstance.decrement();
             expect(componentInstance.state.selectedItem).toBe(lastItemIndex);
         });
+
+        it('should be swipeable only on Thumbs with one child', () => {
+            renderDefaultComponent({
+                children: [<img src="assets/1.jpeg" key="1" />],
+                infiniteLoop: true,
+            });
+
+            expect(component.find(Swipe).length).toBe(1);
+        });
     });
 
     describe('Auto Play', () => {
