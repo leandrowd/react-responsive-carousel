@@ -878,7 +878,7 @@ export default class Carousel extends React.Component<Props, State> {
             containerStyles.height = this.state.itemSize;
         }
         return (
-            <div className={klass.ROOT(this.props.className)} ref={this.setCarouselWrapperRef} tabIndex={0}>
+            <div className={klass.ROOT(this.props.className)} ref={this.setCarouselWrapperRef}>
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
                     {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles}>
