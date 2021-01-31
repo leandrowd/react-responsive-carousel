@@ -75,6 +75,73 @@ exports[`Slider Snapshots center mode 1`] = `
       }
     }
   >
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
     <button
       aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
@@ -206,73 +273,6 @@ exports[`Slider Snapshots center mode 1`] = `
       onClick={[Function]}
       type="button"
     />
-    <ul
-      className="control-dots"
-    >
-      <li
-        aria-label="slide item 1"
-        className="dot selected"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={0}
-      />
-      <li
-        aria-label="slide item 2"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={1}
-      />
-      <li
-        aria-label="slide item 3"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={2}
-      />
-      <li
-        aria-label="slide item 4"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={3}
-      />
-      <li
-        aria-label="slide item 5"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={4}
-      />
-      <li
-        aria-label="slide item 6"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={5}
-      />
-      <li
-        aria-label="slide item 7"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={6}
-      />
-    </ul>
     <p
       className="carousel-status"
     >
@@ -457,6 +457,73 @@ exports[`Slider Snapshots custom class name 1`] = `
       }
     }
   >
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
     <button
       aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
@@ -553,73 +620,6 @@ exports[`Slider Snapshots custom class name 1`] = `
       onClick={[Function]}
       type="button"
     />
-    <ul
-      className="control-dots"
-    >
-      <li
-        aria-label="slide item 1"
-        className="dot selected"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={0}
-      />
-      <li
-        aria-label="slide item 2"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={1}
-      />
-      <li
-        aria-label="slide item 3"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={2}
-      />
-      <li
-        aria-label="slide item 4"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={3}
-      />
-      <li
-        aria-label="slide item 5"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={4}
-      />
-      <li
-        aria-label="slide item 6"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={5}
-      />
-      <li
-        aria-label="slide item 7"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={6}
-      />
-    </ul>
     <p
       className="carousel-status"
     >
@@ -804,6 +804,73 @@ exports[`Slider Snapshots custom width 1`] = `
       }
     }
   >
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
     <button
       aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
@@ -900,73 +967,6 @@ exports[`Slider Snapshots custom width 1`] = `
       onClick={[Function]}
       type="button"
     />
-    <ul
-      className="control-dots"
-    >
-      <li
-        aria-label="slide item 1"
-        className="dot selected"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={0}
-      />
-      <li
-        aria-label="slide item 2"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={1}
-      />
-      <li
-        aria-label="slide item 3"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={2}
-      />
-      <li
-        aria-label="slide item 4"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={3}
-      />
-      <li
-        aria-label="slide item 5"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={4}
-      />
-      <li
-        aria-label="slide item 6"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={5}
-      />
-      <li
-        aria-label="slide item 7"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={6}
-      />
-    </ul>
     <p
       className="carousel-status"
     >
@@ -1151,6 +1151,73 @@ exports[`Slider Snapshots default 1`] = `
       }
     }
   >
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
     <button
       aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
@@ -1247,73 +1314,6 @@ exports[`Slider Snapshots default 1`] = `
       onClick={[Function]}
       type="button"
     />
-    <ul
-      className="control-dots"
-    >
-      <li
-        aria-label="slide item 1"
-        className="dot selected"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={0}
-      />
-      <li
-        aria-label="slide item 2"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={1}
-      />
-      <li
-        aria-label="slide item 3"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={2}
-      />
-      <li
-        aria-label="slide item 4"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={3}
-      />
-      <li
-        aria-label="slide item 5"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={4}
-      />
-      <li
-        aria-label="slide item 6"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={5}
-      />
-      <li
-        aria-label="slide item 7"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={6}
-      />
-    </ul>
     <p
       className="carousel-status"
     >
@@ -1498,6 +1498,73 @@ exports[`Slider Snapshots infinite loop 1`] = `
       }
     }
   >
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
     <button
       aria-label="previous slide / item"
       className="control-arrow control-prev"
@@ -1610,73 +1677,6 @@ exports[`Slider Snapshots infinite loop 1`] = `
       onClick={[Function]}
       type="button"
     />
-    <ul
-      className="control-dots"
-    >
-      <li
-        aria-label="slide item 1"
-        className="dot selected"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={0}
-      />
-      <li
-        aria-label="slide item 2"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={1}
-      />
-      <li
-        aria-label="slide item 3"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={2}
-      />
-      <li
-        aria-label="slide item 4"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={3}
-      />
-      <li
-        aria-label="slide item 5"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={4}
-      />
-      <li
-        aria-label="slide item 6"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={5}
-      />
-      <li
-        aria-label="slide item 7"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={6}
-      />
-    </ul>
     <p
       className="carousel-status"
     >
@@ -1861,6 +1861,73 @@ exports[`Slider Snapshots no arrows 1`] = `
       }
     }
   >
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
     <button
       aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
@@ -1957,73 +2024,6 @@ exports[`Slider Snapshots no arrows 1`] = `
       onClick={[Function]}
       type="button"
     />
-    <ul
-      className="control-dots"
-    >
-      <li
-        aria-label="slide item 1"
-        className="dot selected"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={0}
-      />
-      <li
-        aria-label="slide item 2"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={1}
-      />
-      <li
-        aria-label="slide item 3"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={2}
-      />
-      <li
-        aria-label="slide item 4"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={3}
-      />
-      <li
-        aria-label="slide item 5"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={4}
-      />
-      <li
-        aria-label="slide item 6"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={5}
-      />
-      <li
-        aria-label="slide item 7"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={6}
-      />
-    </ul>
     <p
       className="carousel-status"
     >
@@ -2490,6 +2490,73 @@ exports[`Slider Snapshots no indicators 2`] = `
       }
     }
   >
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
     <button
       aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
@@ -2586,73 +2653,6 @@ exports[`Slider Snapshots no indicators 2`] = `
       onClick={[Function]}
       type="button"
     />
-    <ul
-      className="control-dots"
-    >
-      <li
-        aria-label="slide item 1"
-        className="dot selected"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={0}
-      />
-      <li
-        aria-label="slide item 2"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={1}
-      />
-      <li
-        aria-label="slide item 3"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={2}
-      />
-      <li
-        aria-label="slide item 4"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={3}
-      />
-      <li
-        aria-label="slide item 5"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={4}
-      />
-      <li
-        aria-label="slide item 6"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={5}
-      />
-      <li
-        aria-label="slide item 7"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={6}
-      />
-    </ul>
   </div>
   <div
     className="carousel"
@@ -2832,6 +2832,73 @@ exports[`Slider Snapshots no thumbs 1`] = `
       }
     }
   >
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
     <button
       aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
@@ -2928,6 +2995,28 @@ exports[`Slider Snapshots no thumbs 1`] = `
       onClick={[Function]}
       type="button"
     />
+    <p
+      className="carousel-status"
+    >
+      1 of 7
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Slider Snapshots swipeable false 1`] = `
+<div
+  className="carousel-root"
+  tabIndex={0}
+>
+  <div
+    className="carousel carousel-slider"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
     <ul
       className="control-dots"
     >
@@ -2995,28 +3084,6 @@ exports[`Slider Snapshots no thumbs 1`] = `
         value={6}
       />
     </ul>
-    <p
-      className="carousel-status"
-    >
-      1 of 7
-    </p>
-  </div>
-</div>
-`;
-
-exports[`Slider Snapshots swipeable false 1`] = `
-<div
-  className="carousel-root"
-  tabIndex={0}
->
-  <div
-    className="carousel carousel-slider"
-    style={
-      Object {
-        "width": "100%",
-      }
-    }
-  >
     <button
       aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
@@ -3110,73 +3177,6 @@ exports[`Slider Snapshots swipeable false 1`] = `
       onClick={[Function]}
       type="button"
     />
-    <ul
-      className="control-dots"
-    >
-      <li
-        aria-label="slide item 1"
-        className="dot selected"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={0}
-      />
-      <li
-        aria-label="slide item 2"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={1}
-      />
-      <li
-        aria-label="slide item 3"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={2}
-      />
-      <li
-        aria-label="slide item 4"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={3}
-      />
-      <li
-        aria-label="slide item 5"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={4}
-      />
-      <li
-        aria-label="slide item 6"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={5}
-      />
-      <li
-        aria-label="slide item 7"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={6}
-      />
-    </ul>
     <p
       className="carousel-status"
     >
@@ -3361,6 +3361,73 @@ exports[`Slider Snapshots vertical axis 1`] = `
       }
     }
   >
+    <ul
+      className="control-dots"
+    >
+      <li
+        aria-label="slide item 1"
+        className="dot selected"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={0}
+      />
+      <li
+        aria-label="slide item 2"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={1}
+      />
+      <li
+        aria-label="slide item 3"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={2}
+      />
+      <li
+        aria-label="slide item 4"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={3}
+      />
+      <li
+        aria-label="slide item 5"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={4}
+      />
+      <li
+        aria-label="slide item 6"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={5}
+      />
+      <li
+        aria-label="slide item 7"
+        className="dot"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+        value={6}
+      />
+    </ul>
     <button
       aria-label="previous slide / item"
       className="control-arrow control-prev control-disabled"
@@ -3462,73 +3529,6 @@ exports[`Slider Snapshots vertical axis 1`] = `
       onClick={[Function]}
       type="button"
     />
-    <ul
-      className="control-dots"
-    >
-      <li
-        aria-label="slide item 1"
-        className="dot selected"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={0}
-      />
-      <li
-        aria-label="slide item 2"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={1}
-      />
-      <li
-        aria-label="slide item 3"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={2}
-      />
-      <li
-        aria-label="slide item 4"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={3}
-      />
-      <li
-        aria-label="slide item 5"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={4}
-      />
-      <li
-        aria-label="slide item 6"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={5}
-      />
-      <li
-        aria-label="slide item 7"
-        className="dot"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-        value={6}
-      />
-    </ul>
     <p
       className="carousel-status"
     >
