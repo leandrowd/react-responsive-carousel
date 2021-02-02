@@ -699,7 +699,7 @@ describe('Slider', function() {
             expect(componentInstance.state.selectedItem).toBe(lastItemIndex);
         });
 
-        it('should be swipeable only on Thumbs with one child', () => {
+        it('should not render any Swipe component with one child', () => {
             renderDefaultComponent({
                 children: [<img src="assets/1.jpeg" key="1" />],
                 infiniteLoop: true,
