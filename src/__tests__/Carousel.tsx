@@ -705,7 +705,7 @@ describe('Slider', function() {
                 infiniteLoop: true,
             });
 
-            expect(component.find(Swipe).length).toBe(1);
+            expect(component.find(Swipe).length).toBe(0);
         });
     });
 
