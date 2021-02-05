@@ -203,6 +203,10 @@
             width: 100%;
             vertical-align: top;
             border: 0;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         iframe {
