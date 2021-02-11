@@ -965,18 +965,20 @@ describe('Slider', function() {
                     emulateTouch: true,
                 });
 
-                const initialIndex = componentInstance.state.selectedItem;
+                let currentIndex = componentInstance.state.selectedItem;
                 const items = componentInstance.props.children;
 
                 componentInstance.onSwipeForward();
-                componentInstance.handleClickItem(initialIndex, items[initialIndex]);
+                componentInstance.handleClickItem(currentIndex, items[currentIndex]);
+                ++currentIndex;
 
-                expect(componentInstance.state.selectedItem).toEqual(initialIndex + 1);
+                expect(componentInstance.state.selectedItem).toEqual(currentIndex);
 
                 componentInstance.onSwipeBackwards();
-                componentInstance.handleClickItem(initialIndex + 1, items[initialIndex + 1]);
+                componentInstance.handleClickItem(currentIndex, items[currentIndex]);
+                --currentIndex;
 
-                expect(componentInstance.state.selectedItem).toEqual(initialIndex);
+                expect(componentInstance.state.selectedItem).toEqual(currentIndex);
             });
         });
     });
