@@ -333,21 +333,18 @@ export default class Carousel extends React.Component<Props, State> {
     }
 
     autoPlay = () => {
-        if (!this.state.autoPlay || Children.count(this.props.children) <= 1) {
+        if (Children.count(this.props.children) <= 1) {
             return;
         }
 
-        if (this.timer) clearTimeout(this.timer);
+        this.clearAutoPlay();
+
         this.timer = setTimeout(() => {
             this.increment();
         }, this.props.interval);
     };
 
     clearAutoPlay = () => {
-        if (!this.state.autoPlay) {
-            return;
-        }
-
         if (this.timer) clearTimeout(this.timer);
     };
 

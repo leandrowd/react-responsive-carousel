@@ -763,6 +763,75 @@ describe('Slider', function() {
 
             expect(componentInstance.state.selectedItem).toBe(1);
         });
+
+        it('should restart auto-play after disabling it via props', () => {
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+
+            component.setProps({
+                autoPlay: false,
+            });
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+
+            component.setProps({
+                autoPlay: true,
+            });
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(2);
+        });
+    });
+
+    describe('Infinite Loop and Auto Play', () => {
+        beforeEach(() => {
+            jest.useFakeTimers();
+            window.addEventListener = jest.fn();
+
+            renderDefaultComponent({
+                children: [
+                    <img src="assets/1.jpeg" key="1" />,
+                    <img src="assets/2.jpeg" key="2" />,
+                    <img src="assets/3.jpeg" key="3" />,
+                ],
+                infiniteLoop: true,
+                autoPlay: true,
+            });
+        });
+
+        afterEach(() => {
+            jest.useRealTimers();
+        });
+
+        it('should automatically loop infinitely', () => {
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(2);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(2);
+        });
     });
 
     describe('Mouse enter/leave', () => {
