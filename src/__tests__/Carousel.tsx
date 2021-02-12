@@ -980,6 +980,29 @@ describe('Slider', function() {
                 expect(swipeProps.onSwipeDown).toBe(componentInstance.onSwipeForward);
             });
         });
+
+        describe('emulateTouch', () => {
+            it('should cancel click when swipe forward and backwards with emulated touch', () => {
+                renderDefaultComponent({
+                    emulateTouch: true,
+                });
+
+                let currentIndex = componentInstance.state.selectedItem;
+                const items = componentInstance.props.children;
+
+                componentInstance.onSwipeForward();
+                componentInstance.handleClickItem(currentIndex, items[currentIndex]);
+                ++currentIndex;
+
+                expect(componentInstance.state.selectedItem).toEqual(currentIndex);
+
+                componentInstance.onSwipeBackwards();
+                componentInstance.handleClickItem(currentIndex, items[currentIndex]);
+                --currentIndex;
+
+                expect(componentInstance.state.selectedItem).toEqual(currentIndex);
+            });
+        });
     });
 
     describe('center mode', () => {

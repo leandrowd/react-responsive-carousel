@@ -671,10 +671,18 @@ export default class Carousel extends React.Component<Props, State> {
 
     onSwipeForward = () => {
         this.increment(1, true);
+
+        if (this.props.emulateTouch) {
+            this.setState({ cancelClick: true });
+        }
     };
 
     onSwipeBackwards = () => {
         this.decrement(1, true);
+
+        if (this.props.emulateTouch) {
+            this.setState({ cancelClick: true });
+        }
     };
 
     changeItem = (newIndex: number) => (e: React.MouseEvent | React.KeyboardEvent) => {
