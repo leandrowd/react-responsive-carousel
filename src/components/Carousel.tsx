@@ -87,7 +87,7 @@ export default class Carousel extends React.Component<Props, State> {
 
     static displayName = 'Carousel';
 
-    static defaultProps = {
+    static defaultProps: Props = {
         axis: 'horizontal',
         centerSlidePercentage: 80,
         interval: 3000,
@@ -101,7 +101,7 @@ export default class Carousel extends React.Component<Props, State> {
         onChange: noop,
         onSwipeStart: () => {},
         onSwipeEnd: () => {},
-        onSwipeMove: () => {},
+        onSwipeMove: () => false,
         preventMovementUntilSwipeScrollTolerance: false,
         renderArrowPrev: (onClickHandler: () => void, hasPrev: boolean, label: string) => (
             <button type="button" aria-label={label} className={klass.ARROW_PREV(!hasPrev)} onClick={onClickHandler} />
@@ -132,14 +132,14 @@ export default class Carousel extends React.Component<Props, State> {
             return item;
         },
         renderThumbs: (children: React.ReactChild[]) => {
-            const images = Children.map(children, (item) => {
-                let img: React.ReactNode = item;
+            const images = Children.map<React.ReactChild | undefined, React.ReactChild>(children, (item) => {
+                let img: React.ReactChild | undefined = item;
 
                 // if the item is not an image, try to find the first image in the item's children.
                 if ((item as React.ReactElement<{ children: React.ReactChild[] }>).type !== 'img') {
-                    img = Children.toArray(
-                        (item as React.ReactElement<{ children: React.ReactChild[] }>).props.children
-                    ).find((children) => (children as React.ReactElement).type === 'img');
+                    img = (Children.toArray((item as React.ReactElement).props.children) as React.ReactChild[]).find(
+                        (children) => (children as React.ReactElement).type === 'img'
+                    );
                 }
 
                 if (!img) {
