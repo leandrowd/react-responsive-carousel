@@ -74,6 +74,7 @@ interface State {
     itemSize: number;
     selectedItem: number;
     swiping?: boolean;
+    swipeMovementStarted: boolean;
 }
 
 export default class Carousel extends React.Component<Props, State> {
@@ -182,6 +183,7 @@ export default class Carousel extends React.Component<Props, State> {
             isMouseEntered: false,
             autoPlay: props.autoPlay,
             swiping: false,
+            swipeMovementStarted: false,
             cancelClick: false,
             itemSize: 1,
         };
@@ -480,6 +482,7 @@ export default class Carousel extends React.Component<Props, State> {
         this.setState({
             swiping: false,
             cancelClick: false,
+            swipeMovementStarted: false,
         });
         this.props.onSwipeEnd(event);
         this.autoPlay();
@@ -522,7 +525,10 @@ export default class Carousel extends React.Component<Props, State> {
                 position += childrenLength * 100;
             }
         }
-        if (!this.props.preventMovementUntilSwipeScrollTolerance || hasMoved) {
+        if (!this.props.preventMovementUntilSwipeScrollTolerance || hasMoved || this.state.swipeMovementStarted) {
+            if (!this.state.swipeMovementStarted) {
+                this.setState({ swipeMovementStarted: true });
+            }
             this.setPosition(position);
         }
 

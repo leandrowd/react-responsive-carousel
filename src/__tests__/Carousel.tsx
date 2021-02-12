@@ -869,6 +869,28 @@ describe('Slider', function() {
                 expect(componentInstance.setPosition).not.toHaveBeenCalled();
             });
 
+            it('should call setPosition if preventMovementUntilSwipeScrollTolerance is true and movement has already begun', () => {
+                renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: true });
+
+                componentInstance.setPosition = jest.fn();
+                expect(
+                    componentInstance.onSwipeMove({
+                        x: 50,
+                        y: 10,
+                    })
+                ).toBe(true);
+                expect(componentInstance.setPosition).toHaveBeenCalled();
+
+                componentInstance.setPosition = jest.fn();
+                expect(
+                    componentInstance.onSwipeMove({
+                        x: 5,
+                        y: 10,
+                    })
+                ).toBe(false);
+                expect(componentInstance.setPosition).toHaveBeenCalled();
+            });
+
             it('should call setPosition if preventMovementUntilSwipeScrollTolerance is true and the tolerance has been reached', () => {
                 renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: true });
                 componentInstance.setPosition = jest.fn();
