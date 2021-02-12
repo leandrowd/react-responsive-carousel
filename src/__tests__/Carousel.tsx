@@ -698,6 +698,15 @@ describe('Slider', function() {
             componentInstance.decrement();
             expect(componentInstance.state.selectedItem).toBe(lastItemIndex);
         });
+
+        it('should not render any Swipe component with one child', () => {
+            renderDefaultComponent({
+                children: [<img src="assets/1.jpeg" key="1" />],
+                infiniteLoop: true,
+            });
+
+            expect(component.find(Swipe).length).toBe(0);
+        });
     });
 
     describe('Auto Play', () => {

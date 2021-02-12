@@ -817,6 +817,8 @@ export default class Carousel extends React.Component<Props, State> {
             return null;
         }
 
+        const isSwipeable = this.props.swipeable && Children.count(this.props.children) > 1;
+
         const isHorizontal = this.props.axis === 'horizontal';
 
         const canShowArrows = this.props.showArrows && Children.count(this.props.children) > 1;
@@ -897,7 +899,7 @@ export default class Carousel extends React.Component<Props, State> {
                     {this.renderControls()}
                     {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles}>
-                        {this.props.swipeable ? (
+                        {isSwipeable ? (
                             <Swipe
                                 tagName="ul"
                                 innerRef={this.setListRef}
