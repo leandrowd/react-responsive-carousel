@@ -787,6 +787,21 @@ describe('Slider', function() {
 
             expect(componentInstance.state.selectedItem).toBe(2);
         });
+
+        it('should reset when changing the slide through indicator', () => {
+            renderDefaultComponent({ interval: 3000, autoPlay: true });
+            jest.advanceTimersByTime(2000);
+
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            const changeToSecondItem = componentInstance.changeItem(1);
+            // it only runs with an event
+            changeToSecondItem(new MouseEvent('click'));
+
+            jest.advanceTimersByTime(1000);
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+        });
     });
 
     describe('Infinite Loop and Auto Play', () => {

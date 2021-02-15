@@ -687,6 +687,10 @@ export default class Carousel extends React.Component<Props, State> {
             this.selectItem({
                 selectedItem: newIndex,
             });
+
+            if (this.state.autoPlay) {
+                this.resetAutoPlay();
+            }
         }
     };
 
