@@ -1,4 +1,5 @@
 import { Children } from 'react';
+import CSSTranslate from '../../CSSTranslate';
 import {
     AnimationHandler,
     AnimationHandlerResponse,
@@ -11,24 +12,26 @@ import {
  */
 
 export const slideAnimationHandler: AnimationHandler = (props, state): AnimationHandlerResponse => {
+    const position = state.selectedItem;
+    const lastPosition = Children.count(props.children) - 1;
     const needClonedSlide = props.infiniteLoop && (position < 0 || position > lastPosition);
     const oldPosition = position;
+    let itemListStyle = {};
 
     if (needClonedSlide) {
         // set swiping true would disable transition time, then we set slider to cloned position and force a reflow
         // this is only needed for non-swiping situation
         if (oldPosition < 0) {
             if (props.centerMode && props.centerSlidePercentage && props.axis === 'horizontal') {
-                setPosition(
-                    -(lastPosition + 2) * this.props.centerSlidePercentage -
-                        (100 - this.props.centerSlidePercentage) / 2,
-                    true
+                itemListStyle = setPosition(
+                    -(lastPosition + 2) * props.centerSlidePercentage - (100 - props.centerSlidePercentage) / 2,
+                    props.axis
                 );
             } else {
-                setPosition(-(lastPosition + 2) * 100, true);
+                itemListStyle = setPosition(-(lastPosition + 2) * 100, props.axis);
             }
         } else if (oldPosition > lastPosition) {
-            setPosition(0, true);
+            itemListStyle = setPosition(0, props.axis);
         }
     }
 
@@ -85,18 +88,14 @@ const getPosition = (index: number, props: CarouselProps): number => {
  * @param position
  * @param forceReflow
  */
-const setPosition = (position: number, forceReflow?: boolean) => {
-    const list = ReactDOM.findDOMNode(this.listRef);
+const setPosition = (position: number, axis: 'horizontal' | 'vertical'): React.CSSProperties => {
+    const style = {};
+    ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach((prop) => {
+        // @ts-ignore
+        style[prop] = CSSTranslate(position, '%', axis);
+    });
 
-    if (list instanceof HTMLElement) {
-        ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach((prop) => {
-            list.style[prop as any] = CSSTranslate(position, '%', this.props.axis);
-        });
-
-        if (forceReflow) {
-            list.offsetLeft;
-        }
-    }
+    return style;
 };
 
 /**
