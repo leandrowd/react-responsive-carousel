@@ -5,10 +5,11 @@ import renderer from 'react-test-renderer';
 import * as index from '../index';
 // @ts-ignore
 import Swipe, { ReactEasySwipeProps } from 'react-easy-swipe';
-import Carousel, { Props } from '../components/Carousel';
+import Carousel from '../components/Carousel';
 import Thumbs from '../components/Thumbs';
 import getDocument from '../shims/document';
 import getWindow from '../shims/window';
+import { CarouselProps } from '../components/Carousel/types';
 
 const findDOMNodeWithinWrapper = (wrapper: ReactWrapper, domNode: HTMLElement) => {
     return wrapper.findWhere((n) => n.getDOMNode() === domNode).simulate('click');
@@ -24,11 +25,11 @@ describe('Slider', function() {
     let totalChildren: number;
     let lastItemIndex: number;
 
-    const bootstrap = (props: Partial<Props>, children: Props['children']) => {
+    const bootstrap = (props: Partial<CarouselProps>, children: CarouselProps['children']) => {
         window = getWindow();
         document = getDocument();
 
-        component = mount<Partial<Props>>(<Carousel {...props}>{children}</Carousel>);
+        component = mount<Partial<CarouselProps>>(<Carousel {...props}>{children}</Carousel>);
 
         componentInstance = component.instance();
 
@@ -46,11 +47,11 @@ describe('Slider', function() {
         <img src="assets/7.jpeg" key="7" />,
     ];
 
-    const renderDefaultComponent = ({ children = baseChildren, ...props }: Partial<Props>) => {
+    const renderDefaultComponent = ({ children = baseChildren, ...props }: Partial<CarouselProps>) => {
         bootstrap(props, children);
     };
 
-    const renderForSnapshot = (props: Partial<Props>, children: Props['children']) => {
+    const renderForSnapshot = (props: Partial<CarouselProps>, children: CarouselProps['children']) => {
         return renderer.create(<Carousel {...props}>{children}</Carousel>).toJSON();
     };
 
@@ -76,7 +77,7 @@ describe('Slider', function() {
 
         describe('Default Props', () => {
             describe('values', () => {
-                const props: Partial<Props> = {
+                const props: Partial<CarouselProps> = {
                     axis: 'horizontal',
                     centerSlidePercentage: 80,
                     interval: 3000,
@@ -99,9 +100,9 @@ describe('Slider', function() {
                 };
 
                 Object.keys(props).forEach((prop) => {
-                    it(`should have ${prop} as ${props[prop as keyof Props]}`, () => {
+                    it(`should have ${prop} as ${props[prop as keyof CarouselProps]}`, () => {
                         expect(component.prop(prop)).toBeDefined();
-                        expect(component.prop(prop)).toEqual(props[prop as keyof Props]);
+                        expect(component.prop(prop)).toEqual(props[prop as keyof CarouselProps]);
                     });
                 });
             });

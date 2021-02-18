@@ -28,7 +28,7 @@ export default {
             animated: !isSwiping,
         }),
 
-    ITEM: (isSlider: boolean, selected: boolean, previous: boolean) =>
+    ITEM: (isSlider: boolean, selected: boolean, previous?: boolean) =>
         classNames({
             thumb: !isSlider,
             slide: isSlider,

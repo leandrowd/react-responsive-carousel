@@ -201,8 +201,8 @@ const setPosition = (position: number, axis: 'horizontal' | 'vertical'): React.C
  * @param props
  * @param state
  */
-export const fadeAnimationHandler: AnimationHandler = (props, state): AnimationHandlerResponse => {
-    return {
-        itemListStyle: {},
-    };
-};
+// export const fadeAnimationHandler: AnimationHandler = (props, state): AnimationHandlerResponse => {
+//     return {
+//         itemListStyle: {},
+//     };
+// };
