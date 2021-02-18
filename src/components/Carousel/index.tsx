@@ -2,93 +2,25 @@ import React, { Children } from 'react';
 import ReactDOM from 'react-dom';
 // @ts-ignore
 import Swipe, { ReactEasySwipeProps } from 'react-easy-swipe';
-import klass from '../cssClasses';
-import CSSTranslate from '../CSSTranslate';
-import Thumbs from './Thumbs';
-import getDocument from '../shims/document';
-import getWindow from '../shims/window';
+import klass from '../../cssClasses';
+import CSSTranslate from '../../CSSTranslate';
+import Thumbs from '../Thumbs';
+import getDocument from '../../shims/document';
+import getWindow from '../../shims/window';
+import { noop, defaultStatusFormatter, isKeyboardEvent } from './utils';
+import { CarouselProps, CarouselState } from './types';
+import { slideAnimationHandler } from './animations';
 
-const noop = () => {};
-
-const defaultStatusFormatter = (current: number, total: number) => `${current} of ${total}`;
-
-const isKeyboardEvent = (e?: React.MouseEvent | React.KeyboardEvent): e is React.KeyboardEvent =>
-    e ? e.hasOwnProperty('key') : false;
-
-export interface Props {
-    axis: 'horizontal' | 'vertical';
-    autoFocus?: boolean;
-    autoPlay?: boolean;
-    centerMode?: boolean;
-    centerSlidePercentage: number;
-    children?: React.ReactChild[];
-    className?: string;
-    dynamicHeight?: boolean;
-    emulateTouch?: boolean;
-    infiniteLoop?: boolean;
-    interval: number;
-    labels: {
-        leftArrow: string;
-        rightArrow: string;
-        item: string;
-    };
-    onClickItem: (index: number, item: React.ReactNode) => void;
-    onClickThumb: (index: number, item: React.ReactNode) => void;
-    onChange: (index: number, item: React.ReactNode) => void;
-    onSwipeStart: (event: React.TouchEvent) => void;
-    onSwipeEnd: (event: React.TouchEvent) => void;
-    onSwipeMove: (event: React.TouchEvent) => boolean;
-    preventMovementUntilSwipeScrollTolerance: boolean;
-    renderArrowPrev: (clickHandler: () => void, hasPrev: boolean, label: string) => React.ReactNode;
-    renderArrowNext: (clickHandler: () => void, hasNext: boolean, label: string) => React.ReactNode;
-    renderIndicator: (
-        clickHandler: (e: React.MouseEvent | React.KeyboardEvent) => void,
-        isSelected: boolean,
-        index: number,
-        label: string
-    ) => React.ReactNode;
-    renderItem: (item: React.ReactNode, options?: { isSelected: boolean; isPrevious: boolean }) => React.ReactNode;
-    renderThumbs: (children: React.ReactChild[]) => React.ReactChild[];
-    selectedItem: number;
-    showArrows: boolean;
-    showStatus: boolean;
-    showIndicators: boolean;
-    showThumbs: boolean;
-    statusFormatter: (currentItem: number, total: number) => string;
-    stopOnHover: boolean;
-    swipeable: boolean;
-    swipeScrollTolerance: number;
-    thumbWidth?: number;
-    transitionTime: number;
-    useKeyboardArrows?: boolean;
-    verticalSwipe: 'natural' | 'standard';
-    width: number | string;
-}
-
-interface State {
-    autoPlay?: boolean;
-    cancelClick: boolean;
-    hasMount: boolean;
-    initialized: boolean;
-    isMouseEntered: boolean;
-    itemSize: number;
-    previousItem: number;
-    selectedItem: number;
-    swiping?: boolean;
-    swipeMovementStarted: boolean;
-}
-
-export default class Carousel extends React.Component<Props, State> {
-    private thumbsRef?: Thumbs;
-    private carouselWrapperRef?: HTMLDivElement;
-    private listRef?: HTMLElement | HTMLUListElement;
-    private itemsRef?: HTMLElement[];
-
+export default class Carousel extends React.Component<CarouselProps, CarouselState> {
+    private thumbsRef?: Thumbs; // HTML ref for Thumbnails
+    private carouselWrapperRef?: HTMLDivElement; // HTML ref for wrapper element
+    private listRef?: HTMLElement | HTMLUListElement; // HTML ref for list containing slides
+    private itemsRef?: HTMLElement[]; // HTML ref ro slide items
     private timer?: ReturnType<typeof setTimeout>;
 
     static displayName = 'Carousel';
 
-    static defaultProps: Props = {
+    static defaultProps: CarouselProps = {
         axis: 'horizontal',
         centerSlidePercentage: 80,
         interval: 3000,
@@ -172,9 +104,11 @@ export default class Carousel extends React.Component<Props, State> {
         transitionTime: 350,
         verticalSwipe: 'standard',
         width: '100%',
+        animationHandler: slideAnimationHandler,
+        swipeAnimationHandler: () => {},
     };
 
-    constructor(props: Props) {
+    constructor(props: CarouselProps) {
         super(props);
 
         this.state = {
@@ -199,7 +133,7 @@ export default class Carousel extends React.Component<Props, State> {
         this.setupCarousel();
     }
 
-    componentDidUpdate(prevProps: Props, prevState: State) {
+    componentDidUpdate(prevProps: CarouselProps, prevState: CarouselState) {
         if (!prevProps.children && this.props.children && !this.state.initialized) {
             this.setupCarousel();
         }
@@ -208,6 +142,7 @@ export default class Carousel extends React.Component<Props, State> {
             this.forceFocus();
         }
 
+        // NOTE swipe refactor to animation
         if (prevState.swiping && !this.state.swiping) {
             // We stopped swiping, ensure we are heading to the new/current slide and not stuck
             this.resetPosition();
@@ -454,7 +389,7 @@ export default class Carousel extends React.Component<Props, State> {
     };
 
     /**
-     *
+     * On Change handler, Passes the index and React node to the supplied onChange prop
      * @param index of the carousel item
      * @param item React node of the item being changed
      */
@@ -494,121 +429,13 @@ export default class Carousel extends React.Component<Props, State> {
 
     /**
      * Handles swipe move, directly updating carousel position
+     * NOTE: need to swipe refactor this out to a handler
      * @param delta
      * @param event
      */
     onSwipeMove = (delta: { x: number; y: number }, event: React.TouchEvent) => {
         this.props.onSwipeMove(event);
-        const isHorizontal = this.props.axis === 'horizontal';
-        const childrenLength = Children.count(this.props.children);
-
-        const initialBoundry = 0;
-
-        const currentPosition = this.getPosition(this.state.selectedItem);
-        const finalBoundry = this.props.infiniteLoop
-            ? this.getPosition(childrenLength - 1) - 100
-            : this.getPosition(childrenLength - 1);
-
-        const axisDelta = isHorizontal ? delta.x : delta.y;
-        let handledDelta = axisDelta;
-
-        // prevent user from swiping left out of boundaries
-        if (currentPosition === initialBoundry && axisDelta > 0) {
-            handledDelta = 0;
-        }
-
-        // prevent user from swiping right out of boundaries
-        if (currentPosition === finalBoundry && axisDelta < 0) {
-            handledDelta = 0;
-        }
-
-        let position = currentPosition + 100 / (this.state.itemSize / handledDelta);
-        const hasMoved = Math.abs(axisDelta) > this.props.swipeScrollTolerance;
-
-        if (this.props.infiniteLoop && hasMoved) {
-            // When allowing infinite loop, if we slide left from position 0 we reveal the cloned last slide that appears before it
-            // if we slide even further we need to jump to other side so it can continue - and vice versa for the last slide
-            if (this.state.selectedItem === 0 && position > -100) {
-                position -= childrenLength * 100;
-            } else if (this.state.selectedItem === childrenLength - 1 && position < -childrenLength * 100) {
-                position += childrenLength * 100;
-            }
-        }
-        if (!this.props.preventMovementUntilSwipeScrollTolerance || hasMoved || this.state.swipeMovementStarted) {
-            if (!this.state.swipeMovementStarted) {
-                this.setState({ swipeMovementStarted: true });
-            }
-            this.setPosition(position);
-        }
-
-        // allows scroll if the swipe was within the tolerance
-        if (hasMoved && !this.state.cancelClick) {
-            this.setState({
-                cancelClick: true,
-            });
-        }
-
-        return hasMoved;
-    };
-
-    /**
-     * Gets the list 'position' relative to a current index
-     * @param index
-     */
-    getPosition(index: number): number {
-        if (this.props.infiniteLoop) {
-            // index has to be added by 1 because of the first cloned slide
-            ++index;
-        }
-
-        if (index === 0) {
-            return 0;
-        }
-
-        const childrenLength = Children.count(this.props.children);
-        if (this.props.centerMode && this.props.axis === 'horizontal') {
-            let currentPosition = -index * this.props.centerSlidePercentage;
-            const lastPosition = childrenLength - 1;
-
-            if (index && (index !== lastPosition || this.props.infiniteLoop)) {
-                currentPosition += (100 - this.props.centerSlidePercentage) / 2;
-            } else if (index === lastPosition) {
-                currentPosition += 100 - this.props.centerSlidePercentage;
-            }
-
-            return currentPosition;
-        }
-
-        return -index * 100;
-    }
-
-    /**
-     * Sets the 'position' transform for sliding animations
-     * @param position
-     * @param forceReflow
-     */
-    setPosition = (position: number, forceReflow?: boolean) => {
-        const list = ReactDOM.findDOMNode(this.listRef);
-
-        if (list instanceof HTMLElement) {
-            ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach(
-                (prop) => {
-                    list.style[prop as any] = CSSTranslate(position, '%', this.props.axis);
-                }
-            );
-
-            if (forceReflow) {
-                list.offsetLeft;
-            }
-        }
-    };
-
-    /**
-     * Reset carousel position to the currently selected item
-     */
-    resetPosition = () => {
-        const currentPosition = this.getPosition(this.state.selectedItem);
-        this.setPosition(currentPosition);
+        this.props.swipeAnimationHandler(delta, this.props, this.state);
     };
 
     /**
@@ -616,8 +443,8 @@ export default class Carousel extends React.Component<Props, State> {
      * @param positions
      * @param fromSwipe
      */
-    decrement = (positions = 1, fromSwipe = false) => {
-        this.moveTo(this.state.selectedItem - (typeof positions === 'number' ? positions : 1), fromSwipe);
+    decrement = (positions = 1) => {
+        this.moveTo(this.state.selectedItem - (typeof positions === 'number' ? positions : 1));
     };
 
     /**
@@ -625,8 +452,8 @@ export default class Carousel extends React.Component<Props, State> {
      * @param positions
      * @param fromSwipe
      */
-    increment = (positions = 1, fromSwipe = false) => {
-        this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1), fromSwipe);
+    increment = (positions = 1) => {
+        this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1));
     };
 
     /**
@@ -634,14 +461,12 @@ export default class Carousel extends React.Component<Props, State> {
      * @param position
      * @param fromSwipe
      */
-    moveTo = (position?: number, fromSwipe?: boolean) => {
+    moveTo = (position?: number) => {
         if (typeof position !== 'number') {
             return;
         }
 
         const lastPosition = Children.count(this.props.children) - 1;
-        const needClonedSlide = this.props.infiniteLoop && !fromSwipe && (position < 0 || position > lastPosition);
-        const oldPosition = position;
 
         if (position < 0) {
             position = this.props.infiniteLoop ? lastPosition : 0;
@@ -651,50 +476,10 @@ export default class Carousel extends React.Component<Props, State> {
             position = this.props.infiniteLoop ? 0 : lastPosition;
         }
 
-        const animationHandler = () => {
-            return true;
-        };
-
-        // NOTE: I would like to refactor this out of the moveTo function, to keep it 'animation agnostic', just not
-        //       fully sure how to decouple these setPosition calls
-        if (!animationHandler && needClonedSlide) {
-            // set swiping true would disable transition time, then we set slider to cloned position and force a reflow
-            // this is only needed for non-swiping situation
-            this.setState(
-                {
-                    swiping: true,
-                },
-                () => {
-                    if (oldPosition < 0) {
-                        if (
-                            this.props.centerMode &&
-                            this.props.centerSlidePercentage &&
-                            this.props.axis === 'horizontal'
-                        ) {
-                            this.setPosition(
-                                -(lastPosition + 2) * this.props.centerSlidePercentage -
-                                    (100 - this.props.centerSlidePercentage) / 2,
-                                true
-                            );
-                        } else {
-                            this.setPosition(-(lastPosition + 2) * 100, true);
-                        }
-                    } else if (oldPosition > lastPosition) {
-                        this.setPosition(0, true);
-                    }
-
-                    this.selectItem({
-                        selectedItem: position!,
-                        swiping: false,
-                    });
-                }
-            );
-        } else {
-            this.selectItem({
-                // if it's not a slider, we don't need to set position here
-                selectedItem: position,
-            });
-        }
+        this.selectItem({
+            // if it's not a slider, we don't need to set position here
+            selectedItem: position,
+        });
 
         // don't reset auto play when stop on hover is enabled, doing so will trigger a call to auto play more than once
         // and will result in the interval function not being cleared correctly.
@@ -741,7 +526,7 @@ export default class Carousel extends React.Component<Props, State> {
      * @param state state object with updated selected item, and swiping bool if relevant
      * @param cb callback to fire after selectItem is fired
      */
-    selectItem = (state: Pick<State, 'selectedItem' | 'swiping'>, cb?: () => void) => {
+    selectItem = (state: Pick<CarouselState, 'selectedItem' | 'swiping'>, cb?: () => void) => {
         // Merge in the new state while updating updating previous item
         this.setState(
             {
@@ -812,7 +597,6 @@ export default class Carousel extends React.Component<Props, State> {
                 };
             }
 
-            console.log(this.state.previousItem);
             return (
                 <li {...slideProps} {...extraProps}>
                     {this.props.renderItem(item, {
@@ -891,8 +675,10 @@ export default class Carousel extends React.Component<Props, State> {
             (canShowArrows &&
                 (this.state.selectedItem < Children.count(this.props.children) - 1 || this.props.infiniteLoop)) ||
             false;
+
+        // NOTE: Parts of this needs to be refactored
+        const { itemListStyles, seledtedStyles, prevStyles } = this.props.animationHandler(this.props, this.state);
         // obj to hold the transformations and styles
-        let itemListStyles = {};
 
         const currentPosition = this.getPosition(this.state.selectedItem);
 
@@ -954,6 +740,7 @@ export default class Carousel extends React.Component<Props, State> {
             swiperProps.style.height = this.state.itemSize;
             containerStyles.height = this.state.itemSize;
         }
+        // NOTE: Parts of this needs to be refactored
         return (
             <div className={klass.ROOT(this.props.className)} ref={this.setCarouselWrapperRef} tabIndex={0}>
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
