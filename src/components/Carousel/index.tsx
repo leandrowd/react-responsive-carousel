@@ -440,7 +440,8 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         const { itemListStyle, selectedStyle, prevStyle } = this.props.swipeAnimationHandler(
             delta,
             this.props,
-            this.state
+            this.state,
+            this.setState.bind(this)
         );
 
         this.setState({
@@ -545,13 +546,15 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 ...state,
             },
             () => {
-                // Run animation handler after updating state
-                this.props.animationHandler(
-                    this.props,
-                    this.state,
-                    this.carouselWrapperRef,
-                    this.listRef,
-                    this.itemsRef
+                // Run animation handler and update styles based on it
+                this.setState(
+                    this.props.animationHandler(
+                        this.props,
+                        this.state,
+                        this.carouselWrapperRef,
+                        this.listRef,
+                        this.itemsRef
+                    )
                 );
             }
         );

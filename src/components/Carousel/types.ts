@@ -18,7 +18,8 @@ export type SwipeAnimationHandler = (
         y: number;
     },
     props: CarouselProps,
-    state: CarouselState
+    state: CarouselState,
+    setState: Function
 ) => AnimationHandlerResponse;
 
 export type StopSwipingHandler = (props: CarouselProps, state: CarouselState) => AnimationHandlerResponse;
