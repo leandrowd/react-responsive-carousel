@@ -1,15 +1,13 @@
 import React, { Children } from 'react';
-import ReactDOM from 'react-dom';
 // @ts-ignore
 import Swipe, { ReactEasySwipeProps } from 'react-easy-swipe';
 import klass from '../../cssClasses';
-import CSSTranslate from '../../CSSTranslate';
 import Thumbs from '../Thumbs';
 import getDocument from '../../shims/document';
 import getWindow from '../../shims/window';
 import { noop, defaultStatusFormatter, isKeyboardEvent } from './utils';
 import { CarouselProps, CarouselState } from './types';
-import { slideAnimationHandler } from './animations';
+import { slideAnimationHandler, slideSwipeAnimationHandler, slideStopSwipingHandler } from './animations';
 
 export default class Carousel extends React.Component<CarouselProps, CarouselState> {
     private thumbsRef?: Thumbs; // HTML ref for Thumbnails
@@ -105,7 +103,8 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         verticalSwipe: 'standard',
         width: '100%',
         animationHandler: slideAnimationHandler,
-        swipeAnimationHandler: () => {},
+        swipeAnimationHandler: slideSwipeAnimationHandler,
+        stopSwipingHandler: slideStopSwipingHandler,
     };
 
     constructor(props: CarouselProps) {
@@ -142,10 +141,14 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             this.forceFocus();
         }
 
-        // NOTE swipe refactor to animation
         if (prevState.swiping && !this.state.swiping) {
             // We stopped swiping, ensure we are heading to the new/current slide and not stuck
-            this.resetPosition();
+            const { itemListStyle, selectedStyle, prevStyle } = this.props.stopSwipingHandler(this.props, this.state);
+            this.setState({
+                itemListStyle,
+                selectedStyle,
+                prevStyle,
+            });
         }
 
         if (prevProps.selectedItem !== this.props.selectedItem || prevProps.centerMode !== this.props.centerMode) {
@@ -429,13 +432,22 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
 
     /**
      * Handles swipe move, directly updating carousel position
-     * NOTE: need to swipe refactor this out to a handler
      * @param delta
      * @param event
      */
     onSwipeMove = (delta: { x: number; y: number }, event: React.TouchEvent) => {
         this.props.onSwipeMove(event);
-        this.props.swipeAnimationHandler(delta, this.props, this.state);
+        const { itemListStyle, selectedStyle, prevStyle } = this.props.swipeAnimationHandler(
+            delta,
+            this.props,
+            this.state
+        );
+
+        this.setState({
+            itemListStyle,
+            selectedStyle,
+            prevStyle,
+        });
     };
 
     /**
@@ -489,15 +501,15 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     };
 
     onClickNext = () => {
-        this.increment(1, false);
+        this.increment(1);
     };
 
     onClickPrev = () => {
-        this.decrement(1, false);
+        this.decrement(1);
     };
 
     onSwipeForward = () => {
-        this.increment(1, true);
+        this.increment(1);
 
         if (this.props.emulateTouch) {
             this.setState({ cancelClick: true });
@@ -505,7 +517,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     };
 
     onSwipeBackwards = () => {
-        this.decrement(1, true);
+        this.decrement(1);
 
         if (this.props.emulateTouch) {
             this.setState({ cancelClick: true });
@@ -524,16 +536,24 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
      * This function is called when you want to 'select' a new item, or rather move to a 'selected' item
      * It also handles the onChange callback wrapper
      * @param state state object with updated selected item, and swiping bool if relevant
-     * @param cb callback to fire after selectItem is fired
      */
-    selectItem = (state: Pick<CarouselState, 'selectedItem' | 'swiping'>, cb?: () => void) => {
+    selectItem = (state: Pick<CarouselState, 'selectedItem' | 'swiping'>) => {
         // Merge in the new state while updating updating previous item
         this.setState(
             {
                 previousItem: this.state.selectedItem,
                 ...state,
             },
-            cb
+            () => {
+                // Run animation handler after updating state
+                this.props.animationHandler(
+                    this.props,
+                    this.state,
+                    this.carouselWrapperRef,
+                    this.listRef,
+                    this.itemsRef
+                );
+            }
         );
         this.handleOnChange(state.selectedItem, Children.toArray(this.props.children)[state.selectedItem]);
     };
@@ -580,25 +600,26 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         }
 
         return Children.map(this.props.children, (item, index) => {
+            const isSelected = index === this.state.selectedItem;
+            const isPrevious = index === this.state.previousItem;
+
+            const style: React.CSSProperties =
+                (isSelected && this.state.selectedStyle) || (isPrevious && this.state.prevStyle) || {};
+
+            if (this.props.centerMode && this.props.axis === 'horizontal') {
+                style.minWidth = this.props.centerSlidePercentage + '%';
+            }
+
             const slideProps = {
                 ref: (e: HTMLLIElement) => this.setItemsRef(e, index),
                 key: 'itemKey' + index + (isClone ? 'clone' : ''),
                 className: klass.ITEM(true, index === this.state.selectedItem, index === this.state.previousItem),
                 onClick: this.handleClickItem.bind(this, index, item),
+                style,
             };
 
-            let extraProps: {
-                style?: React.CSSProperties;
-            } = {};
-
-            if (this.props.centerMode && this.props.axis === 'horizontal') {
-                extraProps.style = {
-                    minWidth: this.props.centerSlidePercentage + '%',
-                };
-            }
-
             return (
-                <li {...slideProps} {...extraProps}>
+                <li {...slideProps}>
                     {this.props.renderItem(item, {
                         isSelected: index === this.state.selectedItem,
                         isPrevious: index === this.state.previousItem,
@@ -676,38 +697,6 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 (this.state.selectedItem < Children.count(this.props.children) - 1 || this.props.infiniteLoop)) ||
             false;
 
-        // NOTE: Parts of this needs to be refactored
-        const { itemListStyles, seledtedStyles, prevStyles } = this.props.animationHandler(this.props, this.state);
-        // obj to hold the transformations and styles
-
-        const currentPosition = this.getPosition(this.state.selectedItem);
-
-        // if 3d is available, let's take advantage of the performance of transform
-        const transformProp = CSSTranslate(currentPosition, '%', this.props.axis);
-
-        const transitionTime = this.props.transitionTime + 'ms';
-
-        itemListStyles = {
-            WebkitTransform: transformProp,
-            MozTransform: transformProp,
-            MsTransform: transformProp,
-            OTransform: transformProp,
-            transform: transformProp,
-            msTransform: transformProp,
-        };
-
-        if (!this.state.swiping) {
-            itemListStyles = {
-                ...itemListStyles,
-                WebkitTransitionDuration: transitionTime,
-                MozTransitionDuration: transitionTime,
-                MsTransitionDuration: transitionTime,
-                OTransitionDuration: transitionTime,
-                transitionDuration: transitionTime,
-                msTransitionDuration: transitionTime,
-            };
-        }
-
         const itemsClone = this.renderItems(true);
         const firstClone = itemsClone.shift();
         const lastClone = itemsClone.pop();
@@ -717,7 +706,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             onSwipeMove: this.onSwipeMove,
             onSwipeStart: this.onSwipeStart,
             onSwipeEnd: this.onSwipeEnd,
-            style: itemListStyles,
+            style: this.state.itemListStyle,
             tolerance: this.props.swipeScrollTolerance,
         };
 
@@ -740,7 +729,6 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             swiperProps.style.height = this.state.itemSize;
             containerStyles.height = this.state.itemSize;
         }
-        // NOTE: Parts of this needs to be refactored
         return (
             <div className={klass.ROOT(this.props.className)} ref={this.setCarouselWrapperRef} tabIndex={0}>
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
@@ -762,7 +750,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                             <ul
                                 className={klass.SLIDER(true, this.state.swiping)}
                                 ref={(node: HTMLUListElement) => this.setListRef(node)}
-                                style={itemListStyles}
+                                style={this.state.itemListStyle}
                             >
                                 {this.props.infiniteLoop && lastClone}
                                 {this.renderItems()}

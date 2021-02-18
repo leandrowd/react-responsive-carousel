@@ -3,63 +3,49 @@ import {
     AnimationHandler,
     AnimationHandlerResponse,
     SwipeAnimationHandler,
+    StopSwipingHandler,
     CarouselProps,
-    CarouselState,
 } from './types';
 /**
  * Default provided animation handlers
  */
 
-export const slideAnimationHandler: AnimationHandler = (
-    props,
-    state,
-    carouselWrapperRef,
-    listRef,
-    itemsRef
-): AnimationHandlerResponse => {
-    const needClonedSlide = this.props.infiniteLoop && !fromSwipe && (position < 0 || position > lastPosition);
+export const slideAnimationHandler: AnimationHandler = (props, state): AnimationHandlerResponse => {
+    const needClonedSlide = props.infiniteLoop && (position < 0 || position > lastPosition);
     const oldPosition = position;
 
     if (needClonedSlide) {
         // set swiping true would disable transition time, then we set slider to cloned position and force a reflow
         // this is only needed for non-swiping situation
-        this.setState(
-            {
-                swiping: true,
-            },
-            () => {
-                if (oldPosition < 0) {
-                    if (this.props.centerMode && this.props.centerSlidePercentage && this.props.axis === 'horizontal') {
-                        this.setPosition(
-                            -(lastPosition + 2) * this.props.centerSlidePercentage -
-                                (100 - this.props.centerSlidePercentage) / 2,
-                            true
-                        );
-                    } else {
-                        this.setPosition(-(lastPosition + 2) * 100, true);
-                    }
-                } else if (oldPosition > lastPosition) {
-                    this.setPosition(0, true);
-                }
-
-                this.selectItem({
-                    selectedItem: position!,
-                    swiping: false,
-                });
+        if (oldPosition < 0) {
+            if (props.centerMode && props.centerSlidePercentage && props.axis === 'horizontal') {
+                setPosition(
+                    -(lastPosition + 2) * this.props.centerSlidePercentage -
+                        (100 - this.props.centerSlidePercentage) / 2,
+                    true
+                );
+            } else {
+                setPosition(-(lastPosition + 2) * 100, true);
             }
-        );
+        } else if (oldPosition > lastPosition) {
+            setPosition(0, true);
+        }
     }
+
     return {
-        itemListStyle: '',
+        itemListStyle: {},
     };
 };
 
-export const fadeAnimationHandler: AnimationHandler = (
-    props: CarouselProps,
-    state: CarouselState
-): AnimationHandlerResponse => {
+export const slideStopSwipingHandler: StopSwipingHandler = (props, state): AnimationHandlerResponse => {
     return {
-        itemListStyle: '',
+        itemListStyle: {},
+    };
+};
+
+export const fadeAnimationHandler: AnimationHandler = (props, state): AnimationHandlerResponse => {
+    return {
+        itemListStyle: {},
     };
 };
 

@@ -1,15 +1,15 @@
 export interface AnimationHandlerResponse {
-    itemListStyle?: string;
-    selectedStyle?: string;
-    prevStyle?: string;
+    itemListStyle?: React.CSSProperties;
+    selectedStyle?: React.CSSProperties;
+    prevStyle?: React.CSSProperties;
 }
 
 export type AnimationHandler = (
     props: CarouselProps,
     state: CarouselState,
-    carouselWrapperRef: HTMLDivElement,
-    listRef: HTMLElement | HTMLUListElement,
-    itemsRef: HTMLElement[]
+    carouselWrapperRef?: HTMLDivElement,
+    listRef?: HTMLElement | HTMLUListElement,
+    itemsRef?: HTMLElement[]
 ) => AnimationHandlerResponse;
 
 export type SwipeAnimationHandler = (
@@ -20,6 +20,8 @@ export type SwipeAnimationHandler = (
     props: CarouselProps,
     state: CarouselState
 ) => AnimationHandlerResponse;
+
+export type StopSwipingHandler = (props: CarouselProps, state: CarouselState) => AnimationHandlerResponse;
 
 export interface CarouselProps {
     axis: 'horizontal' | 'vertical';
@@ -71,6 +73,7 @@ export interface CarouselProps {
     width: number | string;
     animationHandler: AnimationHandler;
     swipeAnimationHandler: SwipeAnimationHandler;
+    stopSwipingHandler: StopSwipingHandler;
 }
 
 export interface CarouselState {
@@ -84,4 +87,7 @@ export interface CarouselState {
     selectedItem: number;
     swiping?: boolean;
     swipeMovementStarted: boolean;
+    itemListStyle?: React.CSSProperties;
+    selectedStyle?: React.CSSProperties;
+    prevStyle?: React.CSSProperties;
 }
