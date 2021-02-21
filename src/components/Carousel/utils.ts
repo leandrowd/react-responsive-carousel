@@ -1,5 +1,6 @@
 import { Children } from 'react';
 import { CarouselProps } from './types';
+import CSSTranslate from '../../CSSTranslate';
 
 export const noop = () => {};
 

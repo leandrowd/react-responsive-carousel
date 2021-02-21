@@ -15,10 +15,11 @@ import {
 } from './animations';
 
 export default class Carousel extends React.Component<CarouselProps, CarouselState> {
-    private thumbsRef?: Thumbs; // HTML ref for Thumbnails
-    private carouselWrapperRef?: HTMLDivElement; // HTML ref for wrapper element
-    private listRef?: HTMLElement | HTMLUListElement; // HTML ref for list containing slides
-    private itemsRef?: HTMLElement[]; // HTML ref ro slide items
+    private thumbsRef?: Thumbs;
+    private carouselWrapperRef?: HTMLDivElement;
+    // @ts-ignore
+    private listRef?: HTMLElement | HTMLUListElement;
+    private itemsRef?: HTMLElement[];
     private timer?: ReturnType<typeof setTimeout>;
     private animationHandler: AnimationHandler;
 
