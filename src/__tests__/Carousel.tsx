@@ -9,7 +9,13 @@ import Carousel from '../components/Carousel';
 import Thumbs from '../components/Thumbs';
 import getDocument from '../shims/document';
 import getWindow from '../shims/window';
-import { CarouselProps } from '../components/Carousel/types';
+import {
+    CarouselProps,
+    AnimationHandler,
+    SwipeAnimationHandler,
+    StopSwipingHandler,
+} from '../components/Carousel/types';
+import { getPosition } from '../components/Carousel/utils';
 
 const findDOMNodeWithinWrapper = (wrapper: ReactWrapper, domNode: HTMLElement) => {
     return wrapper.findWhere((n) => n.getDOMNode() === domNode).simulate('click');
@@ -24,6 +30,9 @@ describe('Slider', function() {
     let componentInstance: any;
     let totalChildren: number;
     let lastItemIndex: number;
+    const animationHandler: AnimationHandler = jest.fn();
+    const swipeAnimationHandler: SwipeAnimationHandler = jest.fn();
+    const stopSwipingHandler: StopSwipingHandler = jest.fn();
 
     const bootstrap = (props: Partial<CarouselProps>, children: CarouselProps['children']) => {
         window = getWindow();
@@ -48,6 +57,7 @@ describe('Slider', function() {
     ];
 
     const renderDefaultComponent = ({ children = baseChildren, ...props }: Partial<CarouselProps>) => {
+        props = { animationHandler, swipeAnimationHandler, stopSwipingHandler, ...props };
         bootstrap(props, children);
     };
 
@@ -209,10 +219,9 @@ describe('Slider', function() {
 
     describe('componentDidUpdate', () => {
         it('should unbind the events', () => {
-            componentInstance.resetPosition = jest.fn();
             componentInstance.setState({ swiping: false });
             componentInstance.componentDidUpdate({}, { swiping: true });
-            expect(componentInstance.resetPosition).toHaveBeenCalledTimes(1);
+            expect(stopSwipingHandler).toHaveBeenCalledTimes(1);
         });
     });
 
@@ -494,8 +503,9 @@ describe('Slider', function() {
             });
         });
 
-        it('should call setState sending the argument received', () => {
+        it('should call setState sending the argument received, with previousItem', () => {
             expect(componentInstance.setState.mock.calls[0][0]).toEqual({
+                previousItem: 0,
                 selectedItem: 1,
                 ramdomNumber: 2,
             });
@@ -658,30 +668,6 @@ describe('Slider', function() {
                     .at(8)
                     .key()
             ).toContain('itemKey0clone');
-        });
-
-        it('should set slide position directly and trigger a reflow when doing first to last transition', () => {
-            componentInstance.setPosition = jest.fn();
-            componentInstance.decrement();
-            expect(componentInstance.setPosition).toBeCalledWith(-800, true);
-            componentInstance.setPosition.mockClear();
-        });
-
-        it('should set slide position directly and trigger a reflow when doing last to first transition', () => {
-            renderDefaultComponent({
-                infiniteLoop: true,
-                selectedItem: 7,
-            });
-
-            componentInstance.setPosition = jest.fn();
-            componentInstance.increment();
-            expect(componentInstance.setPosition).toHaveBeenCalled();
-        });
-
-        it('should not call setPosition if swiping with inifinite scrolling', () => {
-            componentInstance.setPosition = jest.fn();
-            componentInstance.decrement(1, true);
-            expect(componentInstance.setPosition).not.toHaveBeenCalled();
         });
 
         it('should work with minimal children', () => {
@@ -916,86 +902,13 @@ describe('Slider', function() {
         });
 
         describe('onSwipeMove', () => {
-            it('should return true to stop scrolling if there was movement in the same direction as the carousel axis', () => {
-                expect(
-                    componentInstance.onSwipeMove({
-                        x: 10,
-                        y: 0,
-                    })
-                ).toBe(true);
-            });
+            it('should call the swipeAnimationHandler when onSwipeMove is fired', () => {
+                componentInstance.onSwipeMove({
+                    x: 10,
+                    y: 0,
+                });
 
-            it('should return false to allow scrolling if there was no movement in the same direction as the carousel axis', () => {
-                expect(
-                    componentInstance.onSwipeMove({
-                        x: 0,
-                        y: 10,
-                    })
-                ).toBe(false);
-            });
-
-            it('should not call setPosition if preventMovementUntilSwipeScrollTolerance is true and the tolerance has not been reached', () => {
-                renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: true });
-                componentInstance.setPosition = jest.fn();
-
-                expect(
-                    componentInstance.onSwipeMove({
-                        x: 5,
-                        y: 10,
-                    })
-                ).toBe(false);
-
-                expect(componentInstance.setPosition).not.toHaveBeenCalled();
-            });
-
-            it('should call setPosition if preventMovementUntilSwipeScrollTolerance is true and movement has already begun', () => {
-                renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: true });
-
-                componentInstance.setPosition = jest.fn();
-                expect(
-                    componentInstance.onSwipeMove({
-                        x: 50,
-                        y: 10,
-                    })
-                ).toBe(true);
-                expect(componentInstance.setPosition).toHaveBeenCalled();
-
-                componentInstance.setPosition = jest.fn();
-                expect(
-                    componentInstance.onSwipeMove({
-                        x: 5,
-                        y: 10,
-                    })
-                ).toBe(false);
-                expect(componentInstance.setPosition).toHaveBeenCalled();
-            });
-
-            it('should call setPosition if preventMovementUntilSwipeScrollTolerance is true and the tolerance has been reached', () => {
-                renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: true });
-                componentInstance.setPosition = jest.fn();
-
-                expect(
-                    componentInstance.onSwipeMove({
-                        x: 30,
-                        y: 10,
-                    })
-                ).toBe(true);
-
-                expect(componentInstance.setPosition).toHaveBeenCalled();
-            });
-
-            it('should still call setPosition if preventMovementUntilSwipeScrollTolerance is false and the tolerance has not been reached', () => {
-                renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: false });
-                componentInstance.setPosition = jest.fn();
-
-                expect(
-                    componentInstance.onSwipeMove({
-                        x: 5,
-                        y: 10,
-                    })
-                ).toBe(false);
-
-                expect(componentInstance.setPosition).toHaveBeenCalled();
+                expect(swipeAnimationHandler);
             });
 
             it('should call onSwipeMove callback', () => {
@@ -1017,7 +930,6 @@ describe('Slider', function() {
                 componentInstance.onSwipeEnd();
                 expect(componentInstance.autoPlay).toHaveBeenCalledTimes(1);
             });
-
             it('should call onSwipeEnd callback', () => {
                 var onSwipeEndFunction = jest.fn();
                 renderDefaultComponent({ onSwipeEnd: onSwipeEndFunction });
@@ -1097,24 +1009,27 @@ describe('Slider', function() {
                     centerMode: true,
                     axis: 'vertical',
                 });
-                expect(componentInstance.getPosition(0)).toBe(0);
-                expect(componentInstance.getPosition(1)).toBe(-100);
-                expect(componentInstance.getPosition(2)).toBe(-200);
-                expect(componentInstance.getPosition(3)).toBe(-300);
-                expect(componentInstance.getPosition(4)).toBe(-400);
-                expect(componentInstance.getPosition(5)).toBe(-500);
-                expect(componentInstance.getPosition(6)).toBe(-600);
+                const props = componentInstance.props;
+
+                expect(getPosition(0, props)).toBe(0);
+                expect(getPosition(1, props)).toBe(-100);
+                expect(getPosition(2, props)).toBe(-200);
+                expect(getPosition(3, props)).toBe(-300);
+                expect(getPosition(4, props)).toBe(-400);
+                expect(getPosition(5, props)).toBe(-500);
+                expect(getPosition(6, props)).toBe(-600);
             });
 
             it('should return padded transform calculation for horizontal axis', () => {
-                expect(componentInstance.getPosition(0)).toBe(0);
-                expect(componentInstance.getPosition(1)).toBe(-70);
-                expect(componentInstance.getPosition(2)).toBe(-150);
-                expect(componentInstance.getPosition(3)).toBe(-230);
-                expect(componentInstance.getPosition(4)).toBe(-310);
-                expect(componentInstance.getPosition(5)).toBe(-390);
+                const props = componentInstance.props;
+                expect(getPosition(0, props)).toBe(0);
+                expect(getPosition(1, props)).toBe(-70);
+                expect(getPosition(2, props)).toBe(-150);
+                expect(getPosition(3, props)).toBe(-230);
+                expect(getPosition(4, props)).toBe(-310);
+                expect(getPosition(5, props)).toBe(-390);
                 // last one takes up more space
-                expect(componentInstance.getPosition(6)).toBe(-460);
+                expect(getPosition(6, props)).toBe(-460);
             });
 
             it('should return padded tranform calculation for custom centerSlidePercentage', () => {
@@ -1122,13 +1037,16 @@ describe('Slider', function() {
                     centerMode: true,
                     centerSlidePercentage: 50,
                 });
-                expect(componentInstance.getPosition(0)).toBe(0);
-                expect(componentInstance.getPosition(1)).toBe(-25);
-                expect(componentInstance.getPosition(2)).toBe(-75);
-                expect(componentInstance.getPosition(3)).toBe(-125);
-                expect(componentInstance.getPosition(4)).toBe(-175);
-                expect(componentInstance.getPosition(5)).toBe(-225);
-                expect(componentInstance.getPosition(6)).toBe(-250);
+
+                const props = componentInstance.props;
+
+                expect(getPosition(0, props)).toBe(0);
+                expect(getPosition(1, props)).toBe(-25);
+                expect(getPosition(2, props)).toBe(-75);
+                expect(getPosition(3, props)).toBe(-125);
+                expect(getPosition(4, props)).toBe(-175);
+                expect(getPosition(5, props)).toBe(-225);
+                expect(getPosition(6, props)).toBe(-250);
             });
         });
 
@@ -1153,7 +1071,7 @@ describe('Slider', function() {
                     axis: 'vertical',
                 });
                 const slide = shallow(component.find('.slide').get(0));
-                expect(slide.prop('style')).toBeUndefined();
+                expect(slide.prop('style')).toEqual({});
             });
         });
     });

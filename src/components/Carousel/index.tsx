@@ -109,7 +109,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         transitionTime: 350,
         verticalSwipe: 'standard',
         width: '100%',
-        animationHandler: fadeAnimationHandler,
+        animationHandler: 'slide',
         swipeAnimationHandler: slideSwipeAnimationHandler,
         stopSwipingHandler: slideStopSwipingHandler,
     };
@@ -117,7 +117,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     constructor(props: CarouselProps) {
         super(props);
 
-        this.state = {
+        const initState = {
             initialized: false,
             previousItem: props.selectedItem,
             selectedItem: props.selectedItem,
@@ -128,22 +128,20 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             swipeMovementStarted: false,
             cancelClick: false,
             itemSize: 1,
+            itemListStyle: {},
+            slideStyle: {},
+            selectedStyle: {},
+            prevStyle: {},
         };
 
         this.animationHandler =
-            (typeof this.props.animationHandler === 'function' && this.props.animationHandler) ||
-            (this.props.animationHandler === 'fade' && fadeAnimationHandler) ||
+            (typeof props.animationHandler === 'function' && props.animationHandler) ||
+            (props.animationHandler === 'fade' && fadeAnimationHandler) ||
             slideAnimationHandler;
 
-        // Get initial styles from animation handler
-        const { itemListStyle, slideStyle, selectedStyle, prevStyle } = this.animationHandler(props, this.state);
-
         this.state = {
-            ...this.state,
-            itemListStyle,
-            slideStyle,
-            selectedStyle,
-            prevStyle,
+            ...initState,
+            ...this.animationHandler(props, initState),
         };
     }
 
@@ -166,15 +164,9 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
 
         if (prevState.swiping && !this.state.swiping) {
             // We stopped swiping, ensure we are heading to the new/current slide and not stuck
-            const { itemListStyle, slideStyle, selectedStyle, prevStyle } = this.props.stopSwipingHandler(
-                this.props,
-                this.state
-            );
+
             this.setState({
-                itemListStyle,
-                slideStyle,
-                selectedStyle,
-                prevStyle,
+                ...this.props.stopSwipingHandler(this.props, this.state),
             });
         }
 
@@ -464,18 +456,9 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
      */
     onSwipeMove = (delta: { x: number; y: number }, event: React.TouchEvent) => {
         this.props.onSwipeMove(event);
-        const { itemListStyle, slideStyle, selectedStyle, prevStyle } = this.props.swipeAnimationHandler(
-            delta,
-            this.props,
-            this.state,
-            this.setState.bind(this)
-        );
 
         this.setState({
-            itemListStyle,
-            slideStyle,
-            selectedStyle,
-            prevStyle,
+            ...this.props.swipeAnimationHandler(delta, this.props, this.state, this.setState.bind(this)),
         });
     };
 
@@ -626,14 +609,14 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             const isSelected = index === this.state.selectedItem;
             const isPrevious = index === this.state.previousItem;
 
-            const style: React.CSSProperties =
+            let style: React.CSSProperties =
                 (isSelected && this.state.selectedStyle) ||
                 (isPrevious && this.state.prevStyle) ||
                 this.state.slideStyle ||
                 {};
 
             if (this.props.centerMode && this.props.axis === 'horizontal') {
-                style.minWidth = this.props.centerSlidePercentage + '%';
+                style = { ...style, minWidth: this.props.centerSlidePercentage + '%' };
             }
 
             const slideProps = {
@@ -744,7 +727,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
 
             if (this.props.dynamicHeight) {
                 const itemHeight = this.getVariableItemHeight(this.state.selectedItem);
-                swiperProps.style.height = itemHeight || 'auto';
+                // swiperProps.style.height = itemHeight || 'auto';
                 containerStyles.height = itemHeight || 'auto';
             }
         } else {
@@ -752,7 +735,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 this.props.verticalSwipe === 'natural' ? this.onSwipeBackwards : this.onSwipeForward;
             swiperProps.onSwipeDown =
                 this.props.verticalSwipe === 'natural' ? this.onSwipeForward : this.onSwipeBackwards;
-            swiperProps.style.height = this.state.itemSize;
+            swiperProps.style = { ...swiperProps.style, height: this.state.itemSize };
             containerStyles.height = this.state.itemSize;
         }
         return (
@@ -776,7 +759,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                             <ul
                                 className={klass.SLIDER(true, this.state.swiping)}
                                 ref={(node: HTMLUListElement) => this.setListRef(node)}
-                                style={this.state.itemListStyle}
+                                style={this.state.itemListStyle || {}}
                             >
                                 {this.props.infiniteLoop && lastClone}
                                 {this.renderItems()}
