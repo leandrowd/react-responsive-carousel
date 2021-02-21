@@ -16,6 +16,7 @@ import {
     StopSwipingHandler,
 } from '../components/Carousel/types';
 import { getPosition } from '../components/Carousel/utils';
+import { slideSwipeAnimationHandler } from '../components/Carousel/animations';
 
 const findDOMNodeWithinWrapper = (wrapper: ReactWrapper, domNode: HTMLElement) => {
     return wrapper.findWhere((n) => n.getDOMNode() === domNode).simulate('click');
@@ -31,7 +32,7 @@ describe('Slider', function() {
     let totalChildren: number;
     let lastItemIndex: number;
     const animationHandler: AnimationHandler = jest.fn();
-    const swipeAnimationHandler: SwipeAnimationHandler = jest.fn();
+    const swipeAnimationHandler: SwipeAnimationHandler = jest.fn(slideSwipeAnimationHandler);
     const stopSwipingHandler: StopSwipingHandler = jest.fn();
 
     const bootstrap = (props: Partial<CarouselProps>, children: CarouselProps['children']) => {
@@ -902,13 +903,35 @@ describe('Slider', function() {
         });
 
         describe('onSwipeMove', () => {
+            beforeEach(() => {
+                renderDefaultComponent({ preventMovementUntilSwipeScrollTolerance: true });
+            });
+
+            it('should return true to stop scrolling if there was movement in the same direction as the carousel axis', () => {
+                expect(
+                    componentInstance.onSwipeMove({
+                        x: 10,
+                        y: 0,
+                    })
+                ).toBe(true);
+            });
+
+            it('should return false to allow scrolling if there was no movement in the same direction as the carousel axis', () => {
+                expect(
+                    componentInstance.onSwipeMove({
+                        x: 0,
+                        y: 10,
+                    })
+                ).toBe(false);
+            });
+
             it('should call the swipeAnimationHandler when onSwipeMove is fired', () => {
                 componentInstance.onSwipeMove({
                     x: 10,
                     y: 0,
                 });
 
-                expect(swipeAnimationHandler);
+                expect(swipeAnimationHandler).toHaveBeenCalled();
             });
 
             it('should call onSwipeMove callback', () => {

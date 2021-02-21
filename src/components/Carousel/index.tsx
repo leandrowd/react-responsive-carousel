@@ -449,17 +449,23 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         this.autoPlay();
     };
 
-    /**
-     * Handles swipe move, directly updating carousel position
-     * @param delta
-     * @param event
-     */
     onSwipeMove = (delta: { x: number; y: number }, event: React.TouchEvent) => {
         this.props.onSwipeMove(event);
 
+        const animationHandlerResponse = this.props.swipeAnimationHandler(
+            delta,
+            this.props,
+            this.state,
+            this.setState.bind(this)
+        );
+
         this.setState({
-            ...this.props.swipeAnimationHandler(delta, this.props, this.state, this.setState.bind(this)),
+            ...animationHandlerResponse,
         });
+
+        // If we have not moved, we should have an empty object returned
+        // Return false to allow scrolling when not swiping
+        return !!Object.keys(animationHandlerResponse).length;
     };
 
     /**

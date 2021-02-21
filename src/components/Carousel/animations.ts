@@ -125,7 +125,6 @@ export const slideSwipeAnimationHandler: SwipeAnimationHandler = (
             cancelClick: true,
         });
     }
-
     return returnStyles;
 };
 
