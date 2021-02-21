@@ -17,8 +17,6 @@ export const slideAnimationHandler: AnimationHandler = (props, state): Animation
 
     // Handle list position if it needs a clone
     if (needClonedSlide) {
-        // set swiping true would disable transition time, then we set slider to cloned position and force a reflow
-        // this is only needed for non-swiping situation
         if (previousItem < 0) {
             if (props.centerMode && props.centerSlidePercentage && props.axis === 'horizontal') {
                 returnStyles.itemListStyle = setPosition(

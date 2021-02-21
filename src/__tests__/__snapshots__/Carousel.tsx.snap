@@ -157,32 +157,26 @@ exports[`Slider Snapshots center mode 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
       >
         <li
           className="slide selected previous"
           onClick={[Function]}
           style={
             Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
               "minWidth": "80%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 1,
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
             }
           }
         >
@@ -195,26 +189,7 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           style={
             Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
               "minWidth": "80%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
             }
           }
         >
@@ -227,26 +202,7 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           style={
             Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
               "minWidth": "80%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
             }
           }
         >
@@ -259,26 +215,7 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           style={
             Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
               "minWidth": "80%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
             }
           }
         >
@@ -291,26 +228,7 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           style={
             Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
               "minWidth": "80%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
             }
           }
         >
@@ -323,26 +241,7 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           style={
             Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
               "minWidth": "80%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
             }
           }
         >
@@ -355,26 +254,7 @@ exports[`Slider Snapshots center mode 1`] = `
           onClick={[Function]}
           style={
             Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
               "minWidth": "80%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
             }
           }
         >
@@ -656,33 +536,24 @@ exports[`Slider Snapshots custom class name 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
       >
         <li
           className="slide selected previous"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 1,
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -691,29 +562,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -722,29 +571,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -753,29 +580,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -784,29 +589,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -815,29 +598,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -846,29 +607,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -1148,33 +887,24 @@ exports[`Slider Snapshots custom width 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
       >
         <li
           className="slide selected previous"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 1,
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -1183,29 +913,7 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -1214,29 +922,7 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -1245,29 +931,7 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -1276,29 +940,7 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -1307,29 +949,7 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -1338,29 +958,7 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -1640,33 +1238,24 @@ exports[`Slider Snapshots default 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
       >
         <li
           className="slide selected previous"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 1,
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -1675,29 +1264,7 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -1706,29 +1273,7 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -1737,29 +1282,7 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -1768,29 +1291,7 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -1799,29 +1300,7 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -1830,29 +1309,7 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -2132,33 +1589,24 @@ exports[`Slider Snapshots infinite loop 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransitionDuration": "350ms",
+            "OTransform": "translate3d(-100%,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(-100%,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(-100%,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(-100%,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
       >
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -2167,29 +1615,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide selected previous"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 1,
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -2198,29 +1624,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -2229,29 +1633,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -2260,29 +1642,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -2291,29 +1651,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -2322,29 +1660,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -2353,29 +1669,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -2384,29 +1678,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide selected previous"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 1,
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -2686,33 +1958,24 @@ exports[`Slider Snapshots no arrows 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
       >
         <li
           className="slide selected previous"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 1,
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -2721,29 +1984,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -2752,29 +1993,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -2783,29 +2002,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -2814,29 +2011,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -2845,29 +2020,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -2876,29 +2029,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -3113,33 +2244,24 @@ exports[`Slider Snapshots no indicators 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
       >
         <li
           className="slide selected previous"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 1,
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -3148,29 +2270,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -3179,29 +2279,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -3210,29 +2288,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -3241,29 +2297,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -3272,29 +2306,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -3303,29 +2315,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -3605,33 +2595,24 @@ exports[`Slider Snapshots no indicators 2`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
       >
         <li
           className="slide selected previous"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 1,
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -3640,29 +2621,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -3671,29 +2630,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -3702,29 +2639,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -3733,29 +2648,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -3764,29 +2657,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -3795,29 +2666,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -4092,33 +2941,24 @@ exports[`Slider Snapshots no thumbs 1`] = `
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        style={
+          Object {
+            "MozTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
       >
         <li
           className="slide selected previous"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 1,
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -4127,29 +2967,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -4158,29 +2976,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -4189,29 +2985,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -4220,29 +2994,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -4251,29 +3003,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -4282,29 +3012,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -4419,33 +3127,24 @@ exports[`Slider Snapshots swipeable false 1`] = `
     >
       <ul
         className="slider animated"
+        style={
+          Object {
+            "MozTransitionDuration": "350ms",
+            "OTransform": "translate3d(0,0,0)",
+            "OTransitionDuration": "350ms",
+            "WebkitTransform": "translate3d(0,0,0)",
+            "WebkitTransitionDuration": "350ms",
+            "msTransform": "translate3d(0,0,0)",
+            "msTransitionDuration": "350ms",
+            "transform": "translate3d(0,0,0)",
+            "transitionDuration": "350ms",
+          }
+        }
       >
         <li
           className="slide selected previous"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 1,
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -4454,29 +3153,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -4485,29 +3162,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -4516,29 +3171,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -4547,29 +3180,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -4578,29 +3189,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -4609,29 +3198,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="slide"
           onClick={[Function]}
-          style={
-            Object {
-              "MozTransitionDuration": "350ms",
-              "MozTransitionTimingFunction": "ease-in-out",
-              "OTransitionDuration": "350ms",
-              "OTransitionTimingFunction": "ease-in-out",
-              "WebkitTransitionDuration": "350ms",
-              "WebkitTransitionTimingFunction": "ease-in-out",
-              "bottom": 0,
-              "display": "block",
-              "left": 0,
-              "minHeight": "100%",
-              "msTransitionDuration": "350ms",
-              "msTransitionTimingFunction": "ease-in-out",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "transitionDuration": "350ms",
-              "transitionTimingFunction": "ease-in-out",
-              "zIndex": -2,
-            }
-          }
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -4917,10 +3484,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0,0,0)",
-            "MsTransitionDuration": "350ms",
             "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
             "WebkitTransform": "translate3d(0,0,0)",
@@ -4934,8 +3498,9 @@ exports[`Slider Snapshots vertical axis 1`] = `
         }
       >
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -4944,6 +3509,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -4952,6 +3518,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -4960,6 +3527,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -4968,6 +3536,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -4976,6 +3545,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -4984,6 +3554,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
