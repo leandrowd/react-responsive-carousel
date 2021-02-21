@@ -4,7 +4,7 @@ import { getPosition, setPosition } from './utils';
 import { AnimationHandler, AnimationHandlerResponse, SwipeAnimationHandler, StopSwipingHandler } from './types';
 
 /**
- *
+ * Main animation handler for the default 'sliding' style animation
  * @param props
  * @param state
  */
@@ -64,7 +64,7 @@ export const slideAnimationHandler: AnimationHandler = (props, state): Animation
 };
 
 /**
- *
+ * Swiping animation handler for the default 'sliding' style animation
  * @param delta
  * @param props
  * @param state
@@ -132,7 +132,7 @@ export const slideSwipeAnimationHandler: SwipeAnimationHandler = (
 };
 
 /**
- * Slide animination handler for when a swipe action stops.
+ * Default 'sliding' style animination handler for when a swipe action stops.
  * @param props
  * @param state
  */
@@ -146,7 +146,7 @@ export const slideStopSwipingHandler: StopSwipingHandler = (props, state): Anima
 };
 
 /**
- *
+ * Main animation handler for the default 'fade' style animation
  * @param props
  * @param state
  */

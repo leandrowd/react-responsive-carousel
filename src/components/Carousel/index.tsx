@@ -6,7 +6,7 @@ import Thumbs from '../Thumbs';
 import getDocument from '../../shims/document';
 import getWindow from '../../shims/window';
 import { noop, defaultStatusFormatter, isKeyboardEvent } from './utils';
-import { CarouselProps, CarouselState } from './types';
+import { AnimationHandler, CarouselProps, CarouselState } from './types';
 import {
     slideAnimationHandler,
     slideSwipeAnimationHandler,
@@ -20,6 +20,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     private listRef?: HTMLElement | HTMLUListElement; // HTML ref for list containing slides
     private itemsRef?: HTMLElement[]; // HTML ref ro slide items
     private timer?: ReturnType<typeof setTimeout>;
+    private animationHandler: AnimationHandler;
 
     static displayName = 'Carousel';
 
@@ -108,8 +109,8 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         verticalSwipe: 'standard',
         width: '100%',
         animationHandler: fadeAnimationHandler,
-        swipeAnimationHandler: () => ({}),
-        stopSwipingHandler: () => ({}),
+        swipeAnimationHandler: slideSwipeAnimationHandler,
+        stopSwipingHandler: slideStopSwipingHandler,
     };
 
     constructor(props: CarouselProps) {
@@ -128,8 +129,13 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             itemSize: 1,
         };
 
+        this.animationHandler =
+            (typeof this.props.animationHandler === 'function' && this.props.animationHandler) ||
+            (this.props.animationHandler === 'fade' && fadeAnimationHandler) ||
+            slideAnimationHandler;
+
         // Get initial styles from animation handler
-        const { itemListStyle, slideStyle, selectedStyle, prevStyle } = this.props.animationHandler(props, this.state);
+        const { itemListStyle, slideStyle, selectedStyle, prevStyle } = this.animationHandler(props, this.state);
 
         this.state = {
             ...this.state,
@@ -568,15 +574,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             },
             () => {
                 // Run animation handler and update styles based on it
-                this.setState(
-                    this.props.animationHandler(
-                        this.props,
-                        this.state,
-                        this.carouselWrapperRef,
-                        this.listRef,
-                        this.itemsRef
-                    )
-                );
+                this.setState(this.animationHandler(this.props, this.state));
             }
         );
         this.handleOnChange(state.selectedItem, Children.toArray(this.props.children)[state.selectedItem]);

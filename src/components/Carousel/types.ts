@@ -5,13 +5,7 @@ export interface AnimationHandlerResponse {
     prevStyle?: React.CSSProperties;
 }
 
-export type AnimationHandler = (
-    props: CarouselProps,
-    state: CarouselState,
-    carouselWrapperRef?: HTMLDivElement,
-    listRef?: HTMLElement | HTMLUListElement,
-    itemsRef?: HTMLElement[]
-) => AnimationHandlerResponse;
+export type AnimationHandler = (props: CarouselProps, state: CarouselState) => AnimationHandlerResponse;
 
 export type SwipeAnimationHandler = (
     delta: {
@@ -73,7 +67,7 @@ export interface CarouselProps {
     useKeyboardArrows?: boolean;
     verticalSwipe: 'natural' | 'standard';
     width: number | string;
-    animationHandler: AnimationHandler;
+    animationHandler: 'slide' | 'fade' | AnimationHandler;
     swipeAnimationHandler: SwipeAnimationHandler;
     stopSwipingHandler: StopSwipingHandler;
 }
