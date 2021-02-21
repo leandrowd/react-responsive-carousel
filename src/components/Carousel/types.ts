@@ -1,5 +1,6 @@
 export interface AnimationHandlerResponse {
     itemListStyle?: React.CSSProperties;
+    slideStyle?: React.CSSProperties;
     selectedStyle?: React.CSSProperties;
     prevStyle?: React.CSSProperties;
 }
@@ -89,6 +90,7 @@ export interface CarouselState {
     swiping?: boolean;
     swipeMovementStarted: boolean;
     itemListStyle?: React.CSSProperties;
+    slideStyle?: React.CSSProperties;
     selectedStyle?: React.CSSProperties;
     prevStyle?: React.CSSProperties;
 }

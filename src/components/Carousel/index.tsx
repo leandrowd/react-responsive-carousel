@@ -7,7 +7,12 @@ import getDocument from '../../shims/document';
 import getWindow from '../../shims/window';
 import { noop, defaultStatusFormatter, isKeyboardEvent } from './utils';
 import { CarouselProps, CarouselState } from './types';
-import { slideAnimationHandler, slideSwipeAnimationHandler, slideStopSwipingHandler } from './animations';
+import {
+    slideAnimationHandler,
+    slideSwipeAnimationHandler,
+    slideStopSwipingHandler,
+    fadeAnimationHandler,
+} from './animations';
 
 export default class Carousel extends React.Component<CarouselProps, CarouselState> {
     private thumbsRef?: Thumbs; // HTML ref for Thumbnails
@@ -102,9 +107,9 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         transitionTime: 350,
         verticalSwipe: 'standard',
         width: '100%',
-        animationHandler: slideAnimationHandler,
-        swipeAnimationHandler: slideSwipeAnimationHandler,
-        stopSwipingHandler: slideStopSwipingHandler,
+        animationHandler: fadeAnimationHandler,
+        swipeAnimationHandler: () => ({}),
+        stopSwipingHandler: () => ({}),
     };
 
     constructor(props: CarouselProps) {
@@ -121,6 +126,17 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             swipeMovementStarted: false,
             cancelClick: false,
             itemSize: 1,
+        };
+
+        // Get initial styles from animation handler
+        const { itemListStyle, slideStyle, selectedStyle, prevStyle } = this.props.animationHandler(props, this.state);
+
+        this.state = {
+            ...this.state,
+            itemListStyle,
+            slideStyle,
+            selectedStyle,
+            prevStyle,
         };
     }
 
@@ -143,9 +159,13 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
 
         if (prevState.swiping && !this.state.swiping) {
             // We stopped swiping, ensure we are heading to the new/current slide and not stuck
-            const { itemListStyle, selectedStyle, prevStyle } = this.props.stopSwipingHandler(this.props, this.state);
+            const { itemListStyle, slideStyle, selectedStyle, prevStyle } = this.props.stopSwipingHandler(
+                this.props,
+                this.state
+            );
             this.setState({
                 itemListStyle,
+                slideStyle,
                 selectedStyle,
                 prevStyle,
             });
@@ -437,7 +457,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
      */
     onSwipeMove = (delta: { x: number; y: number }, event: React.TouchEvent) => {
         this.props.onSwipeMove(event);
-        const { itemListStyle, selectedStyle, prevStyle } = this.props.swipeAnimationHandler(
+        const { itemListStyle, slideStyle, selectedStyle, prevStyle } = this.props.swipeAnimationHandler(
             delta,
             this.props,
             this.state,
@@ -446,6 +466,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
 
         this.setState({
             itemListStyle,
+            slideStyle,
             selectedStyle,
             prevStyle,
         });
@@ -607,7 +628,10 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             const isPrevious = index === this.state.previousItem;
 
             const style: React.CSSProperties =
-                (isSelected && this.state.selectedStyle) || (isPrevious && this.state.prevStyle) || {};
+                (isSelected && this.state.selectedStyle) ||
+                (isPrevious && this.state.prevStyle) ||
+                this.state.slideStyle ||
+                {};
 
             if (this.props.centerMode && this.props.axis === 'horizontal') {
                 style.minWidth = this.props.centerSlidePercentage + '%';

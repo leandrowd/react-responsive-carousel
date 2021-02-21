@@ -1,12 +1,7 @@
 import { Children } from 'react';
 import CSSTranslate from '../../CSSTranslate';
-import {
-    AnimationHandler,
-    AnimationHandlerResponse,
-    SwipeAnimationHandler,
-    StopSwipingHandler,
-    CarouselProps,
-} from './types';
+import { getPosition, setPosition } from './utils';
+import { AnimationHandler, AnimationHandlerResponse, SwipeAnimationHandler, StopSwipingHandler } from './types';
 
 /**
  *
@@ -151,58 +146,45 @@ export const slideStopSwipingHandler: StopSwipingHandler = (props, state): Anima
 };
 
 /**
- * Gets the list 'position' relative to a current index
- * @param index
- */
-const getPosition = (index: number, props: CarouselProps): number => {
-    if (props.infiniteLoop) {
-        // index has to be added by 1 because of the first cloned slide
-        ++index;
-    }
-
-    if (index === 0) {
-        return 0;
-    }
-
-    const childrenLength = Children.count(props.children);
-    if (props.centerMode && props.axis === 'horizontal') {
-        let currentPosition = -index * props.centerSlidePercentage;
-        const lastPosition = childrenLength - 1;
-
-        if (index && (index !== lastPosition || props.infiniteLoop)) {
-            currentPosition += (100 - props.centerSlidePercentage) / 2;
-        } else if (index === lastPosition) {
-            currentPosition += 100 - props.centerSlidePercentage;
-        }
-
-        return currentPosition;
-    }
-
-    return -index * 100;
-};
-
-/**
- * Sets the 'position' transform for sliding animations
- * @param position
- * @param forceReflow
- */
-const setPosition = (position: number, axis: 'horizontal' | 'vertical'): React.CSSProperties => {
-    const style = {};
-    ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach((prop) => {
-        // @ts-ignore
-        style[prop] = CSSTranslate(position, '%', axis);
-    });
-
-    return style;
-};
-
-/**
  *
  * @param props
  * @param state
  */
-// export const fadeAnimationHandler: AnimationHandler = (props, state): AnimationHandlerResponse => {
-//     return {
-//         itemListStyle: {},
-//     };
-// };
+export const fadeAnimationHandler: AnimationHandler = (props, state): AnimationHandlerResponse => {
+    const transitionTime = props.transitionTime + 'ms';
+    const transitionTimingFunction = 'ease-in-out';
+
+    let slideStyle: React.CSSProperties = {
+        position: 'absolute',
+        display: 'block',
+        zIndex: -2,
+        minHeight: '100%',
+        opacity: 0,
+        top: 0,
+        right: 0,
+        left: 0,
+        bottom: 0,
+        transitionTimingFunction: transitionTimingFunction,
+        msTransitionTimingFunction: transitionTimingFunction,
+        MozTransitionTimingFunction: transitionTimingFunction,
+        WebkitTransitionTimingFunction: transitionTimingFunction,
+        OTransitionTimingFunction: transitionTimingFunction,
+    };
+
+    if (!state.swiping) {
+        slideStyle = {
+            ...slideStyle,
+            WebkitTransitionDuration: transitionTime,
+            MozTransitionDuration: transitionTime,
+            OTransitionDuration: transitionTime,
+            transitionDuration: transitionTime,
+            msTransitionDuration: transitionTime,
+        };
+    }
+
+    return {
+        slideStyle,
+        selectedStyle: { ...slideStyle, opacity: 1, position: 'relative' },
+        prevStyle: { ...slideStyle },
+    };
+};
