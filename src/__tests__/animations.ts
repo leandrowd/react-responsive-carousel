@@ -1,10 +1,9 @@
 import Carousel from '../components/Carousel';
 import { CarouselProps, CarouselState } from '../components/Carousel/types';
 import {
-    // slideAnimationHandler,
+    fadeAnimationHandler,
+    slideAnimationHandler,
     slideSwipeAnimationHandler,
-    // slideStopSwipingHandler,
-    // fadeAnimationHandler,
 } from '../components/Carousel/animations';
 
 /**
@@ -35,7 +34,18 @@ describe('Default Animations', () => {
         };
     });
 
-    describe('slideAnimationHandler', () => {});
+    describe('slideAnimationHandler', () => {
+        it('should return itemListStyle with a transform prop', () => {
+            const response = slideAnimationHandler(props, state);
+            expect(response).toHaveProperty('itemListStyle');
+            expect(response.itemListStyle).toHaveProperty('transform');
+        });
+
+        it('should return a transition time on itemListStyle if not swiping', () => {
+            const response = slideAnimationHandler(props, state);
+            expect(response.itemListStyle).toHaveProperty('transitionDuration');
+        });
+    });
 
     describe('slideSwipeAnimationHandler', () => {
         it('should return empty object if preventMovementUntilSwipeScrollTolerance is true and the tolerance has not been reached', () => {
@@ -103,29 +113,32 @@ describe('Default Animations', () => {
         });
     });
 
-    describe('slideStopSwipingHandler', () => {});
+    describe('fade animation handler', () => {
+        it('should return a slideStyle, selectedStyle, and prevStyle', () => {
+            const response = fadeAnimationHandler(props, state);
+            expect(response).toHaveProperty('slideStyle');
+            expect(response).toHaveProperty('selectedStyle');
+            expect(response).toHaveProperty('prevStyle');
+        });
+
+        it('should give selectedStyle an opacity of 1 and position of relative', () => {
+            const response = fadeAnimationHandler(props, state);
+            expect(response.selectedStyle?.opacity).toEqual(1);
+            expect(response.selectedStyle?.position).toEqual('relative');
+        });
+
+        it('should give default slideStyle a negative z-index, opacity 0, and position absolute', () => {
+            const response = fadeAnimationHandler(props, state);
+            expect(response.slideStyle?.opacity).toEqual(0);
+            expect(response.slideStyle?.position).toEqual('absolute');
+            expect(response.slideStyle?.zIndex).toEqual(-2);
+        });
+
+        it('should give prevStyle a negative z-index, opacity 0, and position absolute', () => {
+            const response = fadeAnimationHandler(props, state);
+            expect(response.prevStyle?.opacity).toEqual(0);
+            expect(response.prevStyle?.position).toEqual('absolute');
+            expect(response.prevStyle?.zIndex).toEqual(-2);
+        });
+    });
 });
-
-// it('should set slide position directly and trigger a reflow when doing first to last transition', () => {
-//   componentInstance.setPosition = jest.fn();
-//   componentInstance.decrement();
-//   expect(componentInstance.setPosition).toBeCalledWith(-800, true);
-//   componentInstance.setPosition.mockClear();
-// });
-
-// it('should set slide position directly and trigger a reflow when doing last to first transition', () => {
-//   renderDefaultComponent({
-//       infiniteLoop: true,
-//       selectedItem: 7,
-//   });
-
-//   componentInstance.setPosition = jest.fn();
-//   componentInstance.increment();
-//   expect(componentInstance.setPosition).toHaveBeenCalled();
-// });
-
-// it('should not call setPosition if swiping with inifinite scrolling', () => {
-//   componentInstance.setPosition = jest.fn();
-//   componentInstance.decrement(1, true);
-//   expect(componentInstance.setPosition).not.toHaveBeenCalled();
-// });
