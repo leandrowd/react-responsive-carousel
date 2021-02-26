@@ -1,10 +1,9 @@
 {
-    "name": "react-responsive-carousel",
-    "version": "3.2.12",
-    "description": "React Responsive Carousel",
+    "name": "react-responsive-carousel-custom",
+    "version": "3.2.13",
+    "description": "React Responsive Carousel (with no autoPlay-once bug)",
     "author": {
-        "name": "Leandro Augusto Lemos",
-        "url": "http://leandrowd.github.io/"
+        "name": "Yurii Zaporozhchenko"
     },
     "main": "lib/js/index.js",
     "types": "lib/ts/index.d.ts",

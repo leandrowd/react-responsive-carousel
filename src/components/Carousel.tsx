@@ -333,7 +333,7 @@ export default class Carousel extends React.Component<Props, State> {
     }
 
     autoPlay = () => {
-        if (Children.count(this.props.children) <= 1) {
+        if (Children.count(this.props.children) <= 1 || !this.state.autoPlay) {
             return;
         }
 
