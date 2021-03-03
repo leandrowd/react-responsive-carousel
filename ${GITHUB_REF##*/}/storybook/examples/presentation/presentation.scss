@@ -1,0 +1,120 @@
+$default-width: 100vw;
+$default-height: 100vh;
+$default-padding: 75px;
+
+$text-color: #f5f5f5;
+$emphasis-color: #ccc;
+$link-color: #D6D600;
+
+$slide-primary-color: #000099;
+$slide-secondary-color: #4D0099;
+$slide-content-color: #004D99;
+
+
+.presentation-mode {
+	.my-slide {
+		display: flex;
+		align-items: center;
+	  	justify-content: center;
+	  	text-align: center;
+		height: $default-height;
+		padding: $default-padding;
+		line-height: 1.5;
+		font-size: 1.5em;
+		color: $text-color;
+
+		h1, h2, h3, h4, h5, h6, p, ul, ol {
+			border: 0;
+			margin: 10px auto;
+			padding: 0;
+			display: inline-block;
+			width: 100%;
+		}
+
+		&.complex {
+			text-align: left;
+			flex-direction: column;
+			justify-content: flex-start;
+
+			h1, h2, h3, h4, h5, h6, p, ul, ol {
+				margin-bottom: 30px;
+			}
+		}
+
+		ul, ol {
+			margin: 10px;
+			padding-left: 75px;
+		}
+
+		ol li {
+			list-style: decimal !important;
+		}
+
+		ul li {
+			list-style: disc;
+		}
+
+		p {
+			font-size: 1.2em;
+		}
+
+		strong, em {
+			color: $emphasis-color;
+		}
+
+		a {
+			color: $link-color;
+			border-bottom: 3px dotted $link-color;
+			text-decoration: none;
+		}
+
+		iframe, img {
+			width: $default-width;
+			height: $default-height;
+			margin: - $default-padding;
+		}
+
+		ul, ol, li {
+			text-align: left;
+		}
+
+		blockquote {
+			position: relative;
+			color: $text-color;
+			text-align: left;
+			border-left: 10px solid $emphasis-color;
+			margin: 1.5em 10px;
+			padding: 0.5em 10px;
+			padding-left: 50px;
+			quotes: "\201C""\201D""\2018""\2019";
+		}
+
+		blockquote:before {
+			color: #ccc;
+			content: open-quote;
+			position: absolute;
+			left: 10px;
+			top: 30px;
+			font-size: 4em;
+			line-height: 0.1em;
+			margin-right: 0.25em;
+			vertical-align: -0.4em;
+		}
+
+		blockquote p {
+			display: inline;
+		}
+
+		&.primary {
+			background-color: $slide-primary-color;
+		}
+
+		&.secondary {
+			background-color: $slide-secondary-color;
+		}
+
+		&.content {
+			background-color: $slide-content-color;
+		}
+	}
+}
