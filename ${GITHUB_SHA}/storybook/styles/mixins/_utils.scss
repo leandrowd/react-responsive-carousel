@@ -1,0 +1,31 @@
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// hack to remove scrollbars from chrome and IE
+@mixin hideScroll(){
+	-ms-overflow-style: none;
+	&::-webkit-scrollbar { width: 0 !important }
+}
+
+// Sidebar Widget / Full width container mixin
+@mixin contentWidth($container-width) {
+  width: $container-width;
+}
+
+
+
