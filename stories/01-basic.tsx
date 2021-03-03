@@ -37,8 +37,8 @@ const getConfigurableProps = () => ({
     autoFocus: boolean('autoFocus', false, tooglesGroupId),
     thumbWidth: number('thumbWidth', 100, {}, valuesGroupId),
     selectedItem: number('selectedItem', 0, {}, valuesGroupId),
-    interval: number('interval', 3000, {}, valuesGroupId),
-    transitionTime: number('transitionTime', 150, {}, valuesGroupId),
+    interval: number('interval', 2000, {}, valuesGroupId),
+    transitionTime: number('transitionTime', 500, {}, valuesGroupId),
     swipeScrollTolerance: number('swipeScrollTolerance', 5, {}, valuesGroupId),
 });
 
@@ -171,5 +171,11 @@ export const dynamicHeightImages = () => (
         <div key="slide6">
             <img src="http://placehold.it/450x150" />
         </div>
+    </Carousel>
+);
+
+export const fade = () => (
+    <Carousel {...getConfigurableProps()} animationHandler="fade" swipeable={false}>
+        {baseChildren.props.children}
     </Carousel>
 );
