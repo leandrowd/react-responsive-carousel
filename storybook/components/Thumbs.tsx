@@ -37,7 +37,6 @@ export default class Thumbs extends Component<Props, State> {
     private itemsWrapperRef?: HTMLDivElement;
     private itemsListRef?: HTMLUListElement;
     private thumbsRef?: HTMLLIElement[];
-    private lastPosition: number = 0;
 
     static displayName = 'Thumbs';
 
@@ -214,7 +213,7 @@ export default class Thumbs extends Component<Props, State> {
         // position can't be lower than 0
         position = position < 0 ? 0 : position;
         // position can't be higher than last postion
-        position = position >= this.lastPosition ? this.lastPosition : position;
+        position = position >= this.state.lastPosition ? this.state.lastPosition : position;
 
         this.setState({
             firstItem: position,
@@ -266,6 +265,8 @@ export default class Thumbs extends Component<Props, State> {
             return null;
         }
 
+        const isSwipeable = Children.count(this.props.children) > 1;
+
         // show left arrow?
         const hasPrev = this.state.showArrows && this.state.firstItem > 0;
         // show right arrow
@@ -303,19 +304,29 @@ export default class Thumbs extends Component<Props, State> {
                         onClick={() => this.slideRight()}
                         aria-label={this.props.labels.leftArrow}
                     />
-                    <Swipe
-                        tagName="ul"
-                        className={klass.SLIDER(false, this.state.swiping)}
-                        onSwipeLeft={this.slideLeft}
-                        onSwipeRight={this.slideRight}
-                        onSwipeMove={this.onSwipeMove}
-                        onSwipeStart={this.onSwipeStart}
-                        onSwipeEnd={this.onSwipeEnd}
-                        style={itemListStyles}
-                        innerRef={this.setItemsListRef}
-                    >
-                        {this.renderItems()}
-                    </Swipe>
+                    {isSwipeable ? (
+                        <Swipe
+                            tagName="ul"
+                            className={klass.SLIDER(false, this.state.swiping)}
+                            onSwipeLeft={this.slideLeft}
+                            onSwipeRight={this.slideRight}
+                            onSwipeMove={this.onSwipeMove}
+                            onSwipeStart={this.onSwipeStart}
+                            onSwipeEnd={this.onSwipeEnd}
+                            style={itemListStyles}
+                            innerRef={this.setItemsListRef}
+                        >
+                            {this.renderItems()}
+                        </Swipe>
+                    ) : (
+                        <ul
+                            className={klass.SLIDER(false, this.state.swiping)}
+                            ref={(node: HTMLUListElement) => this.setItemsListRef(node)}
+                            style={itemListStyles}
+                        >
+                            {this.renderItems()}
+                        </ul>
+                    )}
                     <button
                         type="button"
                         className={klass.ARROW_NEXT(!hasNext)}

@@ -9,6 +9,7 @@
     font-size: 32px;
     cursor: pointer;
 
+    &:focus,
     &:hover {
         @include opacity(1);
     }
@@ -234,8 +235,10 @@
         position: absolute;
         bottom: 0;
         margin: 10px 0;
+        padding: 0;
         text-align: center;
         width: 100%;
+        z-index: 1;
 
         @include desktop {
             bottom: 0;

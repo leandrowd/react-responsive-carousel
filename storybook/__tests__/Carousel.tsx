@@ -335,6 +335,19 @@ describe('Slider', function() {
         });
     });
 
+    describe('getInitialImage', () => {
+        it('Returns the first image within the declared selected item', () => {
+            renderDefaultComponent({
+                selectedItem: 2,
+            });
+
+            const initialImage = componentInstance.getInitialImage();
+            const expectedMatchingImageComponent = baseChildren[2];
+
+            expect(initialImage.src.endsWith(expectedMatchingImageComponent.props.src)).toEqual(true);
+        });
+    });
+
     describe('navigateWithKeyboard', () => {
         const setActiveElement = (element: HTMLElement) => {
             (document.activeElement as any) = element;
@@ -685,6 +698,15 @@ describe('Slider', function() {
             componentInstance.decrement();
             expect(componentInstance.state.selectedItem).toBe(lastItemIndex);
         });
+
+        it('should not render any Swipe component with one child', () => {
+            renderDefaultComponent({
+                children: [<img src="assets/1.jpeg" key="1" />],
+                infiniteLoop: true,
+            });
+
+            expect(component.find(Swipe).length).toBe(0);
+        });
     });
 
     describe('Auto Play', () => {
@@ -741,6 +763,75 @@ describe('Slider', function() {
 
             expect(componentInstance.state.selectedItem).toBe(1);
         });
+
+        it('should restart auto-play after disabling it via props', () => {
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+
+            component.setProps({
+                autoPlay: false,
+            });
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+
+            component.setProps({
+                autoPlay: true,
+            });
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(2);
+        });
+    });
+
+    describe('Infinite Loop and Auto Play', () => {
+        beforeEach(() => {
+            jest.useFakeTimers();
+            window.addEventListener = jest.fn();
+
+            renderDefaultComponent({
+                children: [
+                    <img src="assets/1.jpeg" key="1" />,
+                    <img src="assets/2.jpeg" key="2" />,
+                    <img src="assets/3.jpeg" key="3" />,
+                ],
+                infiniteLoop: true,
+                autoPlay: true,
+            });
+        });
+
+        afterEach(() => {
+            jest.useRealTimers();
+        });
+
+        it('should automatically loop infinitely', () => {
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(2);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(0);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(1);
+
+            jest.runOnlyPendingTimers();
+
+            expect(componentInstance.state.selectedItem).toBe(2);
+        });
     });
 
     describe('Mouse enter/leave', () => {
@@ -767,6 +858,36 @@ describe('Slider', function() {
                 componentInstance.autoPlay = jest.fn();
                 componentInstance.startOnLeave();
                 expect(componentInstance.autoPlay).toHaveBeenCalledTimes(1);
+            });
+        });
+    });
+
+    describe('Focus', () => {
+        describe('calling forceFocus', () => {
+            it('should call carousel wrapper focus', () => {
+                componentInstance.carouselWrapperRef.focus = jest.fn();
+                componentInstance.forceFocus();
+                expect(componentInstance.carouselWrapperRef.focus).toHaveBeenCalledTimes(1);
+            });
+        });
+
+        describe('AutoFocus === true', () => {
+            it('should call forceFocus on componentDidMount', () => {
+                const forceFocusSpy = jest.spyOn(Carousel.prototype, 'forceFocus');
+                renderDefaultComponent({ autoFocus: true });
+                expect(forceFocusSpy).toHaveBeenCalledTimes(1);
+                forceFocusSpy.mockReset();
+                forceFocusSpy.mockRestore();
+            });
+
+            it('should call forceFocus conditionally on componentDidUpdate', () => {
+                componentInstance.forceFocus = jest.fn();
+
+                component.setProps({ autoFocus: false });
+                expect(componentInstance.forceFocus).toHaveBeenCalledTimes(0);
+
+                component.setProps({ autoFocus: true });
+                expect(componentInstance.forceFocus).toHaveBeenCalledTimes(1);
             });
         });
     });
@@ -810,6 +931,70 @@ describe('Slider', function() {
                         y: 10,
                     })
                 ).toBe(false);
+            });
+
+            it('should not call setPosition if preventMovementUntilSwipeScrollTolerance is true and the tolerance has not been reached', () => {
+                renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: true });
+                componentInstance.setPosition = jest.fn();
+
+                expect(
+                    componentInstance.onSwipeMove({
+                        x: 5,
+                        y: 10,
+                    })
+                ).toBe(false);
+
+                expect(componentInstance.setPosition).not.toHaveBeenCalled();
+            });
+
+            it('should call setPosition if preventMovementUntilSwipeScrollTolerance is true and movement has already begun', () => {
+                renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: true });
+
+                componentInstance.setPosition = jest.fn();
+                expect(
+                    componentInstance.onSwipeMove({
+                        x: 50,
+                        y: 10,
+                    })
+                ).toBe(true);
+                expect(componentInstance.setPosition).toHaveBeenCalled();
+
+                componentInstance.setPosition = jest.fn();
+                expect(
+                    componentInstance.onSwipeMove({
+                        x: 5,
+                        y: 10,
+                    })
+                ).toBe(false);
+                expect(componentInstance.setPosition).toHaveBeenCalled();
+            });
+
+            it('should call setPosition if preventMovementUntilSwipeScrollTolerance is true and the tolerance has been reached', () => {
+                renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: true });
+                componentInstance.setPosition = jest.fn();
+
+                expect(
+                    componentInstance.onSwipeMove({
+                        x: 30,
+                        y: 10,
+                    })
+                ).toBe(true);
+
+                expect(componentInstance.setPosition).toHaveBeenCalled();
+            });
+
+            it('should still call setPosition if preventMovementUntilSwipeScrollTolerance is false and the tolerance has not been reached', () => {
+                renderDefaultComponent({ swipeScrollTolerance: 10, preventMovementUntilSwipeScrollTolerance: false });
+                componentInstance.setPosition = jest.fn();
+
+                expect(
+                    componentInstance.onSwipeMove({
+                        x: 5,
+                        y: 10,
+                    })
+                ).toBe(false);
+
+                expect(componentInstance.setPosition).toHaveBeenCalled();
             });
 
             it('should call onSwipeMove callback', () => {
@@ -871,6 +1056,29 @@ describe('Slider', function() {
 
                 expect(swipeProps.onSwipeUp).toBe(componentInstance.onSwipeBackwards);
                 expect(swipeProps.onSwipeDown).toBe(componentInstance.onSwipeForward);
+            });
+        });
+
+        describe('emulateTouch', () => {
+            it('should cancel click when swipe forward and backwards with emulated touch', () => {
+                renderDefaultComponent({
+                    emulateTouch: true,
+                });
+
+                let currentIndex = componentInstance.state.selectedItem;
+                const items = componentInstance.props.children;
+
+                componentInstance.onSwipeForward();
+                componentInstance.handleClickItem(currentIndex, items[currentIndex]);
+                ++currentIndex;
+
+                expect(componentInstance.state.selectedItem).toEqual(currentIndex);
+
+                componentInstance.onSwipeBackwards();
+                componentInstance.handleClickItem(currentIndex, items[currentIndex]);
+                --currentIndex;
+
+                expect(componentInstance.state.selectedItem).toEqual(currentIndex);
             });
         });
     });

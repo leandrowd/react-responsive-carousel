@@ -17,6 +17,7 @@ const isKeyboardEvent = (e?: React.MouseEvent | React.KeyboardEvent): e is React
 
 export interface Props {
     axis: 'horizontal' | 'vertical';
+    autoFocus?: boolean;
     autoPlay?: boolean;
     centerMode?: boolean;
     centerSlidePercentage: number;
@@ -37,6 +38,7 @@ export interface Props {
     onSwipeStart: (event: React.TouchEvent) => void;
     onSwipeEnd: (event: React.TouchEvent) => void;
     onSwipeMove: (event: React.TouchEvent) => boolean;
+    preventMovementUntilSwipeScrollTolerance: boolean;
     renderArrowPrev: (clickHandler: () => void, hasPrev: boolean, label: string) => React.ReactNode;
     renderArrowNext: (clickHandler: () => void, hasNext: boolean, label: string) => React.ReactNode;
     renderIndicator: (
@@ -72,6 +74,7 @@ interface State {
     itemSize: number;
     selectedItem: number;
     swiping?: boolean;
+    swipeMovementStarted: boolean;
 }
 
 export default class Carousel extends React.Component<Props, State> {
@@ -84,7 +87,7 @@ export default class Carousel extends React.Component<Props, State> {
 
     static displayName = 'Carousel';
 
-    static defaultProps = {
+    static defaultProps: Props = {
         axis: 'horizontal',
         centerSlidePercentage: 80,
         interval: 3000,
@@ -98,7 +101,8 @@ export default class Carousel extends React.Component<Props, State> {
         onChange: noop,
         onSwipeStart: () => {},
         onSwipeEnd: () => {},
-        onSwipeMove: () => {},
+        onSwipeMove: () => false,
+        preventMovementUntilSwipeScrollTolerance: false,
         renderArrowPrev: (onClickHandler: () => void, hasPrev: boolean, label: string) => (
             <button type="button" aria-label={label} className={klass.ARROW_PREV(!hasPrev)} onClick={onClickHandler} />
         ),
@@ -128,14 +132,14 @@ export default class Carousel extends React.Component<Props, State> {
             return item;
         },
         renderThumbs: (children: React.ReactChild[]) => {
-            const images = Children.map(children, (item) => {
-                let img: React.ReactNode = item;
+            const images = Children.map<React.ReactChild | undefined, React.ReactChild>(children, (item) => {
+                let img: React.ReactChild | undefined = item;
 
                 // if the item is not an image, try to find the first image in the item's children.
                 if ((item as React.ReactElement<{ children: React.ReactChild[] }>).type !== 'img') {
-                    img = Children.toArray(
-                        (item as React.ReactElement<{ children: React.ReactChild[] }>).props.children
-                    ).find((children) => (children as React.ReactElement).type === 'img');
+                    img = (Children.toArray((item as React.ReactElement).props.children) as React.ReactChild[]).find(
+                        (children) => (children as React.ReactElement).type === 'img'
+                    );
                 }
 
                 if (!img) {
@@ -179,6 +183,7 @@ export default class Carousel extends React.Component<Props, State> {
             isMouseEntered: false,
             autoPlay: props.autoPlay,
             swiping: false,
+            swipeMovementStarted: false,
             cancelClick: false,
             itemSize: 1,
         };
@@ -195,6 +200,10 @@ export default class Carousel extends React.Component<Props, State> {
     componentDidUpdate(prevProps: Props, prevState: State) {
         if (!prevProps.children && this.props.children && !this.state.initialized) {
             this.setupCarousel();
+        }
+
+        if (!prevProps.autoFocus && this.props.autoFocus) {
+            this.forceFocus();
         }
 
         if (prevState.swiping && !this.state.swiping) {
@@ -248,17 +257,24 @@ export default class Carousel extends React.Component<Props, State> {
             this.setupAutoPlay();
         }
 
-        this.setState({
-            initialized: true,
-        });
-
-        const initialImage = this.getInitialImage();
-        if (initialImage) {
-            // if it's a carousel of images, we set the mount state after the first image is loaded
-            initialImage.addEventListener('load', this.setMountState);
-        } else {
-            this.setMountState();
+        if (this.props.autoFocus) {
+            this.forceFocus();
         }
+
+        this.setState(
+            {
+                initialized: true,
+            },
+            () => {
+                const initialImage = this.getInitialImage();
+                if (initialImage && !initialImage.complete) {
+                    // if it's a carousel of images, we set the mount state after the first image is loaded
+                    initialImage.addEventListener('load', this.setMountState);
+                } else {
+                    this.setMountState();
+                }
+            }
+        );
     }
 
     destroyCarousel() {
@@ -317,21 +333,18 @@ export default class Carousel extends React.Component<Props, State> {
     }
 
     autoPlay = () => {
-        if (!this.state.autoPlay || Children.count(this.props.children) <= 1) {
+        if (Children.count(this.props.children) <= 1) {
             return;
         }
 
-        if (this.timer) clearTimeout(this.timer);
+        this.clearAutoPlay();
+
         this.timer = setTimeout(() => {
             this.increment();
         }, this.props.interval);
     };
 
     clearAutoPlay = () => {
-        if (!this.state.autoPlay) {
-            return;
-        }
-
         if (this.timer) clearTimeout(this.timer);
     };
 
@@ -347,6 +360,10 @@ export default class Carousel extends React.Component<Props, State> {
     startOnLeave = () => {
         this.setState({ isMouseEntered: false }, this.autoPlay);
     };
+
+    forceFocus() {
+        this.carouselWrapperRef?.focus();
+    }
 
     isFocusWithinTheCarousel = () => {
         if (!this.carouselWrapperRef) {
@@ -391,9 +408,11 @@ export default class Carousel extends React.Component<Props, State> {
         if (!this.state.initialized || !this.itemsRef || this.itemsRef.length === 0) {
             return;
         }
-
         const isHorizontal = this.props.axis === 'horizontal';
         const firstItem = this.itemsRef[0];
+        if (!firstItem) {
+            return;
+        }
         const itemSize = isHorizontal ? firstItem.clientWidth : firstItem.clientHeight;
 
         this.setState({
@@ -460,6 +479,7 @@ export default class Carousel extends React.Component<Props, State> {
         this.setState({
             swiping: false,
             cancelClick: false,
+            swipeMovementStarted: false,
         });
         this.props.onSwipeEnd(event);
         this.autoPlay();
@@ -491,7 +511,9 @@ export default class Carousel extends React.Component<Props, State> {
         }
 
         let position = currentPosition + 100 / (this.state.itemSize / handledDelta);
-        if (this.props.infiniteLoop) {
+        const hasMoved = Math.abs(axisDelta) > this.props.swipeScrollTolerance;
+
+        if (this.props.infiniteLoop && hasMoved) {
             // When allowing infinite loop, if we slide left from position 0 we reveal the cloned last slide that appears before it
             // if we slide even further we need to jump to other side so it can continue - and vice versa for the last slide
             if (this.state.selectedItem === 0 && position > -100) {
@@ -500,11 +522,14 @@ export default class Carousel extends React.Component<Props, State> {
                 position += childrenLength * 100;
             }
         }
-        this.setPosition(position);
+        if (!this.props.preventMovementUntilSwipeScrollTolerance || hasMoved || this.state.swipeMovementStarted) {
+            if (!this.state.swipeMovementStarted) {
+                this.setState({ swipeMovementStarted: true });
+            }
+            this.setPosition(position);
+        }
 
         // allows scroll if the swipe was within the tolerance
-        const hasMoved = Math.abs(axisDelta) > this.props.swipeScrollTolerance;
-
         if (hasMoved && !this.state.cancelClick) {
             this.setState({
                 cancelClick: true,
@@ -643,10 +668,18 @@ export default class Carousel extends React.Component<Props, State> {
 
     onSwipeForward = () => {
         this.increment(1, true);
+
+        if (this.props.emulateTouch) {
+            this.setState({ cancelClick: true });
+        }
     };
 
     onSwipeBackwards = () => {
         this.decrement(1, true);
+
+        if (this.props.emulateTouch) {
+            this.setState({ cancelClick: true });
+        }
     };
 
     changeItem = (newIndex: number) => (e: React.MouseEvent | React.KeyboardEvent) => {
@@ -665,27 +698,33 @@ export default class Carousel extends React.Component<Props, State> {
     getInitialImage = () => {
         const selectedItem = this.props.selectedItem;
         const item = this.itemsRef && this.itemsRef[selectedItem];
-        const images = item && item.getElementsByTagName('img');
-        return images && images[selectedItem];
+        const images = (item && item.getElementsByTagName('img')) || [];
+        return images[0];
     };
 
-    getVariableImageHeight = (position: number) => {
+    getVariableItemHeight = (position: number) => {
         const item = this.itemsRef && this.itemsRef[position];
-        const images = (item && item.getElementsByTagName('img')) || [];
-        if (this.state.hasMount && images.length > 0) {
-            const image = images[0];
 
-            if (!image.complete) {
-                // if the image is still loading, the size won't be available so we trigger a new render after it's done
-                const onImageLoad = () => {
-                    this.forceUpdate();
-                    image.removeEventListener('load', onImageLoad);
-                };
+        if (this.state.hasMount && item && item.children.length) {
+            const slideImages = item.children[0].getElementsByTagName('img') || [];
 
-                image.addEventListener('load', onImageLoad);
+            if (slideImages.length > 0) {
+                const image = slideImages[0];
+
+                if (!image.complete) {
+                    // if the image is still loading, the size won't be available so we trigger a new render after it's done
+                    const onImageLoad = () => {
+                        this.forceUpdate();
+                        image.removeEventListener('load', onImageLoad);
+                    };
+
+                    image.addEventListener('load', onImageLoad);
+                }
             }
 
-            const height = image.clientHeight;
+            // try to get img first, if img not there find first display tag
+            const displayItem = slideImages[0] || item.children[0];
+            const height = displayItem.clientHeight;
             return height > 0 ? height : null;
         }
 
@@ -777,6 +816,8 @@ export default class Carousel extends React.Component<Props, State> {
             return null;
         }
 
+        const isSwipeable = this.props.swipeable && Children.count(this.props.children) > 1;
+
         const isHorizontal = this.props.axis === 'horizontal';
 
         const canShowArrows = this.props.showArrows && Children.count(this.props.children) > 1;
@@ -839,7 +880,7 @@ export default class Carousel extends React.Component<Props, State> {
             swiperProps.onSwipeRight = this.onSwipeBackwards;
 
             if (this.props.dynamicHeight) {
-                const itemHeight = this.getVariableImageHeight(this.state.selectedItem);
+                const itemHeight = this.getVariableItemHeight(this.state.selectedItem);
                 swiperProps.style.height = itemHeight || 'auto';
                 containerStyles.height = itemHeight || 'auto';
             }
@@ -854,9 +895,10 @@ export default class Carousel extends React.Component<Props, State> {
         return (
             <div className={klass.ROOT(this.props.className)} ref={this.setCarouselWrapperRef} tabIndex={0}>
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
+                    {this.renderControls()}
                     {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles}>
-                        {this.props.swipeable ? (
+                        {isSwipeable ? (
                             <Swipe
                                 tagName="ul"
                                 innerRef={this.setListRef}
@@ -880,7 +922,6 @@ export default class Carousel extends React.Component<Props, State> {
                         )}
                     </div>
                     {this.props.renderArrowNext(this.onClickNext, hasNext, this.props.labels.rightArrow)}
-                    {this.renderControls()}
                     {this.renderStatus()}
                 </div>
                 {this.renderThumbs()}
