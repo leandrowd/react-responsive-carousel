@@ -21,7 +21,7 @@ export interface Props {
     autoPlay?: boolean;
     centerMode?: boolean;
     centerSlidePercentage: number;
-    children?: React.ReactChild[];
+    children?: React.ReactChild | React.ReactChild[];
     className?: string;
     dynamicHeight?: boolean;
     emulateTouch?: boolean;
