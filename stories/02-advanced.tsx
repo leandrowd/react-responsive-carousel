@@ -112,13 +112,9 @@ export const withExternalControls = () => {
         };
 
         updateCurrentSlide = (index) => {
-            const { currentSlide } = this.state;
-
-            if (currentSlide !== index) {
-                this.setState({
-                    currentSlide: index,
-                });
-            }
+            this.setState({
+                currentSlide: index,
+            });
         };
 
         render() {

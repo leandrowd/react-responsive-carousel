@@ -85,7 +85,7 @@ describe('Slider', function() {
                         rightArrow: 'next slide / item',
                         item: 'slide item',
                     },
-                    selectedItem: 0,
+                    initialSelectedItem: 0,
                     showArrows: true,
                     showIndicators: true,
                     showStatus: true,
@@ -336,9 +336,9 @@ describe('Slider', function() {
     });
 
     describe('getInitialImage', () => {
-        it('Returns the first image within the declared selected item', () => {
+        it('Returns the first image within the declared initial selected item', () => {
             renderDefaultComponent({
-                selectedItem: 2,
+                initialSelectedItem: 2,
             });
 
             const initialImage = componentInstance.getInitialImage();
@@ -485,18 +485,18 @@ describe('Slider', function() {
 
     describe('selectItem', () => {
         beforeEach(() => {
-            componentInstance.setState = jest.fn();
+            componentInstance.setState = jest.fn((_, cb?) => cb && cb());
             componentInstance.handleOnChange = jest.fn();
             componentInstance.selectItem({
                 selectedItem: 1,
-                ramdomNumber: 2,
+                randomNumber: 2,
             });
         });
 
         it('should call setState sending the argument received', () => {
             expect(componentInstance.setState.mock.calls[0][0]).toEqual({
                 selectedItem: 1,
-                ramdomNumber: 2,
+                randomNumber: 2,
             });
         });
 
@@ -516,8 +516,8 @@ describe('Slider', function() {
             componentInstance.visibleItems = 3;
         });
 
-        it('should set the selectedItem from the props', () => {
-            renderDefaultComponent({ selectedItem: 3 });
+        it('should set the initialSelectedItem from the props', () => {
+            renderDefaultComponent({ initialSelectedItem: 3 });
             expect(componentInstance.state.selectedItem).toBe(3);
         });
 

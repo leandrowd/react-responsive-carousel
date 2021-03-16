@@ -49,7 +49,8 @@ export interface Props {
     ) => React.ReactNode;
     renderItem: (item: React.ReactNode, options?: { isSelected: boolean }) => React.ReactNode;
     renderThumbs: (children: React.ReactChild[]) => React.ReactChild[];
-    selectedItem: number;
+    initialSelectedItem: number;
+    selectedItem?: number;
     showArrows: boolean;
     showStatus: boolean;
     showIndicators: boolean;
@@ -160,7 +161,7 @@ export default class Carousel extends React.Component<Props, State> {
             return images;
         },
         statusFormatter: defaultStatusFormatter,
-        selectedItem: 0,
+        initialSelectedItem: 0,
         showArrows: true,
         showIndicators: true,
         showStatus: true,
@@ -178,7 +179,7 @@ export default class Carousel extends React.Component<Props, State> {
 
         this.state = {
             initialized: false,
-            selectedItem: props.selectedItem,
+            selectedItem: props.initialSelectedItem,
             hasMount: false,
             isMouseEntered: false,
             autoPlay: props.autoPlay,
@@ -211,9 +212,18 @@ export default class Carousel extends React.Component<Props, State> {
             this.resetPosition();
         }
 
-        if (prevProps.selectedItem !== this.props.selectedItem || prevProps.centerMode !== this.props.centerMode) {
-            this.updateSizes();
+        if (this.props.selectedItem && prevProps.selectedItem !== this.props.selectedItem) {
             this.moveTo(this.props.selectedItem);
+        }
+
+        if (prevProps.initialSelectedItem !== this.props.initialSelectedItem) {
+            this.updateSizes();
+            this.moveTo(this.props.initialSelectedItem);
+        }
+
+        if (prevProps.centerMode !== this.props.centerMode) {
+            this.updateSizes();
+            this.moveTo(this.getState().selectedItem);
         }
 
         if (prevProps.autoPlay !== this.props.autoPlay) {
@@ -444,10 +454,8 @@ export default class Carousel extends React.Component<Props, State> {
 
         this.props.onClickItem(index, item);
 
-        if (index !== this.state.selectedItem) {
-            this.setState({
-                selectedItem: index,
-            });
+        if (index !== this.getState().selectedItem) {
+            this.moveTo(index);
         }
     };
 
@@ -492,7 +500,7 @@ export default class Carousel extends React.Component<Props, State> {
 
         const initialBoundry = 0;
 
-        const currentPosition = this.getPosition(this.state.selectedItem);
+        const currentPosition = this.getPosition(this.getState().selectedItem);
         const finalBoundry = this.props.infiniteLoop
             ? this.getPosition(childrenLength - 1) - 100
             : this.getPosition(childrenLength - 1);
@@ -516,9 +524,9 @@ export default class Carousel extends React.Component<Props, State> {
         if (this.props.infiniteLoop && hasMoved) {
             // When allowing infinite loop, if we slide left from position 0 we reveal the cloned last slide that appears before it
             // if we slide even further we need to jump to other side so it can continue - and vice versa for the last slide
-            if (this.state.selectedItem === 0 && position > -100) {
+            if (this.getState().selectedItem === 0 && position > -100) {
                 position -= childrenLength * 100;
-            } else if (this.state.selectedItem === childrenLength - 1 && position < -childrenLength * 100) {
+            } else if (this.getState().selectedItem === childrenLength - 1 && position < -childrenLength * 100) {
                 position += childrenLength * 100;
             }
         }
@@ -537,6 +545,43 @@ export default class Carousel extends React.Component<Props, State> {
         }
 
         return hasMoved;
+    };
+
+    getState = () => {
+        const stateObject: Readonly<State> = { ...this.state };
+        return Object.entries(this.state).reduce((combinedState, currentValue) => {
+            let [key, value] = currentValue;
+            const newChanges: { [k: string]: State[keyof State] } = {};
+
+            // check if it's safe to say that there's the same key in props and state
+            if (key in this.props) {
+                const propKey = key as keyof Props & keyof State;
+                if (this.isControlled(propKey)) {
+                    value = this.props[propKey];
+                }
+            }
+            newChanges[key] = value;
+
+            return { ...combinedState, ...newChanges };
+        }, stateObject);
+    };
+
+    isControlled = (prop: keyof Props) => {
+        return this.props[prop] !== undefined;
+    };
+
+    setControlledProp = (
+        prop: keyof Props & keyof State,
+        newState: Pick<State, keyof State & keyof Props>,
+        callback: (changes: Pick<State, keyof State & keyof Props>) => void
+    ) => {
+        if (this.isControlled(prop)) {
+            callback(newState);
+        } else {
+            this.setState(newState, () => {
+                callback(newState);
+            });
+        }
     };
 
     getPosition(index: number): number {
@@ -583,16 +628,16 @@ export default class Carousel extends React.Component<Props, State> {
     };
 
     resetPosition = () => {
-        const currentPosition = this.getPosition(this.state.selectedItem);
+        const currentPosition = this.getPosition(this.getState().selectedItem);
         this.setPosition(currentPosition);
     };
 
     decrement = (positions = 1, fromSwipe = false) => {
-        this.moveTo(this.state.selectedItem - (typeof positions === 'number' ? positions : 1), fromSwipe);
+        this.moveTo(this.getState().selectedItem - (typeof positions === 'number' ? positions : 1), fromSwipe);
     };
 
     increment = (positions = 1, fromSwipe = false) => {
-        this.moveTo(this.state.selectedItem + (typeof positions === 'number' ? positions : 1), fromSwipe);
+        this.moveTo(this.getState().selectedItem + (typeof positions === 'number' ? positions : 1), fromSwipe);
     };
 
     moveTo = (position?: number, fromSwipe?: boolean) => {
@@ -691,12 +736,16 @@ export default class Carousel extends React.Component<Props, State> {
     };
 
     selectItem = (state: Pick<State, 'selectedItem' | 'swiping'>, cb?: () => void) => {
-        this.setState(state, cb);
-        this.handleOnChange(state.selectedItem, Children.toArray(this.props.children)[state.selectedItem]);
+        this.setControlledProp('selectedItem', state, ({ selectedItem }) => {
+            if (selectedItem !== this.getState().selectedItem) {
+                this.handleOnChange(selectedItem, Children.toArray(this.props.children)[selectedItem]);
+            }
+            cb && cb();
+        });
     };
 
     getInitialImage = () => {
-        const selectedItem = this.props.selectedItem;
+        const selectedItem = this.props.initialSelectedItem;
         const item = this.itemsRef && this.itemsRef[selectedItem];
         const images = (item && item.getElementsByTagName('img')) || [];
         return images[0];
@@ -740,7 +789,7 @@ export default class Carousel extends React.Component<Props, State> {
             const slideProps = {
                 ref: (e: HTMLLIElement) => this.setItemsRef(e, index),
                 key: 'itemKey' + index + (isClone ? 'clone' : ''),
-                className: klass.ITEM(true, index === this.state.selectedItem),
+                className: klass.ITEM(true, index === this.getState().selectedItem),
                 onClick: this.handleClickItem.bind(this, index, item),
             };
 
@@ -756,7 +805,7 @@ export default class Carousel extends React.Component<Props, State> {
 
             return (
                 <li {...slideProps} {...extraProps}>
-                    {this.props.renderItem(item, { isSelected: index === this.state.selectedItem })}
+                    {this.props.renderItem(item, { isSelected: index === this.getState().selectedItem })}
                 </li>
             );
         });
@@ -773,7 +822,12 @@ export default class Carousel extends React.Component<Props, State> {
                 {Children.map(children, (_, index) => {
                     return (
                         renderIndicator &&
-                        renderIndicator(this.changeItem(index), index === this.state.selectedItem, index, labels.item)
+                        renderIndicator(
+                            this.changeItem(index),
+                            index === this.getState().selectedItem,
+                            index,
+                            labels.item
+                        )
                     );
                 })}
             </ul>
@@ -787,7 +841,7 @@ export default class Carousel extends React.Component<Props, State> {
 
         return (
             <p className="carousel-status">
-                {this.props.statusFormatter(this.state.selectedItem + 1, Children.count(this.props.children))}
+                {this.props.statusFormatter(this.getState().selectedItem + 1, Children.count(this.props.children))}
             </p>
         );
     }
@@ -801,7 +855,7 @@ export default class Carousel extends React.Component<Props, State> {
             <Thumbs
                 ref={this.setThumbsRef}
                 onSelectItem={this.handleClickThumb}
-                selectedItem={this.state.selectedItem}
+                selectedItem={this.getState().selectedItem}
                 transitionTime={this.props.transitionTime}
                 thumbWidth={this.props.thumbWidth}
                 labels={this.props.labels}
@@ -816,6 +870,10 @@ export default class Carousel extends React.Component<Props, State> {
             return null;
         }
 
+        const lastItem = Children.count(this.props.children) - 1;
+
+        const selectedItem = this.getState().selectedItem;
+
         const isSwipeable = this.props.swipeable && Children.count(this.props.children) > 1;
 
         const isHorizontal = this.props.axis === 'horizontal';
@@ -823,16 +881,21 @@ export default class Carousel extends React.Component<Props, State> {
         const canShowArrows = this.props.showArrows && Children.count(this.props.children) > 1;
 
         // show left arrow?
-        const hasPrev = (canShowArrows && (this.state.selectedItem > 0 || this.props.infiniteLoop)) || false;
+        const hasPrev = (canShowArrows && (selectedItem > 0 || this.props.infiniteLoop)) || false;
         // show right arrow
         const hasNext =
-            (canShowArrows &&
-                (this.state.selectedItem < Children.count(this.props.children) - 1 || this.props.infiniteLoop)) ||
+            (canShowArrows && (selectedItem < Children.count(this.props.children) - 1 || this.props.infiniteLoop)) ||
             false;
         // obj to hold the transformations and styles
         let itemListStyles = {};
 
-        const currentPosition = this.getPosition(this.state.selectedItem);
+        let currentPosition = this.getPosition(selectedItem);
+
+        if (selectedItem > lastItem) {
+            currentPosition = this.getPosition(lastItem);
+        } else if (selectedItem < 0) {
+            currentPosition = this.getPosition(0);
+        }
 
         // if 3d is available, let's take advantage of the performance of transform
         const transformProp = CSSTranslate(currentPosition, '%', this.props.axis);
@@ -880,7 +943,7 @@ export default class Carousel extends React.Component<Props, State> {
             swiperProps.onSwipeRight = this.onSwipeBackwards;
 
             if (this.props.dynamicHeight) {
-                const itemHeight = this.getVariableItemHeight(this.state.selectedItem);
+                const itemHeight = this.getVariableItemHeight(selectedItem);
                 swiperProps.style.height = itemHeight || 'auto';
                 containerStyles.height = itemHeight || 'auto';
             }
