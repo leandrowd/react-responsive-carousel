@@ -462,9 +462,7 @@ export default class Carousel extends React.Component<Props, State> {
     handleClickThumb = (index: number, item: React.ReactNode) => {
         this.props.onClickThumb(index, item);
 
-        this.selectItem({
-            selectedItem: index,
-        });
+        this.moveTo(index);
     };
 
     onSwipeStart = (event: React.TouchEvent) => {
@@ -684,13 +682,7 @@ export default class Carousel extends React.Component<Props, State> {
 
     changeItem = (newIndex: number) => (e: React.MouseEvent | React.KeyboardEvent) => {
         if (!isKeyboardEvent(e) || e.key === 'Enter') {
-            this.selectItem({
-                selectedItem: newIndex,
-            });
-
-            if (this.state.autoPlay) {
-                this.resetAutoPlay();
-            }
+            this.moveTo(newIndex);
         }
     };
 
