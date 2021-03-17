@@ -736,12 +736,14 @@ export default class Carousel extends React.Component<Props, State> {
     };
 
     selectItem = (state: Pick<State, 'selectedItem' | 'swiping'>, cb?: () => void) => {
-        this.setControlledProp('selectedItem', state, ({ selectedItem }) => {
+        const { selectedItem, ...rest } = state;
+        this.setControlledProp('selectedItem', { selectedItem }, ({ selectedItem }) => {
             if (selectedItem !== this.getState().selectedItem) {
                 this.handleOnChange(selectedItem, Children.toArray(this.props.children)[selectedItem]);
             }
-            cb && cb();
         });
+
+        this.setState(rest, cb);
     };
 
     getInitialImage = () => {
