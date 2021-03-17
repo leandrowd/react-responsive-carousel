@@ -496,6 +496,8 @@ describe('Slider', function() {
         it('should call setState sending the argument received', () => {
             expect(componentInstance.setState.mock.calls[0][0]).toEqual({
                 selectedItem: 1,
+            });
+            expect(componentInstance.setState.mock.calls[1][0]).toEqual({
                 randomNumber: 2,
             });
         });
