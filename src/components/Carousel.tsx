@@ -75,6 +75,7 @@ interface State {
     selectedItem: number;
     swiping?: boolean;
     swipeMovementStarted: boolean;
+    validChildren?: React.ReactChild[];
 }
 
 export default class Carousel extends React.Component<Props, State> {
@@ -186,19 +187,25 @@ export default class Carousel extends React.Component<Props, State> {
             swipeMovementStarted: false,
             cancelClick: false,
             itemSize: 1,
+            validChildren: props.children?.filter((item) => item), // Ignore falsy children
         };
     }
 
     componentDidMount() {
-        if (!this.props.children) {
+        if (!this.state.validChildren) {
             return;
         }
 
         this.setupCarousel();
     }
 
+    UNSAFE_componentWillReceiveProps(nextProps: Props) {
+        // Ignore falsy children
+        this.setState({ validChildren: nextProps.children?.filter((item) => item) });
+    }
+
     componentDidUpdate(prevProps: Props, prevState: State) {
-        if (!prevProps.children && this.props.children && !this.state.initialized) {
+        if (!prevState.validChildren && this.state.validChildren && !this.state.initialized) {
             this.setupCarousel();
         }
 
@@ -253,7 +260,7 @@ export default class Carousel extends React.Component<Props, State> {
     setupCarousel() {
         this.bindEvents();
 
-        if (this.state.autoPlay && Children.count(this.props.children) > 1) {
+        if (this.state.autoPlay && Children.count(this.state.validChildren) > 1) {
             this.setupAutoPlay();
         }
 
@@ -333,7 +340,7 @@ export default class Carousel extends React.Component<Props, State> {
     }
 
     autoPlay = () => {
-        if (Children.count(this.props.children) <= 1) {
+        if (Children.count(this.state.validChildren) <= 1) {
             return;
         }
 
@@ -430,7 +437,7 @@ export default class Carousel extends React.Component<Props, State> {
     };
 
     handleClickItem = (index: number, item: React.ReactNode) => {
-        if (Children.count(this.props.children) === 0) {
+        if (Children.count(this.state.validChildren) === 0) {
             return;
         }
 
@@ -452,7 +459,7 @@ export default class Carousel extends React.Component<Props, State> {
     };
 
     handleOnChange = (index: number, item: React.ReactNode) => {
-        if (Children.count(this.props.children) <= 1) {
+        if (Children.count(this.state.validChildren) <= 1) {
             return;
         }
 
@@ -486,7 +493,7 @@ export default class Carousel extends React.Component<Props, State> {
     onSwipeMove = (delta: { x: number; y: number }, event: React.TouchEvent) => {
         this.props.onSwipeMove(event);
         const isHorizontal = this.props.axis === 'horizontal';
-        const childrenLength = Children.count(this.props.children);
+        const childrenLength = Children.count(this.state.validChildren);
 
         const initialBoundry = 0;
 
@@ -547,7 +554,7 @@ export default class Carousel extends React.Component<Props, State> {
             return 0;
         }
 
-        const childrenLength = Children.count(this.props.children);
+        const childrenLength = Children.count(this.state.validChildren);
         if (this.props.centerMode && this.props.axis === 'horizontal') {
             let currentPosition = -index * this.props.centerSlidePercentage;
             const lastPosition = childrenLength - 1;
@@ -598,7 +605,7 @@ export default class Carousel extends React.Component<Props, State> {
             return;
         }
 
-        const lastPosition = Children.count(this.props.children) - 1;
+        const lastPosition = Children.count(this.state.validChildren) - 1;
         const needClonedSlide = this.props.infiniteLoop && !fromSwipe && (position < 0 || position > lastPosition);
         const oldPosition = position;
 
@@ -688,7 +695,7 @@ export default class Carousel extends React.Component<Props, State> {
 
     selectItem = (state: Pick<State, 'selectedItem' | 'swiping'>, cb?: () => void) => {
         this.setState(state, cb);
-        this.handleOnChange(state.selectedItem, Children.toArray(this.props.children)[state.selectedItem]);
+        this.handleOnChange(state.selectedItem, Children.toArray(this.state.validChildren)[state.selectedItem]);
     };
 
     getInitialImage = () => {
@@ -728,11 +735,11 @@ export default class Carousel extends React.Component<Props, State> {
     };
 
     renderItems(isClone?: boolean) {
-        if (!this.props.children) {
+        if (!this.state.validChildren) {
             return [];
         }
 
-        return Children.map(this.props.children, (item, index) => {
+        return Children.map(this.state.validChildren, (item, index) => {
             const slideProps = {
                 ref: (e: HTMLLIElement) => this.setItemsRef(e, index),
                 key: 'itemKey' + index + (isClone ? 'clone' : ''),
@@ -759,14 +766,14 @@ export default class Carousel extends React.Component<Props, State> {
     }
 
     renderControls() {
-        const { showIndicators, labels, renderIndicator, children } = this.props;
+        const { showIndicators, labels, renderIndicator } = this.props;
         if (!showIndicators) {
             return null;
         }
 
         return (
             <ul className="control-dots">
-                {Children.map(children, (_, index) => {
+                {Children.map(this.state.validChildren, (_, index) => {
                     return (
                         renderIndicator &&
                         renderIndicator(this.changeItem(index), index === this.state.selectedItem, index, labels.item)
@@ -783,13 +790,13 @@ export default class Carousel extends React.Component<Props, State> {
 
         return (
             <p className="carousel-status">
-                {this.props.statusFormatter(this.state.selectedItem + 1, Children.count(this.props.children))}
+                {this.props.statusFormatter(this.state.selectedItem + 1, Children.count(this.state.validChildren))}
             </p>
         );
     }
 
     renderThumbs() {
-        if (!this.props.showThumbs || !this.props.children || Children.count(this.props.children) === 0) {
+        if (!this.props.showThumbs || !this.state.validChildren || Children.count(this.state.validChildren) === 0) {
             return null;
         }
 
@@ -802,28 +809,28 @@ export default class Carousel extends React.Component<Props, State> {
                 thumbWidth={this.props.thumbWidth}
                 labels={this.props.labels}
             >
-                {this.props.renderThumbs(this.props.children)}
+                {this.props.renderThumbs(this.state.validChildren)}
             </Thumbs>
         );
     }
 
     render() {
-        if (!this.props.children || Children.count(this.props.children) === 0) {
+        if (!this.state.validChildren || Children.count(this.state.validChildren) === 0) {
             return null;
         }
 
-        const isSwipeable = this.props.swipeable && Children.count(this.props.children) > 1;
+        const isSwipeable = this.props.swipeable && Children.count(this.state.validChildren) > 1;
 
         const isHorizontal = this.props.axis === 'horizontal';
 
-        const canShowArrows = this.props.showArrows && Children.count(this.props.children) > 1;
+        const canShowArrows = this.props.showArrows && Children.count(this.state.validChildren) > 1;
 
         // show left arrow?
         const hasPrev = (canShowArrows && (this.state.selectedItem > 0 || this.props.infiniteLoop)) || false;
         // show right arrow
         const hasNext =
             (canShowArrows &&
-                (this.state.selectedItem < Children.count(this.props.children) - 1 || this.props.infiniteLoop)) ||
+                (this.state.selectedItem < Children.count(this.state.validChildren) - 1 || this.props.infiniteLoop)) ||
             false;
         // obj to hold the transformations and styles
         let itemListStyles = {};

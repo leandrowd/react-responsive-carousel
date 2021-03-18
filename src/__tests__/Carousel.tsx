@@ -1172,6 +1172,32 @@ describe('Slider', function() {
         });
     });
 
+    describe('ignore falsy children', () => {
+        const baseChildrenWithFalsy = [...baseChildren, null, false, ''] as React.ReactChild[];
+
+        it('should not create slides for falsy children', () => {
+            renderDefaultComponent({
+                children: baseChildrenWithFalsy,
+            });
+            expect(component.find('.slide').length).toBe(baseChildren.length);
+        });
+
+        it('should not display thumbnail for falsy children', () => {
+            renderDefaultComponent({
+                children: baseChildrenWithFalsy,
+            });
+            expect(component.find('.thumb').length).toBe(baseChildren.length);
+        });
+
+        it('should not display dot for falsy children', () => {
+            renderDefaultComponent({
+                children: baseChildrenWithFalsy,
+                showThumbs: false,
+            });
+            expect(component.find('.dot').length).toBe(baseChildren.length);
+        });
+    });
+
     describe('Snapshots', () => {
         it('default', () => {
             expect(renderForSnapshot({}, baseChildren)).toMatchSnapshot();
