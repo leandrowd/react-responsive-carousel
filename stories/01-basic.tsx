@@ -36,7 +36,7 @@ const getConfigurableProps = () => ({
     emulateTouch: boolean('emulateTouch', true, tooglesGroupId),
     autoFocus: boolean('autoFocus', false, tooglesGroupId),
     thumbWidth: number('thumbWidth', 100, {}, valuesGroupId),
-    selectedItem: number('selectedItem', 0, {}, valuesGroupId),
+    initialSelectedItem: number('initialSelectedItem', 0, {}, valuesGroupId),
     interval: number('interval', 2000, {}, valuesGroupId),
     transitionTime: number('transitionTime', 500, {}, valuesGroupId),
     swipeScrollTolerance: number('swipeScrollTolerance', 5, {}, valuesGroupId),
