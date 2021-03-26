@@ -29,6 +29,7 @@ I don't have any time available to keep maintaining this package. If you have an
     -   Custom arrows
     -   Custom indicators
     -   Custom status
+    -   Custom animation handlers
 
 ### Important links:
 
@@ -176,6 +177,53 @@ renderIndicator: (
 #### Take full control of the carousel
 
 If none of the previous options are enough, you can build your own controls for the carousel. Check an example at http://react-responsive-carousel.js.org/storybook/?path=/story/02-advanced--with-external-controls
+
+#### Custom Animations
+
+By default, the carousel uses the traditional 'slide' style animation. There is also a built in fade animation, which can be used by passing `'fade'` to the `animationHandler` prop. \*note: the 'fade' animation does not support swiping animations, so you may want to set `swipeable` to `false`
+
+If you would like something completely custom, you can pass custom animation handler functions to `animationHandler`, `swipeAnimationHandler`, and `stopSwipingHandler`. The animation handler functions accept props and state, and return styles for the contain list, default slide style, selected slide style, and previous slide style. Take a look at the fade animation handler for an idea of how they work:
+
+```javascript
+const fadeAnimationHandler: AnimationHandler = (props, state): AnimationHandlerResponse => {
+    const transitionTime = props.transitionTime + 'ms';
+    const transitionTimingFunction = 'ease-in-out';
+
+    let slideStyle: React.CSSProperties = {
+        position: 'absolute',
+        display: 'block',
+        zIndex: -2,
+        minHeight: '100%',
+        opacity: 0,
+        top: 0,
+        right: 0,
+        left: 0,
+        bottom: 0,
+        transitionTimingFunction: transitionTimingFunction,
+        msTransitionTimingFunction: transitionTimingFunction,
+        MozTransitionTimingFunction: transitionTimingFunction,
+        WebkitTransitionTimingFunction: transitionTimingFunction,
+        OTransitionTimingFunction: transitionTimingFunction,
+    };
+
+    if (!state.swiping) {
+        slideStyle = {
+            ...slideStyle,
+            WebkitTransitionDuration: transitionTime,
+            MozTransitionDuration: transitionTime,
+            OTransitionDuration: transitionTime,
+            transitionDuration: transitionTime,
+            msTransitionDuration: transitionTime,
+        };
+    }
+
+    return {
+        slideStyle,
+        selectedStyle: { ...slideStyle, opacity: 1, position: 'relative' },
+        prevStyle: { ...slideStyle },
+    };
+};
+```
 
 ### Videos
 
