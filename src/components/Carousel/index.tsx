@@ -444,7 +444,10 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             swipeMovementStarted: false,
         });
         this.props.onSwipeEnd(event);
-        this.autoPlay();
+
+        if (this.state.autoPlay) {
+            this.autoPlay();
+        }
     };
 
     onSwipeMove = (delta: { x: number; y: number }, event: React.TouchEvent) => {

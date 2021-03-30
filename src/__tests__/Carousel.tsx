@@ -963,7 +963,15 @@ describe('Slider', function() {
                 componentInstance.onSwipeEnd();
                 expect(componentInstance.state.swiping).toBe(false);
             });
-            it('should start autoplay again', () => {
+
+            it('should not start autoplay again', () => {
+                componentInstance.autoPlay = jest.fn();
+                componentInstance.onSwipeEnd();
+                expect(componentInstance.autoPlay).toHaveBeenCalledTimes(0);
+            });
+
+            it('should start autoplay again when autoplay is true', () => {
+                renderDefaultComponent({ autoPlay: true });
                 componentInstance.autoPlay = jest.fn();
                 componentInstance.onSwipeEnd();
                 expect(componentInstance.autoPlay).toHaveBeenCalledTimes(1);
