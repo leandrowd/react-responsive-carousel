@@ -313,6 +313,10 @@ describe('Slider', function() {
                     componentInstance.navigateWithKeyboard
                 );
             });
+
+            it('should not set a tabIndex on the carousel-root', () => {
+                expect(component.find('.carousel-root[tabIndex=0]').length).toBe(0);
+            });
         });
 
         describe('when useKeyboardArrows is true', () => {
@@ -342,6 +346,10 @@ describe('Slider', function() {
                     'keydown',
                     componentInstance.navigateWithKeyboard
                 );
+            });
+
+            it('should set a tabIndex on the carousel-root', () => {
+                expect(component.find('.carousel-root[tabIndex=0]').length).toBe(1);
             });
         });
     });
