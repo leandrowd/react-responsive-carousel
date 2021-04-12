@@ -13,6 +13,7 @@ import {
     slideStopSwipingHandler,
     fadeAnimationHandler,
 } from './animations';
+import ReactDOMServer from 'react-dom/server';
 
 export default class Carousel extends React.Component<CarouselProps, CarouselState> {
     private thumbsRef?: Thumbs;
@@ -70,16 +71,16 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             return item;
         },
         renderThumbs: (children: React.ReactChild[]) => {
-            const images = Children.map<React.ReactChild | undefined, React.ReactChild>(children, (item) => {
+            const filteredChildren = children.filter(Boolean);
+            const images = Children.map<React.ReactChild | undefined, React.ReactChild>(filteredChildren, (item) => {
                 let img: React.ReactChild | undefined = item;
 
                 // if the item is not an image, try to find the first image in the item's children.
                 if ((item as React.ReactElement<{ children: React.ReactChild[] }>).type !== 'img') {
-                    img = (Children.toArray((item as React.ReactElement).props.children) as React.ReactChild[]).find(
-                        (children) => (children as React.ReactElement).type === 'img'
-                    );
+                    img = (img.props.children as React.ReactChild[]).find((children) => {
+                        return (children as React.ReactElement).type === 'img';
+                    });
                 }
-
                 if (!img) {
                     return undefined;
                 }
@@ -610,7 +611,8 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             return [];
         }
 
-        return Children.map(this.props.children, (item, index) => {
+        const filteredChildren = this.props.children.filter(Boolean);
+        return Children.map(filteredChildren, (item, index) => {
             const isSelected = index === this.state.selectedItem;
             const isPrevious = index === this.state.previousItem;
 
@@ -625,13 +627,16 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             }
 
             const slideProps = {
-                ref: (e: HTMLLIElement) => this.setItemsRef(e, index),
+                ref: (e: HTMLLIElement) => {
+                    if (e) {
+                        this.setItemsRef(e, index);
+                    }
+                },
                 key: 'itemKey' + index + (isClone ? 'clone' : ''),
                 className: klass.ITEM(true, index === this.state.selectedItem, index === this.state.previousItem),
                 onClick: this.handleClickItem.bind(this, index, item),
                 style,
             };
-
             return (
                 <li {...slideProps}>
                     {this.props.renderItem(item, {
