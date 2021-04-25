@@ -629,11 +629,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             }
 
             const slideProps = {
-                ref: (e: HTMLLIElement) => {
-                    if (e) {
-                        this.setItemsRef(e, index);
-                    }
-                },
+                ref: (e: HTMLLIElement) => this.setItemsRef(e, index),
                 key: 'itemKey' + index + (isClone ? 'clone' : ''),
                 className: klass.ITEM(true, index === this.state.selectedItem, index === this.state.previousItem),
                 onClick: this.handleClickItem.bind(this, index, item),
