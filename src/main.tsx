@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const condition = true && false;
 import(/* webpackChunkName: "carousel-component" */ './components/Carousel').then(({ default: Carousel }) => {
     const DemoCarousel = () => (
         <Carousel
@@ -12,7 +11,6 @@ import(/* webpackChunkName: "carousel-component" */ './components/Carousel').the
             onChange={(...args) => console.log('onChange', ...args)}
             onClickThumb={(...args) => console.log('onClickThumb', ...args)}
         >
-            {condition && <div>hello</div>}
             <div>
                 <img src="assets/1.jpeg" />
                 <p className="legend">Legend 1</p>

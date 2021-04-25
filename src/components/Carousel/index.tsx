@@ -24,6 +24,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     private timer?: ReturnType<typeof setTimeout>;
     private animationHandler: AnimationHandler;
 
+    public filteredChildren: any = this.props.children?.filter(Boolean);
     static displayName = 'Carousel';
 
     static defaultProps: CarouselProps = {
@@ -67,19 +68,20 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 />
             );
         },
-        renderItem: (item: React.ReactNode) => {
+        renderItem: (item: React.ReactNode | any) => {
             return item;
         },
         renderThumbs: (children: React.ReactChild[]) => {
-            const filteredChildren = children.filter(Boolean);
-            const images = Children.map<React.ReactChild | undefined, React.ReactChild>(filteredChildren, (item) => {
+            const images = Children.map<React.ReactChild | undefined, React.ReactChild>(children, (item) => {
                 let img: React.ReactChild | undefined = item;
-
                 // if the item is not an image, try to find the first image in the item's children.
-                if ((item as React.ReactElement<{ children: React.ReactChild[] }>).type !== 'img') {
-                    img = (img.props.children as React.ReactChild[]).find((children) => {
-                        return (children as React.ReactElement).type === 'img';
-                    });
+                if (item && (item as React.ReactElement<{ children: React.ReactChild[] }>).type !== 'img') {
+                    img = (Children.toArray((item as React.ReactElement).props.children) as React.ReactChild[]).find(
+                        (children) => (children as React.ReactElement).type === 'img'
+                    );
+                    // img = (img.props.children as React.ReactChild[]).find((children) => {
+                    //     return (children as React.ReactElement).type === 'img';
+                    // });
                 }
                 if (!img) {
                     return undefined;
@@ -147,7 +149,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     }
 
     componentDidMount() {
-        if (!this.props.children) {
+        if (!this.filteredChildren) {
             return;
         }
 
@@ -155,7 +157,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     }
 
     componentDidUpdate(prevProps: CarouselProps, prevState: CarouselState) {
-        if (!prevProps.children && this.props.children && !this.state.initialized) {
+        if (!prevProps.children && this.filteredChildren && !this.state.initialized) {
             this.setupCarousel();
         }
 
@@ -213,7 +215,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     setupCarousel() {
         this.bindEvents();
 
-        if (this.state.autoPlay && Children.count(this.props.children) > 1) {
+        if (this.state.autoPlay && Children.count(this.filteredChildren) > 1) {
             this.setupAutoPlay();
         }
 
@@ -293,7 +295,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     }
 
     autoPlay = () => {
-        if (Children.count(this.props.children) <= 1) {
+        if (Children.count(this.filteredChildren) <= 1) {
             return;
         }
 
@@ -390,7 +392,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     };
 
     handleClickItem = (index: number, item: React.ReactNode) => {
-        if (Children.count(this.props.children) === 0) {
+        if (Children.count(this.filteredChildren) === 0) {
             return;
         }
 
@@ -417,7 +419,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
      * @param item React node of the item being changed
      */
     handleOnChange = (index: number, item: React.ReactNode) => {
-        if (Children.count(this.props.children) <= 1) {
+        if (Children.count(this.filteredChildren) <= 1) {
             return;
         }
 
@@ -498,7 +500,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             return;
         }
 
-        const lastPosition = Children.count(this.props.children) - 1;
+        const lastPosition = Children.count(this.filteredChildren) - 1;
 
         if (position < 0) {
             position = this.props.infiniteLoop ? lastPosition : 0;
@@ -567,7 +569,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 this.setState(this.animationHandler(this.props, this.state));
             }
         );
-        this.handleOnChange(state.selectedItem, Children.toArray(this.props.children)[state.selectedItem]);
+        this.handleOnChange(state.selectedItem, Children.toArray(this.filteredChildren)[state.selectedItem]);
     };
 
     getInitialImage = () => {
@@ -607,12 +609,12 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     };
 
     renderItems(isClone?: boolean) {
-        if (!this.props.children) {
+        if (!this.filteredChildren) {
             return [];
         }
 
-        const filteredChildren = this.props.children.filter(Boolean);
-        return Children.map(filteredChildren, (item, index) => {
+        // const filteredChildren = this.filteredChildren.filter(Boolean);
+        const map = Children.map(this.filteredChildren, (item, index) => {
             const isSelected = index === this.state.selectedItem;
             const isPrevious = index === this.state.previousItem;
 
@@ -637,6 +639,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 onClick: this.handleClickItem.bind(this, index, item),
                 style,
             };
+
             return (
                 <li {...slideProps}>
                     {this.props.renderItem(item, {
@@ -646,6 +649,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 </li>
             );
         });
+        return map;
     }
 
     renderControls() {
@@ -673,13 +677,13 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
 
         return (
             <p className="carousel-status">
-                {this.props.statusFormatter(this.state.selectedItem + 1, Children.count(this.props.children))}
+                {this.props.statusFormatter(this.state.selectedItem + 1, Children.count(this.filteredChildren))}
             </p>
         );
     }
 
     renderThumbs() {
-        if (!this.props.showThumbs || !this.props.children || Children.count(this.props.children) === 0) {
+        if (!this.props.showThumbs || !this.filteredChildren || Children.count(this.filteredChildren) === 0) {
             return null;
         }
 
@@ -692,28 +696,28 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 thumbWidth={this.props.thumbWidth}
                 labels={this.props.labels}
             >
-                {this.props.renderThumbs(this.props.children)}
+                {this.props.renderThumbs(this.filteredChildren)}
             </Thumbs>
         );
     }
 
     render() {
-        if (!this.props.children || Children.count(this.props.children) === 0) {
+        if (!this.filteredChildren || Children.count(this.filteredChildren) === 0) {
             return null;
         }
 
-        const isSwipeable = this.props.swipeable && Children.count(this.props.children) > 1;
+        const isSwipeable = this.props.swipeable && Children.count(this.filteredChildren) > 1;
 
         const isHorizontal = this.props.axis === 'horizontal';
 
-        const canShowArrows = this.props.showArrows && Children.count(this.props.children) > 1;
+        const canShowArrows = this.props.showArrows && Children.count(this.filteredChildren) > 1;
 
         // show left arrow?
         const hasPrev = (canShowArrows && (this.state.selectedItem > 0 || this.props.infiniteLoop)) || false;
         // show right arrow
         const hasNext =
             (canShowArrows &&
-                (this.state.selectedItem < Children.count(this.props.children) - 1 || this.props.infiniteLoop)) ||
+                (this.state.selectedItem < Children.count(this.filteredChildren) - 1 || this.props.infiniteLoop)) ||
             false;
 
         const itemsClone = this.renderItems(true);
