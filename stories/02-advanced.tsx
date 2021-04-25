@@ -255,3 +255,33 @@ export const presentationMode = () => (
         </div>
     </Carousel>
 );
+
+export const mixedCarousel = () => {
+    const getVideoThumb = (videoId: string) => ` http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+    // http://i3.ytimg.com/vi/s4evmpyF7Dg/hqdefault.jpg
+    const getVideoId = (url: string) => {
+        return url.substr('https://www.youtube.com/embed/'.length, url.length);
+    };
+
+    const customRenderThumb = (children: any) => {
+        const mappedThumbs: any = [];
+        children.map((item: any, index: number) => {
+            // usually for array of pictures while the non-array variable is the video slide
+            if (item.length) {
+                return item.map((image: any, index: number) => {
+                    mappedThumbs.push(<img key={index} src={image.props.children[0].props.src} />);
+                });
+            }
+            const videoId = getVideoId(item.props.url);
+            mappedThumbs.push(<img key={index} src={getVideoThumb(videoId)} />);
+        });
+        return mappedThumbs;
+    };
+
+    return (
+        <Carousel infiniteLoop renderThumbs={customRenderThumb}>
+            <YoutubeSlide key="video" url={'https://www.youtube.com/embed/AVn-Yjr7kDc'} />
+            {baseChildren.props.children}
+        </Carousel>
+    );
+};
