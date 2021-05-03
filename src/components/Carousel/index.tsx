@@ -298,7 +298,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
 
         this.clearAutoPlay();
 
-        if (!this.state.autoPlay) {
+        if (!this.props.autoPlay) {
             return;
         }
 
