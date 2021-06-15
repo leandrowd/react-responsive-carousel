@@ -26,6 +26,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     static displayName = 'Carousel';
 
     static defaultProps: CarouselProps = {
+        ariaLabel: 'Carousel',
         axis: 'horizontal',
         centerSlidePercentage: 80,
         interval: 3000,
@@ -744,7 +745,12 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             containerStyles.height = this.state.itemSize;
         }
         return (
-            <div className={klass.ROOT(this.props.className)} ref={this.setCarouselWrapperRef} tabIndex={0}>
+            <div
+                aria-label={this.props.ariaLabel}
+                className={klass.ROOT(this.props.className)}
+                ref={this.setCarouselWrapperRef}
+                tabIndex={0}
+            >
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
                     {this.renderControls()}
                     {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
