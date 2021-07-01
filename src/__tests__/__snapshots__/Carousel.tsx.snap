@@ -36,6 +36,46 @@ exports[`Slider Basics Default Props methods renderItem should pass through the 
 </div>
 `;
 
+exports[`Slider Basics Default Props methods renderThumbs should return a list of some customized elements extracted from the children 1`] = `
+Array [
+  <span>
+    <img
+      src="assets/1.jpeg"
+    />
+  </span>,
+  <span>
+    <img
+      src="assets/2.jpeg"
+    />
+  </span>,
+  <span>
+    <img
+      src="assets/3.jpeg"
+    />
+  </span>,
+  <span>
+    <img
+      src="assets/4.jpeg"
+    />
+  </span>,
+  <span>
+    <img
+      src="assets/5.jpeg"
+    />
+  </span>,
+  <span>
+    <img
+      src="assets/6.jpeg"
+    />
+  </span>,
+  <span>
+    <img
+      src="assets/7.jpeg"
+    />
+  </span>,
+]
+`;
+
 exports[`Slider Basics Default Props methods renderThumbs should return a list of images extracted from the children 1`] = `
 Array [
   <img

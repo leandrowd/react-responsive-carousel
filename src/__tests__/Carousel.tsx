@@ -170,6 +170,58 @@ describe('Slider', function() {
                     ).toMatchSnapshot();
                 });
 
+                it('renderThumbs should return a list of some customized elements extracted from the children', () => {
+                    expect(
+                        componentInstance.props.renderThumbs!(
+                            [
+                                <li>
+                                    <span>
+                                        <img src="assets/1.jpeg" key="1" />
+                                    </span>
+                                    <p>Legend 1</p>
+                                </li>,
+                                <li>
+                                    <span>
+                                        <img src="assets/2.jpeg" key="2" />
+                                    </span>
+                                    <p>Legend 2</p>
+                                </li>,
+                                <li>
+                                    <span>
+                                        <img src="assets/3.jpeg" key="3" />
+                                    </span>
+                                    <p>Legend 3</p>
+                                </li>,
+                                <li>
+                                    <span>
+                                        <img src="assets/4.jpeg" key="4" />
+                                    </span>
+                                    <p>Legend 4</p>
+                                </li>,
+                                <li>
+                                    <span>
+                                        <img src="assets/5.jpeg" key="5" />
+                                    </span>
+                                    <p>Legend 5</p>
+                                </li>,
+                                <li>
+                                    <span>
+                                        <img src="assets/6.jpeg" key="6" />
+                                    </span>
+                                    <p>Legend 6</p>
+                                </li>,
+                                <li>
+                                    <span>
+                                        <img src="assets/7.jpeg" key="7" />
+                                    </span>
+                                    <p>Legend 7</p>
+                                </li>,
+                            ],
+                            (itemType: any) => itemType === 'span'
+                        )
+                    ).toMatchSnapshot();
+                });
+
                 it('statusFormatter should return a string', () => {
                     expect(componentInstance.props.statusFormatter!(1, 3)).toEqual('1 of 3');
                 });

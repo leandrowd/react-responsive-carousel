@@ -19,6 +19,8 @@ export type SwipeAnimationHandler = (
 
 export type StopSwipingHandler = (props: CarouselProps, state: CarouselState) => AnimationHandlerResponse;
 
+export type ThumbElementTypeMatcher = (itemType: any) => boolean;
+
 export interface CarouselProps {
     axis: 'horizontal' | 'vertical';
     autoFocus?: boolean;
@@ -52,7 +54,10 @@ export interface CarouselProps {
         label: string
     ) => React.ReactNode;
     renderItem: (item: React.ReactNode, options?: { isSelected: boolean; isPrevious: boolean }) => React.ReactNode;
-    renderThumbs: (children: React.ReactChild[]) => React.ReactChild[];
+    renderThumbs: (
+        children: React.ReactChild[],
+        typeMatcher: undefined | ThumbElementTypeMatcher
+    ) => React.ReactChild[];
     selectedItem: number;
     showArrows: boolean;
     showStatus: boolean;
@@ -63,6 +68,7 @@ export interface CarouselProps {
     swipeable: boolean;
     swipeScrollTolerance: number;
     thumbWidth?: number;
+    thumbElementTypeMatcher: undefined | ThumbElementTypeMatcher;
     transitionTime: number;
     useKeyboardArrows?: boolean;
     verticalSwipe: 'natural' | 'standard';

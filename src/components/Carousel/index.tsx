@@ -6,7 +6,7 @@ import Thumbs from '../Thumbs';
 import getDocument from '../../shims/document';
 import getWindow from '../../shims/window';
 import { noop, defaultStatusFormatter, isKeyboardEvent } from './utils';
-import { AnimationHandler, CarouselProps, CarouselState } from './types';
+import { AnimationHandler, CarouselProps, CarouselState, ThumbElementTypeMatcher } from './types';
 import {
     slideAnimationHandler,
     slideSwipeAnimationHandler,
@@ -69,15 +69,18 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         renderItem: (item: React.ReactNode) => {
             return item;
         },
-        renderThumbs: (children: React.ReactChild[]) => {
+        renderThumbs: (
+            children: React.ReactChild[],
+            typeMatcher: ThumbElementTypeMatcher = (itemType) => itemType === 'img'
+        ) => {
             const images = Children.map<React.ReactChild | undefined, React.ReactChild>(children, (item) => {
                 let img: React.ReactChild | undefined = item;
 
                 // if the item is not an image, try to find the first image in the item's children.
-                if ((item as React.ReactElement<{ children: React.ReactChild[] }>).type !== 'img') {
-                    img = (Children.toArray((item as React.ReactElement).props.children) as React.ReactChild[]).find(
-                        (children) => (children as React.ReactElement).type === 'img'
-                    );
+                if (!typeMatcher((item as React.ReactElement<{ children: React.ReactChild[] }>).type)) {
+                    img = (Children.toArray(
+                        (item as React.ReactElement).props.children
+                    ) as React.ReactChild[]).find((children) => typeMatcher((children as React.ReactElement).type));
                 }
 
                 if (!img) {
@@ -106,6 +109,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         stopOnHover: true,
         swipeScrollTolerance: 5,
         swipeable: true,
+        thumbElementTypeMatcher: undefined,
         transitionTime: 350,
         verticalSwipe: 'standard',
         width: '100%',
@@ -687,7 +691,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 thumbWidth={this.props.thumbWidth}
                 labels={this.props.labels}
             >
-                {this.props.renderThumbs(this.props.children)}
+                {this.props.renderThumbs(this.props.children, this.props.thumbElementTypeMatcher)}
             </Thumbs>
         );
     }
