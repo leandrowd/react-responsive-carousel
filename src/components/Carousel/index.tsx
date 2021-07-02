@@ -749,7 +749,11 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             containerStyles.height = this.state.itemSize;
         }
         return (
-            <div className={klass.ROOT(this.props.className)} ref={this.setCarouselWrapperRef} tabIndex={0}>
+            <div
+                className={klass.ROOT(this.props.className)}
+                ref={this.setCarouselWrapperRef}
+                tabIndex={this.props.useKeyboardArrows ? 0 : undefined}
+            >
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
                     {this.renderControls()}
                     {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
