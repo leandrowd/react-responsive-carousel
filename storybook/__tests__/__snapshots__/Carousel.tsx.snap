@@ -65,7 +65,6 @@ Array [
 exports[`Slider Snapshots center mode 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -159,10 +158,7 @@ exports[`Slider Snapshots center mode 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0,0,0)",
-            "MsTransitionDuration": "350ms",
             "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
             "WebkitTransform": "translate3d(0,0,0)",
@@ -175,7 +171,7 @@ exports[`Slider Snapshots center mode 1`] = `
         }
       >
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
           style={
             Object {
@@ -447,7 +443,6 @@ exports[`Slider Snapshots center mode 1`] = `
 exports[`Slider Snapshots custom class name 1`] = `
 <div
   className="carousel-root my-custom-carousel"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -541,10 +536,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0,0,0)",
-            "MsTransitionDuration": "350ms",
             "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
             "WebkitTransform": "translate3d(0,0,0)",
@@ -557,8 +549,9 @@ exports[`Slider Snapshots custom class name 1`] = `
         }
       >
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -567,6 +560,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -575,6 +569,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -583,6 +578,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -591,6 +587,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -599,6 +596,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -607,6 +605,7 @@ exports[`Slider Snapshots custom class name 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -794,7 +793,6 @@ exports[`Slider Snapshots custom class name 1`] = `
 exports[`Slider Snapshots custom width 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -888,10 +886,7 @@ exports[`Slider Snapshots custom width 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0,0,0)",
-            "MsTransitionDuration": "350ms",
             "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
             "WebkitTransform": "translate3d(0,0,0)",
@@ -904,8 +899,9 @@ exports[`Slider Snapshots custom width 1`] = `
         }
       >
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -914,6 +910,7 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -922,6 +919,7 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -930,6 +928,7 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -938,6 +937,7 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -946,6 +946,7 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -954,6 +955,7 @@ exports[`Slider Snapshots custom width 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -1141,7 +1143,6 @@ exports[`Slider Snapshots custom width 1`] = `
 exports[`Slider Snapshots default 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -1235,10 +1236,7 @@ exports[`Slider Snapshots default 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0,0,0)",
-            "MsTransitionDuration": "350ms",
             "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
             "WebkitTransform": "translate3d(0,0,0)",
@@ -1251,8 +1249,9 @@ exports[`Slider Snapshots default 1`] = `
         }
       >
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -1261,6 +1260,7 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -1269,6 +1269,7 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -1277,6 +1278,7 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -1285,6 +1287,7 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -1293,6 +1296,7 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -1301,6 +1305,7 @@ exports[`Slider Snapshots default 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -1488,7 +1493,6 @@ exports[`Slider Snapshots default 1`] = `
 exports[`Slider Snapshots infinite loop 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -1582,10 +1586,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(-100%,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(-100%,0,0)",
-            "MsTransitionDuration": "350ms",
             "OTransform": "translate3d(-100%,0,0)",
             "OTransitionDuration": "350ms",
             "WebkitTransform": "translate3d(-100%,0,0)",
@@ -1600,14 +1601,16 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
           />
         </li>
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -1616,6 +1619,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -1624,6 +1628,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -1632,6 +1637,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -1640,6 +1646,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -1648,6 +1655,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -1656,14 +1664,16 @@ exports[`Slider Snapshots infinite loop 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
           />
         </li>
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -1851,7 +1861,6 @@ exports[`Slider Snapshots infinite loop 1`] = `
 exports[`Slider Snapshots no arrows 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -1945,10 +1954,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0,0,0)",
-            "MsTransitionDuration": "350ms",
             "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
             "WebkitTransform": "translate3d(0,0,0)",
@@ -1961,8 +1967,9 @@ exports[`Slider Snapshots no arrows 1`] = `
         }
       >
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -1971,6 +1978,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -1979,6 +1987,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -1987,6 +1996,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -1995,6 +2005,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -2003,6 +2014,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -2011,6 +2023,7 @@ exports[`Slider Snapshots no arrows 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -2200,7 +2213,6 @@ exports[`Slider Snapshots no children at mount 1`] = `null`;
 exports[`Slider Snapshots no indicators 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -2227,10 +2239,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0,0,0)",
-            "MsTransitionDuration": "350ms",
             "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
             "WebkitTransform": "translate3d(0,0,0)",
@@ -2243,8 +2252,9 @@ exports[`Slider Snapshots no indicators 1`] = `
         }
       >
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -2253,6 +2263,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -2261,6 +2272,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -2269,6 +2281,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -2277,6 +2290,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -2285,6 +2299,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -2293,6 +2308,7 @@ exports[`Slider Snapshots no indicators 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -2480,7 +2496,6 @@ exports[`Slider Snapshots no indicators 1`] = `
 exports[`Slider Snapshots no indicators 2`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -2574,10 +2589,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0,0,0)",
-            "MsTransitionDuration": "350ms",
             "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
             "WebkitTransform": "translate3d(0,0,0)",
@@ -2590,8 +2602,9 @@ exports[`Slider Snapshots no indicators 2`] = `
         }
       >
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -2600,6 +2613,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -2608,6 +2622,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -2616,6 +2631,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -2624,6 +2640,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -2632,6 +2649,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -2640,6 +2658,7 @@ exports[`Slider Snapshots no indicators 2`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -2822,7 +2841,6 @@ exports[`Slider Snapshots no indicators 2`] = `
 exports[`Slider Snapshots no thumbs 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -2916,10 +2934,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0,0,0)",
-            "MsTransitionDuration": "350ms",
             "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
             "WebkitTransform": "translate3d(0,0,0)",
@@ -2932,8 +2947,9 @@ exports[`Slider Snapshots no thumbs 1`] = `
         }
       >
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -2942,6 +2958,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -2950,6 +2967,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -2958,6 +2976,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -2966,6 +2985,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -2974,6 +2994,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -2982,6 +3003,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -3007,7 +3029,6 @@ exports[`Slider Snapshots no thumbs 1`] = `
 exports[`Slider Snapshots swipeable false 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -3098,10 +3119,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         className="slider animated"
         style={
           Object {
-            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0,0,0)",
-            "MsTransitionDuration": "350ms",
             "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
             "WebkitTransform": "translate3d(0,0,0)",
@@ -3114,8 +3132,9 @@ exports[`Slider Snapshots swipeable false 1`] = `
         }
       >
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -3124,6 +3143,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -3132,6 +3152,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -3140,6 +3161,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -3148,6 +3170,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -3156,6 +3179,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -3164,6 +3188,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
@@ -3351,7 +3376,6 @@ exports[`Slider Snapshots swipeable false 1`] = `
 exports[`Slider Snapshots vertical axis 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -3449,10 +3473,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            "MozTransform": "translate3d(0,0,0)",
             "MozTransitionDuration": "350ms",
-            "MsTransform": "translate3d(0,0,0)",
-            "MsTransitionDuration": "350ms",
             "OTransform": "translate3d(0,0,0)",
             "OTransitionDuration": "350ms",
             "WebkitTransform": "translate3d(0,0,0)",
@@ -3466,8 +3487,9 @@ exports[`Slider Snapshots vertical axis 1`] = `
         }
       >
         <li
-          className="slide selected"
+          className="slide selected previous"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/1.jpeg"
@@ -3476,6 +3498,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/2.jpeg"
@@ -3484,6 +3507,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/3.jpeg"
@@ -3492,6 +3516,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/4.jpeg"
@@ -3500,6 +3525,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/5.jpeg"
@@ -3508,6 +3534,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/6.jpeg"
@@ -3516,6 +3543,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         <li
           className="slide"
           onClick={[Function]}
+          style={Object {}}
         >
           <img
             src="assets/7.jpeg"
