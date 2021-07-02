@@ -21,6 +21,7 @@ export interface Props {
     selectedItem: number;
     thumbWidth: number;
     transitionTime: number;
+    emulateTouch?: boolean;
 }
 
 interface State {
@@ -315,6 +316,7 @@ export default class Thumbs extends Component<Props, State> {
                             onSwipeEnd={this.onSwipeEnd}
                             style={itemListStyles}
                             innerRef={this.setItemsListRef}
+                            allowMouseEvents={this.props.emulateTouch}
                         >
                             {this.renderItems()}
                         </Swipe>
