@@ -26,7 +26,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     static displayName = 'Carousel';
 
     static defaultProps: CarouselProps = {
-        ariaLabel: 'Carousel',
+        ariaLabel: undefined,
         axis: 'horizontal',
         centerSlidePercentage: 80,
         interval: 3000,

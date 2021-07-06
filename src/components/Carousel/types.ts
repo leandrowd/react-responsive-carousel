@@ -20,7 +20,7 @@ export type SwipeAnimationHandler = (
 export type StopSwipingHandler = (props: CarouselProps, state: CarouselState) => AnimationHandlerResponse;
 
 export interface CarouselProps {
-    ariaLabel?: string;
+    ariaLabel?: string | undefined;
     axis: 'horizontal' | 'vertical';
     autoFocus?: boolean;
     autoPlay?: boolean;
