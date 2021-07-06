@@ -65,7 +65,6 @@ Array [
 exports[`Slider Snapshots center mode 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -444,7 +443,6 @@ exports[`Slider Snapshots center mode 1`] = `
 exports[`Slider Snapshots custom class name 1`] = `
 <div
   className="carousel-root my-custom-carousel"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -795,7 +793,6 @@ exports[`Slider Snapshots custom class name 1`] = `
 exports[`Slider Snapshots custom width 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -1146,7 +1143,6 @@ exports[`Slider Snapshots custom width 1`] = `
 exports[`Slider Snapshots default 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -1497,7 +1493,6 @@ exports[`Slider Snapshots default 1`] = `
 exports[`Slider Snapshots infinite loop 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -1866,7 +1861,6 @@ exports[`Slider Snapshots infinite loop 1`] = `
 exports[`Slider Snapshots no arrows 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -2219,7 +2213,6 @@ exports[`Slider Snapshots no children at mount 1`] = `null`;
 exports[`Slider Snapshots no indicators 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -2503,7 +2496,6 @@ exports[`Slider Snapshots no indicators 1`] = `
 exports[`Slider Snapshots no indicators 2`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -2849,7 +2841,6 @@ exports[`Slider Snapshots no indicators 2`] = `
 exports[`Slider Snapshots no thumbs 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -3038,7 +3029,6 @@ exports[`Slider Snapshots no thumbs 1`] = `
 exports[`Slider Snapshots swipeable false 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"
@@ -3386,7 +3376,6 @@ exports[`Slider Snapshots swipeable false 1`] = `
 exports[`Slider Snapshots vertical axis 1`] = `
 <div
   className="carousel-root"
-  tabIndex={0}
 >
   <div
     className="carousel carousel-slider"

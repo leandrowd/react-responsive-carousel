@@ -299,6 +299,10 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
 
         this.clearAutoPlay();
 
+        if (!this.props.autoPlay) {
+            return;
+        }
+
         this.timer = setTimeout(() => {
             this.increment();
         }, this.props.interval);
@@ -687,6 +691,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 transitionTime={this.props.transitionTime}
                 thumbWidth={this.props.thumbWidth}
                 labels={this.props.labels}
+                emulateTouch={this.props.emulateTouch}
             >
                 {this.props.renderThumbs(this.props.children)}
             </Thumbs>
@@ -749,7 +754,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 aria-label={this.props.ariaLabel}
                 className={klass.ROOT(this.props.className)}
                 ref={this.setCarouselWrapperRef}
-                tabIndex={0}
+                tabIndex={this.props.useKeyboardArrows ? 0 : undefined}
             >
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
                     {this.renderControls()}
