@@ -529,6 +529,12 @@ describe('Slider', function() {
         expect(component.find('.thumbs-wrapper').length).toBe(1);
     });
 
+    it('should insert aria-label if provided', () => {
+        const ariaLabel = 'Carousel title';
+        renderDefaultComponent({ ariaLabel });
+        expect(component.find(`[aria-label="${ariaLabel}"]`)).toBeTruthy();
+    });
+
     describe('Moving', () => {
         beforeEach(() => {
             componentInstance.showArrows = true;
