@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Carousel } from '../src/index';
 
-import { withKnobs, boolean, number } from '@storybook/addon-knobs';
+import { withKnobs, boolean, number, text } from '@storybook/addon-knobs';
 
 // carousel styles
 import '../src/main.scss';
@@ -40,6 +40,7 @@ const getConfigurableProps = () => ({
     interval: number('interval', 2000, {}, valuesGroupId),
     transitionTime: number('transitionTime', 500, {}, valuesGroupId),
     swipeScrollTolerance: number('swipeScrollTolerance', 5, {}, valuesGroupId),
+    ariaLabel: text('ariaLabel', undefined),
 });
 
 export default {
