@@ -450,9 +450,8 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         this.props.onSwipeEnd(event);
 
         this.clearAutoPlay();
-        console.log('i think state is false');
+
         if (this.state.autoPlay) {
-            console.log('i think state is true');
             this.autoPlay();
         }
     };
