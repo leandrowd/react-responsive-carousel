@@ -438,7 +438,6 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             swiping: true,
         });
         this.props.onSwipeStart(event);
-        this.clearAutoPlay();
     };
 
     onSwipeEnd = (event: React.TouchEvent) => {
