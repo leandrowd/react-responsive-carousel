@@ -968,7 +968,7 @@ describe('Slider', function() {
 
             it('should stop autoplay', () => {
                 componentInstance.clearAutoPlay = jest.fn();
-                componentInstance.onSwipeStart();
+                componentInstance.onSwipeEnd();
                 expect(componentInstance.clearAutoPlay).toHaveBeenCalledTimes(1);
             });
 
