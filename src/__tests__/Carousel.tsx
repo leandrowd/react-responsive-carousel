@@ -910,12 +910,6 @@ describe('Slider', function() {
                 expect(componentInstance.state.swiping).toBe(true);
             });
 
-            it('should stop autoplay', () => {
-                componentInstance.clearAutoPlay = jest.fn();
-                componentInstance.onSwipeStart();
-                expect(componentInstance.clearAutoPlay).toHaveBeenCalledTimes(1);
-            });
-
             it('should call onSwipeStart callback', () => {
                 var onSwipeStartFunction = jest.fn();
                 renderDefaultComponent({ onSwipeStart: onSwipeStartFunction });
@@ -970,6 +964,12 @@ describe('Slider', function() {
             it('should set swiping to false', () => {
                 componentInstance.onSwipeEnd();
                 expect(componentInstance.state.swiping).toBe(false);
+            });
+
+            it('should stop autoplay', () => {
+                componentInstance.clearAutoPlay = jest.fn();
+                componentInstance.onSwipeStart();
+                expect(componentInstance.clearAutoPlay).toHaveBeenCalledTimes(1);
             });
 
             it('should not start autoplay again', () => {
