@@ -438,7 +438,6 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             swiping: true,
         });
         this.props.onSwipeStart(event);
-        this.clearAutoPlay();
     };
 
     onSwipeEnd = (event: React.TouchEvent) => {
@@ -448,6 +447,8 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             swipeMovementStarted: false,
         });
         this.props.onSwipeEnd(event);
+
+        this.clearAutoPlay();
 
         if (this.state.autoPlay) {
             this.autoPlay();
