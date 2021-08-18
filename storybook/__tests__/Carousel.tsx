@@ -529,6 +529,12 @@ describe('Slider', function() {
         expect(component.find('.thumbs-wrapper').length).toBe(1);
     });
 
+    it('should insert aria-label if provided', () => {
+        const ariaLabel = 'Carousel title';
+        renderDefaultComponent({ ariaLabel });
+        expect(component.find(`[aria-label="${ariaLabel}"]`)).toBeTruthy();
+    });
+
     describe('Moving', () => {
         beforeEach(() => {
             componentInstance.showArrows = true;
@@ -910,12 +916,6 @@ describe('Slider', function() {
                 expect(componentInstance.state.swiping).toBe(true);
             });
 
-            it('should stop autoplay', () => {
-                componentInstance.clearAutoPlay = jest.fn();
-                componentInstance.onSwipeStart();
-                expect(componentInstance.clearAutoPlay).toHaveBeenCalledTimes(1);
-            });
-
             it('should call onSwipeStart callback', () => {
                 var onSwipeStartFunction = jest.fn();
                 renderDefaultComponent({ onSwipeStart: onSwipeStartFunction });
@@ -970,6 +970,12 @@ describe('Slider', function() {
             it('should set swiping to false', () => {
                 componentInstance.onSwipeEnd();
                 expect(componentInstance.state.swiping).toBe(false);
+            });
+
+            it('should stop autoplay', () => {
+                componentInstance.clearAutoPlay = jest.fn();
+                componentInstance.onSwipeEnd();
+                expect(componentInstance.clearAutoPlay).toHaveBeenCalledTimes(1);
             });
 
             it('should not start autoplay again', () => {
