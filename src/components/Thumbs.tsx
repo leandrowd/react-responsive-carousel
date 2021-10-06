@@ -70,16 +70,14 @@ export default class Thumbs extends Component<Props, State> {
         this.setupThumbs();
     }
 
-    UNSAFE_componentWillReceiveProps(props: Props) {
-        if (props.selectedItem !== this.state.selectedItem) {
+    componentDidUpdate(prevProps: Props) {
+        if (this.props.selectedItem !== this.state.selectedItem) {
             this.setState({
-                selectedItem: props.selectedItem,
-                firstItem: this.getFirstItem(props.selectedItem),
+                selectedItem: this.props.selectedItem,
+                firstItem: this.getFirstItem(this.props.selectedItem),
             });
         }
-    }
 
-    componentDidUpdate(prevProps: Props) {
         if (this.props.children === prevProps.children) {
             return;
         }
