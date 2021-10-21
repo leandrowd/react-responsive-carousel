@@ -12,7 +12,7 @@
     "dependencies": {
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
-        "react-responsive-carousel": "^3.2.20",
+        "react-responsive-carousel": "^3.2.22",
         "react-scripts": "1.1.0"
     },
     "devDependencies": {},
