@@ -630,6 +630,10 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 style = { ...style, minWidth: this.props.centerSlidePercentage + '%' };
             }
 
+            if (this.state.swiping && this.state.swipeMovementStarted) {
+                style = { ...style, pointerEvents: 'none' };
+            }
+
             const slideProps = {
                 ref: (e: HTMLLIElement) => this.setItemsRef(e, index),
                 key: 'itemKey' + index + (isClone ? 'clone' : ''),
