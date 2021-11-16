@@ -18,7 +18,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     private thumbsRef?: Thumbs;
     private carouselWrapperRef?: HTMLDivElement;
     // @ts-ignore
-    private listRef?: HTMLElement | HTMLUListElement;
+    private itemWrapperRef?: HTMLElement | HTMLDivElement;
     private itemsRef?: HTMLElement[];
     private timer?: ReturnType<typeof setTimeout>;
     private animationHandler: AnimationHandler;
@@ -199,8 +199,8 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         this.carouselWrapperRef = node;
     };
 
-    setListRef = (node: HTMLElement | HTMLUListElement) => {
-        this.listRef = node;
+    setItemWrapperRef = (node: HTMLElement | HTMLDivElement) => {
+        this.itemWrapperRef = node;
     };
 
     setItemsRef = (node: HTMLElement, index: number) => {
@@ -635,7 +635,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             }
 
             const slideProps = {
-                ref: (e: HTMLLIElement) => this.setItemsRef(e, index),
+                ref: (e: HTMLDivElement) => this.setItemsRef(e, index),
                 key: 'itemKey' + index + (isClone ? 'clone' : ''),
                 className: klass.ITEM(true, index === this.state.selectedItem, index === this.state.previousItem),
                 onClick: this.handleClickItem.bind(this, index, item),
@@ -643,12 +643,12 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             };
 
             return (
-                <li {...slideProps}>
+                <div {...slideProps}>
                     {this.props.renderItem(item, {
                         isSelected: index === this.state.selectedItem,
                         isPrevious: index === this.state.previousItem,
                     })}
-                </li>
+                </div>
             );
         });
     }
@@ -767,8 +767,8 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles}>
                         {isSwipeable ? (
                             <Swipe
-                                tagName="ul"
-                                innerRef={this.setListRef}
+                                tagName="div"
+                                innerRef={this.setItemWrapperRef}
                                 {...swiperProps}
                                 allowMouseEvents={this.props.emulateTouch}
                             >
@@ -777,15 +777,15 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                                 {this.props.infiniteLoop && firstClone}
                             </Swipe>
                         ) : (
-                            <ul
+                            <div
                                 className={klass.SLIDER(true, this.state.swiping)}
-                                ref={(node: HTMLUListElement) => this.setListRef(node)}
+                                ref={(node: HTMLDivElement) => this.setItemWrapperRef(node)}
                                 style={this.state.itemListStyle || {}}
                             >
                                 {this.props.infiniteLoop && lastClone}
                                 {this.renderItems()}
                                 {this.props.infiniteLoop && firstClone}
-                            </ul>
+                            </div>
                         )}
                     </div>
                     {this.props.renderArrowNext(this.onClickNext, hasNext, this.props.labels.rightArrow)}

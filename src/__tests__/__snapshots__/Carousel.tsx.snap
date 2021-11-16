@@ -151,7 +151,7 @@ exports[`Slider Snapshots center mode 1`] = `
       className="slider-wrapper axis-horizontal"
       style={Object {}}
     >
-      <ul
+      <div
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
@@ -170,7 +170,7 @@ exports[`Slider Snapshots center mode 1`] = `
           }
         }
       >
-        <li
+        <div
           className="slide selected previous"
           onClick={[Function]}
           style={
@@ -182,8 +182,8 @@ exports[`Slider Snapshots center mode 1`] = `
           <img
             src="assets/1.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={
@@ -195,8 +195,8 @@ exports[`Slider Snapshots center mode 1`] = `
           <img
             src="assets/2.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={
@@ -208,8 +208,8 @@ exports[`Slider Snapshots center mode 1`] = `
           <img
             src="assets/3.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={
@@ -221,8 +221,8 @@ exports[`Slider Snapshots center mode 1`] = `
           <img
             src="assets/4.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={
@@ -234,8 +234,8 @@ exports[`Slider Snapshots center mode 1`] = `
           <img
             src="assets/5.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={
@@ -247,8 +247,8 @@ exports[`Slider Snapshots center mode 1`] = `
           <img
             src="assets/6.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={
@@ -260,8 +260,8 @@ exports[`Slider Snapshots center mode 1`] = `
           <img
             src="assets/7.jpeg"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
     <button
       aria-label="next slide / item"
@@ -529,7 +529,7 @@ exports[`Slider Snapshots custom class name 1`] = `
       className="slider-wrapper axis-horizontal"
       style={Object {}}
     >
-      <ul
+      <div
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
@@ -548,7 +548,7 @@ exports[`Slider Snapshots custom class name 1`] = `
           }
         }
       >
-        <li
+        <div
           className="slide selected previous"
           onClick={[Function]}
           style={Object {}}
@@ -556,8 +556,8 @@ exports[`Slider Snapshots custom class name 1`] = `
           <img
             src="assets/1.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -565,8 +565,8 @@ exports[`Slider Snapshots custom class name 1`] = `
           <img
             src="assets/2.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -574,8 +574,8 @@ exports[`Slider Snapshots custom class name 1`] = `
           <img
             src="assets/3.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -583,8 +583,8 @@ exports[`Slider Snapshots custom class name 1`] = `
           <img
             src="assets/4.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -592,8 +592,8 @@ exports[`Slider Snapshots custom class name 1`] = `
           <img
             src="assets/5.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -601,8 +601,8 @@ exports[`Slider Snapshots custom class name 1`] = `
           <img
             src="assets/6.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -610,8 +610,8 @@ exports[`Slider Snapshots custom class name 1`] = `
           <img
             src="assets/7.jpeg"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
     <button
       aria-label="next slide / item"
@@ -879,7 +879,7 @@ exports[`Slider Snapshots custom width 1`] = `
       className="slider-wrapper axis-horizontal"
       style={Object {}}
     >
-      <ul
+      <div
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
@@ -898,7 +898,7 @@ exports[`Slider Snapshots custom width 1`] = `
           }
         }
       >
-        <li
+        <div
           className="slide selected previous"
           onClick={[Function]}
           style={Object {}}
@@ -906,8 +906,8 @@ exports[`Slider Snapshots custom width 1`] = `
           <img
             src="assets/1.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -915,8 +915,8 @@ exports[`Slider Snapshots custom width 1`] = `
           <img
             src="assets/2.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -924,8 +924,8 @@ exports[`Slider Snapshots custom width 1`] = `
           <img
             src="assets/3.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -933,8 +933,8 @@ exports[`Slider Snapshots custom width 1`] = `
           <img
             src="assets/4.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -942,8 +942,8 @@ exports[`Slider Snapshots custom width 1`] = `
           <img
             src="assets/5.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -951,8 +951,8 @@ exports[`Slider Snapshots custom width 1`] = `
           <img
             src="assets/6.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -960,8 +960,8 @@ exports[`Slider Snapshots custom width 1`] = `
           <img
             src="assets/7.jpeg"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
     <button
       aria-label="next slide / item"
@@ -1229,7 +1229,7 @@ exports[`Slider Snapshots default 1`] = `
       className="slider-wrapper axis-horizontal"
       style={Object {}}
     >
-      <ul
+      <div
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
@@ -1248,7 +1248,7 @@ exports[`Slider Snapshots default 1`] = `
           }
         }
       >
-        <li
+        <div
           className="slide selected previous"
           onClick={[Function]}
           style={Object {}}
@@ -1256,8 +1256,8 @@ exports[`Slider Snapshots default 1`] = `
           <img
             src="assets/1.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1265,8 +1265,8 @@ exports[`Slider Snapshots default 1`] = `
           <img
             src="assets/2.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1274,8 +1274,8 @@ exports[`Slider Snapshots default 1`] = `
           <img
             src="assets/3.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1283,8 +1283,8 @@ exports[`Slider Snapshots default 1`] = `
           <img
             src="assets/4.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1292,8 +1292,8 @@ exports[`Slider Snapshots default 1`] = `
           <img
             src="assets/5.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1301,8 +1301,8 @@ exports[`Slider Snapshots default 1`] = `
           <img
             src="assets/6.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1310,8 +1310,8 @@ exports[`Slider Snapshots default 1`] = `
           <img
             src="assets/7.jpeg"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
     <button
       aria-label="next slide / item"
@@ -1579,7 +1579,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
       className="slider-wrapper axis-horizontal"
       style={Object {}}
     >
-      <ul
+      <div
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
@@ -1598,7 +1598,7 @@ exports[`Slider Snapshots infinite loop 1`] = `
           }
         }
       >
-        <li
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1606,8 +1606,8 @@ exports[`Slider Snapshots infinite loop 1`] = `
           <img
             src="assets/7.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide selected previous"
           onClick={[Function]}
           style={Object {}}
@@ -1615,8 +1615,8 @@ exports[`Slider Snapshots infinite loop 1`] = `
           <img
             src="assets/1.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1624,8 +1624,8 @@ exports[`Slider Snapshots infinite loop 1`] = `
           <img
             src="assets/2.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1633,8 +1633,8 @@ exports[`Slider Snapshots infinite loop 1`] = `
           <img
             src="assets/3.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1642,8 +1642,8 @@ exports[`Slider Snapshots infinite loop 1`] = `
           <img
             src="assets/4.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1651,8 +1651,8 @@ exports[`Slider Snapshots infinite loop 1`] = `
           <img
             src="assets/5.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1660,8 +1660,8 @@ exports[`Slider Snapshots infinite loop 1`] = `
           <img
             src="assets/6.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1669,8 +1669,8 @@ exports[`Slider Snapshots infinite loop 1`] = `
           <img
             src="assets/7.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide selected previous"
           onClick={[Function]}
           style={Object {}}
@@ -1678,8 +1678,8 @@ exports[`Slider Snapshots infinite loop 1`] = `
           <img
             src="assets/1.jpeg"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
     <button
       aria-label="next slide / item"
@@ -1947,7 +1947,7 @@ exports[`Slider Snapshots no arrows 1`] = `
       className="slider-wrapper axis-horizontal"
       style={Object {}}
     >
-      <ul
+      <div
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
@@ -1966,7 +1966,7 @@ exports[`Slider Snapshots no arrows 1`] = `
           }
         }
       >
-        <li
+        <div
           className="slide selected previous"
           onClick={[Function]}
           style={Object {}}
@@ -1974,8 +1974,8 @@ exports[`Slider Snapshots no arrows 1`] = `
           <img
             src="assets/1.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1983,8 +1983,8 @@ exports[`Slider Snapshots no arrows 1`] = `
           <img
             src="assets/2.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -1992,8 +1992,8 @@ exports[`Slider Snapshots no arrows 1`] = `
           <img
             src="assets/3.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2001,8 +2001,8 @@ exports[`Slider Snapshots no arrows 1`] = `
           <img
             src="assets/4.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2010,8 +2010,8 @@ exports[`Slider Snapshots no arrows 1`] = `
           <img
             src="assets/5.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2019,8 +2019,8 @@ exports[`Slider Snapshots no arrows 1`] = `
           <img
             src="assets/6.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2028,8 +2028,8 @@ exports[`Slider Snapshots no arrows 1`] = `
           <img
             src="assets/7.jpeg"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
     <button
       aria-label="next slide / item"
@@ -2232,7 +2232,7 @@ exports[`Slider Snapshots no indicators 1`] = `
       className="slider-wrapper axis-horizontal"
       style={Object {}}
     >
-      <ul
+      <div
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
@@ -2251,7 +2251,7 @@ exports[`Slider Snapshots no indicators 1`] = `
           }
         }
       >
-        <li
+        <div
           className="slide selected previous"
           onClick={[Function]}
           style={Object {}}
@@ -2259,8 +2259,8 @@ exports[`Slider Snapshots no indicators 1`] = `
           <img
             src="assets/1.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2268,8 +2268,8 @@ exports[`Slider Snapshots no indicators 1`] = `
           <img
             src="assets/2.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2277,8 +2277,8 @@ exports[`Slider Snapshots no indicators 1`] = `
           <img
             src="assets/3.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2286,8 +2286,8 @@ exports[`Slider Snapshots no indicators 1`] = `
           <img
             src="assets/4.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2295,8 +2295,8 @@ exports[`Slider Snapshots no indicators 1`] = `
           <img
             src="assets/5.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2304,8 +2304,8 @@ exports[`Slider Snapshots no indicators 1`] = `
           <img
             src="assets/6.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2313,8 +2313,8 @@ exports[`Slider Snapshots no indicators 1`] = `
           <img
             src="assets/7.jpeg"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
     <button
       aria-label="next slide / item"
@@ -2582,7 +2582,7 @@ exports[`Slider Snapshots no indicators 2`] = `
       className="slider-wrapper axis-horizontal"
       style={Object {}}
     >
-      <ul
+      <div
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
@@ -2601,7 +2601,7 @@ exports[`Slider Snapshots no indicators 2`] = `
           }
         }
       >
-        <li
+        <div
           className="slide selected previous"
           onClick={[Function]}
           style={Object {}}
@@ -2609,8 +2609,8 @@ exports[`Slider Snapshots no indicators 2`] = `
           <img
             src="assets/1.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2618,8 +2618,8 @@ exports[`Slider Snapshots no indicators 2`] = `
           <img
             src="assets/2.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2627,8 +2627,8 @@ exports[`Slider Snapshots no indicators 2`] = `
           <img
             src="assets/3.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2636,8 +2636,8 @@ exports[`Slider Snapshots no indicators 2`] = `
           <img
             src="assets/4.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2645,8 +2645,8 @@ exports[`Slider Snapshots no indicators 2`] = `
           <img
             src="assets/5.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2654,8 +2654,8 @@ exports[`Slider Snapshots no indicators 2`] = `
           <img
             src="assets/6.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2663,8 +2663,8 @@ exports[`Slider Snapshots no indicators 2`] = `
           <img
             src="assets/7.jpeg"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
     <button
       aria-label="next slide / item"
@@ -2927,7 +2927,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
       className="slider-wrapper axis-horizontal"
       style={Object {}}
     >
-      <ul
+      <div
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
@@ -2946,7 +2946,7 @@ exports[`Slider Snapshots no thumbs 1`] = `
           }
         }
       >
-        <li
+        <div
           className="slide selected previous"
           onClick={[Function]}
           style={Object {}}
@@ -2954,8 +2954,8 @@ exports[`Slider Snapshots no thumbs 1`] = `
           <img
             src="assets/1.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2963,8 +2963,8 @@ exports[`Slider Snapshots no thumbs 1`] = `
           <img
             src="assets/2.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2972,8 +2972,8 @@ exports[`Slider Snapshots no thumbs 1`] = `
           <img
             src="assets/3.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2981,8 +2981,8 @@ exports[`Slider Snapshots no thumbs 1`] = `
           <img
             src="assets/4.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2990,8 +2990,8 @@ exports[`Slider Snapshots no thumbs 1`] = `
           <img
             src="assets/5.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -2999,8 +2999,8 @@ exports[`Slider Snapshots no thumbs 1`] = `
           <img
             src="assets/6.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3008,8 +3008,8 @@ exports[`Slider Snapshots no thumbs 1`] = `
           <img
             src="assets/7.jpeg"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
     <button
       aria-label="next slide / item"
@@ -3115,7 +3115,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
       className="slider-wrapper axis-horizontal"
       style={Object {}}
     >
-      <ul
+      <div
         className="slider animated"
         style={
           Object {
@@ -3131,7 +3131,7 @@ exports[`Slider Snapshots swipeable false 1`] = `
           }
         }
       >
-        <li
+        <div
           className="slide selected previous"
           onClick={[Function]}
           style={Object {}}
@@ -3139,8 +3139,8 @@ exports[`Slider Snapshots swipeable false 1`] = `
           <img
             src="assets/1.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3148,8 +3148,8 @@ exports[`Slider Snapshots swipeable false 1`] = `
           <img
             src="assets/2.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3157,8 +3157,8 @@ exports[`Slider Snapshots swipeable false 1`] = `
           <img
             src="assets/3.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3166,8 +3166,8 @@ exports[`Slider Snapshots swipeable false 1`] = `
           <img
             src="assets/4.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3175,8 +3175,8 @@ exports[`Slider Snapshots swipeable false 1`] = `
           <img
             src="assets/5.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3184,8 +3184,8 @@ exports[`Slider Snapshots swipeable false 1`] = `
           <img
             src="assets/6.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3193,8 +3193,8 @@ exports[`Slider Snapshots swipeable false 1`] = `
           <img
             src="assets/7.jpeg"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
     <button
       aria-label="next slide / item"
@@ -3466,7 +3466,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
         }
       }
     >
-      <ul
+      <div
         className="slider animated"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
@@ -3486,7 +3486,7 @@ exports[`Slider Snapshots vertical axis 1`] = `
           }
         }
       >
-        <li
+        <div
           className="slide selected previous"
           onClick={[Function]}
           style={Object {}}
@@ -3494,8 +3494,8 @@ exports[`Slider Snapshots vertical axis 1`] = `
           <img
             src="assets/1.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3503,8 +3503,8 @@ exports[`Slider Snapshots vertical axis 1`] = `
           <img
             src="assets/2.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3512,8 +3512,8 @@ exports[`Slider Snapshots vertical axis 1`] = `
           <img
             src="assets/3.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3521,8 +3521,8 @@ exports[`Slider Snapshots vertical axis 1`] = `
           <img
             src="assets/4.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3530,8 +3530,8 @@ exports[`Slider Snapshots vertical axis 1`] = `
           <img
             src="assets/5.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3539,8 +3539,8 @@ exports[`Slider Snapshots vertical axis 1`] = `
           <img
             src="assets/6.jpeg"
           />
-        </li>
-        <li
+        </div>
+        <div
           className="slide"
           onClick={[Function]}
           style={Object {}}
@@ -3548,8 +3548,8 @@ exports[`Slider Snapshots vertical axis 1`] = `
           <img
             src="assets/7.jpeg"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
     <button
       aria-label="next slide / item"
