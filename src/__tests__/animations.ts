@@ -18,8 +18,10 @@ describe('Default Animations', () => {
         props = Carousel.defaultProps;
         state = {
             initialized: false,
-            previousItem: 0,
+            previousItems: [0],
+            selectedItems: [1],
             selectedItem: 1,
+            centerSlidePercentage: 100,
             hasMount: false,
             isMouseEntered: false,
             autoPlay: true,

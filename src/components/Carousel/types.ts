@@ -37,6 +37,8 @@ export interface CarouselProps {
         rightArrow: string;
         item: string;
     };
+    numItemsDisplayed: number;
+    numItemsToScroll: number;
     onClickItem: (index: number, item: React.ReactNode) => void;
     onClickThumb: (index: number, item: React.ReactNode) => void;
     onChange: (index: number, item: React.ReactNode) => void;
@@ -55,6 +57,7 @@ export interface CarouselProps {
     renderItem: (item: React.ReactNode, options?: { isSelected: boolean; isPrevious: boolean }) => React.ReactNode;
     renderThumbs: (children: React.ReactChild[]) => React.ReactChild[];
     selectedItem: number;
+    selectedItems: number[];
     showArrows: boolean;
     showStatus: boolean;
     showIndicators: boolean;
@@ -76,11 +79,13 @@ export interface CarouselProps {
 export interface CarouselState {
     autoPlay?: boolean;
     cancelClick: boolean;
+    centerSlidePercentage: number;
     hasMount: boolean;
     initialized: boolean;
     isMouseEntered: boolean;
     itemSize: number;
-    previousItem: number;
+    previousItems: number[];
+    selectedItems: number[];
     selectedItem: number;
     swiping?: boolean;
     swipeMovementStarted: boolean;

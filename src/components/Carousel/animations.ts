@@ -10,33 +10,39 @@ import { AnimationHandler, AnimationHandlerResponse, SwipeAnimationHandler, Stop
  */
 export const slideAnimationHandler: AnimationHandler = (props, state): AnimationHandlerResponse => {
     const returnStyles: AnimationHandlerResponse = {};
-    const { selectedItem } = state;
-    const previousItem = selectedItem;
+    const { selectedItems } = state;
+    const previousItems = selectedItems;
     const lastPosition = Children.count(props.children) - 1;
-    const needClonedSlide = props.infiniteLoop && (selectedItem < 0 || selectedItem > lastPosition);
+    const needClonedSlide =
+        props.infiniteLoop && (selectedItems[0] < 0 || selectedItems[selectedItems.length - 1] > lastPosition);
 
     // Handle list position if it needs a clone
     if (needClonedSlide) {
-        if (previousItem < 0) {
+        if (previousItems[0] < 0) {
             if (props.centerMode && props.centerSlidePercentage && props.axis === 'horizontal') {
                 returnStyles.itemListStyle = setPosition(
                     -(lastPosition + 2) * props.centerSlidePercentage - (100 - props.centerSlidePercentage) / 2,
-                    props.axis
+                    props.axis,
+                    state.selectedItems.length
                 );
             } else {
-                returnStyles.itemListStyle = setPosition(-(lastPosition + 2) * 100, props.axis);
+                returnStyles.itemListStyle = setPosition(
+                    -(lastPosition + 2) * 100,
+                    props.axis,
+                    state.selectedItems.length
+                );
             }
-        } else if (previousItem > lastPosition) {
-            returnStyles.itemListStyle = setPosition(0, props.axis);
+        } else if (previousItems[previousItems.length - 1] > lastPosition) {
+            returnStyles.itemListStyle = setPosition(0, props.axis, state.selectedItems.length);
         }
 
         return returnStyles;
     }
 
-    const currentPosition = getPosition(selectedItem, props);
+    const currentPosition = getPosition(selectedItems[0], props);
 
     // if 3d is available, let's take advantage of the performance of transform
-    const transformProp = CSSTranslate(currentPosition, '%', props.axis);
+    const transformProp = CSSTranslate(currentPosition, '%', props.axis, selectedItems.length);
 
     const transitionTime = props.transitionTime + 'ms';
 
@@ -80,7 +86,7 @@ export const slideSwipeAnimationHandler: SwipeAnimationHandler = (
 
     const initialBoundry = 0;
 
-    const currentPosition = getPosition(state.selectedItem, props);
+    const currentPosition = getPosition(state.selectedItems[0], props);
     const finalBoundry = props.infiniteLoop
         ? getPosition(childrenLength - 1, props) - 100
         : getPosition(childrenLength - 1, props);
@@ -104,9 +110,9 @@ export const slideSwipeAnimationHandler: SwipeAnimationHandler = (
     if (props.infiniteLoop && hasMoved) {
         // When allowing infinite loop, if we slide left from position 0 we reveal the cloned last slide that appears before it
         // if we slide even further we need to jump to other side so it can continue - and vice versa for the last slide
-        if (state.selectedItem === 0 && position > -100) {
+        if (state.selectedItems[0] === 0 && position > -100) {
             position -= childrenLength * 100;
-        } else if (state.selectedItem === childrenLength - 1 && position < -childrenLength * 100) {
+        } else if (state.selectedItems[0] === childrenLength - 1 && position < -childrenLength * 100) {
             position += childrenLength * 100;
         }
     }
@@ -116,7 +122,7 @@ export const slideSwipeAnimationHandler: SwipeAnimationHandler = (
             setState({ swipeMovementStarted: true });
         }
 
-        returnStyles.itemListStyle = setPosition(position, props.axis);
+        returnStyles.itemListStyle = setPosition(position, props.axis, state.selectedItems.length);
     }
 
     //allows scroll if the swipe was within the tolerance
@@ -134,8 +140,8 @@ export const slideSwipeAnimationHandler: SwipeAnimationHandler = (
  * @param state
  */
 export const slideStopSwipingHandler: StopSwipingHandler = (props, state): AnimationHandlerResponse => {
-    const currentPosition = getPosition(state.selectedItem, props);
-    const itemListStyle = setPosition(currentPosition, props.axis);
+    const currentPosition = getPosition(state.selectedItems[0], props);
+    const itemListStyle = setPosition(currentPosition, props.axis, state.selectedItems.length);
 
     return {
         itemListStyle,

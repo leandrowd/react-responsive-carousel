@@ -184,7 +184,7 @@ describe('Slider', function() {
 
             Object.entries(props).forEach((key, value) => {
                 it(`should have ${key} as ${value}`, () => {
-                    expect(component.state('selectedItem')).toBe(0);
+                    expect(component.state('selectedItems')).toBe([0]);
                     expect(component.state('hasMount')).toBe(false);
                 });
             });
@@ -497,7 +497,7 @@ describe('Slider', function() {
 
         it('should call selectItem sending selectedItem as 1', () => {
             expect(componentInstance.selectItem.mock.calls[0][0]).toEqual({
-                selectedItem: 1,
+                selectedItems: [1],
             });
         });
     });
