@@ -277,4 +277,15 @@
             opacity: 1;
         }
     }
+    .thumb .privateImage {
+	display: block !important;
+    width: 40%;
+    top: 50%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+ul.thumbs.animated {
+	position: relative;
+}
 }
