@@ -100,6 +100,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         },
         statusFormatter: defaultStatusFormatter,
         selectedItem: 0,
+        selectedStyle: {},
         showArrows: true,
         showIndicators: true,
         showStatus: true,
@@ -131,7 +132,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             itemSize: 1,
             itemListStyle: {},
             slideStyle: {},
-            selectedStyle: {},
+            selectedStyle: props.selectedStyle,
             prevStyle: {},
         };
 
