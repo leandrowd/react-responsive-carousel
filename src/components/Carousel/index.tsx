@@ -762,7 +762,6 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 tabIndex={this.props.useKeyboardArrows ? 0 : undefined}
             >
                 <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
-                    {this.renderControls()}
                     {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles}>
                         {isSwipeable ? (
@@ -789,6 +788,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                         )}
                     </div>
                     {this.props.renderArrowNext(this.onClickNext, hasNext, this.props.labels.rightArrow)}
+                    {this.renderControls()}
                     {this.renderStatus()}
                 </div>
                 {this.renderThumbs()}
