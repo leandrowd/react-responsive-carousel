@@ -1,6 +1,6 @@
 {
     "name": "react-responsive-carousel",
-    "version": "3.2.23",
+    "version": "3.2.22",
     "description": "React Responsive Carousel",
     "author": {
         "name": "Leandro Augusto Lemos",
@@ -32,7 +32,7 @@
     "scripts": {
         "start": "parcel src/index.html src/assets/**/*",
         "storybook": "start-storybook -p 9001 -s ./src -c .storybook",
-        "changelog": "auto-changelog --ignore-commit-pattern=\"(Merge pull request|Merge branch|Updating changelog|Prepare for publishing)\"",
+        "changelog": "auto-changelog --ignore-commit-pattern=\"(Merge pull request|Merge branch|Updating changelog|Prepare for publishing)\" --breaking-pattern \"BREAKING CHANGE:\"",
         "update-codesandbox": "cd codesandbox/default && yarn add react-responsive-carousel@latest",
         "format": "prettier \"**/*.{js,ts,tsx,json}\"",
         "format:check": "yarn format --check",
