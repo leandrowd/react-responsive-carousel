@@ -43,7 +43,6 @@ export const getPosition = (index: number, props: CarouselProps): number => {
 /**
  * Sets the 'position' transform for sliding animations
  * @param position
- * @param forceReflow
  */
 export const setPosition = (position: number, axis: 'horizontal' | 'vertical'): React.CSSProperties => {
     const cssTranslated = CSSTranslate(position, '%', axis);
