@@ -70,23 +70,19 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         renderItem: (item: React.ReactNode) => {
             return item;
         },
-        renderThumbs: (children: React.ReactChild[]) => {
-            const images = Children.map<React.ReactChild | undefined, React.ReactChild>(children, (item) => {
-                let img: React.ReactChild | undefined = item;
+        renderThumbs: (children: React.ReactNode) => {
+            const findFirstImage = (children: React.ReactNode) =>
+                Children.toArray(children)
+                    .filter(React.isValidElement)
+                    .find((child) => child.type === 'img');
 
-                // if the item is not an image, try to find the first image in the item's children.
-                if ((item as React.ReactElement<{ children: React.ReactChild[] }>).type !== 'img') {
-                    img = (Children.toArray((item as React.ReactElement).props.children) as React.ReactChild[]).find(
-                        (children) => (children as React.ReactElement).type === 'img'
-                    );
-                }
+            const images = Children.toArray(children)
+                .filter((item): item is React.ReactElement => React.isValidElement(item))
+                .map((item) => {
+                    const img = item.type === 'img' ? item : findFirstImage(item.props.children);
 
-                if (!img) {
-                    return undefined;
-                }
-
-                return img;
-            });
+                    return img ? img : undefined;
+                });
 
             if (images.filter((image) => image).length === 0) {
                 console.warn(
@@ -611,12 +607,12 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         return null;
     };
 
-    renderItems(isClone?: boolean) {
+    renderItems(isClone?: boolean): React.ReactElement[] {
         if (!this.props.children) {
             return [];
         }
 
-        return Children.map(this.props.children, (item, index) => {
+        return Children.toArray(this.props.children).map((item, index) => {
             const isSelected = index === this.state.selectedItem;
             const isPrevious = index === this.state.previousItem;
 

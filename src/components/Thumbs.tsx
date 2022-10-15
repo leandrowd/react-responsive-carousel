@@ -240,15 +240,15 @@ export default class Thumbs extends Component<Props, State> {
     }
 
     renderItems() {
-        return this.props.children.map((img, index) => {
+        return React.Children.toArray(this.props.children).map((img, index) => {
             const itemClass = klass.ITEM(false, index === this.state.selectedItem);
 
             const thumbProps = {
                 key: index,
                 ref: (e: HTMLLIElement) => this.setThumbsRef(e, index),
                 className: itemClass,
-                onClick: this.handleClickItem.bind(this, index, this.props.children[index]),
-                onKeyDown: this.handleClickItem.bind(this, index, this.props.children[index]),
+                onClick: this.handleClickItem.bind(this, index, img),
+                onKeyDown: this.handleClickItem.bind(this, index, img),
                 'aria-label': `${this.props.labels.item} ${index + 1}`,
                 style: { width: this.props.thumbWidth },
             };
