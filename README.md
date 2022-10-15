@@ -150,7 +150,7 @@ renderItem: (item: React.ReactNode, options?: { isSelected: boolean }) => React.
 By default, thumbs are generated extracting the images in each slide. If you don't have images on your slides or if you prefer a different thumbnail, use the method `renderThumbs` to return a new list of images to be used as thumbs.
 
 ```
-renderThumbs: (children: React.ReactChild[]) => React.ReactChild[]
+renderThumbs: (children: React.ReactNode) => React.ReactNode
 ```
 
 #### Arrows

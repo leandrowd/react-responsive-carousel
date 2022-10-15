@@ -11,7 +11,7 @@ const isKeyboardEvent = (e: React.MouseEvent | React.KeyboardEvent): e is React.
 
 export interface Props {
     axis: 'horizontal' | 'vertical';
-    children: React.ReactChild[];
+    children: React.ReactNode;
     labels: {
         leftArrow: string;
         rightArrow: string;
