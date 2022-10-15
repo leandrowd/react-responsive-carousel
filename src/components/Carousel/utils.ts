@@ -46,11 +46,14 @@ export const getPosition = (index: number, props: CarouselProps): number => {
  * @param forceReflow
  */
 export const setPosition = (position: number, axis: 'horizontal' | 'vertical'): React.CSSProperties => {
-    const style = {};
-    ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].forEach((prop) => {
-        // @ts-ignore
-        style[prop] = CSSTranslate(position, '%', axis);
-    });
-
-    return style;
+    const cssTranslated = CSSTranslate(position, '%', axis);
+    return ['WebkitTransform', 'MozTransform', 'MsTransform', 'OTransform', 'transform', 'msTransform'].reduce<
+        React.CSSProperties
+    >(
+        (styles, prop) => ({
+            ...styles,
+            [prop]: cssTranslated,
+        }),
+        {}
+    );
 };
