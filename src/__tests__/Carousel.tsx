@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import { shallow, mount, ReactWrapper } from 'enzyme';
 import renderer from 'react-test-renderer';
 import * as index from '../index';
-// @ts-ignore
-import Swipe, { ReactEasySwipeProps } from 'react-easy-swipe';
+import Swipe, { SwipeProps as ReactEasySwipeProps } from 'react-easy-swipe';
 import Carousel from '../components/Carousel';
 import Thumbs from '../components/Thumbs';
 import getDocument from '../shims/document';

@@ -1,6 +1,5 @@
 import React, { Children } from 'react';
-// @ts-ignore
-import Swipe, { ReactEasySwipeProps } from 'react-easy-swipe';
+import Swipe, { SwipeEvent, SwipeProps as ReactEasySwipeProps } from 'react-easy-swipe';
 import klass from '../../cssClasses';
 import Thumbs from '../Thumbs';
 import getDocument from '../../shims/document';
@@ -430,14 +429,14 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         this.moveTo(index);
     };
 
-    onSwipeStart = (event: React.TouchEvent) => {
+    onSwipeStart: ReactEasySwipeProps['onSwipeStart'] = (event) => {
         this.setState({
             swiping: true,
         });
         this.props.onSwipeStart(event);
     };
 
-    onSwipeEnd = (event: React.TouchEvent) => {
+    onSwipeEnd: ReactEasySwipeProps['onSwipeEnd'] = (event) => {
         this.setState({
             swiping: false,
             cancelClick: false,
@@ -452,7 +451,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         }
     };
 
-    onSwipeMove = (delta: { x: number; y: number }, event: React.TouchEvent) => {
+    onSwipeMove = (delta: { x: number; y: number }, event: SwipeEvent) => {
         this.props.onSwipeMove(event);
 
         const animationHandlerResponse = this.props.swipeAnimationHandler(
@@ -722,7 +721,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         const firstClone = itemsClone.shift();
         const lastClone = itemsClone.pop();
 
-        let swiperProps: ReactEasySwipeProps = {
+        let swiperProps: Partial<ReactEasySwipeProps> = {
             className: klass.SLIDER(true, this.state.swiping),
             onSwipeMove: this.onSwipeMove,
             onSwipeStart: this.onSwipeStart,
