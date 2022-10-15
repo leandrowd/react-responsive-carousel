@@ -43,8 +43,8 @@ describe('Slider', function() {
 
         componentInstance = component.instance();
 
-        totalChildren = children && children.length ? React.Children.count(componentInstance.props.children) : 0;
-        lastItemIndex = totalChildren - 1;
+        totalChildren = children ? React.Children.count(componentInstance.props.children) : 0;
+        lastItemIndex = Math.max(totalChildren - 1, 0);
     };
 
     const baseChildren = [
