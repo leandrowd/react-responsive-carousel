@@ -189,6 +189,15 @@ describe('Slider', function() {
                 });
             });
         });
+
+        describe('Different child types', () => {
+            it('should handle single element', () => {
+                <Carousel>{baseChildren[0]}</Carousel>;
+            });
+            it('should handle JSX.Element[]', () => {
+                <Carousel>{baseChildren}</Carousel>;
+            });
+        });
     });
 
     describe('componentDidMount', () => {
