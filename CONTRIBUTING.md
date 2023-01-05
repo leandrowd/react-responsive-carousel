@@ -7,6 +7,7 @@ Found a bug? Want a new feature? Don't like the docs? Please send a pull request
 When raising an issue, please add as much details as possible. Screenshots, video recordings, or anything else that can make it easier to reproduce the bug you are reporting.
 
 -   A new option is to create a code pen with the code that causes the bug. Fork this [example](https://www.webpackbin.com/bins/-Kxr6IEf5zXSQvGCgKBR) and add your code there, then fork and add the new link to the issue.
+-   Search for similar issues. It's possible somebody has encountered this bug already.
 
 ## Creating Pull Requests
 
