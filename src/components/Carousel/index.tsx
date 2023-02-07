@@ -110,6 +110,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         transitionTime: 350,
         verticalSwipe: 'standard',
         width: '100%',
+        height: "auto"
         animationHandler: 'slide',
         swipeAnimationHandler: slideSwipeAnimationHandler,
         stopSwipingHandler: slideStopSwipingHandler,
@@ -761,7 +762,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 ref={this.setCarouselWrapperRef}
                 tabIndex={this.props.useKeyboardArrows ? 0 : undefined}
             >
-                <div className={klass.CAROUSEL(true)} style={{ width: this.props.width }}>
+                <div className={klass.CAROUSEL(true)} style={{ width: this.props.width, height: this.props.height }}>
                     {this.renderControls()}
                     {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles}>
