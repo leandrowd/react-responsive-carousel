@@ -110,7 +110,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         transitionTime: 350,
         verticalSwipe: 'standard',
         width: '100%',
-        height: "auto"
+        height: "auto",
         animationHandler: 'slide',
         swipeAnimationHandler: slideSwipeAnimationHandler,
         stopSwipingHandler: slideStopSwipingHandler,
