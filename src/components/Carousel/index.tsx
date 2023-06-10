@@ -697,6 +697,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                 thumbWidth={this.props.thumbWidth}
                 labels={this.props.labels}
                 emulateTouch={this.props.emulateTouch}
+                swipeScrollToleranceThumb={this.props.swipeScrollToleranceThumb}
             >
                 {this.props.renderThumbs(this.props.children)}
             </Thumbs>

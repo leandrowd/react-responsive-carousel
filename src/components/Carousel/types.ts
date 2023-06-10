@@ -71,6 +71,7 @@ export interface CarouselProps {
     animationHandler: 'slide' | 'fade' | AnimationHandler;
     swipeAnimationHandler: SwipeAnimationHandler;
     stopSwipingHandler: StopSwipingHandler;
+    swipeScrollToleranceThumb?: number;
 }
 
 export interface CarouselState {
