@@ -22,6 +22,7 @@ export interface Props {
     thumbWidth: number;
     transitionTime: number;
     emulateTouch?: boolean;
+    swipeScrollToleranceThumb?: number;
 }
 
 interface State {
@@ -168,7 +169,8 @@ export default class Thumbs extends Component<Props, State> {
 
     onSwipeMove = (delta: { x: number; y: number }) => {
         let deltaX = delta.x;
-        if (!this.state.itemSize || !this.itemsWrapperRef || !this.state.visibleItems) {
+        const intentionalSwipe = Math.abs(deltaX) >= (this.props.swipeScrollToleranceThumb || 0);
+        if (!intentionalSwipe || !this.state.itemSize || !this.itemsWrapperRef || !this.state.visibleItems) {
             return false;
         }
         const leftBoundary = 0;

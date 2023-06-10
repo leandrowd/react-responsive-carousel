@@ -40,6 +40,7 @@ const getConfigurableProps = () => ({
     interval: number('interval', 2000, {}, valuesGroupId),
     transitionTime: number('transitionTime', 500, {}, valuesGroupId),
     swipeScrollTolerance: number('swipeScrollTolerance', 5, {}, valuesGroupId),
+    swipeScrollToleranceThumb: number('swipeScrollToleranceThumb', 5, {}, valuesGroupId),
     ariaLabel: text('ariaLabel', undefined),
 });
 
