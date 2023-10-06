@@ -188,7 +188,7 @@ export default class Thumbs extends Component<Props, State> {
             deltaX = 0;
         }
 
-        const wrapperSize = this.itemsWrapperRef.clientWidth;
+        const wrapperSize = this.itemsWrapperRef.clientWidth - ( 6 * childrenLength );
         const position = currentPosition + 100 / (wrapperSize / deltaX);
         // if 3d isn't available we will use left to move
         if (this.itemsListRef) {
