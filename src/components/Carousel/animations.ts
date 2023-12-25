@@ -185,3 +185,81 @@ export const fadeAnimationHandler: AnimationHandler = (props, state): AnimationH
         prevStyle: { ...slideStyle },
     };
 };
+
+/**
+ * Main animation handler for the default 'sliding' style animation
+ * @param props
+ * @param state
+ */
+export const slideWithFadeWrapAroundAnimationHandler: AnimationHandler = (props, state): AnimationHandlerResponse => {
+    const returnStyles: AnimationHandlerResponse = {};
+    const { previousItem, selectedItem } = state;
+    const lastPosition = Children.count(props.children) - 1;
+    const transitionTime = props.transitionTime + 'ms';
+
+    // Wrap around from last slide to first, or first to last in inifinite loop.
+    if (props.infiniteLoop && (
+        selectedItem == 0 && previousItem==lastPosition || 
+        previousItem==0 && selectedItem==lastPosition)) {
+            const transitionTimingFunction = 'ease-in-out';
+        
+            let slideStyle: React.CSSProperties = {
+                position: 'absolute',
+                display: 'block',
+                zIndex: -2,
+                minHeight: '100%',
+                opacity: 0,
+                top: 0,
+                right: 0,
+                left: 0,
+                bottom: 0,
+                transitionTimingFunction: transitionTimingFunction,
+                msTransitionTimingFunction: transitionTimingFunction,
+                MozTransitionTimingFunction: transitionTimingFunction,
+                WebkitTransitionTimingFunction: transitionTimingFunction,
+                OTransitionTimingFunction: transitionTimingFunction,
+            };
+        
+            if (!state.swiping) {
+                slideStyle = {
+                    ...slideStyle,
+                    WebkitTransitionDuration: transitionTime,
+                    MozTransitionDuration: transitionTime,
+                    OTransitionDuration: transitionTime,
+                    transitionDuration: transitionTime,
+                    msTransitionDuration: transitionTime,
+                };
+            }
+        
+            return {
+                slideStyle,
+                selectedStyle: { ...slideStyle, opacity: 1, position: 'relative' },
+                prevStyle: { ...slideStyle },
+            };
+    }
+
+    const currentPosition = getPosition(selectedItem, props);
+
+    // if 3d is available, let's take advantage of the performance of transform
+    const transformProp = CSSTranslate(currentPosition, '%', props.axis);
+
+    returnStyles.itemListStyle = {
+        WebkitTransform: transformProp,
+        msTransform: transformProp,
+        OTransform: transformProp,
+        transform: transformProp,
+    };
+
+    if (!state.swiping) {
+        returnStyles.itemListStyle = {
+            ...returnStyles.itemListStyle,
+            WebkitTransitionDuration: transitionTime,
+            MozTransitionDuration: transitionTime,
+            OTransitionDuration: transitionTime,
+            transitionDuration: transitionTime,
+            msTransitionDuration: transitionTime,
+        };
+    }
+
+    return returnStyles;
+};
